@@ -1,34 +1,29 @@
-🏯 N5
+🏯  N5
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
-🏯 N4
+🏯  N4
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
-🏯 N3
+🏯  N3
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
-🏯 N2
+🏯  N2
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
-🏯 N1
+🏯  N1
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests

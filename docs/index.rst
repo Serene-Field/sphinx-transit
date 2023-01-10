@@ -32,6 +32,6 @@ SereneField Sphinx
 
 .. toctree::
    :maxdepth: 1
-   :caption: 🧪 Tests
+   :caption: Tests
 
    tests/index
