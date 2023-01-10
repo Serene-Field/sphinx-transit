@@ -1,3 +1,6 @@
+CS6035 Notes
+=============
+
 .. toctree::
    :maxdepth: 2
    :caption: Tests
