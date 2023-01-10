@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro to Information Security 2 | Capture The Flag and Operating System Vulnerabilities &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">Computer Network</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">High Performance Computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HPC/index.html">High Performance Computing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dev Logs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../logs/index.html">Develop Logs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="note1.html">Intro to Information Security 1 | Modular Calculation and Software Vulnerabilities</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Test</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Intro to Information Security 2 | Capture The Flag and Operating System Vulnerabilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/IIS/note2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intro-to-information-security-2-capture-the-flag-and-operating-system-vulnerabilities">
+<h1>Intro to Information Security 2 | Capture The Flag and Operating System Vulnerabilities<a class="headerlink" href="#intro-to-information-security-2-capture-the-flag-and-operating-system-vulnerabilities" title="Permalink to this heading"></a></h1>
+<section id="capture-the-flag">
+<h2>1. Capture the Flag<a class="headerlink" href="#capture-the-flag" title="Permalink to this heading"></a></h2>
+<section id="intro">
+<h3>(1) Intro<a class="headerlink" href="#intro" title="Permalink to this heading"></a></h3>
+<p>In this project we are going to view some capture the flag (CTF) problems. The first question should be easy and you should add the ID number to <code class="docutils literal notranslate"><span class="pre">e.py</span></code> script by vim.</p>
+</section>
+<section id="buffer-overflow-1">
+<h3>(2) Buffer Overflow 1<a class="headerlink" href="#buffer-overflow-1" title="Permalink to this heading"></a></h3>
+<p>In this case, we have a easy case of buffer overflow. The <code class="docutils literal notranslate"><span class="pre">payload</span></code> is a input used for the <code class="docutils literal notranslate"><span class="pre">buffer</span></code> and <code class="docutils literal notranslate"><span class="pre">buffer</span></code> can be found in the file <code class="docutils literal notranslate"><span class="pre">flag.c</span></code>. To exploit this vulnerability, we have to build a <code class="docutils literal notranslate"><span class="pre">payload</span></code> with enough lenth to rewrite the data on the memory.</p>
+<p>It’s also good to know some <code class="docutils literal notranslate"><span class="pre">gdb</span></code> commands for this case,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span> <span class="pre">&lt;line&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">&lt;line&gt;</span></code>: set the breakpoint to line number <code class="docutils literal notranslate"><span class="pre">&lt;line&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> or <code class="docutils literal notranslate"><span class="pre">r</span></code>: run the program to the next breakpoint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code> or <code class="docutils literal notranslate"><span class="pre">s</span></code>: go to the next line executed in the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">next</span></code> or <code class="docutils literal notranslate"><span class="pre">n</span></code>: go to the next line executed and skip the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code> or <code class="docutils literal notranslate"><span class="pre">c</span></code>: continue running to the next breakpoint or to the end</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print</span></code> or <code class="docutils literal notranslate"><span class="pre">p</span></code>: print the value of a variable</p></li>
+</ul>
+<p>In this case, we need to run the following command to trigger the GNU debugger,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>e.py<span class="w"> </span>dbg
+</pre></div>
+</div>
+</section>
+<section id="buffer-overflow-2">
+<h3>(3) Buffer Overflow 2<a class="headerlink" href="#buffer-overflow-2" title="Permalink to this heading"></a></h3>
+<p>Now, let’s come to the next challenge. In this case, we have a <code class="docutils literal notranslate"><span class="pre">e.py</span></code> similar to the last one and we also have a <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> script. However, in the <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> script, we can find out that we need to bypass the current <code class="docutils literal notranslate"><span class="pre">unsafe()</span></code> function and return to the <code class="docutils literal notranslate"><span class="pre">can_you_reach_me()</span></code> function if we want to capture the flag. So the first task is to find the return address of the <code class="docutils literal notranslate"><span class="pre">unsafe()</span></code> function.</p>
+<p>First, we can make a long cyclic as the <code class="docutils literal notranslate"><span class="pre">payload</span></code> and then use <code class="docutils literal notranslate"><span class="pre">gdb</span></code> to find the space we want. In the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> page, we can press <code class="docutils literal notranslate"><span class="pre">c</span></code> to continue to the <code class="docutils literal notranslate"><span class="pre">SIGBUS</span></code> error where we can spot the <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">address</span></code>. <code class="docutils literal notranslate"><span class="pre">p64()</span></code> function can change that address back to the cyclic section so that we can then use <code class="docutils literal notranslate"><span class="pre">cyclic_find</span></code> to get its position. To check if we got the return address correct, we can append <code class="docutils literal notranslate"><span class="pre">p64(</span> <span class="pre">0xdeadbeef</span> <span class="pre">)</span></code> to the end and use <code class="docutils literal notranslate"><span class="pre">gdb</span></code> to check if we return to the address <code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code>. If we now return to this address, we finished our first step.</p>
+<p>Second, we have to find out the address we have to return. To view the address, we have to check the assembly code of the executable file <code class="docutils literal notranslate"><span class="pre">flag</span></code> by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ objdump -D flag &gt; flag.asm
+</pre></div>
+</div>
+<p>And then we use <code class="docutils literal notranslate"><span class="pre">vim</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code> to search for the function we need. Here we have to search for <code class="docutils literal notranslate"><span class="pre">can_you_reach_me</span></code>. From the line with the <code class="docutils literal notranslate"><span class="pre">bl</span></code> command, we can get the address we need to return. The returned address should be the hex before the <code class="docutils literal notranslate"><span class="pre">:</span></code> sign. So finally, we can create a <code class="docutils literal notranslate"><span class="pre">payload</span></code> with the cyclic offset plus the return address we need.</p>
+</section>
+<section id="understanding-assembly">
+<h3>(4) Understanding Assembly<a class="headerlink" href="#understanding-assembly" title="Permalink to this heading"></a></h3>
+<p>In this case, we can to figure out the right order for the assembly code to come up with the address for the flag. So again, we have to convert the executable <code class="docutils literal notranslate"><span class="pre">flag</span></code> to its assembly by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ objdump -D flag &gt; flag.asm
+</pre></div>
+</div>
+<p>If we also look into the <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> script, we can figure out the callback of <code class="docutils literal notranslate"><span class="pre">call_me</span></code> is stored in a variable called <code class="docutils literal notranslate"><span class="pre">caller</span></code>. Then in the assembly code, we can search for this <code class="docutils literal notranslate"><span class="pre">caller</span></code> and record its address.</p>
+<p>Next, we have to figure out the right order of the assemblies. Here are some functions of the ARM assembly instructions,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MOVZ</span> <span class="pre">A,</span> <span class="pre">#N</span></code>: replace the current value in register <code class="docutils literal notranslate"><span class="pre">A</span></code> with instant number <code class="docutils literal notranslate"><span class="pre">#N</span></code>. The bits not assigned will be 0s.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MOVK</span> <span class="pre">A,</span> <span class="pre">#N,</span> <span class="pre">lsl</span> <span class="pre">M</span></code>: put the instant number <code class="docutils literal notranslate"><span class="pre">#N</span></code> to register <code class="docutils literal notranslate"><span class="pre">A</span></code> and then logical shift left for <code class="docutils literal notranslate"><span class="pre">M</span></code> bits. The other bits in the register remains the same.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LDR</span> <span class="pre">A,</span> <span class="pre">[B]</span></code>: value in address found at register <code class="docutils literal notranslate"><span class="pre">B</span></code> is loaded to the register <code class="docutils literal notranslate"><span class="pre">A</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STR</span> <span class="pre">A,</span> <span class="pre">[B]</span></code>: value in the register <code class="docutils literal notranslate"><span class="pre">A</span></code> is stored at the address found at register <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STP</span> <span class="pre">A,</span> <span class="pre">B,</span> <span class="pre">[C]</span></code>: move the sp pointer to the address found at register <code class="docutils literal notranslate"><span class="pre">C</span></code> and then write the value of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> after that</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ret</span></code>: return the the address at register <code class="docutils literal notranslate"><span class="pre">x30</span></code></p></li>
+</ul>
+</section>
+<section id="bad-random-caused-by-leak">
+<h3>(5) Bad Random Caused By Leak<a class="headerlink" href="#bad-random-caused-by-leak" title="Permalink to this heading"></a></h3>
+<p>Based on the <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> and also run the executable <code class="docutils literal notranslate"><span class="pre">flag</span></code>, we can figure out in this case that the leaked part of the base address <code class="docutils literal notranslate"><span class="pre">system</span></code> has 8 valid bytes and we have to figure out the rest 4 bytes.</p>
+<p>Second, if we try out the executable <code class="docutils literal notranslate"><span class="pre">flag</span></code> a few time, we can find out the the last 3 bytes of the base address never change. Then in this case, the only guess we have to make is the remaining 1 byte.</p>
+<p>Then we have to edit the <code class="docutils literal notranslate"><span class="pre">e.py</span></code> script and create a loop to guess the address for several times. When we make a correct guess, we are able to capture the flag. The following tricks are useful while editing the script.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">process('./flag')</span></code>: create a process executing the command <code class="docutils literal notranslate"><span class="pre">./flag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.recvline()</span></code>: get one line from output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.sendline(payload)</span></code>: send the payload to the process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.recvall()</span></code>: get all the output. It will hang up if we have to wait for an input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p.close()</span></code>: close the current process</p></li>
+</ul>
+</section>
+<section id="get-strings">
+<h3>(6) Get Strings<a class="headerlink" href="#get-strings" title="Permalink to this heading"></a></h3>
+<p>The next trick is that we can exploit the strings coded in the executable file. To do that, we can use <code class="docutils literal notranslate"><span class="pre">strings</span></code> command in Linux to output all the readable strings in a file,</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>strings<span class="w"> </span>flag<span class="w"> </span>&gt;<span class="w"> </span>flag_str
+</pre></div>
+</div>
+<p>Then we can use <code class="docutils literal notranslate"><span class="pre">vim</span></code> to check the <code class="docutils literal notranslate"><span class="pre">flag_str</span></code> file and find out the answers. The assumption is that we commonly have related strings appeared together in the code.</p>
+</section>
+<section id="client-and-server">
+<h3>(7) Client and Server<a class="headerlink" href="#client-and-server" title="Permalink to this heading"></a></h3>
+<p>The solution for this problem is similar to the buffer overflow 2 one and it’s a good idea to operate a similar procedure. However, the difference is that we have a client sending messages to the server and the flag is stored on the server. In spite of this, we can also rewrite the return address on the client.</p>
+</section>
+<section id="xor-trick">
+<h3>(8) XOR Trick<a class="headerlink" href="#xor-trick" title="Permalink to this heading"></a></h3>
+<p>In this problem, we have to read the script <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> first and then understand the logic of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. For the bitwise operations, here’s a quick reference,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code>: XOR</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span></code>: OR</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code>: AND</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>: Shift right</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>: Shift left</p></li>
+</ul>
+<p>After we figure out the meaning of the <code class="docutils literal notranslate"><span class="pre">flag.c</span></code> script, we can easily build a payload that has a <code class="docutils literal notranslate"><span class="pre">0xefbeadde</span></code> value for <code class="docutils literal notranslate"><span class="pre">XORbius</span></code> variable based on the following formula,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">^</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>Then we have to build a payload that gives us the result that we need to pass the <code class="docutils literal notranslate"><span class="pre">if</span></code> check. In this case, we will have the following equation where both <code class="docutils literal notranslate"><span class="pre">c1</span></code> and <code class="docutils literal notranslate"><span class="pre">c2</span></code> are constants,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">^</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">c2</span>
+</pre></div>
+</div>
+<p>In order to solve this equation, we will need the following property for XOR,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">^</span> <span class="n">b</span> <span class="o">^</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+</pre></div>
+</div>
+<p>Therefore, we can solve the equation above by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c1</span> <span class="o">^</span> <span class="n">x</span> <span class="o">^</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">^</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">x</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">c1</span> <span class="o">^</span> <span class="n">c2</span>
+</pre></div>
+</div>
+<p>Here are also some tools that can help on solving this problem.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://miniwebtool.com/bitwise-calculator/">Bitwise calculator</a></p></li>
+<li><p><a class="reference external" href="https://www.rapidtables.com/convert/number/decimal-to-hex.html">Decimal to hex converter</a></p></li>
+</ul>
+<p>Also, because we are using python for payload, we can build characters by,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chr()</span></code>: decimal to char by ASCII</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ord()</span></code>: char to decimal by ASCII</p></li>
+</ul>
+</section>
+<section id="buffer-overflow-3-pointy-pointy-point">
+<h3>(9) Buffer Overflow 3 (pointy_pointy_point)<a class="headerlink" href="#buffer-overflow-3-pointy-pointy-point" title="Permalink to this heading"></a></h3>
+<p>This problem highly relies on Math and <code class="docutils literal notranslate"><span class="pre">gdb</span></code>. This problem is very similar to the buffer overflow problems we have met. Here are some hints for this problem,</p>
+<ul class="simple">
+<li><p>To bypass the <code class="docutils literal notranslate"><span class="pre">protector</span></code>, we have to do some calculations</p></li>
+<li><p>In order to pass the check, we have to put <code class="docutils literal notranslate"><span class="pre">0x0badf00d</span></code> somewhere and then make the pointer point at it.</p></li>
+<li><p>For the calculation of <code class="docutils literal notranslate"><span class="pre">*(&amp;protector</span> <span class="pre">+</span> <span class="pre">some_other_value)</span></code>, we have to overwrite <code class="docutils literal notranslate"><span class="pre">some_other_value</span></code> by buffer overflow and then make this address the address we want.</p></li>
+<li><p>To bypass the <code class="docutils literal notranslate"><span class="pre">characters_read</span></code> check, we can not use buffer overflow to rewrite this variable because it will redo the calculation. We can think about putting some Null characters <code class="docutils literal notranslate"><span class="pre">b'\x00'</span></code> in the buffer so that it will not detect the buffer overflow issue.</p></li>
+<li><p>Both x86 and ARM is little endian.</p></li>
+</ul>
+</section>
+<section id="hunt-then-rop">
+<h3>(10) Hunt Then Rop<a class="headerlink" href="#hunt-then-rop" title="Permalink to this heading"></a></h3>
+<p>The final task is a combination of two tasks. The first one is to find the vulnerable file by verifying the sha256 checksum for each file. The second one is to find out how to crack the program.</p>
+<p>For the first question, we can output the sha256 checksums of all the files in the current directory by the command line mentioned in <a class="reference external" href="https://askubuntu.com/questions/1091335/create-checksum-sha256-of-all-files-and-directories">this post</a>. The output format can be different so I wrote a python script to check the difference, but there can be many other ways to deal with that issue. Make sure to ignore the files <code class="docutils literal notranslate"><span class="pre">readme</span></code>, <code class="docutils literal notranslate"><span class="pre">user.txt</span></code>, and <code class="docutils literal notranslate"><span class="pre">checksum</span></code>, and the other file left should be the one with vulnerabilities.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

