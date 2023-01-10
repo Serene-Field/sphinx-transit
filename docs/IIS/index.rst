@@ -8,6 +8,4 @@ CS6035 Notes
    note1
    note2
    note3
-
-
-   
+   note4

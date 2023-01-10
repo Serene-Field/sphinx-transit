@@ -1,5 +1,5 @@
-Test
-=====
+Sphinx Tests
+============
 
 .. toctree::
    :maxdepth: 1
