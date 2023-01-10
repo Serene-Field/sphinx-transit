@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 4｜Cache Oblivious Algorithms &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Performance Computing 5 | Work Span Model" href="note5.html" />
+    <link rel="prev" title="High Performance Computing 3 | I/O Avoiding Algorithms" href="note3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 4｜Cache Oblivious Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-concepts">1. Basic Concepts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-definition-of-oblivious">(1) The Definition of Oblivious</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cache-hit-and-cache-miss">(2) Cache Hit and Cache Miss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-ideal-cache-model">(3) The Ideal Cache Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#memory-transfer-costs-for-ideal-cache-model">(4) Memory Transfer Costs for Ideal Cache Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recall-lru-replacement">(5) Recall: LRU Replacement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-of-lru-opt-lemma">(7) Example of LRU-OPT Lemma</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proof-of-lru-opt-lemma">(6) Proof of LRU-OPT Lemma</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tall-cache-assumption">(7) Tall Cache Assumption</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cache-oblivious-algorithms">2. Cache Oblivious Algorithms</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#matrix-multiplication">(1) Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binary-search">(2) Binary Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binary-tree">(3) Binary Tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#van-emde-boas-layout">(4) Van Emde Boas layout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 4｜Cache Oblivious Algorithms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note4.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-4-cache-oblivious-algorithms">
+<h1>High Performance Computing 4｜Cache Oblivious Algorithms<a class="headerlink" href="#high-performance-computing-4-cache-oblivious-algorithms" title="Permalink to this heading"></a></h1>
+<section id="basic-concepts">
+<h2>1. Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h2>
+<section id="the-definition-of-oblivious">
+<h3>(1) The Definition of Oblivious<a class="headerlink" href="#the-definition-of-oblivious" title="Permalink to this heading"></a></h3>
+<p>Oblivious to the fast memory or cache means the algorithm makes no reference to the fast memory or its parameters (e.g. <code class="docutils literal notranslate"><span class="pre">Z</span></code> or <code class="docutils literal notranslate"><span class="pre">L</span></code>).</p>
+</section>
+<section id="cache-hit-and-cache-miss">
+<h3>(2) Cache Hit and Cache Miss<a class="headerlink" href="#cache-hit-and-cache-miss" title="Permalink to this heading"></a></h3>
+<p>When a load or a store happens in the program, the hardware will first check the cache. If the value it needs exist in the cache, then we will call it a cache hit. Instead, there will be a cache miss, and it will cost a memory transfer.</p>
+</section>
+<section id="the-ideal-cache-model">
+<h3>(3) The Ideal Cache Model<a class="headerlink" href="#the-ideal-cache-model" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Program issues load &amp; store operations</p></li>
+<li><p>Hardware manages <code class="docutils literal notranslate"><span class="pre">Z/L</span></code> cache lines</p></li>
+<li><p>Slow and fast memories are <strong>divided into blocks of L words</strong></p></li>
+<li><p>Cache is <strong>fully associative</strong>, which means the block is allowed to go into any block or line of the cache. As real caches don’t implement as fully associative, and it will make our ideal cache model more powerful.</p></li>
+<li><p>Using <strong>optimal replacement</strong> which means the hardware managing the cache actually knows the future</p></li>
+</ul>
+</section>
+<section id="memory-transfer-costs-for-ideal-cache-model">
+<h3>(4) Memory Transfer Costs for Ideal Cache Model<a class="headerlink" href="#memory-transfer-costs-for-ideal-cache-model" title="Permalink to this heading"></a></h3>
+<p>In the ideal cache model, we also calculate the number of transfers, and this will be equal to the number of misses and the number of store evictions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="c1"># of misses + # of store evictions</span>
+</pre></div>
+</div>
+</section>
+<section id="recall-lru-replacement">
+<h3>(5) Recall: LRU Replacement<a class="headerlink" href="#recall-lru-replacement" title="Permalink to this heading"></a></h3>
+<p>LRU is a common replacement rule and it evicts the least recently used address. The number of evictions of LRU is commonly higher than the ideal number of evictions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of eviction (Ideal) &lt;= # of eviction (LRU)</span>
+</pre></div>
+</div>
+<p>More specifically, there’s a lemma shows that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Based on this, one corollary called <strong>regularity condition</strong> is that we say <code class="docutils literal notranslate"><span class="pre">Q_OPT(n;Z,L)</span></code> is regular if,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="mi">2</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then if we can show that the <code class="docutils literal notranslate"><span class="pre">Q_OPT</span></code> is regular in this sense, we are able to show that the LRU will be performing just as well,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In this case that we can figure out that the optimal replacement is not a very strong assumption.</p>
+</section>
+<section id="example-of-lru-opt-lemma">
+<h3>(7) Example of LRU-OPT Lemma<a class="headerlink" href="#example-of-lru-opt-lemma" title="Permalink to this heading"></a></h3>
+<p>Now, let’s see how to use the lemma. Suppose we have a matrix multiplication problem and we have discussed that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Then assume <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">=</span> <span class="pre">1</span></code> (unit) we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Therefore, the upper bound of LRU that we can have is then,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+</section>
+<section id="proof-of-lru-opt-lemma">
+<h3>(6) Proof of LRU-OPT Lemma<a class="headerlink" href="#proof-of-lru-opt-lemma" title="Permalink to this heading"></a></h3>
+<p>Recall the lemma,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s prove this. Suppose <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">=</span> <span class="pre">1</span></code> and the machine has an LRU cache of size <code class="docutils literal notranslate"><span class="pre">Z</span></code>. For any phase <code class="docutils literal notranslate"><span class="pre">i</span></code>, it references exactly <code class="docutils literal notranslate"><span class="pre">Z</span></code> unique address (loads and stores). Then the begining of the phase <code class="docutils literal notranslate"><span class="pre">i</span></code> we may possibly have the cache full and it could cause an eviction. Therefore, the number of cache misses could be as high as <code class="docutils literal notranslate"><span class="pre">Z</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">Z</span> <span class="o">|</span> <span class="n">phase</span> <span class="o">=</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">Z</span>
+</pre></div>
+</div>
+<p>Then if we also have a OPT cache in phase <code class="docutils literal notranslate"><span class="pre">i</span></code> of size <code class="docutils literal notranslate"><span class="pre">Z/2</span></code>, for the first <code class="docutils literal notranslate"><span class="pre">Z/2</span></code> addresses, it can presee the future and there will be no cache miss. However, for the next <code class="docutils literal notranslate"><span class="pre">Z/2</span></code> addresses in phase <code class="docutils literal notranslate"><span class="pre">i</span></code>, it can not see the future so that it can at least have <code class="docutils literal notranslate"><span class="pre">Z/2</span></code> cache misses. Therefore,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">Z</span> <span class="o">|</span> <span class="n">phase</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Z</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Based on these two inequations, we can have the lemma,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tall-cache-assumption">
+<h3>(7) Tall Cache Assumption<a class="headerlink" href="#tall-cache-assumption" title="Permalink to this heading"></a></h3>
+<p>The tall cache assumption says that the cache should be taller (aka. the number of lines) than its wide (aka. the number of words per line).</p>
+<p>The number of lines are defined as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of lines = Z / L</span>
+</pre></div>
+</div>
+<p>And the words per line should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of words per line = L</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">/</span> <span class="n">L</span> <span class="o">&gt;=</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">&gt;=</span> <span class="n">L</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>This is the assumption hold when we have an ideal cache. In the real case, most of the memory hierarchies are indeed tall but not all of them are.</p>
+</section>
+</section>
+<section id="cache-oblivious-algorithms">
+<h2>2. Cache Oblivious Algorithms<a class="headerlink" href="#cache-oblivious-algorithms" title="Permalink to this heading"></a></h2>
+<section id="matrix-multiplication">
+<h3>(1) Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this heading"></a></h3>
+<p>Recall the cache aware matrix multiply we have discussed. The matrics are divided into blocks of size <code class="docutils literal notranslate"><span class="pre">b</span></code> times <code class="docutils literal notranslate"><span class="pre">b</span></code> and,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>So in this case, the cache misses are,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">b</span><span class="p">))</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>As we have said, for any non-Strassen algorithms, no algorithms can be better than this.</p>
+<p>However, there’s a different algorithm that can achieve the same performance but unaware to the cache size. Let’s assume for simplity that matrics are <code class="docutils literal notranslate"><span class="pre">n</span></code> by <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code> is an integer power of 2. Then we can recursively divide the matrix to four blocks (2 by 2) until we get the result. Here’s the pseudocode,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">mm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">then</span> <span class="n">C</span> <span class="o">&lt;-</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+    <span class="k">else</span>
+        <span class="n">Logically</span> <span class="n">partition</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">C</span> <span class="n">into</span> <span class="n">quadrants</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+                 <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+                     <span class="n">mm</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Aik</span><span class="p">,</span> <span class="n">Bkj</span><span class="p">,</span> <span class="n">Cij</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s now analyze this code. The number of recurrence flops is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">F</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span>
+     <span class="o">=</span> <span class="mi">2</span>          <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>For calculating the cache misses, let’s first say that in the level <code class="docutils literal notranslate"><span class="pre">l</span></code> we have the operands fit in the cache so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_l</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="o">^</span><span class="n">l</span>
+</pre></div>
+</div>
+<p>And,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="n">n_l</span><span class="o">^</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">Z</span>
+</pre></div>
+</div>
+<p>If we assume tall cache in this case, we will then have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n_l</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">c</span></code> is a constant fraction.</p>
+<p>Then we can write,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>             <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)</span>
+         <span class="o">=</span> <span class="mi">8</span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="k">if</span> <span class="k">else</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> means we assume a constant number within the function call itself. To solve this recurrence we can have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>This matches the lower bound.</p>
+</section>
+<section id="binary-search">
+<h3>(2) Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this heading"></a></h3>
+<p>Also, let’s first recall the binary search. The number of cache misses is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">L</span>
+         <span class="o">=</span> <span class="mi">1</span>              <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>Solving this recurrence we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>However, the lower bound is <code class="docutils literal notranslate"><span class="pre">O(log_L(n))</span></code>. So the algorithm is not optimal but it is still one nice thing. One thing to see is that the algorithm is already cache oblivious.</p>
+<p>But how to achieve the lower bound? There’s a way out if we change the data layout. Let’s replace the array to a binary search tree and then let’s see how we can achieve it.</p>
+</section>
+<section id="binary-tree">
+<h3>(3) Binary Tree<a class="headerlink" href="#binary-tree" title="Permalink to this heading"></a></h3>
+<p>Because the binary search tree maintains some ordering of its elements and we can number a tree to its in-order traversal. Then we can interpret these numbers as addresses or index positions.</p>
+<p>However, there’s nothing secret about this layout and let’s consider a different ordering called the Van Emde Boas layout or a Van Emde Boas tree.</p>
+</section>
+<section id="van-emde-boas-layout">
+<h3>(4) Van Emde Boas layout<a class="headerlink" href="#van-emde-boas-layout" title="Permalink to this heading"></a></h3>
+<p>If we have a complete binary tree of <code class="docutils literal notranslate"><span class="pre">n</span></code> nodes, then we will have <code class="docutils literal notranslate"><span class="pre">logn</span></code> levels. If we split the levels in half, then we have two parts of the levels and each of them has <code class="docutils literal notranslate"><span class="pre">logn/2</span></code> levels. Above the split line, there will be <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code> nodes and below the split line, there will be about <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code> subtrees and each of size <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code>.</p>
+<p>The idea of a Van Emde Boas layout is to put a binary tree linearly in the slow memory by,</p>
+<ul class="simple">
+<li><p>partitioning the levels</p></li>
+<li><p>layout all the upper subtree elements together</p></li>
+<li><p>concatenate with the lower subtree elements</p></li>
+</ul>
+<p>When we say “layout together”, we mean recursively apply the Van Emde Boas layout to each subtree.</p>
+<p>Now let’s see how it works. Let’s zoom in the tree and looking at the point where the subtrees fit within the cache lines (# of nodes in a subtree &lt;= L). Then a binary search, as defined, takes some path from the root to the leaf and we only generate a cache miss when we hit the root of one of the subtrees. The hight of a subtree should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h_sub</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">logL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And the total height of the tree should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">logN</span>
+</pre></div>
+</div>
+<p>Then the maximum cache miss we can have by this case should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">h_sub</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">logN</span><span class="o">/</span><span class="n">logL</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And we can see that this is the best case we have.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note3.html" class="btn btn-neutral float-left" title="High Performance Computing 3 | I/O Avoiding Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note5.html" class="btn btn-neutral float-right" title="High Performance Computing 5 | Work Span Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

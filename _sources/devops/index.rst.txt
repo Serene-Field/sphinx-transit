@@ -1,8 +1,8 @@
-Develop Logs
+CKAD
 =============
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
+   :caption: CKAD notes
 
    

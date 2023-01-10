@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro to Information Security 4 | Malware Analysis &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx Tests" href="../tests/index.html" />
+    <link rel="prev" title="Intro to Information Security 3 | Log4J Vulnerabilities" href="note3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HPC/index.html">CSE6220 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CS6035 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Intro to Information Security 1 | Modular Calculation and Software Vulnerabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Intro to Information Security 2 | Capture The Flag and Operating System Vulnerabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Intro to Information Security 3 | Log4J Vulnerabilities</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Intro to Information Security 4 | Malware Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#phase-1-malware-analytics">1. Phase 1: Malware Analytics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#joe-sandbox-cloud">(1) Joe Sandbox Cloud</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reports-reading-rules">(2) Reports Reading Rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#understanding-the-programs">(3) Understanding the programs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-dropped-created-files">(4) Check Dropped (Created) Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-ms-office-key-deletion">(5) Check MS Office Key Deletion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-ms-excel-key-creation">(6) Check MS Excel Key Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-created-registry-values">(7) Check created registry values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-regasm-virus">(8) Check RegAsm virus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#issues-signal-to-cause-immediate-program-termination">(9) Issues signal to cause immediate program termination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-malicious-file-programmed-in-c-or-c">(10) Check Malicious file programmed in C or C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detects-the-mirai-botnet">(11) Detects the Mirai botnet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-attempts-for-keylogger">(12) Check attempts for keylogger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-attempts-to-copy-clipboard">(13) Check attempts to copy clipboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-hooking-registry-keys-values">(14) Check hooking registry keys/values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detect-hips-pfw-os-protection-evasions">(15) Detect HIPS/PFW/OS Protection Evasions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-calling-core-file-splwow64-exe">(16) Check calling core file <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-the-drops-of-a-portable-executable-file-into-c-windows">(17) Check the drops of a portable executable file into <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-if-it-looks-for-the-name-or-serial-number-of-a-device">(18) Check if it looks for the name or serial number of a device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-the-attempts-to-obscure-the-meaning-of-data">(19) Check the attempts to obscure the meaning of data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-http-get-or-post-without-a-user-agent">(20) Check HTTP GET or POST without a user agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-if-uses-spans-to-delay">(21) Check if uses spans to delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-if-overrides-dns-to-redirect">(22) Check if overrides DNS to redirect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detect-possible-system-shutdown">(23) Detect possible system shutdown</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#machine-learning-of-malwares-and-malheur">2. Machine Learning of Malwares and Malheur</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#malheur-manual">(1) Malheur Manual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testing-malheur">(2) Testing Malheur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasets">(3) Datasets</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configurations">(4) Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-result">(5) Output Result</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hints">(6) Hints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CS6035 Notes</a></li>
+      <li class="breadcrumb-item active">Intro to Information Security 4 | Malware Analysis</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/IIS/note4.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intro-to-information-security-4-malware-analysis">
+<h1>Intro to Information Security 4 | Malware Analysis<a class="headerlink" href="#intro-to-information-security-4-malware-analysis" title="Permalink to this heading"></a></h1>
+<section id="phase-1-malware-analytics">
+<h2>1. Phase 1: Malware Analytics<a class="headerlink" href="#phase-1-malware-analytics" title="Permalink to this heading"></a></h2>
+<section id="joe-sandbox-cloud">
+<h3>(1) Joe Sandbox Cloud<a class="headerlink" href="#joe-sandbox-cloud" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://www.joesandbox.com/">Joe Sandbox</a> detects and analyzes potential malicious files and URLs on Windows, Android, Mac OS, Linux, and iOS for suspicious activities. It performs deep malware analysis and generates comprehensive and detailed analysis reports.</p>
+</section>
+<section id="reports-reading-rules">
+<h3>(2) Reports Reading Rules<a class="headerlink" href="#reports-reading-rules" title="Permalink to this heading"></a></h3>
+<p>If any of the behaviors are seen (or attempted, but not necessarily successful) in any process in the report, then that malware has attempted that behavior. This is, of course, not completely practical, as legitimate applications may perform the same actions in a benign fashion. We are not concerned with differentiating the two in this assignment, but it is some food for thought.</p>
+</section>
+<section id="understanding-the-programs">
+<h3>(3) Understanding the programs<a class="headerlink" href="#understanding-the-programs" title="Permalink to this heading"></a></h3>
+<p>Before we start, let’s try to understand each of these malwares based on their <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s.</p>
+<ul class="simple">
+<li><p><strong>Malware 1</strong>: this malware uses Follina CVE-2022-30190 for MS office to start <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>.</p></li>
+<li><p><strong>Malware 2</strong>: this malware tries to kill multiple processes by sending SIGKILL signal. The goal is to turn the device into remotely controlled bots.</p></li>
+<li><p><strong>Malware 3</strong>: this malware created malicious files and hide that they are downloaded from the internet. The goal is to call Nanocore RAT service.</p></li>
+<li><p><strong>Malware 4</strong>: this malware changes the security center settings and hides it has been downloaded from the internet. Then it attempts to connect to the network and upload the data. This is called Emotet virus.</p></li>
+<li><p><strong>Malware 5</strong>: this malware attempts to execute the <code class="docutils literal notranslate"><span class="pre">regasm.exe</span></code> virus or similar to steal sensitive user information.</p></li>
+</ul>
+</section>
+<section id="check-dropped-created-files">
+<h3>(4) Check Dropped (Created) Files<a class="headerlink" href="#check-dropped-created-files" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code> and check if a process has created any files that is considered to be malicious. The sky blue block means the files created and if there’s a red symbol in the blue box, it means the created file is malicious.</p>
+</section>
+<section id="check-ms-office-key-deletion">
+<h3>(5) Check MS Office Key Deletion<a class="headerlink" href="#check-ms-office-key-deletion" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Key</span> <span class="pre">Deleted</span></code> and check if we have the keyword <code class="docutils literal notranslate"><span class="pre">Office</span></code> appears in the Key Path shown.</p>
+</section>
+<section id="check-ms-excel-key-creation">
+<h3>(6) Check MS Excel Key Creation<a class="headerlink" href="#check-ms-excel-key-creation" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Key</span> <span class="pre">Created</span></code> and check if we have the keyword <code class="docutils literal notranslate"><span class="pre">Excel</span></code> appears in the Key Path shown.</p>
+</section>
+<section id="check-created-registry-values">
+<h3>(7) Check created registry values<a class="headerlink" href="#check-created-registry-values" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">created</span> <span class="pre">Registry</span> <span class="pre">Values</span></code> to view the behavior graph. Then figure out if there’re any processes created registry values.</p>
+</section>
+<section id="check-regasm-virus">
+<h3>(8) Check RegAsm virus<a class="headerlink" href="#check-regasm-virus" title="Permalink to this heading"></a></h3>
+<p>Check if we have keyword <code class="docutils literal notranslate"><span class="pre">regasm</span></code> in the <code class="docutils literal notranslate"><span class="pre">AV</span> <span class="pre">Detection</span></code> section.</p>
+</section>
+<section id="issues-signal-to-cause-immediate-program-termination">
+<h3>(9) Issues signal to cause immediate program termination<a class="headerlink" href="#issues-signal-to-cause-immediate-program-termination" title="Permalink to this heading"></a></h3>
+<p>Check out the <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s and find out which malware will issue signals to terminate the program.</p>
+</section>
+<section id="check-malicious-file-programmed-in-c-or-c">
+<h3>(10) Check Malicious file programmed in C or C++<a class="headerlink" href="#check-malicious-file-programmed-in-c-or-c" title="Permalink to this heading"></a></h3>
+<p>Check out the <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s for each started process, there should be a bar indicates how malicious the file is. We can also find which language it is programmed, and it should be in,</p>
+<ul class="simple">
+<li><p>Java</p></li>
+<li><p>C, C++, or other</p></li>
+<li><p>.Net C# or VB .NET</p></li>
+<li><p>Visual Basic</p></li>
+</ul>
+<p>We should find out if the malicious file in the current malware is written in C/C++.</p>
+</section>
+<section id="detects-the-mirai-botnet">
+<h3>(11) Detects the Mirai botnet<a class="headerlink" href="#detects-the-mirai-botnet" title="Permalink to this heading"></a></h3>
+<p>You may already known which malware uses Mirai Botnet but we can comfirm it by searching <code class="docutils literal notranslate"><span class="pre">Yara</span> <span class="pre">detected</span> <span class="pre">Mirai</span></code> in the reports.</p>
+</section>
+<section id="check-attempts-for-keylogger">
+<h3>(12) Check attempts for keylogger<a class="headerlink" href="#check-attempts-for-keylogger" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">keylog</span></code> in the reports and see if the malware has some signatures related to it.</p>
+</section>
+<section id="check-attempts-to-copy-clipboard">
+<h3>(13) Check attempts to copy clipboard<a class="headerlink" href="#check-attempts-to-copy-clipboard" title="Permalink to this heading"></a></h3>
+<p>It should be similar to the last one. Search for <code class="docutils literal notranslate"><span class="pre">Clipboard</span> <span class="pre">Data</span></code> in the reports and see if the malware has some signatures related to it.</p>
+</section>
+<section id="check-hooking-registry-keys-values">
+<h3>(14) Check hooking registry keys/values<a class="headerlink" href="#check-hooking-registry-keys-values" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Monitors</span> <span class="pre">certain</span> <span class="pre">registry</span> <span class="pre">keys</span> <span class="pre">/</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">changes</span></code> and see if we have some signatures related to it. This is often done to protect autostart functionality.</p>
+</section>
+<section id="detect-hips-pfw-os-protection-evasions">
+<h3>(15) Detect HIPS/PFW/OS Protection Evasions<a class="headerlink" href="#detect-hips-pfw-os-protection-evasions" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">HIPS</span> <span class="pre">/</span> <span class="pre">PFW</span> <span class="pre">/</span> <span class="pre">Operating</span> <span class="pre">System</span> <span class="pre">Protection</span> <span class="pre">Evasion</span></code> in the reports and see if we have some signatures related to it.</p>
+</section>
+<section id="check-calling-core-file-splwow64-exe">
+<h3>(16) Check calling core file <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code><a class="headerlink" href="#check-calling-core-file-splwow64-exe" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code> in the reports and see if we have some signatures related to it.</p>
+</section>
+<section id="check-the-drops-of-a-portable-executable-file-into-c-windows">
+<h3>(17) Check the drops of a portable executable file into <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code><a class="headerlink" href="#check-the-drops-of-a-portable-executable-file-into-c-windows" title="Permalink to this heading"></a></h3>
+<p>Note that the portable executable (PE) file should have one of the following file extensions,</p>
+<ul class="simple">
+<li><p>.acm</p></li>
+<li><p>.ax</p></li>
+<li><p>.cpl</p></li>
+<li><p>.dll</p></li>
+<li><p>.drv</p></li>
+<li><p>.efi</p></li>
+<li><p>.exe</p></li>
+<li><p>.mui</p></li>
+<li><p>.ocx</p></li>
+<li><p>.scr</p></li>
+<li><p>.sys</p></li>
+<li><p>.tsp</p></li>
+</ul>
+<p>And then let’s search for <code class="docutils literal notranslate"><span class="pre">Created</span> <span class="pre">/</span> <span class="pre">dropped</span> <span class="pre">Files</span></code>. There should be at least one file with <code class="docutils literal notranslate"><span class="pre">dropped</span></code> Category and one of the extensions above. And the Process should be started by <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code>.</p>
+</section>
+<section id="check-if-it-looks-for-the-name-or-serial-number-of-a-device">
+<h3>(18) Check if it looks for the name or serial number of a device<a class="headerlink" href="#check-if-it-looks-for-the-name-or-serial-number-of-a-device" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Queries</span> <span class="pre">the</span> <span class="pre">volume</span> <span class="pre">information</span> <span class="pre">(name,</span> <span class="pre">serial</span> <span class="pre">number</span> <span class="pre">etc)</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">device</span></code> in the reports and see if we have some signatures related to it.</p>
+</section>
+<section id="check-the-attempts-to-obscure-the-meaning-of-data">
+<h3>(19) Check the attempts to obscure the meaning of data<a class="headerlink" href="#check-the-attempts-to-obscure-the-meaning-of-data" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">Obfuscated</span> <span class="pre">Files</span> <span class="pre">or</span> <span class="pre">Information</span></code> nd see if we have some signatures related to it.</p>
+</section>
+<section id="check-http-get-or-post-without-a-user-agent">
+<h3>(20) Check HTTP GET or POST without a user agent<a class="headerlink" href="#check-http-get-or-post-without-a-user-agent" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Packets</span></code> and check if there’s one GET or POST request which doesn’t have a <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> field in its header.</p>
+</section>
+<section id="check-if-uses-spans-to-delay">
+<h3>(21) Check if uses spans to delay<a class="headerlink" href="#check-if-uses-spans-to-delay" title="Permalink to this heading"></a></h3>
+<p>Check the following keywords <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">execution</span> <span class="pre">stops</span> <span class="pre">while</span> <span class="pre">process</span> <span class="pre">was</span> <span class="pre">sleeping</span></code> or <code class="docutils literal notranslate"><span class="pre">Contains</span> <span class="pre">medium</span> <span class="pre">sleeps</span> <span class="pre">(&gt;=</span> <span class="pre">30s)</span></code> or <code class="docutils literal notranslate"><span class="pre">May</span> <span class="pre">sleep</span> <span class="pre">(evasive</span> <span class="pre">loops)</span> <span class="pre">to</span> <span class="pre">hinder</span> <span class="pre">dynamic</span> <span class="pre">analysis</span></code> or <code class="docutils literal notranslate"><span class="pre">sleep</span></code> or <code class="docutils literal notranslate"><span class="pre">ping</span></code> or <code class="docutils literal notranslate"><span class="pre">delay</span></code> to check if there are some delays for evasion.</p>
+</section>
+<section id="check-if-overrides-dns-to-redirect">
+<h3>(22) Check if overrides DNS to redirect<a class="headerlink" href="#check-if-overrides-dns-to-redirect" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">DNS</span></code> in the reports and see if there are potential DNS overrides in signatures.</p>
+</section>
+<section id="detect-possible-system-shutdown">
+<h3>(23) Detect possible system shutdown<a class="headerlink" href="#detect-possible-system-shutdown" title="Permalink to this heading"></a></h3>
+<p>Search for <code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">Shutdown/Reboot</span></code> in the reports and see if we have some signatures related to it.</p>
+</section>
+</section>
+<section id="machine-learning-of-malwares-and-malheur">
+<h2>2. Machine Learning of Malwares and Malheur<a class="headerlink" href="#machine-learning-of-malwares-and-malheur" title="Permalink to this heading"></a></h2>
+<section id="malheur-manual">
+<h3>(1) Malheur Manual<a class="headerlink" href="#malheur-manual" title="Permalink to this heading"></a></h3>
+<p>Malheur is a tool for the automatic analysis of malware behavior and the detailed manual can be found through this <a class="reference external" href="http://www.mlsec.org/malheur/manual.html">link</a>.</p>
+<p>There are a few options to keep in mind,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: additional option for the config file. By default it should read the config file named <code class="docutils literal notranslate"><span class="pre">malheur.cfg</span></code> but we explicitly use <code class="docutils literal notranslate"><span class="pre">config.mlw</span></code> as an alternative</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>: specifies the output file outfile for analysis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-vv</span> <span class="pre">cluster</span></code>: specified the clustering action on the dataset</p></li>
+</ul>
+<p>Note that we need to use <code class="docutils literal notranslate"><span class="pre">head</span></code> command to read the output result.</p>
+</section>
+<section id="testing-malheur">
+<h3>(2) Testing Malheur<a class="headerlink" href="#testing-malheur" title="Permalink to this heading"></a></h3>
+<p>Train the model using our dataset <code class="docutils literal notranslate"><span class="pre">dataset/training/</span></code> and check the output result by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ malheur -c config.mlw -o training.txt -vv cluster dataset/training/; head training.txt
+</pre></div>
+</div>
+<p>Then test the model using our dataset <code class="docutils literal notranslate"><span class="pre">dataset/testing/</span></code> and check the output result by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ malheur -c config.mlw -o testing.txt -vv classify dataset/testing/; head testing.txt
+</pre></div>
+</div>
+<p>To classify all five malicious samples we have seen above, we need to run the model against the dataset under <code class="docutils literal notranslate"><span class="pre">subjects/</span></code> and generate the results,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ malheur -c config.mlw -o classify.txt -vv classify subjects/; head classify.txt 
+</pre></div>
+</div>
+</section>
+<section id="datasets">
+<h3>(3) Datasets<a class="headerlink" href="#datasets" title="Permalink to this heading"></a></h3>
+<p>Now, let’s get some understandings of the dataset. First, let’s go to the training set,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd dataset/training
+</pre></div>
+</div>
+<p>Then, we output the first few lines of the first file we can list,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls | head -1
+00006b6257ef49f6199fd583cfd0b703e2530c8fa45c748a4336a3e691a0054a.allaple
+$ cat $(ls | head -1) | head
+NtOpenKey;
+NtOpenKey;
+NtAllocateVirtualMemory;
+NtAllocateVirtualMemory;
+LdrLoadDll;
+LdrGetProcedureAddress;
+LdrGetProcedureAddress;
+LdrGetProcedureAddress;
+LdrLoadDll;
+LdrGetProcedureAddress;
+</pre></div>
+</div>
+<p>The data of this file is actually based on information extracted from <a class="reference external" href="https://www.virustotal.com/gui/home/upload">Cuckoo malware behavior reports</a>. To view the original report of the file <code class="docutils literal notranslate"><span class="pre">00006b6257ef49f6199fd583cfd0b703e2530c8fa45c748a4336a3e691a0054a.allaple</span></code>, we can exetract its hash and add <code class="docutils literal notranslate"><span class="pre">https://www.virustotal.com/gui/file/</span></code> to is front. Then we can access the link of the report:</p>
+<p><a class="reference external" href="https://www.virustotal.com/gui/file/00006b6257ef49f6199fd583cfd0b703e2530c8fa45c748a4336a3e691a0054a">https://www.virustotal.com/gui/file/00006b6257ef49f6199fd583cfd0b703e2530c8fa45c748a4336a3e691a0054a</a></p>
+<p>in a browser. The extension <code class="docutils literal notranslate"><span class="pre">allaple</span></code> of this file means it actually belongs to malicious family <a class="reference external" href="https://www.f-secure.com/v-descs/allaple_a.shtml">allaple</a>.</p>
+</section>
+<section id="configurations">
+<h3>(4) Configurations<a class="headerlink" href="#configurations" title="Permalink to this heading"></a></h3>
+<p>Now, let’s look into the config file of the model. The file <code class="docutils literal notranslate"><span class="pre">config.mlw</span></code> should be as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat config.mlw
+# MALHEUR (0.6.0) - Automatic Analysis of Malware Behavior
+# Copyright (c) 2009-2015 Konrad Rieck (konrad@mlsec.org)
+# University of Goettingen, Berlin Institute of Technology
+
+generic = {
+    input_format = &quot;text&quot;;
+    event_delim = &quot;;&quot;;
+    state_dir = &quot;./malheur_state&quot;;
+    output_file = &quot;malheur.out&quot;;
+};
+
+features = {
+    ngram_len = 2;
+    ngram_delim = &quot;;&quot;;
+    vect_embed = &quot;bin&quot;;
+};
+
+prototypes = {
+    max_dist = 0.0;
+    max_num = 0;
+};
+
+classify = {
+    max_dist = 1.00;
+};
+
+cluster = {
+    link_mode = &quot;complete&quot;;
+    min_dist = 0;
+    reject_num = 0;
+    shared_ngrams = 0;
+};
+</pre></div>
+</div>
+<p>Based on the documentation, we shouldn’t change the <code class="docutils literal notranslate"><span class="pre">generic</span></code> field and we should modify the other settings in order to get a higher model performance (F-score).</p>
+<p>We have to change the hyperparameters in this config file to meet the following two goals,</p>
+<ul class="simple">
+<li><p>Achieve a minimum of 70% f-score in the testing phase only</p></li>
+<li><p>Classify all Project 2 malware samples with maximum distance of 1.</p></li>
+</ul>
+</section>
+<section id="output-result">
+<h3>(5) Output Result<a class="headerlink" href="#output-result" title="Permalink to this heading"></a></h3>
+<p>If we check more of the output result, we can find more information of the classified result rather than just the F-score. We can check it using the <code class="docutils literal notranslate"><span class="pre">classify.txt</span></code> file we have generated because it is much smaller.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat classify.txt 
+...
+# F-measure of classification: ...
+# ---
+# &lt;report&gt; &lt;label&gt; &lt;prototype&gt; &lt;distance&gt;
+...
+</pre></div>
+</div>
+<p>So after the F-score, we can see the report name, the classified label (label/reject), the prototype of the cluster, and the distance.</p>
+<p>For the second goal we have mentioned above, it actually means that we need to have the distance here smaller than 1 so that it will not be classified as <code class="docutils literal notranslate"><span class="pre">reject</span></code>.</p>
+</section>
+<section id="hints">
+<h3>(6) Hints<a class="headerlink" href="#hints" title="Permalink to this heading"></a></h3>
+<p>Here are some hints to slove this problem, and most of the answers can be figured out through the <a class="reference external" href="http://www.mlsec.org/malheur/manual.html">manual</a>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ngram_len</span></code> is default 2 but should set to 1 if the data is not sequential. This is relatively important so be careful about what it should be</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ngram_delim</span></code> defines characters for delimiting</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vect_embed</span></code> should be set to <code class="docutils literal notranslate"><span class="pre">bin</span></code> if features are binaries. It should be set to <code class="docutils literal notranslate"><span class="pre">cnt</span></code> if features have many values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hash_seed1</span></code> and <code class="docutils literal notranslate"><span class="pre">hash_seed2</span></code> can be added using the default values in the manual.</p></li>
+</ul>
+<p>We should also try out different combinations of <code class="docutils literal notranslate"><span class="pre">max_dist</span></code> and <code class="docutils literal notranslate"><span class="pre">min_dist</span></code> in order to get a good setting.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note3.html" class="btn btn-neutral float-left" title="Intro to Information Security 3 | Log4J Vulnerabilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tests/index.html" class="btn btn-neutral float-right" title="Sphinx Tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

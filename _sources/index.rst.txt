@@ -8,42 +8,42 @@ SereneField Sphinx
 
 .. toctree::
    :maxdepth: 1
-   :caption: Japanese
+   :caption: 🖥️ DevOps
+
+   devops/index.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: 🏯 Japanese
 
    Jap/index.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Guitar
+   :caption: 🎸 Guitar
 
    Guitar/index.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Computer Network
+   :caption: 🌎 Computer Network
 
    CN/index.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: High Performance Computing
+   :caption: 💻 High Performance Computing
 
    HPC/index.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Dev Logs
-
-   logs/index.rst
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Information Security
+   :caption: 💻 Information Security
 
    IIS/index.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
+   :caption: 🧪 Tests
 
    tests/index.rst

@@ -1,4 +1,4 @@
-Computer Network
+CS6250 Notes
 ==================
 
 .. toctree::

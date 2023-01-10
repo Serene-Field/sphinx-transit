@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 9 | Midterm Review &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CS6035 Notes" href="../IIS/index.html" />
+    <link rel="prev" title="High Performance Computing 8 | Parallel on Trees" href="note8.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 9 | Midterm Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#work-span-model">1. Work Span Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power-and-energy">2. Power and Energy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-locality">3. Memory Locality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-o-avoiding">4. I/O Avoiding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cache-oblivious">5. Cache Oblivious</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scan-and-rank">6. Scan and Rank</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bitonic-sort">7. Bitonic Sort</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tree">8. Tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 9 | Midterm Review</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note9.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-9-midterm-review">
+<h1>High Performance Computing 9 | Midterm Review<a class="headerlink" href="#high-performance-computing-9-midterm-review" title="Permalink to this heading"></a></h1>
+<section id="work-span-model">
+<h2>1. Work Span Model<a class="headerlink" href="#work-span-model" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Average Available Parallelism</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Avg</span><span class="o">.</span> <span class="n">Para</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Work-Span Law</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">max</span><span class="p">{</span><span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">ceil</span><span class="p">(</span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">)}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Brent’s Theorem (Slack)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">W</span> <span class="o">-</span> <span class="n">D</span><span class="p">)</span> <span class="o">/</span> <span class="n">P</span> <span class="o">+</span> <span class="n">D</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Best Sequential Time</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="s1">&#39;(n) = τW(n)</span>
+<span class="n">T</span><span class="s1">&#39;(n) = W(n) if we assume unit time per work</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Computation Time</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T_comp</span> <span class="o">=</span> <span class="n">τW</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Transfer Time</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T_mem</span> <span class="o">=</span> <span class="n">ɑLQ</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Speedup</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="o">=</span> <span class="n">T</span><span class="s1">&#39;(n) / Tp(n) = W(n) / Tp(n)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Work Optimality</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Weak Scalability</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">W</span><span class="s1">&#39;/D)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Computational Intensity</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">W</span> <span class="o">/</span> <span class="n">LQ</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Machine Balance Point</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">ɑ</span> <span class="o">/</span> <span class="n">τ</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Parfor Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Work</span><span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Span</span><span class="p">:</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="ow">or</span> <span class="n">idealy</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Overall Time Range</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">/</span><span class="n">I</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">T</span> <span class="o">&lt;=</span> <span class="n">τW</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">B</span><span class="o">/</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="power-and-energy">
+<h2>2. Power and Energy<a class="headerlink" href="#power-and-energy" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Recall: ɑ and τ</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ɑ</span> <span class="o">=</span> <span class="n">time</span> <span class="n">per</span> <span class="n">transaction</span> <span class="n">operation</span>
+<span class="n">τ</span> <span class="o">=</span> <span class="n">time</span> <span class="n">per</span> <span class="n">computation</span> <span class="n">operation</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lemma</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="n">ɑ</span> <span class="o">=</span> <span class="n">transaction</span> <span class="n">operation</span> <span class="n">per</span> <span class="n">unit</span> <span class="n">time</span>
+<span class="mi">1</span><span class="o">/</span><span class="n">τ</span> <span class="o">=</span> <span class="n">computation</span> <span class="n">operation</span> <span class="n">per</span> <span class="n">unit</span> <span class="n">time</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Execution time for a DAG</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usual</span> <span class="n">work</span><span class="p">:</span> <span class="n">W</span><span class="o">/</span><span class="p">(</span><span class="n">Pτ</span><span class="p">)</span>
+<span class="n">Spans</span><span class="p">:</span> <span class="n">D</span><span class="o">/</span><span class="n">τ</span>
+<span class="n">Trasactions</span><span class="p">:</span> <span class="n">QL</span><span class="o">/</span><span class="n">ɑ</span>
+<span class="n">Tp</span> <span class="o">&gt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="p">(</span><span class="n">Pτ</span><span class="p">),</span> <span class="n">D</span><span class="o">/</span><span class="n">τ</span><span class="p">,</span> <span class="n">QL</span><span class="o">/</span><span class="n">ɑ</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Principle of Balance</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">/</span><span class="p">(</span><span class="n">Pτ</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">QL</span><span class="o">/</span><span class="n">ɑ</span>
+<span class="n">Also</span><span class="p">,</span> <span class="n">W</span><span class="o">/</span><span class="n">Q</span> <span class="o">&gt;=</span> <span class="n">τ</span><span class="o">/</span><span class="n">ɑ</span> <span class="o">*</span> <span class="n">PL</span> <span class="o">=</span> <span class="n">PL</span><span class="o">/</span><span class="n">B</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Power</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="n">T</span> <span class="o">=</span> <span class="n">P_0</span> <span class="o">+</span> <span class="n">ΔP</span> <span class="o">=</span> <span class="n">P_0</span> <span class="o">+</span> <span class="n">CV</span><span class="o">^</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Dynamic Power</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ΔP</span> <span class="o">=</span> <span class="n">CV</span><span class="o">^</span><span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Frequency-Valt Relation</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>f ∝ V
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Power-Clock Law</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>P ∝ f^3
+</pre></div>
+</div>
+</section>
+<section id="memory-locality">
+<h2>3. Memory Locality<a class="headerlink" href="#memory-locality" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Block Transfer Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Ω</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Block Reduction Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Matrix-Matrix Multiplication Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Matrix-Vector Multiplication Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">+</span> <span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">L</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Normalized Performance</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">τW</span><span class="s1">&#39; / T</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Maximum Normalized Performance</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_max</span> <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;/W * min(1, I/B)</span>
+</pre></div>
+</div>
+</section>
+<section id="i-o-avoiding">
+<h2>4. I/O Avoiding<a class="headerlink" href="#i-o-avoiding" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Two-way Merge Sort</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Phase 1
+f ∈ [0,1)
+Partition input into n/(fZ) chunks
+for each chunk i = 1 to n/(fZ) do:
+    load chunk i
+    sort chunk i into a sorted run i
+    write run i
+
+# Phase 2
+read L-sized blocks of A, B to _A and _B
+while any unmerged items in A and B do:
+    _A, _B -&gt; _C as possible
+    if _A empty:
+        load more A to _A
+    if _B empty:
+        load more B to _B
+    if _C full:
+        flush _C to C
+Flush any unmerged items in A or B
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Two-way Merge Sort Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Multiway Merge Sort Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;~</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Binary Search</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">logn</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="n">by</span> <span class="n">solving</span> <span class="n">Recurrence</span>
+</pre></div>
+</div>
+</section>
+<section id="cache-oblivious">
+<h2>5. Cache Oblivious<a class="headerlink" href="#cache-oblivious" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Cache Defined Transfers</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="c1"># of misses + # of store evictions</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Lemma: Optimal and LRU</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Tall Cache Assumption</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Z</span> <span class="o">&gt;=</span> <span class="n">L</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>CO Matrix Matrix Multiplication</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">mm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">then</span> <span class="n">C</span> <span class="o">&lt;-</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+    <span class="k">else</span>
+        <span class="n">Logically</span> <span class="n">partition</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">C</span> <span class="n">into</span> <span class="n">quadrants</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+                 <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">2</span> <span class="n">do</span><span class="p">:</span>
+                     <span class="n">mm</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Aik</span><span class="p">,</span> <span class="n">Bkj</span><span class="p">,</span> <span class="n">Cij</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>CO Matrix Matrix Multiplication Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>CO Binary Search: the I/O avoiding binary search is already cache oblivious</p></li>
+<li><p>Van Emde Boas BST</p>
+<ul>
+<li><p>partitioning the levels</p></li>
+<li><p>layout all the upper subtree elements together</p></li>
+<li><p>concatenate with the lower subtree elements</p></li>
+</ul>
+</li>
+<li><p>Van Emde Boas BST Maximum Cache misses</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">h_sub</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">logN</span><span class="o">/</span><span class="n">logL</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scan-and-rank">
+<h2>6. Scan and Rank<a class="headerlink" href="#scan-and-rank" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Sequential Add Scan Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Naive Add Scan (par)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Naive Add Scan Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Advanced Add Scan (par): odd-even seperate</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">addScan</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">A</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">Let</span><span class="p">:</span>
+        <span class="n">I_odd</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">...</span>
+        <span class="n">I_even</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">...</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">I_odd</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>       <span class="o">//</span> <span class="n">partial</span> <span class="n">scan</span>
+    
+    <span class="n">A</span><span class="p">[</span><span class="n">I_even</span><span class="p">]</span> <span class="o">=</span> <span class="n">addScan</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">I_even</span><span class="p">])</span>   <span class="o">//</span> <span class="n">even</span> <span class="n">scan</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">I_odd</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>               <span class="o">//</span> <span class="n">odd</span> <span class="n">scan</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Advanced Add Scan Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Sequential RankList</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+    
+    <span class="k">while</span> <span class="n">cur</span> <span class="o">!=</span> <span class="n">NULL</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">r</span><span class="o">++</span>
+        
+<span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">node</span> <span class="n">to</span> <span class="n">head</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Sequential RankList Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Linked List Representation: Array Pool</p>
+<ul>
+<li><p>Assign index to each node by list I</p></li>
+<li><p>Based on I, put nodes to a list V</p></li>
+<li><p>Replace the concept of pointer to the index and place to another array N</p></li>
+</ul>
+</li>
+<li><p>Premitive jump</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">jumpList</span><span class="p">(</span><span class="n">N_in</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">N_out</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">]):</span>
+    <span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N_in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">N_out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_in</span><span class="p">[</span><span class="n">N_in</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Parallel List Rank</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span> <span class="n">R_in</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="n">function</span> <span class="n">updateRanks</span><span class="p">(</span><span class="n">R_in</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">]):</span>
+    <span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">R_out</span><span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">R_in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">R_in</span><span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+            
+<span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="n">R_in</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="o">//</span> <span class="n">array</span> <span class="n">of</span> <span class="n">ranks</span>
+    <span class="n">N_in</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">N_out</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="o">//</span> <span class="n">pointer</span> <span class="n">index</span> <span class="n">arrays</span>
+    
+    <span class="o">//</span> <span class="n">init</span>
+    <span class="n">R_in</span><span class="p">[:],</span> <span class="n">R_out</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">R_in</span><span class="p">[</span><span class="n">h</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">N_in</span><span class="p">[:],</span> <span class="n">N_out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[:]</span>
+    
+    <span class="o">//</span> <span class="n">compute</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="p">(</span><span class="c1"># of jumps) do:</span>
+        <span class="n">updateRanks</span><span class="p">(</span><span class="n">R_in</span><span class="p">,</span> <span class="n">R_out</span><span class="p">,</span> <span class="n">N_in</span><span class="p">)</span>
+        <span class="n">jumpList</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span> <span class="n">N_out</span><span class="p">)</span>
+        <span class="o">//</span> <span class="n">swap</span> <span class="n">to</span> <span class="k">continue</span> <span class="n">the</span> <span class="n">loop</span>
+        <span class="n">R_in</span><span class="p">,</span> <span class="n">R_out</span> <span class="o">=</span> <span class="n">R_out</span><span class="p">,</span> <span class="n">R_in</span>
+        <span class="n">N_in</span><span class="p">,</span> <span class="n">N_out</span> <span class="o">=</span> <span class="n">N_out</span><span class="p">,</span> <span class="n">N_in</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Parallel List Rank Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span> <span class="ow">not</span> <span class="n">work</span> <span class="n">optimal</span>
+<span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="bitonic-sort">
+<h2>7. Bitonic Sort<a class="headerlink" href="#bitonic-sort" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Three Item Sort Network
+<img alt="" src="https://github.com/Sadamingh/notepics/blob/main/hpc/2.png?raw=true" /></p></li>
+<li><p>Four Item Bitonic Sorting Network
+<img alt="" src="https://github.com/Sadamingh/notepics/blob/main/hpc/3.png?raw=true" /></p></li>
+<li><p>Bitonic Split</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">bitonicSplit</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="o">//</span> <span class="n">assume</span> <span class="mi">2</span><span class="o">|</span><span class="n">n</span>
+    <span class="n">parfor</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bitonic Split Network
+<img alt="" src="https://github.com/Sadamingh/notepics/blob/main/hpc/5.png?raw=true" /></p></li>
+<li><p>Bitonic Merge</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">bitonicMerge</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="o">//</span> <span class="n">assime</span> <span class="n">A</span> <span class="ow">is</span> <span class="n">bitonic</span><span class="p">,</span> <span class="mi">2</span><span class="o">|</span><span class="n">n</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">&gt;=</span> <span class="mi">2</span> <span class="n">then</span><span class="p">:</span>
+        <span class="n">bitonicSplit</span><span class="p">(</span><span class="n">A</span><span class="p">[:])</span>
+        <span class="n">spawn</span> <span class="n">bitonicMerge</span><span class="p">(</span><span class="n">A</span><span class="p">[:(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+        <span class="n">bitonicMerge</span><span class="p">(</span><span class="n">A</span><span class="p">[(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bitonic Merge Network
+<img alt="" src="https://github.com/Sadamingh/notepics/blob/main/hpc/5.png?raw=true" /></p></li>
+<li><p>Generate Bitonic Sequence</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">genBitonic</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="n">then</span><span class="p">:</span>
+    <span class="o">//</span> <span class="n">assume</span> <span class="mi">2</span><span class="o">|</span><span class="n">n</span>
+    <span class="n">spawn</span> <span class="n">genBitonic</span><span class="p">(</span><span class="n">A</span><span class="p">[:(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">genBitonic</span><span class="p">(</span><span class="n">A</span><span class="p">[(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">sync</span>
+    <span class="n">spawn</span> <span class="n">bitonicMerge</span><span class="o">+</span><span class="p">(</span><span class="n">A</span><span class="p">[:(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+    <span class="n">bitonicMerge</span><span class="o">-</span><span class="p">(</span><span class="n">A</span><span class="p">[(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bitonic Sort</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">bitonicSort</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="n">genBitonic</span><span class="p">(</span><span class="n">A</span><span class="p">[:])</span>
+    <span class="n">bitonicMerge</span><span class="o">+</span><span class="p">(</span><span class="n">A</span><span class="p">[:])</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Bitonic Sort Cost</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">nlog</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="ow">not</span> <span class="n">work</span> <span class="n">optimal</span>
+<span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">log</span><span class="o">^</span><span class="mi">2</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="tree">
+<h2>8. Tree<a class="headerlink" href="#tree" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note8.html" class="btn btn-neutral float-left" title="High Performance Computing 8 | Parallel on Trees" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../IIS/index.html" class="btn btn-neutral float-right" title="CS6035 Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

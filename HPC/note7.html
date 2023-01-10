@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 7 | Scan and Rank List &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Performance Computing 8 | Parallel on Trees" href="note8.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="note6.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 7 | Scan and Rank List</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prefix-sum">1. Prefix Sum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scans">2. Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-scans">3. Parallel Scans?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-scan-in-a-naive-way">4. Parallel Scan in a Naive Way</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-parallel-scan">5. Advanced Parallel Scan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sequential-segmented-scan">6. Sequential Segmented Scan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rank-list-sequential-solution">7. Rank List Sequential Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rank-list-as-a-scan">8. Rank List As a Scan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-pools-representation-of-linked-list">9. Array Pools Representation of Linked List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primitive-jump-pseudocode">10. Primitive Jump Pseudocode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rank-update">11. Rank Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-list-rank">12. Parallel List Rank</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 7 | Scan and Rank List</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note7.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-7-scan-and-rank-list">
+<h1>High Performance Computing 7 | Scan and Rank List<a class="headerlink" href="#high-performance-computing-7-scan-and-rank-list" title="Permalink to this heading"></a></h1>
+<section id="prefix-sum">
+<h2>1. Prefix Sum<a class="headerlink" href="#prefix-sum" title="Permalink to this heading"></a></h2>
+<p>The prefix sum is defined as the sum of the previous item before the input index. For example, if we have an array A,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then the prefix of the index <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">3</span></code> (i starts from 1) should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">prefix</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</section>
+<section id="scans">
+<h2>2. Scans<a class="headerlink" href="#scans" title="Permalink to this heading"></a></h2>
+<p>Scans generalize prefix sum to other operations. To use scan in an algorithm, what we have to do is to say we are scanning and what is the operator. The “Add-scan” is the “prefix sum” we have mentioned and there are some other scans,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max-scan</span></code>: max value to the current position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">product-scan</span></code>: or prefix-products refers to the products to the current position</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">and-scan</span></code>: refers to the cumulative logical AND to the current position</p></li>
+</ul>
+</section>
+<section id="parallel-scans">
+<h2>3. Parallel Scans?<a class="headerlink" href="#parallel-scans" title="Permalink to this heading"></a></h2>
+<p>Let’s think of a problem. Suppose we have the following algorithm,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In this case, we can not replace the for loop with a parallelized for loop because the iterations are not independent. This is because the prefix <code class="docutils literal notranslate"><span class="pre">A[i]</span></code> depends on the last prefix <code class="docutils literal notranslate"><span class="pre">A[i-1]</span></code>.</p>
+<p>Note that this algorithm at the best case has <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> operations.</p>
+</section>
+<section id="parallel-scan-in-a-naive-way">
+<h2>4. Parallel Scan in a Naive Way<a class="headerlink" href="#parallel-scan-in-a-naive-way" title="Permalink to this heading"></a></h2>
+<p>To change it to a parallel scan, we have to detach the dependency of the current prefix and the last prefix. A naive solution is to simply reduce the first <code class="docutils literal notranslate"><span class="pre">i</span></code> item based on our operation. The pseudo code should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="n">output</span><span class="p">:</span> <span class="n">B</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The work here would be <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> and this is much worse than the sequenial solution. How can we improve?</p>
+</section>
+<section id="advanced-parallel-scan">
+<h2>5. Advanced Parallel Scan<a class="headerlink" href="#advanced-parallel-scan" title="Permalink to this heading"></a></h2>
+<p>Let’s see how we can improve it. Suppose we have an array <code class="docutils literal notranslate"><span class="pre">A</span></code> of 8 items. The first step is to Create a partial scan array which will scan every two items in this array. So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scan_partial</span> <span class="o">=</span> <span class="p">[</span><span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> 
+                <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span> 
+                <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="p">]),</span> 
+                <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">:</span><span class="mi">8</span><span class="p">])]</span>
+</pre></div>
+</div>
+<p>Then the scan of this partial scan array would be the scan of all the even items in the array,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scan_even</span> <span class="o">=</span> <span class="p">[</span><span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> 
+             <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span> 
+             <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]),</span> 
+             <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">])]</span>
+</pre></div>
+</div>
+<p>Now we have all the even scans and the odd scans can be retrieved by using the last even scan by and reduce with itself,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scan</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">+</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span><span class="o">+</span><span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">]),</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span><span class="o">+</span><span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> 
+        <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">])]</span>
+</pre></div>
+</div>
+<p>Now here are some pseudo codes,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">addScan</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">A</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span>
+    <span class="n">Let</span><span class="p">:</span>
+        <span class="n">I_odd</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">...</span>
+        <span class="n">I_even</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">...</span>
+        
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">I_odd</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>       <span class="o">//</span> <span class="n">partial</span> <span class="n">scan</span>
+    
+    <span class="n">A</span><span class="p">[</span><span class="n">I_even</span><span class="p">]</span> <span class="o">=</span> <span class="n">addScan</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">I_even</span><span class="p">])</span>   <span class="o">//</span> <span class="n">even</span> <span class="n">scan</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">I_odd</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>               <span class="o">//</span> <span class="n">odd</span> <span class="n">scan</span>
+</pre></div>
+</div>
+<p>Then let’s see the cost,</p>
+<ul class="simple">
+<li><p>partial scan: n/2 additions</p></li>
+<li><p>odd scan: (n/2 - 1) additions</p></li>
+<li><p>even scan: W(n/2) additions assume the work is W(n)</p></li>
+</ul>
+<p>Then we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>     <span class="n">when</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+<span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>                  <span class="n">when</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>This is to say that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sequential-segmented-scan">
+<h2>6. Sequential Segmented Scan<a class="headerlink" href="#sequential-segmented-scan" title="Permalink to this heading"></a></h2>
+<p>Now let’s see another problem. If we don’t want to scan the whole array all along, but we would like to scan it in segments. For example, with array,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We want to add-scan for the first three items and another add-scan for the next three. So the segmented add scan of A would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Given the flag defined as another array <code class="docutils literal notranslate"><span class="pre">F</span></code> as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">F</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then the pseudo code for a sequential solution would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">segAddScan</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">F</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that it basically means we keep the value of <code class="docutils literal notranslate"><span class="pre">A[i]</span></code> when the flag shows the position <code class="docutils literal notranslate"><span class="pre">i</span></code> has a new start (aka. <code class="docutils literal notranslate"><span class="pre">F[i]</span> <span class="pre">=</span> <span class="pre">1</span></code>).</p>
+</section>
+<section id="rank-list-sequential-solution">
+<h2>7. Rank List Sequential Solution<a class="headerlink" href="#rank-list-sequential-solution" title="Permalink to this heading"></a></h2>
+<p>Suppose we have a linked list with a <code class="docutils literal notranslate"><span class="pre">head</span></code> pointer and then we have to rank all the nodes. Sequentially, the pseudo code should be very easy, as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+    
+    <span class="k">while</span> <span class="n">cur</span> <span class="o">!=</span> <span class="n">NULL</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">r</span><span class="o">++</span>
+        
+<span class="n">node</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">distance</span> <span class="n">of</span> <span class="n">node</span> <span class="n">to</span> <span class="n">head</span>
+</pre></div>
+</div>
+<p>If we want to solve this problem as a scan, then what can we do? Think about it before we move on.</p>
+</section>
+<section id="rank-list-as-a-scan">
+<h2>8. Rank List As a Scan<a class="headerlink" href="#rank-list-as-a-scan" title="Permalink to this heading"></a></h2>
+<p>So let’s see if we want to make the rank a scan, we have to assign each node an initial value so that the add scan would in principle produce the desired ranks. For a simple ordered rank,</p>
+<ul class="simple">
+<li><p>0 should be assigned to the node head</p></li>
+<li><p>1 should be assigned to the rest of the nodes</p></li>
+</ul>
+<p>So if we continue to scan along this array, we will get the 1s accumulated and these will create a rank for us. Because the head in our case should be ranked as 0, so we have 0 assigned to it.</p>
+<p>The problem is that if we have a scan like this, the rank is still sequential and a better one should be a <strong>random access</strong>. This brings us to to the method of array pools.</p>
+</section>
+<section id="array-pools-representation-of-linked-list">
+<h2>9. Array Pools Representation of Linked List<a class="headerlink" href="#array-pools-representation-of-linked-list" title="Permalink to this heading"></a></h2>
+<p>Array pools is just another way to represent a linked list. Suppose we have the following linked list,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ll</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Then the array pools representation takes two steps.</p>
+<ul class="simple">
+<li><p>First, put values in an array <code class="docutils literal notranslate"><span class="pre">V</span></code> of length <code class="docutils literal notranslate"><span class="pre">n</span></code></p></li>
+<li><p>Then, replace the concept of pointer to the index and place to another array <code class="docutils literal notranslate"><span class="pre">N</span></code> of length <code class="docutils literal notranslate"><span class="pre">n</span></code></p></li>
+</ul>
+<p>Let’s see <code class="docutils literal notranslate"><span class="pre">ll</span></code> as an example. Let’s assign a unique integer <code class="docutils literal notranslate"><span class="pre">i</span></code> (n = 14 and i &lt; n) for each of the nodes in <code class="docutils literal notranslate"><span class="pre">ll</span></code> randomly,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">ll</span>
+<span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">I</span>
+</pre></div>
+</div>
+<p>Then use <code class="docutils literal notranslate"><span class="pre">i</span></code> as the index, we can put the nodes of <code class="docutils literal notranslate"><span class="pre">ll</span></code> to an array <code class="docutils literal notranslate"><span class="pre">V</span></code> of length n = 14,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>V[14] = [3, 9, 8, 5, 6, 8, 7, 8, 3, 1, ?, 1, 0, ?]
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">?</span></code> means the value is not assigned.</p>
+<p>Then for the pointers, we put the assigned integer (index) of the next node of the current node to the array <code class="docutils literal notranslate"><span class="pre">N</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">0</span></code> should be used for not NULLs or not assigned nodes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="primitive-jump-pseudocode">
+<h2>10. Primitive Jump Pseudocode<a class="headerlink" href="#primitive-jump-pseudocode" title="Permalink to this heading"></a></h2>
+<p>Now we have a taste of the array pools representation, the other knowledge we have to know about is called a jump for a linked list.</p>
+<p>The jump means to move the next pointer so that it points to the neighbor’s neighor,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+</pre></div>
+</div>
+<p>If we do this to all the nodes in a linked list, we can split it into two linked list. And we can continue to split for more of them. This is very helpful for divide-and-conquer. Also, note that this can be performed in parallel.</p>
+<p>When considering the array pools representation, the pseudo code should be as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">jumpList</span><span class="p">(</span><span class="n">N_in</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">N_out</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">]):</span>
+    <span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">m</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N_in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">N_out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">N_in</span><span class="p">[</span><span class="n">N_in</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+<section id="rank-update">
+<h2>11. Rank Update<a class="headerlink" href="#rank-update" title="Permalink to this heading"></a></h2>
+<p>So the ideas we have so far is,</p>
+<ul class="simple">
+<li><p>represent linked list as array pool</p></li>
+<li><p>use add scan for list ranking</p></li>
+<li><p>jump to divide-and-conquer</p></li>
+</ul>
+<p>But how can we tread the list rank as an add scan? Remeber we have use 0 for the head and 1 for the others, and we can also use jumps to get sublists. And if we jump repeatedly, we can get shorter and shorter sublists.</p>
+<p>So in order to keep the position when we jump, we have to add the integer of the current node to its successor. This is what we called “update” and it can also be parallelized. Let’s see an example, suppose we have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>So in an update, every node pushes its value to its successor,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>for,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>Then we call jump to split the linked list,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>Then another update,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>Then jump,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">3</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>Then update,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">3</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>And a final jump,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">4</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">1</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">5</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+<span class="mi">3</span> <span class="o">-&gt;</span> <span class="n">NULL</span>
+</pre></div>
+</div>
+<p>Now we have all the individual nodes each with a rank and then we are done.</p>
+<p>Here’s an algorithm for the <code class="docutils literal notranslate"><span class="pre">update</span></code> step with the array pool representation,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">initial</span> <span class="n">R_in</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="n">function</span> <span class="n">updateRanks</span><span class="p">(</span><span class="n">R_in</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">],</span> <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">]):</span>
+    <span class="n">parallel</span> <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">R_out</span><span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">R_in</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">R_in</span><span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+<section id="parallel-list-rank">
+<h2>12. Parallel List Rank<a class="headerlink" href="#parallel-list-rank" title="Permalink to this heading"></a></h2>
+<p>So finally let’s wrap up the parallel list ranker using pseudocode. Suppose we have an input <code class="docutils literal notranslate"><span class="pre">V[m]</span></code> which is the array holding the values, and we also have an input <code class="docutils literal notranslate"><span class="pre">N[m]</span></code> which holds the next node indexes. The index of head is also given as <code class="docutils literal notranslate"><span class="pre">h</span></code> so we can assign the rank of it to 0.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+    <span class="n">R_in</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="o">//</span> <span class="n">array</span> <span class="n">of</span> <span class="n">ranks</span>
+    <span class="n">N_in</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">N_out</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="o">//</span> <span class="n">pointer</span> <span class="n">index</span> <span class="n">arrays</span>
+    
+    <span class="o">//</span> <span class="n">init</span>
+    <span class="n">R_in</span><span class="p">[:],</span> <span class="n">R_out</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">R_in</span><span class="p">[</span><span class="n">h</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">N_in</span><span class="p">[:],</span> <span class="n">N_out</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[:]</span>
+    
+    <span class="o">//</span> <span class="n">compute</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="p">(</span><span class="c1"># of jumps) do:</span>
+        <span class="n">updateRanks</span><span class="p">(</span><span class="n">R_in</span><span class="p">,</span> <span class="n">R_out</span><span class="p">,</span> <span class="n">N_in</span><span class="p">)</span>
+        <span class="n">jumpList</span><span class="p">(</span><span class="n">N_in</span><span class="p">,</span> <span class="n">N_out</span><span class="p">)</span>
+        <span class="o">//</span> <span class="n">swap</span> <span class="n">to</span> <span class="k">continue</span> <span class="n">the</span> <span class="n">loop</span>
+        <span class="n">R_in</span><span class="p">,</span> <span class="n">R_out</span> <span class="o">=</span> <span class="n">R_out</span><span class="p">,</span> <span class="n">R_in</span>
+        <span class="n">N_in</span><span class="p">,</span> <span class="n">N_out</span> <span class="o">=</span> <span class="n">N_out</span><span class="p">,</span> <span class="n">N_in</span>
+</pre></div>
+</div>
+<p>Note that here the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">of</span> <span class="pre">jumps</span></code> should be the ceiling of <code class="docutils literal notranslate"><span class="pre">log(m)</span></code>. This algorithm is called Wyllie’s algorithm and we should meet it in our project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note6.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note8.html" class="btn btn-neutral float-right" title="High Performance Computing 8 | Parallel on Trees" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

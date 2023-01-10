@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 8 | Parallel on Trees &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Performance Computing 9 | Midterm Review" href="note9.html" />
+    <link rel="prev" title="High Performance Computing 7 | Scan and Rank List" href="note7.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 8 | Parallel on Trees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tree-basics">1. Tree Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parents-array-representation">(1) Parents Array Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-root-by-parents-array-representation">(2) Finding Root by Parents Array Representation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finding-root-parallely">(3) Finding Root Parallely</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recall-wyllie-s-algorithm">(4) Recall: Wyllie’s algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trick-to-make-wyllie-s-algorithm-work-optimal">(5) Trick to make Wyllie’s algorithm Work Optimal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#successor-representation-of-linked-list">(6) Successor Representation of Linked List</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#independent-set">(7) Independent Set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recall-postorder-numbering">(8) Recall: Postorder Numbering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recall-preorder-numbering">(9) Recall: Preorder Numbering</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#work-optimal-wyllie-s">2. Work Optimal Wyllie’s</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#symmetry-issue-in-parallely-generating-independ-set">(1) Symmetry Issue in Parallely Generating Independ Set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#symmetry-breaking-scheme-gamble">(2) Symmetry Breaking Scheme: Gamble</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#work-optimal-wyllie-s-algorithm">(3) Work Optimal Wyllie’s algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-analysis-of-work-optimal-wyllie-s-algorithm">(4) Cost Analysis of Work Optimal Wyllie’s algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-tree-traversals">3. Parallel Tree Traversals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#euler-graph">(1) Euler Graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#traversal-and-euler-graph">(2) Traversal and Euler Graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#postorder-euler-graph">(3) Postorder Euler Graph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#euler-tour-algorithm-cost">(4) Euler Tour Algorithm Cost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#another-euler-tour-example-level">(5) Another Euler Tour Example: level</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tree-to-array">(6) Tree to Array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#successor-function">(7) Successor Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 8 | Parallel on Trees</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note8.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-8-parallel-on-trees">
+<h1>High Performance Computing 8 | Parallel on Trees<a class="headerlink" href="#high-performance-computing-8-parallel-on-trees" title="Permalink to this heading"></a></h1>
+<section id="tree-basics">
+<h2>1. Tree Basics<a class="headerlink" href="#tree-basics" title="Permalink to this heading"></a></h2>
+<section id="parents-array-representation">
+<h3>(1) Parents Array Representation<a class="headerlink" href="#parents-array-representation" title="Permalink to this heading"></a></h3>
+<p>The parent array representation of a tree is to store the parent node index into the array. For the root, it will have no parent node so the value would be NULL.</p>
+<p>For example, suppose we have the following tree,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>               <span class="mi">3</span>
+             <span class="o">/</span>   \
+           <span class="mi">2</span>       <span class="mi">8</span>
+                 <span class="o">/</span>   \
+               <span class="mi">1</span>       <span class="mi">5</span>
+             <span class="o">/</span>
+           <span class="mi">6</span>
+         <span class="o">/</span>  \
+        <span class="mi">7</span>    <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Then its parent array representation is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="finding-root-by-parents-array-representation">
+<h3>(2) Finding Root by Parents Array Representation<a class="headerlink" href="#finding-root-by-parents-array-representation" title="Permalink to this heading"></a></h3>
+<p>To find the root of a tree in the parent array representation, we can looply get the parent node until we find a node that has no parent node. This is a very easy sequential solution,</p>
+<p>So the pseudo code should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>function root(P[n]):
+    if n &lt; 1 then return NULL
+    Start from a random node and assign to `node`
+    while P[node] != NULL do:
+        node = P[node]
+    return node
+</pre></div>
+</div>
+<p>The running time of this algo is O(n) because in the worst case we have a very unbalanced tree - linked list.</p>
+</section>
+<section id="finding-root-parallely">
+<h3>(3) Finding Root Parallely<a class="headerlink" href="#finding-root-parallely" title="Permalink to this heading"></a></h3>
+<p>Now we have seen a sequential algo, and let’s think about how to implement a parallel algo. The idea is to explore from all the nodes simultaneously and at each node, change the parent to its grand parent until all the nodes have one signal ancestor node.</p>
+<p>Let’s see the pseudocode,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">k</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">node</span>
+<span class="n">function</span> <span class="n">hasGrandParent</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="k">return</span> <span class="n">k</span> <span class="o">!=</span> <span class="n">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">P</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">P</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="n">k</span><span class="p">]]</span> <span class="o">!=</span> <span class="n">NULL</span>
+
+<span class="n">funtion</span> <span class="n">adopt</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">G</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="n">parfor</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+         <span class="k">if</span> <span class="n">hasGrandParent</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="n">then</span><span class="p">:</span>
+             <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="n">G</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+             
+<span class="n">function</span> <span class="n">root</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="n">n</span><span class="p">]):</span>
+    <span class="n">P_cur</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:]</span>
+    <span class="n">P_next</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">empty</span> <span class="n">buffer</span>
+    
+    <span class="o">//</span> <span class="n">Maximum</span> <span class="n">depth</span> <span class="n">of</span> <span class="n">a</span> <span class="n">tree</span> <span class="n">should</span> <span class="n">be</span> <span class="n">logn</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">ceil</span><span class="p">(</span><span class="n">logn</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>   
+        <span class="n">adopt</span><span class="p">(</span><span class="n">P_cur</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">P_next</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">P_cur</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">P_next</span><span class="p">[:]</span>
+        
+    <span class="n">R</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">P_cur</span><span class="p">[:]</span>
+    <span class="k">return</span> <span class="n">R</span>
+</pre></div>
+</div>
+<p>Here are some properties of this idea,</p>
+<ul class="simple">
+<li><p>Idea uses pointer jumping: <code class="docutils literal notranslate"><span class="pre">G[i]</span> <span class="pre">=</span> <span class="pre">P[P[i]]</span></code></p></li>
+<li><p>Not work optimal: because we find n roots</p></li>
+<li><p>Polylogarithmic Span: outer loop has <code class="docutils literal notranslate"><span class="pre">ceil(logn)</span></code> and <code class="docutils literal notranslate"><span class="pre">adopt</span></code> is polylogarithmic</p></li>
+<li><p>Work on forest, no on one tree because the procedure will make every node pointing to its own tree</p></li>
+</ul>
+</section>
+<section id="recall-wyllie-s-algorithm">
+<h3>(4) Recall: Wyllie’s algorithm<a class="headerlink" href="#recall-wyllie-s-algorithm" title="Permalink to this heading"></a></h3>
+<p>Remember we have a linked list ranking problem and we use Wyllie’s algorithm. It assigns the value of head to 0 and the rest to 1s so that we can use prefix sum (add scan) to parallely calculating the ranks.</p>
+<p>The cost of this algorithm is,</p>
+<ul class="simple">
+<li><p>W(n) = O(n logn)</p></li>
+<li><p>D(n) = O(logn)</p></li>
+</ul>
+<p>So here although the span is polylogarithmic, the work is not optimal (should be <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> if optimal).</p>
+</section>
+<section id="trick-to-make-wyllie-s-algorithm-work-optimal">
+<h3>(5) Trick to make Wyllie’s algorithm Work Optimal<a class="headerlink" href="#trick-to-make-wyllie-s-algorithm-work-optimal" title="Permalink to this heading"></a></h3>
+<p>Now let’s see a trick to make Wyllie’s algorithm work optimal. Suppose we magically have a way to shrink the list and the output will represent the same list. Then assume we shrink the list to <code class="docutils literal notranslate"><span class="pre">m</span></code> (<code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">&lt;</span> <span class="pre">n</span></code>) and then we run Wyllie’s algorithm against it. It should have a work of,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W_shrinked</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">m</span> <span class="n">logm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">m</span></code> is chosen as <code class="docutils literal notranslate"><span class="pre">n/logn</span></code>. We don’t use <code class="docutils literal notranslate"><span class="pre">logn</span></code> or <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code> for <code class="docutils literal notranslate"><span class="pre">m</span></code> because then <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">logm</span></code> will be asymptotically less than <code class="docutils literal notranslate"><span class="pre">n</span></code>. And we also don’t choose <code class="docutils literal notranslate"><span class="pre">nlogn</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code>, or <code class="docutils literal notranslate"><span class="pre">n^2</span></code> because then <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">logm</span></code> will be asymptotically more than <code class="docutils literal notranslate"><span class="pre">n</span></code> and these will be sub-optimal. Therefore, we can choose a <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">n/logn</span></code> and shrink the list into smaller lists. Then parallelized computing can be applied to achieve the work optimal.</p>
+<p>But how to shrink a list in parallel?</p>
+</section>
+<section id="successor-representation-of-linked-list">
+<h3>(6) Successor Representation of Linked List<a class="headerlink" href="#successor-representation-of-linked-list" title="Permalink to this heading"></a></h3>
+<p>We couldn’t do a successor representation for a binary tree because a node can have more than one successors. However, we can apply successor representation to the linked list because each node will have at most one successor.</p>
+<p>For example, suppose we are given the following linked list,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="o">-&gt;</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">7</span> <span class="o">-&gt;</span> <span class="mi">1</span> <span class="o">-&gt;</span> <span class="mi">3</span> <span class="o">-&gt;</span> <span class="mi">5</span> <span class="o">-&gt;</span> <span class="mi">6</span> <span class="o">-&gt;</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>Then a successor array of this linked list would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">[:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NULL</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="independent-set">
+<h3>(7) Independent Set<a class="headerlink" href="#independent-set" title="Permalink to this heading"></a></h3>
+<p>To shrink a list in parallel, a handy trick is to use something called the <strong>independent set</strong>. The independent set is defined as a subset of the vertices such that any vertex within the set does not also have it’s successor in the set.</p>
+<p>Based on this definition and the linked list above, we can say that</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">independent</span> <span class="nb">set</span>
+<span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">}</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">an</span> <span class="n">independent</span> <span class="nb">set</span>
+</pre></div>
+</div>
+<p>Note that computing an independent set sequentially is super easy. Suppose we start with an empty independent set and then traverse the list from head to tail with skips for every other node, then we cam have a independent set like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="recall-postorder-numbering">
+<h3>(8) Recall: Postorder Numbering<a class="headerlink" href="#recall-postorder-numbering" title="Permalink to this heading"></a></h3>
+<p>Let’s now recall some basic thing we have learnt from the CS101 about tree, which is the postorder numbering. The pseudocode should be as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">postorder</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">v0</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="n">node</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">()</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">postorder</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">V</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">v</span>
+    
+<span class="n">postorder</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For example, suppose we are given a tree,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                       <span class="mi">0</span>
+                   <span class="o">/</span>   <span class="o">|</span>   \
+                 <span class="mi">1</span>     <span class="mi">2</span>    <span class="mi">3</span> 
+             <span class="o">/</span>   <span class="o">|</span>   \
+           <span class="mi">4</span>     <span class="mi">5</span>    <span class="mi">6</span>
+                    <span class="o">/</span>   \
+                  <span class="mi">7</span>      <span class="mi">8</span>
+</pre></div>
+</div>
+<p>Then the postorder traversal should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">6</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="recall-preorder-numbering">
+<h3>(9) Recall: Preorder Numbering<a class="headerlink" href="#recall-preorder-numbering" title="Permalink to this heading"></a></h3>
+<p>Another traversal technique is the preorder traversal. The pseudocode is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">preorder</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">v0</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v0</span>
+    <span class="k">for</span> <span class="n">each</span> <span class="n">node</span> <span class="n">C</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">()</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">preorder</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">v</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">V</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">v</span>
+    
+<span class="n">preorder</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">V</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the same tree we have above, the preorder traversal should then be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">2</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="work-optimal-wyllie-s">
+<h2>2. Work Optimal Wyllie’s<a class="headerlink" href="#work-optimal-wyllie-s" title="Permalink to this heading"></a></h2>
+<section id="symmetry-issue-in-parallely-generating-independ-set">
+<h3>(1) Symmetry Issue in Parallely Generating Independ Set<a class="headerlink" href="#symmetry-issue-in-parallely-generating-independ-set" title="Permalink to this heading"></a></h3>
+<p>However, computing an independent set in parallel is a little bit tricker because for any vertex <code class="docutils literal notranslate"><span class="pre">i</span></code> in the list and suppose we are performing a parfor loop. when in one iteration, we don’t know whether this vertex goes to the independent set. This problem is caused by symmetry, which means that all nodes look the same. So a simple idea is to find a scheme to break this symmerty.</p>
+</section>
+<section id="symmetry-breaking-scheme-gamble">
+<h3>(2) Symmetry Breaking Scheme: Gamble<a class="headerlink" href="#symmetry-breaking-scheme-gamble" title="Permalink to this heading"></a></h3>
+<p>One way to create a scheme is by gambling. Suppose we filp a coin for each node and each coin should be either a head or a tail. If we have a head for an item, then this assumes that this item should be selected into the independent set.</p>
+<p>However, there may be a case that we have two consecutive heads which will put one node and its successor into the independent set. So before we select the element to put in the independent set, we check if there’s any double heads in the sequence. And if there’s two consecutive heads, we will change filp the prior result to tail as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="n">H</span>                     <span class="n">T</span> <span class="n">H</span>
+<span class="n">H</span> <span class="n">T</span>        <span class="o">----&gt;</span>        <span class="n">H</span> <span class="n">T</span>
+<span class="n">T</span> <span class="n">H</span>                     <span class="n">T</span> <span class="n">H</span>
+<span class="n">T</span> <span class="n">T</span>                     <span class="n">T</span> <span class="n">T</span>
+</pre></div>
+</div>
+<p>So the pseudocode of this scheme is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">parIndSet</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">I</span><span class="p">[</span><span class="n">m</span><span class="p">]):</span>
+    <span class="n">let</span> <span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">C</span><span class="s1">&#39;[n] = space for coins</span>
+    
+    <span class="n">parfor</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="n">filpcoin</span><span class="p">()</span> <span class="o">=</span> <span class="n">H</span> <span class="ow">or</span> <span class="n">T</span>
+        <span class="n">C</span><span class="s1">&#39;[n] = C.copy()</span>
+        
+    <span class="n">parfor</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span> <span class="n">do</span><span class="p">:</span>
+        <span class="o">//</span> <span class="n">check</span> <span class="k">if</span> <span class="n">there</span><span class="s1">&#39;s double heads</span>
+        <span class="k">if</span> <span class="n">C</span><span class="s1">&#39;[i] = H and N[i] != NULL and C&#39;</span><span class="p">[</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">H</span> <span class="n">then</span><span class="p">:</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span>
+            
+    <span class="n">I</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">val</span><span class="o">=</span><span class="n">H</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>And the cost for this algorithm should be,</p>
+<ul class="simple">
+<li><p>Work: O(n) because the work is linear</p></li>
+<li><p>Span: O(logn) because the parfor is usually implemented with a logarithmic solution, while idealy it should be O(1)</p></li>
+</ul>
+<p>The average vertices that ends up in the independent set is <code class="docutils literal notranslate"><span class="pre">n/4</span></code> and we will not prove it here.</p>
+</section>
+<section id="work-optimal-wyllie-s-algorithm">
+<h3>(3) Work Optimal Wyllie’s algorithm<a class="headerlink" href="#work-optimal-wyllie-s-algorithm" title="Permalink to this heading"></a></h3>
+<p>Recall what we have mentioned about the work optimal list ranking algorithm. The trick is,</p>
+<ul class="simple">
+<li><p>Shrink the list to size <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">n</span> <span class="pre">/</span> <span class="pre">logn</span></code></p></li>
+<li><p>Run Wyllie against shrinked lists <code class="docutils literal notranslate"><span class="pre">O(mlogm)</span> <span class="pre">=</span> <span class="pre">O(n)</span></code></p></li>
+<li><p>Repeat the process until we have list of <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">/</span> <span class="pre">logn</span></code></p></li>
+<li><p>Restore full list and ranks</p></li>
+</ul>
+<p>In the last Wyllie’s we will have the true rank of the last independent set of size smaller than <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">/</span> <span class="pre">logn</span></code>, but how can we restore the full list in the last stage. Well, we basically need to run the process that we just ran to contract the list. This is not hard but it’s a lot of bookkeeping. We will talk about this very soon.</p>
+</section>
+<section id="cost-analysis-of-work-optimal-wyllie-s-algorithm">
+<h3>(4) Cost Analysis of Work Optimal Wyllie’s algorithm<a class="headerlink" href="#cost-analysis-of-work-optimal-wyllie-s-algorithm" title="Permalink to this heading"></a></h3>
+<p>Before we analyze this work optimal Wyllie’s algo, let’s first answer a basic problem. How many times do we have to run the independent set to shrink the list in general? Let’s suppose this value is <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<p>We have said that the average vertices that ends up in the independent set is <code class="docutils literal notranslate"><span class="pre">n/4</span></code>, so after each shrink, we will have an average remaining list of size <code class="docutils literal notranslate"><span class="pre">3n/4</span></code>. Then after <code class="docutils literal notranslate"><span class="pre">k</span></code> runs, we shoule have it satisified the following equation,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">^</span><span class="n">k</span> <span class="o">*</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">logn</span>
+</pre></div>
+</div>
+<p>To slove this equation, we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="n">log_</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)(</span><span class="mi">1</span><span class="o">/</span><span class="n">logn</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">loglog</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Therefore, the cost of this algorithm should be,</p>
+<ul class="simple">
+<li><p>Work: <code class="docutils literal notranslate"><span class="pre">W(n)</span> <span class="pre">=</span> <span class="pre">k</span> <span class="pre">*</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">O(nloglog(n))</span></code></p></li>
+<li><p>Span: <code class="docutils literal notranslate"><span class="pre">D(n)</span> <span class="pre">=</span> <span class="pre">k</span> <span class="pre">*</span> <span class="pre">logn</span> <span class="pre">=</span> <span class="pre">O(lognloglog(n))</span></code></p></li>
+</ul>
+<p>Ah, you may see there’s a lie here. Because the work is <code class="docutils literal notranslate"><span class="pre">O(nloglog(n))</span> <span class="pre">&gt;</span> <span class="pre">O(n)</span></code>, then this algorithm is the suboptimal case. There are some good news,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">loglogn</span></code> doesn’t grow very quickly</p></li>
+<li><p>the parallel independent set only needs to be run for a few times</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">k</span></code> is roughly calculated and it depends on the probability</p></li>
+</ul>
+</section>
+</section>
+<section id="parallel-tree-traversals">
+<h2>3. Parallel Tree Traversals<a class="headerlink" href="#parallel-tree-traversals" title="Permalink to this heading"></a></h2>
+<section id="euler-graph">
+<h3>(1) Euler Graph<a class="headerlink" href="#euler-graph" title="Permalink to this heading"></a></h3>
+<p>An Euler graph (aka. Euler circuit) is a directed close path that uses every edge node once.</p>
+</section>
+<section id="traversal-and-euler-graph">
+<h3>(2) Traversal and Euler Graph<a class="headerlink" href="#traversal-and-euler-graph" title="Permalink to this heading"></a></h3>
+<p>If we draw two edges pointing to opposite directions for each tree traversal map, we are then able to create an Euler graph that connects every node.</p>
+</section>
+<section id="postorder-euler-graph">
+<h3>(3) Postorder Euler Graph<a class="headerlink" href="#postorder-euler-graph" title="Permalink to this heading"></a></h3>
+<p>Let’s recall the pseudocode of the postorder traversal. In the recursive call, it just passes along the current value of v and upon the return value, it adds 1 as shown below,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">postorder</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Based on this idea, we can assign the initial ranks for each sink (aka. node) we have in the Euler graph. For,</p>
+<ul class="simple">
+<li><p>parent-to-child sink: assign 0</p></li>
+<li><p>child-to-parent sink: assign 1</p></li>
+</ul>
+<p>Then if we do a scan against this Euler graph created for the tree, then we can get the postorder values. This is called a <strong>Euler tour</strong> technique.</p>
+</section>
+<section id="euler-tour-algorithm-cost">
+<h3>(4) Euler Tour Algorithm Cost<a class="headerlink" href="#euler-tour-algorithm-cost" title="Permalink to this heading"></a></h3>
+<p>Now let’s see the cost of this technique. An Euler tour would have the following three stages,</p>
+<ul class="simple">
+<li><p>Turn the tree to a list</p></li>
+<li><p>Label the list nodes with ranks initialized to {0, 1}</p></li>
+<li><p>List Prefix Sum (add scan)</p></li>
+</ul>
+<p>Suppose we use a work optimal algorithm for the list scan (like ideal work optimal Wyllie’s), then the cost would be,</p>
+<ul class="simple">
+<li><p>Work: <code class="docutils literal notranslate"><span class="pre">W(n)</span> <span class="pre">=</span> <span class="pre">work</span> <span class="pre">of</span> <span class="pre">optimal</span> <span class="pre">scan</span> <span class="pre">=</span> <span class="pre">O(n)</span></code></p></li>
+<li><p>Span: <code class="docutils literal notranslate"><span class="pre">D(n)</span> <span class="pre">=</span> <span class="pre">O(logn)</span></code> because the tree is now a list and its height is no longer relevant</p></li>
+</ul>
+</section>
+<section id="another-euler-tour-example-level">
+<h3>(5) Another Euler Tour Example: level<a class="headerlink" href="#another-euler-tour-example-level" title="Permalink to this heading"></a></h3>
+<p>Let’s now see another example about the Euler tour. Suppose we want to know the level of each node in a tree, then what should be the initial ranks for the Euler path? You may think of the following answer,</p>
+<ul class="simple">
+<li><p>parent-to-child sink: assign 1</p></li>
+<li><p>child-to-parent sink: assign -1</p></li>
+</ul>
+</section>
+<section id="tree-to-array">
+<h3>(6) Tree to Array<a class="headerlink" href="#tree-to-array" title="Permalink to this heading"></a></h3>
+<p>Let’s see how to store the tree for an Euler tour. For each node <code class="docutils literal notranslate"><span class="pre">v</span></code>, we will define its adjacency list to be the set of its outgoing neighbors,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adj</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">=</span> <span class="p">{</span><span class="n">u0</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">u_</span><span class="p">(</span><span class="n">dv</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+</pre></div>
+</div>
+<p>For example, if we have the following tree,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                       <span class="mi">0</span>
+                   <span class="o">/</span>   <span class="o">|</span>   \
+                 <span class="mi">1</span>     <span class="mi">2</span>    <span class="mi">3</span> 
+             <span class="o">/</span>   <span class="o">|</span>   \
+           <span class="mi">4</span>     <span class="mi">5</span>    <span class="mi">6</span>
+                    <span class="o">/</span>   \
+                  <span class="mi">7</span>      <span class="mi">8</span>
+</pre></div>
+</div>
+<p>Then the adjacency list or table would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">6</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>If we take vertex 1, we can get a list of <code class="docutils literal notranslate"><span class="pre">[4,</span> <span class="pre">5,</span> <span class="pre">6,</span> <span class="pre">0]</span></code>, which will be the vertics that vertex 1 points to. The number is called the outer degree and it is noted as <code class="docutils literal notranslate"><span class="pre">dv</span></code> in this case.</p>
+</section>
+<section id="successor-function">
+<h3>(7) Successor Function<a class="headerlink" href="#successor-function" title="Permalink to this heading"></a></h3>
+<p>Now we have the scheme of tree as an adjency table, but how can we know the successor of each node based on it? We use something called a successor function and it’s relatively simple. The pseudocode should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">successor</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">mod</span> <span class="n">dv</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Let’s see why it works. With the tree we used above, suppose we have an edge that goes from 0 to 1, then we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">successor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">u[i]</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dv</span> <span class="pre">=</span> <span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(i+1)</span> <span class="pre">mod</span> <span class="pre">dv</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+</ul>
+<p>So it returns,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="n">mod</span> <span class="n">dv</span><span class="p">])</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From the graph we can figure out that the successor edge should goes from 1 to 4.</p>
+<p>However, each time we switch to a new node <code class="docutils literal notranslate"><span class="pre">v</span></code>, we need to change the <code class="docutils literal notranslate"><span class="pre">u</span></code> to its corresponding adjacent set and there needs some techiques to turn this into <code class="docutils literal notranslate"><span class="pre">O(1)</span></code>. A common techque being used here is to augment some extra pointers in the adjacency list data structure but this can also be quite messy.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note7.html" class="btn btn-neutral float-left" title="High Performance Computing 7 | Scan and Rank List" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note9.html" class="btn btn-neutral float-right" title="High Performance Computing 9 | Midterm Review" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

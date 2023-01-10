@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 3 | I/O Avoiding Algorithms &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Performance Computing 4｜Cache Oblivious Algorithms" href="note4.html" />
+    <link rel="prev" title="High Performance Computing 2 | Algorithmic Time: Energy and Power" href="note2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 3 | I/O Avoiding Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#i-o-basics">1. I/O Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#i-o-definition">(1) I/O Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-sense-of-scale">(2) A Sense of Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-lower-bound">(3) The Lower Bound</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#i-o-avoiding-merge-sort">2. I/O Avoiding Merge Sort</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#merge-sort-phase-1">(1) Merge Sort Phase 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-sort-phase-1-asymptotic-cost">(2) Merge Sort Phase 1 Asymptotic Cost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-sort-phase-2">(3) Merge Sort Phase 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-sort-phase-2-cost-one-pair">(4) Merge Sort Phase 2 Cost - One Pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#merge-sort-phase-2-cost-total">(5) Merge Sort Phase 2 Cost - Total</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-costs-for-two-way-merge-sort-on-two-levels">(6) General Costs for Two-way Merge Sort on Two Levels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problem-of-two-way-merge-sort">(7) Problem of Two-way Merge Sort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiway-merge-sort">(8) Multiway Merge Sort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-of-multiway-merge-sort">(9) Performance of Multiway Merge Sort</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#i-o-avoiding-binary-search">3. I/O Avoiding Binary Search</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#number-of-transfers-in-binary-search">(1) Number of Transfers in Binary Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lower-bound-for-search">(2) Lower Bound for Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lower-bound-for-binary-tree">(3) Lower Bound for Binary Tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 3 | I/O Avoiding Algorithms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-3-i-o-avoiding-algorithms">
+<h1>High Performance Computing 3 | I/O Avoiding Algorithms<a class="headerlink" href="#high-performance-computing-3-i-o-avoiding-algorithms" title="Permalink to this heading"></a></h1>
+<section id="i-o-basics">
+<h2>1. I/O Basics<a class="headerlink" href="#i-o-basics" title="Permalink to this heading"></a></h2>
+<section id="i-o-definition">
+<h3>(1) I/O Definition<a class="headerlink" href="#i-o-definition" title="Permalink to this heading"></a></h3>
+<p>In our case, I/O refers to the transfers of data between slow and fast memories.</p>
+</section>
+<section id="a-sense-of-scale">
+<h3>(2) A Sense of Scale<a class="headerlink" href="#a-sense-of-scale" title="Permalink to this heading"></a></h3>
+<p>Before we start to discuss, let’s first see an example. Suppose we are given an input dataset to sort and we have the following inforation,</p>
+<ul class="simple">
+<li><p>Record (item) size: <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">256</span> <span class="pre">Bytes</span> <span class="pre">=</span> <span class="pre">2^8</span> <span class="pre">Bytes</span></code></p></li>
+<li><p>Volum of data to sort on disk (slow mem): <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">*</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">PiB</span> <span class="pre">=</span> <span class="pre">2^50</span> <span class="pre">Bytes</span></code></p></li>
+<li><p>DRAM size (fast mem): <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">*</span> <span class="pre">z</span> <span class="pre">=</span> <span class="pre">64</span> <span class="pre">GiB</span> <span class="pre">=</span> <span class="pre">2^36</span> <span class="pre">Bytes</span></code></p></li>
+<li><p>Memory transfer size: <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">*</span> <span class="pre">L</span> <span class="pre">=</span> <span class="pre">32</span> <span class="pre">KiB</span> <span class="pre">=</span> <span class="pre">2^15</span> <span class="pre">Bytes</span></code></p></li>
+</ul>
+<p>Now we can find out that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>n = 2^42 records = 4 * (2^10)^4 ≈ 4 * (10^3)^4 = 4.4 Tops
+nlog2(n) = 185 Tops
+Z = 2^28 Tops
+L = 2^7 Tops
+</pre></div>
+</div>
+<p>Now we have the baseline <code class="docutils literal notranslate"><span class="pre">nlog2(n)</span></code> and now let’s see the improvements relative to the base line when we consider the L size transaction and the Z size fast memory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nlog2</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>           <span class="o">=</span> <span class="mf">154.</span>         <span class="o">~</span> <span class="o">*</span><span class="mf">1.2</span>
+<span class="n">n</span>                    <span class="o">=</span>   <span class="mf">4.4</span>        <span class="o">~</span> <span class="o">*</span><span class="mi">42</span>
+<span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>       <span class="o">=</span>   <span class="mf">1.2</span>        <span class="o">~</span> <span class="o">*</span><span class="mi">154</span>
+<span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">)</span>       <span class="o">=</span>   <span class="mf">0.275</span>      <span class="o">~</span> <span class="o">*</span><span class="mi">672</span>
+<span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>  <span class="o">=</span>   <span class="mf">0.0523</span>     <span class="o">~</span> <span class="o">*</span><span class="mi">3530</span>
+</pre></div>
+</div>
+<p>From this result, we can find out that one big improvement comes out from reducing <code class="docutils literal notranslate"><span class="pre">n</span></code> to <code class="docutils literal notranslate"><span class="pre">n/L</span></code>. This means when we pass over the data, we do so in L size transactions as much as possible. The other big improvement comes from going from <code class="docutils literal notranslate"><span class="pre">log2</span></code> to <code class="docutils literal notranslate"><span class="pre">log_(Z/L)</span></code> and this improvement involves the capacity of the fast memory <code class="docutils literal notranslate"><span class="pre">Z</span></code>.</p>
+</section>
+<section id="the-lower-bound">
+<h3>(3) The Lower Bound<a class="headerlink" href="#the-lower-bound" title="Permalink to this heading"></a></h3>
+<p>The goal of this lesson is to understand the lower bound on the amount of communication needed to sort on a machine with slow and fast memory. And here’s the lower bound,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">((</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="i-o-avoiding-merge-sort">
+<h2>2. I/O Avoiding Merge Sort<a class="headerlink" href="#i-o-avoiding-merge-sort" title="Permalink to this heading"></a></h2>
+<section id="merge-sort-phase-1">
+<h3>(1) Merge Sort Phase 1<a class="headerlink" href="#merge-sort-phase-1" title="Permalink to this heading"></a></h3>
+<p>Now, let’s see a problem of sorting two elements in a two level memory system and we also assume that the processor is sequential (aka. not parallel). So here’s the merge sort idea.</p>
+<ul>
+<li><p>Phase 1</p>
+<ul class="simple">
+<li><p>Localically dividing the input into chunks of size <code class="docutils literal notranslate"><span class="pre">fZ</span></code> where f is a multiplier in no larger than 1 so that the chunk can fit into the fast memory.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>f ∈ [0,1)
+# of chunks = n/(fZ)
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Read the input of a chunk from the slow memory into the fast memory, producing a <strong>sorted chunk</strong></p></li>
+<li><p>After the chunk is sorted, write it back to the slow memory</p></li>
+<li><p>To sort all the chunks, we need to get n/(fZ) runs in total</p></li>
+</ul>
+</li>
+</ul>
+<p>We can also have the following pseudo code of the phase 1,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Partition</span> <span class="nb">input</span> <span class="n">into</span> <span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">fZ</span><span class="p">)</span> <span class="n">chunks</span>
+<span class="k">for</span> <span class="n">each</span> <span class="n">chunk</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">fZ</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">load</span> <span class="n">chunk</span> <span class="n">i</span>
+    <span class="n">sort</span> <span class="n">chunk</span> <span class="n">i</span> <span class="n">into</span> <span class="n">a</span> <span class="nb">sorted</span> <span class="n">run</span> <span class="n">i</span>
+    <span class="n">write</span> <span class="n">run</span> <span class="n">i</span>
+</pre></div>
+</div>
+<p>Let’s also have a taste of the phase 2 as follows,</p>
+<ul class="simple">
+<li><p>Phase 2</p>
+<ul>
+<li><p>Merge the n/(fZ) runs to a single</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="merge-sort-phase-1-asymptotic-cost">
+<h3>(2) Merge Sort Phase 1 Asymptotic Cost<a class="headerlink" href="#merge-sort-phase-1-asymptotic-cost" title="Permalink to this heading"></a></h3>
+<p>Let’s then analyze the asymptotic cost of the merge sort. We assume,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a constant so it can be ignored</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">mod</span> <span class="pre">(fZ)</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(fZ)</span> <span class="pre">mod</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+</ul>
+<p>Then in phase 1,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">chunk</span> <span class="pre">i</span></code> has <code class="docutils literal notranslate"><span class="pre">O(n/L)</span></code> transfers because <code class="docutils literal notranslate"><span class="pre">n</span></code> elements are transferred in <code class="docutils literal notranslate"><span class="pre">L</span></code> words</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort</span> <span class="pre">chunk</span> <span class="pre">i</span> <span class="pre">into</span> <span class="pre">a</span> <span class="pre">sorted</span> <span class="pre">run</span> <span class="pre">i</span></code> has <code class="docutils literal notranslate"><span class="pre">O(nlogZ)</span></code> computations because,</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">O</span><span class="p">(</span><span class="n">fZlog</span><span class="p">(</span><span class="n">fZ</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">fZ</span><span class="p">))</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">fZ</span><span class="p">))</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogZ</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">run</span> <span class="pre">i</span></code> has <code class="docutils literal notranslate"><span class="pre">O(n/L)</span></code> transfers</p></li>
+</ul>
+</section>
+<section id="merge-sort-phase-2">
+<h3>(3) Merge Sort Phase 2<a class="headerlink" href="#merge-sort-phase-2" title="Permalink to this heading"></a></h3>
+<p>Then we are going to see how we can merge <code class="docutils literal notranslate"><span class="pre">m</span></code> sorted
+runs into a single sorted run. Suppose we each run has a size of <code class="docutils literal notranslate"><span class="pre">s</span></code>, then,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p>A classical merge sort idea is to merge pairs of runs until we get a final single run and now let’s see what happens at each level. At each level <code class="docutils literal notranslate"><span class="pre">k</span></code> started from 0, we have the sorted run as size <code class="docutils literal notranslate"><span class="pre">2^k</span> <span class="pre">*</span> <span class="pre">s</span></code>.</p>
+</section>
+<section id="merge-sort-phase-2-cost-one-pair">
+<h3>(4) Merge Sort Phase 2 Cost - One Pair<a class="headerlink" href="#merge-sort-phase-2-cost-one-pair" title="Permalink to this heading"></a></h3>
+<p>Considering a pair of runs A and B, each of size <code class="docutils literal notranslate"><span class="pre">2^(k-1)</span> <span class="pre">*</span> <span class="pre">s</span></code> and our goal is to produce a merged run C which will hold <code class="docutils literal notranslate"><span class="pre">2^k</span> <span class="pre">*</span> <span class="pre">s</span></code> sorted items.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Assume the fast memory of size <code class="docutils literal notranslate"><span class="pre">Z</span></code> holds three buffers and each of them can hold <code class="docutils literal notranslate"><span class="pre">L</span></code> elements. A proportion of A (L sized) and B (L sized) will be loaded into the first buffer and the second buffer, and then the merged result of them will be stored in C. When C is full, then flush to the slow memory and continue until we have merged the pair of runs. The pseudo code should be as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">L</span><span class="o">-</span><span class="n">sized</span> <span class="n">blocks</span> <span class="n">of</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="n">to</span> <span class="n">_A</span> <span class="ow">and</span> <span class="n">_B</span>
+<span class="k">while</span> <span class="nb">any</span> <span class="n">unmerged</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">_A</span><span class="p">,</span> <span class="n">_B</span> <span class="o">-&gt;</span> <span class="n">_C</span> <span class="k">as</span> <span class="n">possible</span>
+    <span class="k">if</span> <span class="n">_A</span> <span class="n">empty</span><span class="p">:</span>
+        <span class="n">load</span> <span class="n">more</span> <span class="n">A</span> <span class="n">to</span> <span class="n">_A</span>
+    <span class="k">if</span> <span class="n">_B</span> <span class="n">empty</span><span class="p">:</span>
+        <span class="n">load</span> <span class="n">more</span> <span class="n">B</span> <span class="n">to</span> <span class="n">_B</span>
+    <span class="k">if</span> <span class="n">_C</span> <span class="n">full</span><span class="p">:</span>
+        <span class="n">flush</span> <span class="n">_C</span> <span class="n">to</span> <span class="n">C</span>
+<span class="n">Flush</span> <span class="nb">any</span> <span class="n">unmerged</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span>
+</pre></div>
+</div>
+<p>The cost to merge A and B should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                          <span class="n">A</span>              <span class="n">B</span>             <span class="n">C</span>
+                     <span class="o">------------</span>   <span class="o">------------</span>   <span class="o">----------</span>
+<span class="n">Pair</span> <span class="n">Transfer</span> <span class="n">Cost</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">s</span> <span class="o">/</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="n">s</span> <span class="o">/</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="n">s</span> <span class="o">/</span> <span class="n">L</span>
+                   <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="n">s</span> <span class="o">/</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>Considering the comparisons, the asymptotic upper-bound cost should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pair</span> <span class="n">Comparison</span> <span class="n">Cost</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">ks</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="merge-sort-phase-2-cost-total">
+<h3>(5) Merge Sort Phase 2 Cost - Total<a class="headerlink" href="#merge-sort-phase-2-cost-total" title="Permalink to this heading"></a></h3>
+<p>The calcualtions above is just for merging one pair and for the original merge tree, we have the number of merged pairs at level <code class="docutils literal notranslate"><span class="pre">k</span></code> as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of pairs = n/(2^ks)</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">of</span> <span class="pre">pairs</span> <span class="pre">=</span> <span class="pre">1</span></code>, we reach the maximum of <code class="docutils literal notranslate"><span class="pre">k</span></code>, so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of levels = max(k) = log(n/s)</span>
+</pre></div>
+</div>
+<p>Therefore, in total we have the costs as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transfer</span> <span class="n">Cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">Pair</span> <span class="n">Transfer</span> <span class="n">Cost</span> <span class="o">*</span> <span class="c1"># of pairs per level) * # of levels</span>
+              <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="n">s</span> <span class="o">/</span> <span class="n">L</span> <span class="o">*</span> <span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">ks</span><span class="p">))</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+              <span class="o">=</span> <span class="mi">2</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">Comparison</span> <span class="n">Cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">Pair</span> <span class="n">Comparison</span> <span class="n">Cost</span> <span class="o">*</span> <span class="c1"># of pairs per level) * # of levels</span>
+                <span class="o">=</span> <span class="p">(</span><span class="n">Θ</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">ks</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">ks</span><span class="p">))</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+                <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="general-costs-for-two-way-merge-sort-on-two-levels">
+<h3>(6) General Costs for Two-way Merge Sort on Two Levels<a class="headerlink" href="#general-costs-for-two-way-merge-sort-on-two-levels" title="Permalink to this heading"></a></h3>
+<p>Now if we cosider this problem in a two-level condition with two phases. In phase 1 and 2, the costs are,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Phase</span>           <span class="n">Transfer</span>              <span class="n">Comparison</span>
+<span class="mi">1</span>                <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>                <span class="n">O</span><span class="p">(</span><span class="n">nlogZ</span><span class="p">)</span> 
+<span class="mi">2</span>            <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>         <span class="n">O</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>So in total we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Transfer</span> <span class="n">Cost</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+              <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+             
+<span class="n">Comparison</span> <span class="n">Cost</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogZ</span><span class="p">)</span> <span class="o">+</span> <span class="n">O</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+                <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">(</span><span class="n">logZ</span> <span class="o">+</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">)))</span>
+                <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">Z</span> <span class="o">*</span> <span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+                <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="problem-of-two-way-merge-sort">
+<h3>(7) Problem of Two-way Merge Sort<a class="headerlink" href="#problem-of-two-way-merge-sort" title="Permalink to this heading"></a></h3>
+<p>We can find out that the transfer cost <code class="docutils literal notranslate"><span class="pre">Q(n;Z,L)</span></code> we have here above as we discussed is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>And we can also write it fancier as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">-</span> <span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>This is also,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Compared with the lower bound we have as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We can find the improvement of the lower bound is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The reason for that is because we only uses three L-sized buffers in the fast memory instead of the total size of <code class="docutils literal notranslate"><span class="pre">Z</span></code>. More specifically, the 2-way merge uses just 3 of the total <code class="docutils literal notranslate"><span class="pre">Z/L</span></code> available blocks of the fast memory. In order to improve that, we have to consider the <strong>multiway merging</strong>.</p>
+</section>
+<section id="multiway-merge-sort">
+<h3>(8) Multiway Merge Sort<a class="headerlink" href="#multiway-merge-sort" title="Permalink to this heading"></a></h3>
+<p>So the idea to improve the two way merging is to merge more than two runs at a time to fully utilize the fast memory. Let’s say we are merging <code class="docutils literal notranslate"><span class="pre">k</span></code> runs of <code class="docutils literal notranslate"><span class="pre">s</span></code> size each at a time to a single run we must staisify,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">L</span> <span class="o">&lt;=</span> <span class="n">Z</span>
+</pre></div>
+</div>
+<p>In each add, we will first find the smallest item across all the <code class="docutils literal notranslate"><span class="pre">k</span></code> runs and then add it to the <code class="docutils literal notranslate"><span class="pre">output</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">k+1</span></code>) buffer. When the output buffer gets filled, the only thing we have to do is to flush it.</p>
+<p>Now the only question is how to pick the next smallest item across <code class="docutils literal notranslate"><span class="pre">k</span></code> buffers. We have several options,</p>
+<ul class="simple">
+<li><p>Linear Scan</p></li>
+<li><p>Min-heap (aka. priority queue)</p></li>
+</ul>
+<p>If we go with the min-heap, we will have the following costs.</p>
+<ul class="simple">
+<li><p>building: <code class="docutils literal notranslate"><span class="pre">O(k)</span></code></p></li>
+<li><p>extractMin: <code class="docutils literal notranslate"><span class="pre">O(logk)</span></code></p></li>
+<li><p>insert: <code class="docutils literal notranslate"><span class="pre">O(logk)</span></code></p></li>
+</ul>
+<p>Then, let’s have a look at the cost of a single k-way merge,</p>
+<ul class="simple">
+<li><p>Transfers: <code class="docutils literal notranslate"><span class="pre">2ks/L</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ks/L</span></code> for a load</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ks/L</span></code> for a write</p></li>
+</ul>
+</li>
+<li><p>Comparisions: <code class="docutils literal notranslate"><span class="pre">O(k</span> <span class="pre">+</span> <span class="pre">kslogk)</span></code></p>
+<ul>
+<li><p>O(k) to build the heap</p></li>
+<li><p>every <code class="docutils literal notranslate"><span class="pre">ks</span></code> items are either inserted or extracted, so O(kslogk)</p></li>
+</ul>
+</li>
+</ul>
+<p>If we look into the whole picture, the number of a multiway merge includes,</p>
+<ul class="simple">
+<li><p>total comparisions numbers: <code class="docutils literal notranslate"><span class="pre">O(nlogn)</span></code></p>
+<ul>
+<li><p>this is similar to any compare based sorting algorithms</p></li>
+</ul>
+</li>
+<li><p>total transfers numbers: <code class="docutils literal notranslate"><span class="pre">Q(n;Z,L)</span> <span class="pre">=</span> <span class="pre">Θ((n/L)*log_(Z/L)(n/L))</span></code></p>
+<ul>
+<li><p>assume we can always do a k way merge in fast memory so <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">Θ(Z/L)</span> <span class="pre">&lt;</span> <span class="pre">Z/L</span></code></p></li>
+<li><p>the <strong>maximum numbe of levels</strong> of the merge tree should be <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">=</span> <span class="pre">Θ(log_(Z/L)(n/L))</span></code>, use this as a hint</p></li>
+<li><p>for the <code class="docutils literal notranslate"><span class="pre">i-1</span></code> line, there should be <code class="docutils literal notranslate"><span class="pre">k</span></code> amount <code class="docutils literal notranslate"><span class="pre">k^(i-1)s</span></code> items being merged to a single run of <code class="docutils literal notranslate"><span class="pre">k^i*s</span></code> items</p>
+<ul>
+<li><p>Number of transfers per run at level i: <code class="docutils literal notranslate"><span class="pre">Θ(k^i*s/L)</span></code></p></li>
+<li><p>Number of runs at level i: <code class="docutils literal notranslate"><span class="pre">n/(k^i*s)</span></code></p></li>
+<li><p>So <strong>total transfers</strong> at level i： <code class="docutils literal notranslate"><span class="pre">Θ(k^i*s/L)</span> <span class="pre">*</span> <span class="pre">n/(k^i*s)</span> <span class="pre">=</span> <span class="pre">Θ(n/L)</span></code></p></li>
+</ul>
+</li>
+<li><p>So the totoal transfer numbers should be <code class="docutils literal notranslate"><span class="pre">Θ(n/L)</span> <span class="pre">*</span> <span class="pre">Θ(log_(Z/L)(n/L))</span> <span class="pre">=</span> <span class="pre">Θ((n/L)*log_(Z/L)(n/L))</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="performance-of-multiway-merge-sort">
+<h3>(9) Performance of Multiway Merge Sort<a class="headerlink" href="#performance-of-multiway-merge-sort" title="Permalink to this heading"></a></h3>
+<p>Now is this multiway merge sort good enough to the theoritical lower bound? The answer is yes and let’s see a proof here.</p>
+<p>Let’s say we have <code class="docutils literal notranslate"><span class="pre">n</span></code> items in an array for sorting, so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of possible orderings = n!</span>
+</pre></div>
+</div>
+<p>Let’s also suppose we have a two-level memory with the fast memory of size <code class="docutils literal notranslate"><span class="pre">Z</span></code> and the transfer size <code class="docutils literal notranslate"><span class="pre">L</span></code>. For each transfer, <code class="docutils literal notranslate"><span class="pre">L</span></code> items comes to the fast memory and we can know something new about the orderings. Suppose we have the number of orderings after <code class="docutils literal notranslate"><span class="pre">t-1</span></code> transfers as <code class="docutils literal notranslate"><span class="pre">K(t-1)</span></code> and,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(0) = n!
+</pre></div>
+</div>
+<p>To put the new <code class="docutils literal notranslate"><span class="pre">L</span></code> items in the new transfer to the fast memory, at most we can have the number of ways to order items in fast memory as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\tbinom{Z}{L} * L!
+</pre></div>
+</div>
+<p>So that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(t) &gt;= K(t-1) / (\tbinom{Z}{L} * L!)
+</pre></div>
+</div>
+<p>Consider this in <code class="docutils literal notranslate"><span class="pre">t</span></code> transfers,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(t) &gt;= K(0) / (\tbinom{Z}{L} * L!)^t
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(t) &gt;= n! / (\tbinom{Z}{L} * L!)^t
+</pre></div>
+</div>
+<p>However, this count is a little bit conservative than necessary because <code class="docutils literal notranslate"><span class="pre">L!</span></code> assumes that we don’t know the order of <code class="docutils literal notranslate"><span class="pre">L</span></code>. However, we do know something about <code class="docutils literal notranslate"><span class="pre">L</span></code> because we only have <code class="docutils literal notranslate"><span class="pre">n/L</span></code> of possibilities, so the number of L-sized unseen items per read is smaller or equal to <code class="docutils literal notranslate"><span class="pre">n/L</span></code>. This is to say that,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(t) &gt;= n! / (\tbinom{Z}{L} * L!)^t = n! / (\tbinom{Z}{L})^t * (L!)^t = n! / ((\tbinom{Z}{L})^t * (L!)^t) &gt;= n! / (\tbinom{Z}{L})^t * (L!)^(n/L)
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>K(t) &gt;= n! / (\tbinom{Z}{L})^t * (L!)^(n/L)
+</pre></div>
+</div>
+<p>Suppose we want to have the ordered result after t transfers, we need to have <code class="docutils literal notranslate"><span class="pre">K(t)</span> <span class="pre">=</span> <span class="pre">1!</span> <span class="pre">=</span> <span class="pre">1</span></code>, so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1 &gt;= n! / (\tbinom{Z}{L})^t * (L!)^(n/L)
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">log</span></code> to both size,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>log(n!) &lt;= log((\tbinom{Z}{L})^t * (L!)^(n/L))
+</pre></div>
+</div>
+<p>Here we have two properties,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">log(x!)</span> <span class="pre">~</span> <span class="pre">xlogx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log(\tbinom{a}{b})</span> <span class="pre">~</span> <span class="pre">blog(a/b)</span></code></p></li>
+</ul>
+<p>Put this inside our inequation above, we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nlogn</span> <span class="o">&lt;=</span> <span class="n">tLlog</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span><span class="o">/</span><span class="n">L</span> <span class="o">*</span> <span class="n">LlogL</span>
+</pre></div>
+</div>
+<p>Move <code class="docutils literal notranslate"><span class="pre">t</span></code> to one side of this inequation and the rest to another side, we can then have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">&gt;~</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">*</span><span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is to say that <code class="docutils literal notranslate"><span class="pre">(n/L)*log_(Z/L)(n/L)</span></code> is the theorical lower bound and the algorithm reached to the best performance.</p>
+</section>
+</section>
+<section id="i-o-avoiding-binary-search">
+<h2>3. I/O Avoiding Binary Search<a class="headerlink" href="#i-o-avoiding-binary-search" title="Permalink to this heading"></a></h2>
+<section id="number-of-transfers-in-binary-search">
+<h3>(1) Number of Transfers in Binary Search<a class="headerlink" href="#number-of-transfers-in-binary-search" title="Permalink to this heading"></a></h3>
+<p>Suppose we have a sorted list of <code class="docutils literal notranslate"><span class="pre">n</span></code> items. The fast memory size is <code class="docutils literal notranslate"><span class="pre">Z</span></code> and transfer size is <code class="docutils literal notranslate"><span class="pre">L</span></code>. When <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">L</span></code>, we only need one transfer so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>    <span class="n">when</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>However, when <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">L</span></code>, what we have to do is to find the median item and then load <code class="docutils literal notranslate"><span class="pre">L</span></code> items before or after it. In this case we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">),</span>        <span class="n">when</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>The solution to this recurrence is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>But can we do better?</p>
+</section>
+<section id="lower-bound-for-search">
+<h3>(2) Lower Bound for Search<a class="headerlink" href="#lower-bound-for-search" title="Permalink to this heading"></a></h3>
+<p>Let’s think about the binary search in another way. To find the index <code class="docutils literal notranslate"><span class="pre">i</span></code> we want to search, it takes,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">O</span><span class="p">(</span><span class="n">logn</span><span class="p">)</span> <span class="n">bits</span>
+</pre></div>
+</div>
+<p>Also, the maximum number of bits we learn per <code class="docutils literal notranslate"><span class="pre">L</span></code> sized read should be <code class="docutils literal notranslate"><span class="pre">logL</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">logn</span><span class="o">/</span><span class="n">logL</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">log_L</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>So compared with the lower bounds for the binary search O(log(n/L)) = O(log(n)-log(L)) ~ O(logn) that we can see a speedup of <code class="docutils literal notranslate"><span class="pre">logL</span></code>.</p>
+</section>
+<section id="lower-bound-for-binary-tree">
+<h3>(3) Lower Bound for Binary Tree<a class="headerlink" href="#lower-bound-for-binary-tree" title="Permalink to this heading"></a></h3>
+<p>However, the binary search can not reach the lower bound, but the binary tree can reach the lower bound. We will skip this part here.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note2.html" class="btn btn-neutral float-left" title="High Performance Computing 2 | Algorithmic Time: Energy and Power" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note4.html" class="btn btn-neutral float-right" title="High Performance Computing 4｜Cache Oblivious Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

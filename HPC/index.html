@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>High Performance Computing &mdash; serenefield-sphinx  documentation</title>
+  <title>CSE6220 Notes &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/style.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Develop Logs" href="../logs/index.html" />
-    <link rel="prev" title="Computer Network" href="../CN/index.html" /> 
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="note1.html" />
+    <link rel="prev" title="CS6250 Notes" href="../CN/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,35 +40,43 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Computer Network</span></p>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">High Performance Computing</span></p>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">High Performance Computing</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CSE6220 Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Dev Logs</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../logs/index.html">Develop Logs</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Information Security</span></p>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
 </ul>
 
         </div>
@@ -85,7 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">High Performance Computing</li>
+      <li class="breadcrumb-item active">CSE6220 Notes</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/HPC/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,9 +103,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="high-performance-computing">
-<h1>High Performance Computing<a class="headerlink" href="#high-performance-computing" title="Permalink to this heading"></a></h1>
+  <section id="cse6220-notes">
+<h1>CSE6220 Notes<a class="headerlink" href="#cse6220-notes" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="note1.html">High Performance Computing 1 | Memory Locality Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
 </div>
 </section>
 
@@ -105,8 +124,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../CN/index.html" class="btn btn-neutral float-left" title="Computer Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../logs/index.html" class="btn btn-neutral float-right" title="Develop Logs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../CN/index.html" class="btn btn-neutral float-left" title="CS6250 Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

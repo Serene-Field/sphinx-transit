@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Performance Computing 1 | Memory Locality Theory &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High Performance Computing 2 | Algorithmic Time: Energy and Power" href="note2.html" />
+    <link rel="prev" title="CSE6220 Notes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">🖥️ DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../devops/index.html">CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🏯 Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Jap/index.html">Japanese</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🎸 Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Guitar/index.html">Guitar</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🌎 Computer Network</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CN/index.html">CS6250 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 High Performance Computing</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">CSE6220 Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">High Performance Computing 1 | Memory Locality Theory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-locality-theory">1. Memory Locality Theory</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#definition">(1) Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#von-nevmann-model">(2) Von Nevmann Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#two-rules-for-von-nevmann-model">(3) Two Rules for Von Nevmann Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-of-block-transfers">(4) Cost of Block Transfers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maximum-cost-of-block-transfers">(5) Maximum Cost of Block Transfers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-of-block-sorting">(6) Cost of Block Sorting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-of-matrix-matrix-multiplication">(7) Cost of Matrix-matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reduction-vs-block-reduction-algo">(8) Reduction Vs. Block Reduction Algo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matrix-vector-multiplication">(9) Matrix-Vector Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algorthmic-design-goals">(10) Algorthmic Design Goals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#work-transfers-execution-time-balance">(11) Work, Transfers &amp; Execution Time Balance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#roofline-plots">(12) Roofline Plots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intensity-of-conventional-matrix-multiply">(13) Intensity of Conventional Matrix Multiply</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#better-algorithm-for-conventional-matrix-multiply">(14) Better Algorithm for Conventional Matrix Multiply</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#application-informing-the-arch">(15) Application: Informing the Arch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">High Performance Computing 2 | Algorithmic Time: Energy and Power</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">High Performance Computing 3 | I/O Avoiding Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">High Performance Computing 4｜Cache Oblivious Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">High Performance Computing 5 | Work Span Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">High Performance Computing 7 | Scan and Rank List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">High Performance Computing 8 | Parallel on Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">High Performance Computing 9 | Midterm Review</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">💻 Information Security</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IIS/index.html">CS6035 Notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">🧪 Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tests/index.html">Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">CSE6220 Notes</a></li>
+      <li class="breadcrumb-item active">High Performance Computing 1 | Memory Locality Theory</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/HPC/note1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="high-performance-computing-1-memory-locality-theory">
+<h1>High Performance Computing 1 | Memory Locality Theory<a class="headerlink" href="#high-performance-computing-1-memory-locality-theory" title="Permalink to this heading"></a></h1>
+<section id="memory-locality-theory">
+<h2>1. Memory Locality Theory<a class="headerlink" href="#memory-locality-theory" title="Permalink to this heading"></a></h2>
+<section id="definition">
+<h3>(1) Definition<a class="headerlink" href="#definition" title="Permalink to this heading"></a></h3>
+<p>Between a processor and a primary storage device, there are layers of memories in between.</p>
+</section>
+<section id="von-nevmann-model">
+<h3>(2) Von Nevmann Model<a class="headerlink" href="#von-nevmann-model" title="Permalink to this heading"></a></h3>
+<p>Between the slower memory and the processor, there’s a fast memory.</p>
+</section>
+<section id="two-rules-for-von-nevmann-model">
+<h3>(3) Two Rules for Von Nevmann Model<a class="headerlink" href="#two-rules-for-von-nevmann-model" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Local Data Rule</strong>: Processor may only compute the data in the fast memory. Or the processor can not do any operations unless the operands sit in fast memory</p></li>
+<li><p><strong>Block Transfer Rule</strong>: When data moves between the slow memory and the fast memory, it does so by in chunks of size <code class="docutils literal notranslate"><span class="pre">L</span></code> words.</p></li>
+</ul>
+</section>
+<section id="cost-of-block-transfers">
+<h3>(4) Cost of Block Transfers<a class="headerlink" href="#cost-of-block-transfers" title="Permalink to this heading"></a></h3>
+<p>Suppose we want to transfer <code class="docutils literal notranslate"><span class="pre">W(n)</span></code> number of computation operations. The data transfers in chunks of size <code class="docutils literal notranslate"><span class="pre">L</span></code> words and the fast memory LLC has a size of <code class="docutils literal notranslate"><span class="pre">Z</span></code> words. And we denote the number of block transfers as <code class="docutils literal notranslate"><span class="pre">Q(n;Z,L)</span></code>.</p>
+<p>Then let’s see an example. Suppose the processor needs to sum an array of <code class="docutils literal notranslate"><span class="pre">n</span></code> elements. So we will have at least <code class="docutils literal notranslate"><span class="pre">(n-1)</span></code> additions. And the work should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">additions</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So the transfer cost is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we can find out that the cost doesn’t rely on the fast memory size <code class="docutils literal notranslate"><span class="pre">Z</span></code> and reduction does not reuse data. However, not reusing data is pad.</p>
+</section>
+<section id="maximum-cost-of-block-transfers">
+<h3>(5) Maximum Cost of Block Transfers<a class="headerlink" href="#maximum-cost-of-block-transfers" title="Permalink to this heading"></a></h3>
+<p>Now let’s consider how alignment can impact the cost transfers. Suppose we have the same case above with a <code class="docutils literal notranslate"><span class="pre">Z</span></code> words fast memory and we have to sum a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> elements. The block size is <code class="docutils literal notranslate"><span class="pre">L</span></code> words and we know nothing about how the words are aligned with respect to the transfer size <code class="docutils literal notranslate"><span class="pre">L</span></code>. Now, let’s consider the worst case transfer cost.</p>
+<p>Let’s see an example. Suppose we have the following assumptions,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Then, the alignment can be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">|------|------|-----|-----|</span>
+<span class="o">...|------</span><span class="n">L</span><span class="o">------|-----</span><span class="n">L</span><span class="o">-----|...</span>
+</pre></div>
+</div>
+<p>Or,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="o">|------|------|-----|-----|</span>
+<span class="o">...---</span><span class="n">L</span><span class="o">------|------</span><span class="n">L</span><span class="o">-----|-----</span><span class="n">L</span><span class="o">---...</span>
+</pre></div>
+</div>
+<p>In the first case, we need <code class="docutils literal notranslate"><span class="pre">2</span></code> transfers, while in the second case, we need <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">(2+1)</span></code> transfers. Therefore, the maximum cost of block transfers should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-of-block-sorting">
+<h3>(6) Cost of Block Sorting<a class="headerlink" href="#cost-of-block-sorting" title="Permalink to this heading"></a></h3>
+<p>Now let’s suppose we want to sort a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> words and the work load should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similarly in this case, the transfer cost should also be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, in the best case this cost can be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">nlog</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">L</span> <span class="o">/</span> <span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>We will reserve this to the later sections.</p>
+</section>
+<section id="cost-of-matrix-matrix-multiplication">
+<h3>(7) Cost of Matrix-matrix Multiplication<a class="headerlink" href="#cost-of-matrix-matrix-multiplication" title="Permalink to this heading"></a></h3>
+<p>Suppose we have three n by n matrix A, B and C, and</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
+</pre></div>
+</div>
+<p>If we ignore the possibilities of strassen’s algorithm, the workload should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The asymptotic lower bound of the transfer cost is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is just a trivial version of the lower bound. n^2 is the number of elements in one matrix. However, there’s a much tighter lower bound of the following format,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>And we will also save this for the future lessons.</p>
+</section>
+<section id="reduction-vs-block-reduction-algo">
+<h3>(8) Reduction Vs. Block Reduction Algo<a class="headerlink" href="#reduction-vs-block-reduction-algo" title="Permalink to this heading"></a></h3>
+<p>Now, let’s go back to the reduction case and suppose we have an array <code class="docutils literal notranslate"><span class="pre">X</span></code> of n elements. Assume that <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">Z</span></code> and <code class="docutils literal notranslate"><span class="pre">X</span></code> aligned on the L-word boundary. To summarize this array, normally we have the following algorithm,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">+</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now let’s modify this algorithm to make slow/fast memory expressed explicitly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">L</span> <span class="n">do</span><span class="p">:</span>
+    <span class="n">local</span> <span class="n">i_hat</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">L</span>
+    <span class="n">local</span> <span class="n">L_hat</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">i_hat</span> <span class="o">+</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">local</span> <span class="n">y</span><span class="p">[:(</span><span class="n">L_hat</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i_hat</span><span class="p">:(</span><span class="n">i_hat</span><span class="o">+</span><span class="n">L_hat</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>  <span class="o">//</span> <span class="n">line</span> <span class="n">A</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">L_hat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">S</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In line A, we load the data of at most L words from the slow memory to the fast memory. By this case, the workload and the transfer cost for this reduction is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="matrix-vector-multiplication">
+<h3>(9) Matrix-Vector Multiplication<a class="headerlink" href="#matrix-vector-multiplication" title="Permalink to this heading"></a></h3>
+<p>Let’s now see an example of a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> (n by n) multiply vector <code class="docutils literal notranslate"><span class="pre">x</span></code> (n by 1). The matrix is supposed to store in a column major order, which means the elements of the matrix are laid out in the memory column-wised, for instance,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>   <span class="o">---&gt;</span>  <span class="n">A</span><span class="s1">&#39; = [1, 4, 7, 2, 5, 8, 3, 6, 9]</span>
+     <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>                
+<span class="o">----------------</span>         <span class="o">-------------------------------</span>
+    <span class="n">Original</span>                        <span class="n">Column</span><span class="o">-</span><span class="n">wised</span>
+</pre></div>
+</div>
+<p>So in this case, the elements have consecutive addressses within a column with one column following the previous column. And we have the following mapping rules,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="s1">&#39;[j * n + i]</span>
+</pre></div>
+</div>
+<p>Then the 1st algo would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>We can also have the 2nd algo which is the opposite loop order of the first one,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If we consider the following assumptions: 1) Z is large enough to hold two vectors with a few more words (<code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2n</span> <span class="pre">+</span> <span class="pre">O(L)</span></code>); 2) L divides n; 3) x, y, and A aligned on L. Then let’s compare the two algorithms above and consider which one does fewer transfers?</p>
+<p>In the beginning of both algos, vector x and y are loaded to the fast memory, which means we have <code class="docutils literal notranslate"><span class="pre">2n/L</span></code> transfer cost. And also in the end, the vector y is stored to the slow memory, which also means we have <code class="docutils literal notranslate"><span class="pre">n/L</span></code> transfer cose. Therefore, we can know the transfer cost will have the following structure,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">n</span> <span class="o">/</span> <span class="n">L</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">f(n;Z,L)</span></code> is the additional transfer cost of these two algorithms.</p>
+<p>In the first algorithm, when we loop with <code class="docutils literal notranslate"><span class="pre">j</span></code>, the elements we need in two continuous iterations are not consecutive in memory. Thereby, we need to load one time for each of the element so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>However in the second algorithm, because in the loop of <code class="docutils literal notranslate"><span class="pre">i</span></code>, the element we need are consecutive in the memory so we don’t have to load for each of them. On average we only need <code class="docutils literal notranslate"><span class="pre">n/L</span></code> loads for each column so that the additional transfer cost would be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="n">L</span>
+</pre></div>
+</div>
+<p>So even through in both of these cases we have <code class="docutils literal notranslate"><span class="pre">O(f)</span> <span class="pre">=</span> <span class="pre">n^2</span></code>, the second algo shows a better performance by making the transfer L times faster.</p>
+</section>
+<section id="algorthmic-design-goals">
+<h3>(10) Algorthmic Design Goals<a class="headerlink" href="#algorthmic-design-goals" title="Permalink to this heading"></a></h3>
+<p>Another important question about this model is what are the goals with respect to the complexity measures. Basically, there are two goals,</p>
+<ul class="simple">
+<li><p>work optimality: the two level algo should do the same work as the best asymptotic algorithm. This actually means to say we should have parallel algorithms</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">W</span><span class="s1">&#39;(n))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>high computational intensity: computational intensity is the amount of work per word transfer. In another way to say it measures the data reuse of the algorithm.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">max</span> <span class="n">I</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In the end, what we are saying is that we want our algorithm to max out the computational intensity without messing up with the work, and this should reminding you the concept of <strong>work and span</strong>.</p>
+</section>
+<section id="work-transfers-execution-time-balance">
+<h3>(11) Work, Transfers &amp; Execution Time Balance<a class="headerlink" href="#work-transfers-execution-time-balance" title="Permalink to this heading"></a></h3>
+<p>Now let’s consider the relationship between the work, transfers, and the execution time. Suppose we have,</p>
+<ul class="simple">
+<li><p>the processor takes τ time to execute a operation</p></li>
+<li><p>the fast-slow memory bus takes ɑ time to transfer a word</p></li>
+</ul>
+<p>Then we can know,</p>
+<ul class="simple">
+<li><p>The computational time: <code class="docutils literal notranslate"><span class="pre">T_comp</span> <span class="pre">=</span> <span class="pre">τW</span></code></p></li>
+<li><p>The transfer time: <code class="docutils literal notranslate"><span class="pre">T_mem</span> <span class="pre">=</span> <span class="pre">ɑLQ</span></code></p></li>
+</ul>
+<p>Based on what we have discuss, we can know the total time is the maxium value of the computational time and the transfer time,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">&gt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">T_comp</span><span class="p">,</span> <span class="n">T_mem</span><span class="p">)</span>
+  <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">τW</span><span class="p">,</span> <span class="n">ɑLQ</span><span class="p">)</span>
+  <span class="o">=</span> <span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ɑLQ</span><span class="o">/</span><span class="n">τW</span><span class="p">)</span>
+  <span class="o">=</span> <span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">ɑ</span><span class="o">/</span><span class="n">τ</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">W</span><span class="o">/</span><span class="n">LQ</span><span class="p">))</span>
+  <span class="o">=</span> <span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">ɑ</span><span class="o">/</span><span class="n">τ</span><span class="p">)</span><span class="o">/</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">I</span></code> is the computational intensity we have discussed. The numerator is the time per word devided by the time per operation called the <strong>machine’s balance point</strong> which <strong>only depends on the machine</strong> and it has units of operations per word. For a specific machine, the machine balance is a constant <code class="docutils literal notranslate"><span class="pre">B</span></code> so we can replace it by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">&gt;=</span> <span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">/</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If we also consider the worst case when the computational time and the transfer time have no overlap, we can get a maximum overall time which is the summation of these two times,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">τW</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="o">/</span><span class="n">I</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">T</span> <span class="o">&lt;=</span> <span class="n">τW</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">B</span><span class="o">/</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Sometime when we ask about the overall execution time, we will ask about a certain measure of performance called the <strong>normalized performance</strong> <code class="docutils literal notranslate"><span class="pre">R</span></code>. It is defined by</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">=</span> <span class="n">τW</span><span class="s1">&#39;/T</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">W'</span></code> is the best case workload (computational optimality) and <code class="docutils literal notranslate"><span class="pre">τW'</span></code> is the best case execution time with a pure RAM model. If we replace <code class="docutils literal notranslate"><span class="pre">T</span></code>, this formula can be written to,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span> <span class="o">&lt;=</span> <span class="n">τW</span><span class="s1">&#39;/τW * min(1, I/B)</span>
+  <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;/W * min(1, I/B)</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_max</span> <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;/W * min(1, I/B)</span>
+</pre></div>
+</div>
+</section>
+<section id="roofline-plots">
+<h3>(12) Roofline Plots<a class="headerlink" href="#roofline-plots" title="Permalink to this heading"></a></h3>
+<p>Then to visualize the relationship between I, B, and R, let’s consider a roofline plot. Suppose the x-axis is the computational intensity and the y-axis is the maxmium normalized performance R_max. Then we can draw the following plot.</p>
+<p><img alt="roogline plot" src="https://raw.githubusercontent.com/Sadamingh/notepics/main/hpc/1.png" /></p>
+<p>This plot is called roofline because of the shape and we should remember the critical point (B, W’/W).</p>
+</section>
+<section id="intensity-of-conventional-matrix-multiply">
+<h3>(13) Intensity of Conventional Matrix Multiply<a class="headerlink" href="#intensity-of-conventional-matrix-multiply" title="Permalink to this heading"></a></h3>
+<p>Now let’s consider back to our matrix muplication problem <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">&lt;-</span> <span class="pre">C</span> <span class="pre">+</span> <span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code>. Suppose we have the following algorithm,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">do</span><span class="p">:</span>                          <span class="o">//</span> <span class="n">load</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">do</span><span class="p">:</span>                      <span class="o">//</span> <span class="n">load</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">B</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> 
+        <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>      <span class="o">//</span> <span class="n">store</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Now suppose we run this algorithm on a machine with a two level memory of <code class="docutils literal notranslate"><span class="pre">Z</span></code> size. And we also have some simplified assumptions here,</p>
+<ul class="simple">
+<li><p>L = 1 word: No alignment issues</p></li>
+<li><p>Z = 2n + O(L) = 2n + O(1)</p></li>
+</ul>
+<p>When we are calculating the asymptotic intensity of this algorithm, let’s first consider the computational work. Note that the algorithm has a workload like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then for the transfers,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">A[i,:]</span></code>: load n elements by n times -&gt; n^2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">C[i,j]</span></code>: load each element in C once because of the extra space O(1) -&gt; n^2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">store</span> <span class="pre">C[i,j]</span></code>: store each element in C once because of the extra space O(1) -&gt; n^2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span> <span class="pre">B[:,j]</span></code>: load n elements of B for n^2 times because the fast mem can only hold 2n -&gt; n^3</p></li>
+</ul>
+<p>So in total we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="o">^</span><span class="mi">3</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Therefore,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">))</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="better-algorithm-for-conventional-matrix-multiply">
+<h3>(14) Better Algorithm for Conventional Matrix Multiply<a class="headerlink" href="#better-algorithm-for-conventional-matrix-multiply" title="Permalink to this heading"></a></h3>
+<p>Now let’s consider another algorithm for the matrix multiplication problem. Suppose we have the following algorithm,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">by</span> <span class="n">b</span> <span class="n">do</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">by</span> <span class="n">b</span> <span class="n">do</span><span class="p">:</span>
+        <span class="n">C</span><span class="s1">&#39; = [i:i+b,j:j+b]           // load C&#39;</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">by</span> <span class="n">b</span> <span class="n">do</span><span class="p">:</span>
+            <span class="n">A</span><span class="s1">&#39; = [i:i+b,k:k+b]       // load A&#39;</span>
+            <span class="sa">B</span><span class="s1">&#39; = [k:k+b,j:j+b]       // load B&#39;</span>
+            <span class="n">C</span><span class="s1">&#39; += A&#39;</span> <span class="o">*</span> <span class="sa">B</span><span class="s1">&#39;            // store C&#39;</span>
+<span class="n">C</span> <span class="o">&lt;-</span> <span class="n">C</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>Let’s also assume that,</p>
+<ul class="simple">
+<li><p>L = 1</p></li>
+<li><p>L | n</p></li>
+<li><p>n | Z</p></li>
+<li><p>Z = 3b^2 + O(1)</p></li>
+</ul>
+<p>The algorithm should again have a workload of,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then for the transfer cost, we have</p>
+<ul class="simple">
+<li><p>load C’: b^2 elements in C loaded for (n/b)^2 times <code class="docutils literal notranslate"><span class="pre">b^2</span> <span class="pre">*</span> <span class="pre">(n/b)^2</span> <span class="pre">=</span> <span class="pre">n^2</span></code></p></li>
+<li><p>load A’: b^2 elements in A loaded for (n/b)^3 times <code class="docutils literal notranslate"><span class="pre">b^2</span> <span class="pre">*</span> <span class="pre">(n/b)^3</span> <span class="pre">=</span> <span class="pre">n^3/b</span></code></p></li>
+<li><p>load B’: b^2 elements in B loaded for (n/b)^3 times <code class="docutils literal notranslate"><span class="pre">b^2</span> <span class="pre">*</span> <span class="pre">(n/b)^3</span> <span class="pre">=</span> <span class="pre">n^3/b</span></code></p></li>
+<li><p>store C’: b^2 elements in C stored for (n/b)^3 times <code class="docutils literal notranslate"><span class="pre">b^2</span> <span class="pre">*</span> <span class="pre">(n/b)^3</span> <span class="pre">=</span> <span class="pre">n^3/b</span></code></p></li>
+</ul>
+<p>In total, this is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">n</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="n">b</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">))</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Based on <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">Θ(b^2)</span></code> we can also derive,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Therefore we can see that the current algorithm is <code class="docutils literal notranslate"><span class="pre">b</span></code> or <code class="docutils literal notranslate"><span class="pre">sqrt(Z)</span></code> times better than the last one.</p>
+</section>
+<section id="application-informing-the-arch">
+<h3>(15) Application: Informing the Arch<a class="headerlink" href="#application-informing-the-arch" title="Permalink to this heading"></a></h3>
+<p>Suppose we have a machine that is really good at solving the matrix multiply issues at a particular size. If we have its machine balance doubles, then by how much should the fast memory increase?</p>
+<p>To slove this question, let’s first recall the machine balance is defined by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">ɑ</span> <span class="o">/</span> <span class="n">τ</span>
+</pre></div>
+</div>
+<p>where ɑ is time per word transfer the τ is the time per operation. So B is actually how many operations per word and doubling it means we have to speed up the word transfer or to increase the memory size.</p>
+<p>Recall we have the maxmium normalized performance defined by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R_max</span> <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;/W * min(1, I/B)</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">B'</span> <span class="pre">=</span> <span class="pre">2B</span></code>, then to keep the same R_max, we need to have <code class="docutils literal notranslate"><span class="pre">I'</span> <span class="pre">=</span> <span class="pre">2I</span></code>. By the fact we have discussed that for matrix multiplication we have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then we need to increase <code class="docutils literal notranslate"><span class="pre">Z'</span> <span class="pre">=</span> <span class="pre">4Z</span></code> in order to get the same performance.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CSE6220 Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note2.html" class="btn btn-neutral float-right" title="High Performance Computing 2 | Algorithmic Time: Energy and Power" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
