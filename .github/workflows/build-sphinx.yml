@@ -9,14 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: 🛠️ Setup
-      uses: actions/setup-python@v2
-
     - name: 🤖 Checkout
-      uses: actions/checkout@master
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
+    - name: 🛠️ Setup
+      uses: actions/setup-python@v4
+
+    - name: 🎁 Dependencies
+      run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
     - name: 👷 Build and Commit
       uses: sphinx-notes/pages@v2
 
