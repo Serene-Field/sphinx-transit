@@ -10,10 +10,7 @@ SereneField Sphinx
    :maxdepth: 2
    :caption: Tests
 
-   tests/markdowntest
-   tests/rsttest
-
-
+   tests/index.rst
 
 Indices and tables
 ==================
