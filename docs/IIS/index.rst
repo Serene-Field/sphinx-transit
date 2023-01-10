@@ -2,7 +2,7 @@ CS6035 Notes
 =============
 
 .. toctree::
-   :maxdepth: 8
+   :maxdepth: 1
    :caption: content
 
    note1
