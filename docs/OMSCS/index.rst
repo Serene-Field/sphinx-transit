@@ -20,7 +20,7 @@
    HPC/note8
    HPC/note9
    
-💻  High Information Security
+💻  Information Security
 ==============================
 
 .. toctree::
