@@ -2,12 +2,12 @@ CS6035 Notes
 =============
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Tests
+   :maxdepth: 1
+   :caption: notes
 
    note1
-   node2
-   node3
+   note2
+   note3
 
 
    
