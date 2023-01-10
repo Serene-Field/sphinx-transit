@@ -7,7 +7,43 @@ SereneField Sphinx
 ==============================================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
+   :caption: Japanese
+
+   Jap/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Guitar
+
+   Guitar/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Computer Network
+
+   CN/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: High Performance Computing
+
+   HPC/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Dev Logs
+
+   logs/index.rst
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Information Security
+
+   IIS/index.rst
+
+.. toctree::
+   :maxdepth: 2
    :caption: Tests
 
    tests/index.rst
