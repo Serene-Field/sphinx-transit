@@ -1,0 +1,3 @@
+# Dockerfile
+
+FROM sphinxdoc/sphinx

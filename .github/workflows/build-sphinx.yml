@@ -1,0 +1,27 @@
+name: 📝 Build Sphinx to Pages
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: 🦁 Sphinx
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🛠️ Setup
+      uses: actions/setup-python@v2
+
+    - name: 🤖 Checkout
+      uses: actions/checkout@master
+      with:
+        fetch-depth: 0
+
+    - name: 👷 Build and Commit
+      uses: sphinx-notes/pages@v2
+
+    - name: 🚀 Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GH_TOKEN }}
+        branch: gh-pages
