@@ -1,16 +1,14 @@
-💻 Computer Network
+💻  Computer Network
 ===========================
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
-
-💻 High Performance Computing
+ 
+💻  High Performance Computing
 ==============================
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
    HPC/note1
    HPC/note2
@@ -22,12 +20,11 @@
    HPC/note8
    HPC/note9
    
-💻 High Information Security
+💻  High Information Security
 ==============================
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
    IIS/note1
    IIS/note2

@@ -1,14 +1,12 @@
-🎸 Basic
-========
+🎸  Basic
+===========
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
 
-🎸 Intermediate
-========
+🎸  Intermediate
+=================
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tests
    
