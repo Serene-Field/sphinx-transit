@@ -1,3 +1,7 @@
 .wy-nav-content {
     max-width: 1200px !important;
 }
+
+a:link, a:visited {
+    color: blue !important;
+}

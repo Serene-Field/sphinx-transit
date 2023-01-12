@@ -1,4 +1,4 @@
-# One Finger Chords
+# One Finger Chords - C/G
 
 
 ## G chord and C chord
