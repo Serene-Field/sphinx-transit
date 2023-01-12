@@ -1,11 +1,13 @@
-🎸  Basic
+🎸  Level 1
 ===========
 
 .. toctree::
    :maxdepth: 1
 
-🎸  Intermediate
-=================
+   
+
+🎸  Level 2
+===========
 
 .. toctree::
    :maxdepth: 1
