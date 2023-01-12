@@ -1,3 +1,7 @@
 .wy-nav-content {
     max-width: 1200px !important;
 }
+
+.document .toctree-l1 a:visited {
+  color: #1E88E5 !important;
+}
