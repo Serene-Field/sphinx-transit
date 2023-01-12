@@ -5,7 +5,14 @@
    :maxdepth: 1
 
    BabaORiley
-
+   anotherone
+   satisifaction
+   chordcg
+   sandman
+   plush
+   chordd
+   smoke
+   chordem
 
 🎸  Level 2
 ===========
