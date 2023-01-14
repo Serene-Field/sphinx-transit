@@ -4,6 +4,10 @@
 .. toctree::
    :maxdepth: 1
 
+   doshi
+   masu
+
+
 🏯  N4
 =============
 
