@@ -1,7 +1,6 @@
 🇯🇵  Japan
 ===========
 
-.. csv-table:: Travel to Japan
+.. csv-table::
    :file: csv/Jap.csv
-   :widths: 40 
    :header-rows: 1 
