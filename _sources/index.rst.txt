@@ -32,6 +32,12 @@ SereneField Sphinx
 
 .. toctree::
    :maxdepth: 1
+   :caption: Travel
+
+   travel/index
+
+.. toctree::
+   :maxdepth: 1
    :caption: Tests
 
    tests/index
