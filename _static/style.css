@@ -26,3 +26,7 @@
 .wy-side-nav-search input[type=text] {
   border-color: #7CB342 !important;
 }
+
+.wy-nav-top {
+  color: #7CB342 !important;
+}
