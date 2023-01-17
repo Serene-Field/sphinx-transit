@@ -24,4 +24,5 @@
    :maxdepth: 1
 
    level2/anotherbrick
+   level2/warmup
    
