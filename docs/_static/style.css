@@ -2,6 +2,22 @@
     max-width: 1200px !important;
 }
 
+.document .toctree-l1 a {
+  color: #333131 !important;
+}
+
 .document .toctree-l1 a:visited {
-  color: #1E88E5 !important;
+  color: #333131 !important;
+}
+
+.document .toctree-l1 a:hover {
+  color: #2E7D32 !important;
+}
+
+.wy-side-nav-search {
+  background-color: #2E7D32 !important;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption {
+  color: #2E7D32 !important;
 }
