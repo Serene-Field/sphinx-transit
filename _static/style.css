@@ -11,13 +11,14 @@
 }
 
 .document .toctree-l1 a:hover {
-  color: #2E7D32 !important;
+  color: #388E3C !important;
+  text-decoration: underline;
 }
 
 .wy-side-nav-search {
-  background-color: #2E7D32 !important;
+  background-color: #7CB342 !important;
 }
 
 .wy-menu-vertical header, .wy-menu-vertical p.caption {
-  color: #2E7D32 !important;
+  color: #7CB342 !important;
 }
