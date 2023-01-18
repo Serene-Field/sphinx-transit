@@ -25,4 +25,5 @@
 
    level2/anotherbrick
    level2/warmup
+   level2/sunday
    
