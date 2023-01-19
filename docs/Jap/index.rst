@@ -6,7 +6,8 @@
 
    doshi
    masu
-
+   nai
+   ta
 
 🏯  N4
 =============
