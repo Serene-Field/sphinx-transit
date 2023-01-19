@@ -8,6 +8,8 @@
    masu
    nai
    ta
+   jita
+   tai
 
 🏯  N4
 =============
