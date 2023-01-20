@@ -15,6 +15,8 @@
    masennka
    kudasai
    darou
+   keiyoushi1
+   keiyoushi2
 
 🏯  N4
 =============
