@@ -7,9 +7,14 @@
    doshi
    masu
    nai
-   ta
+   tade
    jita
    tai
+   niiku
+   mashou
+   masennka
+   kudasai
+   darou
 
 🏯  N4
 =============
