@@ -7,7 +7,7 @@
    doshi
    masu
    nai
-   ta
+   tade
    jita
    tai
    niiku
