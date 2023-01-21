@@ -31,9 +31,9 @@ SereneField Sphinx
    OMSCS/index
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    :caption: Travel
-
    travel/index
 
 .. toctree::
