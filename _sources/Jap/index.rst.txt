@@ -17,6 +17,7 @@
    darou
    keiyoushi1
    keiyoushi2
+   naru
 
 🏯  N4
 =============
