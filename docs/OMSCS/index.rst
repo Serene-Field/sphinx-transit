@@ -3,6 +3,8 @@
 
 .. toctree::
    :maxdepth: 1
+   
+   CN/note1
  
 💻  High Performance Computing
 ==============================
