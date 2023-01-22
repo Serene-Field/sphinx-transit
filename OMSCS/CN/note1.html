@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n3">🏯  N3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n2">🏯  N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-1-introduction-to-computer-network-osi-model-principles-and-devices">
+<h1>Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices<a class="headerlink" href="#computer-network-1-introduction-to-computer-network-osi-model-principles-and-devices" title="Permalink to this heading"></a></h1>
+<section id="introduction-to-computer-network">
+<h2>1. Introduction to Computer Network<a class="headerlink" href="#introduction-to-computer-network" title="Permalink to this heading"></a></h2>
+<section id="functions-of-computer-network">
+<h3>(1) Functions of Computer Network<a class="headerlink" href="#functions-of-computer-network" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Global Infrastructure</strong>: 3.2b Internet users in 2018 and 4b users in 2020</p></li>
+<li><p><strong>Game Changer</strong>: network changes how we do business</p></li>
+<li><p><strong>Research Innovations</strong>: internet systems, protocol architectures, algorithms, and applications are innovation playgrounds</p></li>
+<li><p><strong>Impactive Solutions</strong>: networking provides opportunities cross fields that can have a huge impact</p></li>
+</ul>
+</section>
+<section id="history">
+<h3>(2) History<a class="headerlink" href="#history" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>J.C.R. Licklider (1962): Galactic Network - access data through a set of interconnected computers with low-speed dial-up telephone lines in CA</p></li>
+<li><p>ARPANET (1969): the first network connects four nodes (from UCLA, Stanford Research Institute, UCSB and Univ. of Utah, respectively)</p></li>
+<li><p>Network Control Protocol (1970): initial ARPANET Host-to-Host protocol</p></li>
+<li><p>Email (1972): one of the first applications that launches based on NCP</p></li>
+<li><p>TCP/IP (1973): new version of the NCP protocol with features like flow control and recovery from lost packets</p></li>
+<li><p>Domain Name System (1983): protocol for translating domain names to IP addresses</p></li>
+<li><p>World Wide Web (1990): the most popular application based on DNS</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h3>(3) Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading"></a></h3>
+<p>Connecting hosts running the same applications but located in different types of networks. For example, two BitTorrent clients should be able to communicate through different networks (e.g. wifi and Ethernet). In order to mett this need, the designers of network organized the protocols into <strong>layers</strong>.</p>
+<p>So the functionalities in the network architecture are implemented by dividing the architecture model into layers and each layer offers different services. Advantages for layered network include scalability, modularity, flexibility, and cost effectiveness.</p>
+<p>However, there are also some disadvantages include,</p>
+<ul class="simple">
+<li><p><strong>dependency</strong>: some layers depend on the information from other layers which violates layer separation</p></li>
+<li><p><strong>duplication</strong>: one layer may duplicate lower layers</p></li>
+<li><p><strong>addition overheads</strong>: caused by abstractions</p></li>
+</ul>
+<p>We call this archirtecture the OSI model.</p>
+</section>
+</section>
+<section id="osi-model">
+<h2>2. OSI Model<a class="headerlink" href="#osi-model" title="Permalink to this heading"></a></h2>
+<section id="intro-to-7-layered-osi-model">
+<h3>(1) Intro to 7 layered OSI Model<a class="headerlink" href="#intro-to-7-layered-osi-model" title="Permalink to this heading"></a></h3>
+<p>For the layered implementation, ISO proposed the <strong>seven-layered</strong> OSI model consists of the following layers</p>
+<ul class="simple">
+<li><p>application layer</p></li>
+<li><p>presentation layer</p></li>
+<li><p>session layer</p></li>
+<li><p>transport layer</p></li>
+<li><p>network layer</p></li>
+<li><p>data link layer</p></li>
+<li><p>physical layer</p></li>
+</ul>
+</section>
+<section id="physical-layer">
+<h3>(2) Physical Layer<a class="headerlink" href="#physical-layer" title="Permalink to this heading"></a></h3>
+<p>This layer has the actual hardwares used to connect between two nodes and it depends on the actual tranmission medium of the link. For example, Ethernet has different ayer protocols for twisted-pair copper wire, coaxial cable, and single-mode fiber optics.</p>
+</section>
+<section id="data-link-layer">
+<h3>(3) Data Link Layer<a class="headerlink" href="#data-link-layer" title="Permalink to this heading"></a></h3>
+<p>The data link layer is responsible to move the frames from one node to the next node. The added frame information make packets <strong>distinguishable</strong> from another. Some common protocols in this layer include <strong>Ethernet</strong>, PPP, <strong>WiFi</strong>. The packets of information are called <strong>frames</strong>.</p>
+</section>
+<section id="network-layer">
+<h3>(4) Network Layer<a class="headerlink" href="#network-layer" title="Permalink to this heading"></a></h3>
+<p>The network layer is responsible for moving datagrams from one Internet host to another and the information will have the <strong>routing</strong> or <strong>path</strong> information. The common protocols include <strong>IP</strong> and <strong>routing</strong>. And the packet of information in this layer is called <strong>datagram</strong>.</p>
+</section>
+<section id="transport-layer">
+<h3>(5) Transport Layer<a class="headerlink" href="#transport-layer" title="Permalink to this heading"></a></h3>
+<p>The transport layer is responsible for the end-to-end communication between hosts and the information is used to <strong>guarante delivery</strong> and <strong>control flows</strong>. There are two protocols in this layer called <strong>TCP</strong> and <strong>UDP</strong>. The packet of information in this layer is called <strong>segment</strong>.</p>
+</section>
+<section id="session-layer">
+<h3>(6) Session Layer<a class="headerlink" href="#session-layer" title="Permalink to this heading"></a></h3>
+<p>The session layer is responsible for transport streams of different end users. This is an optional layer in the five-layered Internet Protocol Stack model.</p>
+</section>
+<section id="presentation-layer">
+<h3>(7) Presentation Layer<a class="headerlink" href="#presentation-layer" title="Permalink to this heading"></a></h3>
+<p>The presentation layer plays the intermediate role of formatting the information. For example, translating integers from big endian to little endian format. This is an optional layer in the five-layered Internet Protocol Stack model.</p>
+</section>
+<section id="application-layer">
+<h3>(8) Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this heading"></a></h3>
+<p>The application layer is the place where the applications are implemented. It has common protocols like <strong>HTTP</strong>, <strong>SMTP</strong>, <strong>FTP</strong>, <strong>DNS</strong>, etc.</p>
+</section>
+<section id="communication-between-layers">
+<h3>(9) Communication Between Layers<a class="headerlink" href="#communication-between-layers" title="Permalink to this heading"></a></h3>
+<p>Encapsulation is the process of send the data from the application layer to the physical layer. And deencapsulation means the opposite. The steps of encapsulation include,</p>
+<ul class="simple">
+<li><p>raw message (M) in application layer</p></li>
+<li><p>segment (S) of M added delivery info in transport layer</p></li>
+<li><p>datagram (D) of S added path info in network layer</p></li>
+<li><p>frame (F) of D added package info in data link layer</p></li>
+<li><p>frame transmitted across the physical medium</p></li>
+</ul>
+</section>
+<section id="layer-2-device-and-layer-3-device">
+<h3>(10) Layer-2 Device and Layer-3 Device<a class="headerlink" href="#layer-2-device-and-layer-3-device" title="Permalink to this heading"></a></h3>
+<p>Not all the devices in a network is going to implement the whole OSI model. <strong>Layer-2</strong> Device (e.g. switch) is a device that implements only the physical layer and data link layer, while <strong>layer-3</strong> device (e.g. router) is a device that implements only the physical layer, data link layer, and network layer.</p>
+</section>
+</section>
+<section id="principles">
+<h2>3. Principles<a class="headerlink" href="#principles" title="Permalink to this heading"></a></h2>
+<section id="intro-to-end-to-end-e2e-principle">
+<h3>(1) Intro to End-to-End(e2e) Principle<a class="headerlink" href="#intro-to-end-to-end-e2e-principle" title="Permalink to this heading"></a></h3>
+<p>In our previous discussions, we have noticed that the end hosts implement all the five layers but some intermediate devices don’t. As a result of this design, the computer will become complicated and ingelligent at the edges but the core will be relatively simple.</p>
+<p>Therefore, the <strong>e2e principle</strong> suggests that specific application-level functions usually cannot, and preferably should not be built into the lower levels of the system at the core of the network. Under this principle, systems designers should avoid building any more than the essential and commonly shared functions into the network.</p>
+</section>
+<section id="goal-of-e2e-principle">
+<h3>(2) Goal of E2E Principle<a class="headerlink" href="#goal-of-e2e-principle" title="Permalink to this heading"></a></h3>
+<p>The goal of e2e principle is to move functions and services closer to the applications that use them. Thus, the higher-level protocol layers are more specific to an application, whereas the lower-level protocol layers are free to organize the lower-level network resources.</p>
+</section>
+<section id="violations-of-e2e-principle-firewalls-and-nat-boxes">
+<h3>(3) Violations of E2E Principle: Firewalls and NAT Boxes<a class="headerlink" href="#violations-of-e2e-principle-firewalls-and-nat-boxes" title="Permalink to this heading"></a></h3>
+<p>Even through E2E principle is followed in the most cases, there are some applications where we violate it.</p>
+<p>The first application is the firewall since they are intermediate devices that can drop end hosts communcations.</p>
+<p>The second application is the Network Address Translation (NAT) boxes. An NAT-enabled router can be assigned a public IP address and every the other interface gets an IP address that belongs to the same private subnet (LAN). These private networks are always behind a NAT.</p>
+<p>The NAT box will maintain an NAT translation table which maps the public [IP:port] to LAN [IP:port]. For example, [128.119.40.186:80] can be mapped to [10.0.0.4:3005] in LAN.</p>
+<p>NAT boxes violate the E2E principle because the end hosts in LAN and public can not communicate without the intervention of a NAT box.</p>
+</section>
+<section id="hourglass-shape-protocols-principle">
+<h3>(4) Hourglass Shape Protocols Principle<a class="headerlink" href="#hourglass-shape-protocols-principle" title="Permalink to this heading"></a></h3>
+<p>The idea of the hourglass shape of protocols is that there can be many protocols in the physical layer and the application layer, but in the middle, mostly IPv4, TCP, and UDP are difficult to be replaced (like the waist if the hourglass). Researchers suggest a model called the <strong>Evolutionary Architecture model</strong>(EvoArch) to explain why the hierarchical structure of the layer architecture eventually lead to the hourglass shape.</p>
+<p>The EvoArch model suggests that the TCP/IP stack was not trying to compete with the telephone network services. The TCP/IP was mostly used for applications such as FTP, E-mail, and Telnet, so it managed to grow and increase its value without competing or being threatened by the telephone network, at that time that it first appeared. Later it gained even more traction, with numerous and powerful applications relying on it.</p>
+<p>EvoArch explains a large birth rate at the layer above the waist can cause death for the protocols at the waist if these are not chosen as substrates by the new nodes at the higher layers. Any new protocols that might appear at the transport layer are unlikely to survive the competition with TCP and UDP which already have multiple products. And the stability of the TCP/UDP adds to the stability of IPv4 by eliminating any potential new transport protocols.</p>
+</section>
+</section>
+<section id="devices">
+<h2>4. Devices<a class="headerlink" href="#devices" title="Permalink to this heading"></a></h2>
+<section id="recall-layer-2-devices">
+<h3>(1) Recall: Layer-2 Devices<a class="headerlink" href="#recall-layer-2-devices" title="Permalink to this heading"></a></h3>
+<p><strong>Layer-2 Device</strong> (e.g. switch or bridge) is a device that implements only the physical layer and data link layer. The packets are transmitted based on the MAC addresses and the limitation is the bandwidth.</p>
+</section>
+<section id="recall-layer-3-devices">
+<h3>(2) Recall: Layer-3 Devices<a class="headerlink" href="#recall-layer-3-devices" title="Permalink to this heading"></a></h3>
+<p><strong>Layer-3 device</strong> (e.g. router) is a device that implements only the physical layer, data link layer, and network layer. The packets are transmitted based on the IP addresses.</p>
+</section>
+<section id="layer-1-devices">
+<h3>(3) Layer-1 Devices<a class="headerlink" href="#layer-1-devices" title="Permalink to this heading"></a></h3>
+<p><strong>Layer-1 device</strong> (e.g. hub or repeater) operates only on the physical layer as they receive and forward digital signals to connect different Ethernet segments. They provide connectivity between hosts that are directly connected in the same network.</p>
+</section>
+<section id="bridge">
+<h3>(4) Bridge<a class="headerlink" href="#bridge" title="Permalink to this heading"></a></h3>
+<p>Now let’s talk more about bridge. The bridge is an L2 devices that commonly used to connect two private networks. It receives inputs on one port and transfer them to another port as the outputs. However, it will check the MAC address of the source and the destination. If an input has the source and the destination belonging to the same private network, it will not forward the message to the other network.</p>
+<p>Although we can manually maintain a mapping table so that the bidge will know which node is in which network, it’s better if the bridge can learn itself. This is possible because the bridge can know which port is accessible to which host, so it can automatically create a table over time as follows. We call this a learning bridge.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Host</p></th>
+<th class="head"><p>Port</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>X</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Y</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="looping-problem-for-bridges">
+<h3>(5) Looping Problem For Bridges<a class="headerlink" href="#looping-problem-for-bridges" title="Permalink to this heading"></a></h3>
+<p>However, if we have many LANs and many bridges to connect between them, the network topology commonly ends up with loops. In this case, if we don’t have a solution, the packets will loop through the network forever.</p>
+<p>We will solve this problem later in a project with the spinning tree protocol.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
