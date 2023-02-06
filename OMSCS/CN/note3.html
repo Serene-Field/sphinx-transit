@@ -20,7 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
+    <link rel="prev" title="Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices" href="note1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,8 +60,28 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 3 | Spanning Tree Protocol Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-documentation">1. Project Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assistant-file">2. Assistant File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-goal-of-this-project">3. The Goal of This Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implement-generate-logstring">4. Implement <code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#revisit-message-py-and-stpswitch-py">5. Revisit <code class="docutils literal notranslate"><span class="pre">Message.py</span></code> and <code class="docutils literal notranslate"><span class="pre">StpSwitch.py</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch-data-structure">6. Switch Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-process">7. Message Process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#whether-to-activate-the-link">(1) Whether to activate the link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#whether-to-update-root">(2) Whether to update <code class="docutils literal notranslate"><span class="pre">root</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#whether-to-update-distance">(3) Whether to update <code class="docutils literal notranslate"><span class="pre">distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#whether-to-update-paththroughlink">(4) Whether to update <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#local-test">7. Local Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
 </ul>
@@ -82,6 +104,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
       <li class="breadcrumb-item active">Computer Network 3 | Spanning Tree Protocol Implementation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note3.md.txt" rel="nofollow"> View page source</a>
@@ -275,7 +298,10 @@ $<span class="w"> </span>make<span class="w"> </span>clean
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note1.html" class="btn btn-neutral float-left" title="Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -5,6 +5,7 @@
    :maxdepth: 1
    
    CN/note1
+   CN/note3
  
 💻  High Performance Computing
 ==============================
