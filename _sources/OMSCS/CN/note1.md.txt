@@ -82,7 +82,7 @@ Encapsulation is the process of send the data from the application layer to the 
 - raw message (M) in application layer
 - segment (S) of M added delivery info in transport layer
 - datagram (D) of S added path info in network layer
-- frame (F) of D added package info in data link layer
+- frame (F) of D added packet info in data link layer
 - frame transmitted across the physical medium
 
 #### (10) Layer-2 Device and Layer-3 Device 

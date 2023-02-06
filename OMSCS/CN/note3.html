@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 3 | Spanning Tree Protocol Implementation &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n3">🏯  N3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n2">🏯  N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Computer Network 3 | Spanning Tree Protocol Implementation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-3-spanning-tree-protocol-implementation">
+<h1>Computer Network 3 | Spanning Tree Protocol Implementation<a class="headerlink" href="#computer-network-3-spanning-tree-protocol-implementation" title="Permalink to this heading"></a></h1>
+<section id="project-documentation">
+<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">run.py</span></code></p>
+<p>The entry of the program. It will take one argument <code class="docutils literal notranslate"><span class="pre">topology_file</span></code> which is the file name of the map file without <code class="docutils literal notranslate"><span class="pre">.py</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python run.py &lt;topology_file&gt;
+</pre></div>
+</div>
+<p>The control flow in this program is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Topology</span><span class="o">.</span><span class="fm">__init__</span> 
+<span class="o">-&gt;</span> <span class="n">Topology</span><span class="o">.</span><span class="n">run_spanning_tree</span><span class="p">()</span>
+<span class="o">-&gt;</span> <span class="n">Topology</span><span class="o">.</span><span class="n">log_spanning_tree</span><span class="p">()</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Sample.py</span></code>, <code class="docutils literal notranslate"><span class="pre">NoLoopTopo.py</span></code>, <code class="docutils literal notranslate"><span class="pre">SimpleLoopTopo.py</span></code>, <code class="docutils literal notranslate"><span class="pre">TailTopo.py</span></code>, <code class="docutils literal notranslate"><span class="pre">ComplexLoopTopo.py</span></code></p>
+<p>The topology files containing the map information.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Message.py</span></code></p>
+<p>The message to communicate by Spanning Tree Protocol. For example, you will create and send messages in Switch.py by declaring a message <code class="docutils literal notranslate"><span class="pre">msg</span></code> as,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="n">Message</span><span class="p">(</span><span class="n">claimedRoot</span><span class="p">,</span> <span class="n">distanceToRoot</span><span class="p">,</span> <span class="n">originID</span><span class="p">,</span> <span class="n">destinationID</span><span class="p">,</span> <span class="n">pathThrough</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">StpSwitch.py</span></code></p>
+<p>Definition of a base of <code class="docutils literal notranslate"><span class="pre">Switch</span></code> class. This file contains abstractions of sending messages and verifying topologies.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Topology.py</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Topology.py</span></code> is the actual program that connects <code class="docutils literal notranslate"><span class="pre">run.py</span></code> and <code class="docutils literal notranslate"><span class="pre">Switch.py</span></code>. It initiates with the topo map <code class="docutils literal notranslate"><span class="pre">topology_file</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Topology.send_message()</span></code>: This function is used to send messages between switches within the given topo map. It has been wrapped into <code class="docutils literal notranslate"><span class="pre">StpSwitch.send_message</span></code> function and because <code class="docutils literal notranslate"><span class="pre">Switch</span></code> class is based on <code class="docutils literal notranslate"><span class="pre">StpSwitch</span></code>, we can directly call <code class="docutils literal notranslate"><span class="pre">self.send_message</span></code> within the <code class="docutils literal notranslate"><span class="pre">Switch</span></code> class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Topology.run_spanning_tree()</span></code>: The entry point of starting the spanning tree protocol. It first sends the initial messages from <strong>each node</strong> by invoking <code class="docutils literal notranslate"><span class="pre">send_intial_messages()</span></code>. Afterward, each message is delivered to the destination switch, where <code class="docutils literal notranslate"><span class="pre">process_message()</span></code> is invoked to generate the spanning tree.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_spanning_tree()</span></code>: This is for generating the pretty output at the end of simulation. It invokes the <code class="docutils literal notranslate"><span class="pre">generate_logstring()</span></code> function for each node and put the result together.</p></li>
+</ul>
+</section>
+<section id="assistant-file">
+<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code></p>
+<p>This file can be used to simplify the testing process.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Makefile</span>
+
+clean:
+<span class="w">	</span>rm<span class="w"> </span>-rf<span class="w"> </span>./*.log
+
+run:<span class="w"> </span>clean
+<span class="w">	</span>python<span class="w"> </span>run.py<span class="w"> </span>Sample
+<span class="w">	</span>python<span class="w"> </span>run.py<span class="w"> </span>NoLoopTopo
+<span class="w">	</span>python<span class="w"> </span>run.py<span class="w"> </span>SimpleLoopTopo
+<span class="w">	</span>python<span class="w"> </span>run.py<span class="w"> </span>TailTopo
+<span class="w">	</span>python<span class="w"> </span>run.py<span class="w"> </span>ComplexLoopTopo
+
+test:<span class="w"> </span>run
+<span class="w">	</span>diff<span class="w"> </span>./Sample.log<span class="w"> </span>./Logs/Sample.log
+<span class="w">	</span>diff<span class="w"> </span>./NoLoopTopo.log<span class="w"> </span>./Logs/NoLoopTopo.log
+<span class="w">	</span>diff<span class="w"> </span>./SimpleLoopTopo.log<span class="w"> </span>./Logs/SimpleLoopTopo.log
+<span class="w">	</span>diff<span class="w"> </span>./TailTopo.log<span class="w"> </span>./Logs/TailTopo.log
+<span class="w">	</span>diff<span class="w"> </span>./ComplexLoopTopo.log<span class="w"> </span>./Logs/ComplexLoopTopo.log
+</pre></div>
+</div>
+</section>
+<section id="the-goal-of-this-project">
+<h2>3. The Goal of This Project<a class="headerlink" href="#the-goal-of-this-project" title="Permalink to this heading"></a></h2>
+<p>Let’s use the simple single loop topology <code class="docutils literal notranslate"><span class="pre">SimpleLoopTopology</span></code> as an example to see our goal of this project.</p>
+<p>Initially we have the topo map as,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">topo</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+         <span class="mi">2</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+         <span class="mi">3</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+         <span class="mi">4</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>In this loop, we have the following edges,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span>
+<span class="mi">4</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>However, if we comfirm all these edges, we will create loop in this topo map so some of the packets will never get to the ends. In order to cancel the loops, we have to prun some edges or we have to select only some of the edges. In this example, we can cut any of the edges, for example, <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">-</span> <span class="pre">4</span></code> so there will be no loop any more.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="mi">3</span>
+<span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span>
+<span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="mi">4</span> <span class="o">-</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>In fact, the final edges we have are <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">3</span></code>, and <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">-</span> <span class="pre">4</span></code>. Note that in the final output, the number of edges must be a multiple of 2 because all edges are round-way.</p>
+</section>
+<section id="implement-generate-logstring">
+<h2>4. Implement <code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code><a class="headerlink" href="#implement-generate-logstring" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code> is the smiplest task among all the functions. Based on the description, it will be called after we have the spanning tree represented by a list called <code class="docutils literal notranslate"><span class="pre">ActiveLinks</span></code>.</p>
+<p>So now our task is to create a list of strings with all the strings represent the activated links from the current node to another node.</p>
+<p>The following script can be used for testing,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">Switch</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">activeLinks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">s1</span><span class="o">.</span><span class="n">generate_logstring</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;1 - 2, 1 - 3, 1 - 4&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="revisit-message-py-and-stpswitch-py">
+<h2>5. Revisit <code class="docutils literal notranslate"><span class="pre">Message.py</span></code> and <code class="docutils literal notranslate"><span class="pre">StpSwitch.py</span></code><a class="headerlink" href="#revisit-message-py-and-stpswitch-py" title="Permalink to this heading"></a></h2>
+<p>Now let’s review what variables we have for a <code class="docutils literal notranslate"><span class="pre">Message</span></code> and a based <code class="docutils literal notranslate"><span class="pre">Switch</span></code>.</p>
+<p>For a <code class="docutils literal notranslate"><span class="pre">Message</span></code> class, we have,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: the SwitchID thought to be the original root</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distance</span></code>: distance from current switch to the root</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">origin</span></code>: the SwitchID for message sender</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destination</span></code>: the SwitchID for message receiver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathThrough</span></code>: indicating the path to the claimed root from the origin passes through the destination</p></li>
+</ul>
+<p>For a based <code class="docutils literal notranslate"><span class="pre">Switch</span></code> we have,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">switchID</span></code>: ID of the current switch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">topology</span></code>: <code class="docutils literal notranslate"><span class="pre">Topology</span></code> object containing the map. However, it should not read the map information in the object. The only thing helps in this case is the <code class="docutils literal notranslate"><span class="pre">topology.send_message</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">links</span></code>: direct neighbours the current switch can go</p></li>
+</ul>
+<p>Based on <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code>, we can know that initially, each switch will treat itself as the root and send initial messages to all its neighbours by,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">destinationID</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span>
+        <span class="n">Message</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">switchID</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">switchID</span><span class="p">,</span> <span class="n">destinationID</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="switch-data-structure">
+<h2>6. Switch Data Structure<a class="headerlink" href="#switch-data-structure" title="Permalink to this heading"></a></h2>
+<p>Now we have put the list <code class="docutils literal notranslate"><span class="pre">activateLinks</span></code> into the <code class="docutils literal notranslate"><span class="pre">Switch</span></code> data structure, we should consider what else do we need to complete it. From the document we are awared that we need to have,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: a variable to store the switch ID that this switch sees as the root</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distance</span></code>: a variable to store the distance to the switch’s root</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code>: a variable to keep track of which neighbor it goes through to get to the root because for a spanning tree, a switch should onlu go through one neighbor, if any, to go to the root</p></li>
+</ul>
+</section>
+<section id="message-process">
+<h2>7. Message Process<a class="headerlink" href="#message-process" title="Permalink to this heading"></a></h2>
+<p>When a message comes to a switch, it has to process the message with the following steps,</p>
+<section id="whether-to-activate-the-link">
+<h3>(1) Whether to activate the link<a class="headerlink" href="#whether-to-activate-the-link" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>If the message have <code class="docutils literal notranslate"><span class="pre">pathThrough</span> <span class="pre">==</span> <span class="pre">True</span></code>, the link in the message should be activated</p></li>
+<li><p>If the message have <code class="docutils literal notranslate"><span class="pre">pathThrough</span> <span class="pre">==</span> <span class="pre">False</span></code>, and the current switch don’t path through the switch where the message came from, the link in the message should be inactivated</p></li>
+</ul>
+</section>
+<section id="whether-to-update-root">
+<h3>(2) Whether to update <code class="docutils literal notranslate"><span class="pre">root</span></code><a class="headerlink" href="#whether-to-update-root" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">root</span></code> stored in its data structure if it receives a message with a lower claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value</p></li>
+<li><p>Update related other fields in the data structure</p></li>
+<li><p>Send new messages to neighbors for sync</p>
+<ul>
+<li><p>When sending message, <code class="docutils literal notranslate"><span class="pre">pathThrough</span></code> should only be <code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">destinationID</span></code> equals to the <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code> that goes through the claimed root</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="whether-to-update-distance">
+<h3>(3) Whether to update <code class="docutils literal notranslate"><span class="pre">distance</span></code><a class="headerlink" href="#whether-to-update-distance" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">distance</span></code> stored in its data structure if it receives a message with the same claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value but a lower <code class="docutils literal notranslate"><span class="pre">distance</span></code> compared to the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">distance</span> <span class="pre">-</span> <span class="pre">1</span></code></p></li>
+<li><p>Update related other fields in the data structure</p></li>
+<li><p>Send new messages to neighbors for sync</p></li>
+</ul>
+</section>
+<section id="whether-to-update-paththroughlink">
+<h3>(4) Whether to update <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code><a class="headerlink" href="#whether-to-update-paththroughlink" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code> stored in its data structure if it receives a message with the same claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value and the same <code class="docutils literal notranslate"><span class="pre">distance</span></code>, but with a lower <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code></p></li>
+<li><p>Update related other fields in the data structure</p></li>
+<li><p>Send new messages to neighbors for sync</p></li>
+</ul>
+</section>
+</section>
+<section id="local-test">
+<h2>7. Local Test<a class="headerlink" href="#local-test" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
+$<span class="w"> </span>make<span class="w"> </span>clean
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

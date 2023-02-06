@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(I Can’t Get No) Satisfaction &mdash; serenefield-sphinx  documentation</title>
+  <title>Apache Solr 1 | Installation &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -21,8 +21,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="One Finger Chords - C/G" href="chordcg.html" />
-    <link rel="prev" title="Another One Bites the Dust" href="anotherone.html" /> 
+    <link rel="next" title="🏯 N5" href="../../Jap/index.html" />
+    <link rel="prev" title="⛴️ Docker" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,10 +41,20 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Apache Solr 1 | Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">1. Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installing-java">(1) Installing Java</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download-and-install">(2) Download and Install</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
 <ul>
@@ -55,22 +65,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">🎸  Level 1</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="BabaORiley.html">Baba O’Riley</a></li>
-<li class="toctree-l2"><a class="reference internal" href="anotherone.html">Another One Bites the Dust</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">(I Can’t Get No) Satisfaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chordcg.html">One Finger Chords - C/G</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sandman.html">Enter Sandman</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chordd.html">Chord D</a></li>
-<li class="toctree-l2"><a class="reference internal" href="smoke.html">Smoke on the Water</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chordem.html">Chord Em</a></li>
-<li class="toctree-l2"><a class="reference internal" href="goodriddance.html">Good Riddance (Time Of Your Life)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="chordam.html">Chord Am</a></li>
-<li class="toctree-l2"><a class="reference internal" href="review.html">Review Exercise</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html#level-2">🎸  Level 2</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
 <ul>
@@ -97,10 +94,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">🎸  Level 1</a></li>
-      <li class="breadcrumb-item active">(I Can’t Get No) Satisfaction</li>
+          <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
+      <li class="breadcrumb-item active">Apache Solr 1 | Installation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/Guitar/level1/satisifaction.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/devops/solr/note1.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,58 +105,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="i-can-t-get-no-satisfaction">
-<h1>(I Can’t Get No) Satisfaction<a class="headerlink" href="#i-can-t-get-no-satisfaction" title="Permalink to this heading"></a></h1>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nrIPxlFzDi0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<p>Riff
-<img alt="tab" src="../../_images/satisfaction.png" /></p>
-<p>Author: The Rolling Stones<br>
-Rylics:<br>
-I can’t get no satisfaction<br>
-I can’t get no satisfaction<br>
-‘Cause I try, and I try, and I try, and I try<br>
-I can’t get no, I can’t get no<br>
-When I’m driving in my car<br>
-When a man come on the radio<br>
-He’s telling me more and more<br>
-About some useless information<br>
-Supposed to fire my imagination<br>
-I can’t get no, oh, no, no, no, hey, hey, hey<br>
-That’s what I say<br>
-I can’t get no satisfaction<br>
-I can’t get no satisfaction<br>
-‘Cause I try, and I try, and I try, and I try<br>
-I can’t get no, I can’t get no<br>
-When I’m watchin’ my TV<br>
-And a man comes on and tells me<br>
-How white my shirts can be<br>
-But, he can’t be a man ‘cause he doesn’t smoke<br>
-The same cigarettes as me<br>
-I can’t get no, oh, no, no, no, hey, hey, hey<br>
-That’s what I say<br>
-I can’t get no satisfaction<br>
-I can’t get no girl reaction<br>
-‘Cause I try, and I try, and I try, and I try<br>
-I can’t get no, I can’t get no<br>
-When I’m ridin’ ‘round the world<br>
-And I’m doin’ this and I’m signin’ that<br>
-And I’m tryin’ to make some girl, who tells me<br>
-Baby, better come back maybe next week<br>
-Can’t you see I’m on a losing streak?<br>
-I can’t get no, oh, no, no, no, hey, hey, hey<br>
-That’s what I say<br>
-I can’t get no, I can’t get no<br>
-I can’t get no satisfaction, no satisfaction<br>
-No satisfaction, no satisfaction<br>
-I can’t get no<br></p>
+  <section id="apache-solr-1-installation">
+<h1>Apache Solr 1 | Installation<a class="headerlink" href="#apache-solr-1-installation" title="Permalink to this heading"></a></h1>
+<section id="installation">
+<h2>1. Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<section id="installing-java">
+<h3>(1) Installing Java<a class="headerlink" href="#installing-java" title="Permalink to this heading"></a></h3>
+<p>Solr requires Java &gt;= v11 so we have to install Java before we continue. Suppose you are on a MacOS, and you are installing it for the first time, use the following command to install it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>java
+...
+$<span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sfn<span class="w"> </span>/opt/homebrew/opt/openjdk/libexec/openjdk.jdk<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>/Library/Java/JavaVirtualMachines/openjdk.jdk
+Password:
+$<span class="w"> </span>java<span class="w"> </span>--version
+openjdk<span class="w"> </span><span class="m">19</span>.0.1<span class="w"> </span><span class="m">2022</span>-10-18
+...
+</pre></div>
+</div>
+</section>
+<section id="download-and-install">
+<h3>(2) Download and Install<a class="headerlink" href="#download-and-install" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mkdir<span class="w"> </span>~/solr
+$<span class="w"> </span><span class="nb">cd</span><span class="w">  </span>~/solr
+$<span class="w"> </span>wget<span class="w"> </span>-O<span class="w"> </span>solr-9.1.0.tgz<span class="w"> </span><span class="s2">&quot;https://www.apache.org/dyn/closer.lua/solr/solr/9.1.0/solr-9.1.0.tgz?action=download&quot;</span>
+...
+‘solr-9.1.0.tgz’<span class="w"> </span>saved<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
+$<span class="w"> </span>ls<span class="w"> </span>solr*
+solr-9.1.0.tgz
+$<span class="w"> </span>tar<span class="w"> </span>-xzf<span class="w"> </span>solr-9.1.0.tgz
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>solr-9.1.0/
+$<span class="w"> </span>bin/solr<span class="w"> </span>version
+<span class="m">9</span>.1.0
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="anotherone.html" class="btn btn-neutral float-left" title="Another One Bites the Dust" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="chordcg.html" class="btn btn-neutral float-right" title="One Finger Chords - C/G" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="⛴️ Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../Jap/index.html" class="btn btn-neutral float-right" title="🏯 N5" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
