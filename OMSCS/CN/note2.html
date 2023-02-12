@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n3">🏯  N3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n2">🏯  N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-2-introduction-to-transport-layer-udp-and-tcp-congestion-control-fairness">
+<h1>Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness<a class="headerlink" href="#computer-network-2-introduction-to-transport-layer-udp-and-tcp-congestion-control-fairness" title="Permalink to this heading"></a></h1>
+<section id="introduction-to-transport-layer">
+<h2>1. Introduction to Transport Layer<a class="headerlink" href="#introduction-to-transport-layer" title="Permalink to this heading"></a></h2>
+<section id="reasons-for-transport-layer">
+<h3>(1) Reasons for Transport Layer<a class="headerlink" href="#reasons-for-transport-layer" title="Permalink to this heading"></a></h3>
+<p>It seems like we can transfer data based only on the application layer (i.e. where the applications locate) and the network layer (i.e. the source &amp; destination IP addresses), so some may ask why do we need the transport layer in between the network layer and the application layer.</p>
+<p>Recall what we have mentioned in the OSI model, the network layer maintain the best-effort delivery for packets. Thus, it doesn’t <strong>guarantee</strong> the delivery of packets, nor it guarantees <strong>integrity</strong> in data. Because the transport layer maintains the delivery and checks the integrity, the application can run without worrying about the unreliability of the network.</p>
+</section>
+<section id="how-transport-layer-work">
+<h3>(2) How Transport Layer Work<a class="headerlink" href="#how-transport-layer-work" title="Permalink to this heading"></a></h3>
+<p>On the sender host, the transport layer receives a message sent from the application layer and then it appends its own header. The combined message is then called a <strong>segment</strong>. This transport layer will then send this segment to the network layer for encapsulation and then it will send it to the receiving host via routers, bridges, switches etc.</p>
+</section>
+<section id="two-protocols-in-transport-layer">
+<h3>(3) Two Protocols in Transport Layer<a class="headerlink" href="#two-protocols-in-transport-layer" title="Permalink to this heading"></a></h3>
+<p>Within the transport layer, there are two types of protocols - <strong>User datagram protocol (UDP)</strong> and the <strong>Transmission Control Protocol (TCP)</strong>. These protocols differ based on the functionality they offer to the application developers.</p>
+<ul class="simple">
+<li><p>UDP provides very basic functionality and relies on the application-layer to implement the remaining.</p></li>
+<li><p>TCP provides some strong primitives with a goal to make end-to-end communication more reliable and cost-effective.</p></li>
+</ul>
+<p>In fact, because of these primitives, TCP has become quite ubiquitous and is used for most of the applications today. We will now look at these functionalities in detail.</p>
+</section>
+<section id="ports">
+<h3>(4) Ports<a class="headerlink" href="#ports" title="Permalink to this heading"></a></h3>
+<p>Commonly, we have multiple applications running with the same IP address, so it becomes a problem to distinguish data from the applications. So the transport layer comes in to solve this problem by <strong>multiplexing</strong> using additional identifiers known as <strong>ports</strong>. Thus, each application binds itself to a unique port number by opening sockets and listening for any data from a remote application.</p>
+</section>
+<section id="multiplexing">
+<h3>(5) Multiplexing<a class="headerlink" href="#multiplexing" title="Permalink to this heading"></a></h3>
+<p>With the help of ports, the transport layer is able to run multiple applications to use the network simultaneously, and this is referred as <strong>multiplexing</strong>.</p>
+<p>More specifically, the <strong>sending host</strong> will need to gather data from different sockets, and encapsulate each data chunk with header information to create segments, and then forward the segments to the network layer. We refer to this job as multiplexing.</p>
+</section>
+<section id="demultiplexing">
+<h3>(6) Demultiplexing<a class="headerlink" href="#demultiplexing" title="Permalink to this heading"></a></h3>
+<p>The job of delivering the data that are included in a transport-layer segment to the appropriate socket, and then to the appropriate application, as defined in the segment fields, is called <strong>demultiplexing</strong>.</p>
+</section>
+<section id="socket-identifiers">
+<h3>(7) Socket Identifiers<a class="headerlink" href="#socket-identifiers" title="Permalink to this heading"></a></h3>
+<p>Sockets are software abstractions that allows different processes or applications talk through the same machine or different machines. It’s the endpoint between the application and the end-to-end transport protocol. The sockets are identified based on special fields in the segment such as the <strong>source port number field</strong> and the <strong>destination port number field</strong> in the segments.</p>
+<p>For UDP protocol, the segment is defined by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------</span>
+<span class="o">|</span>     <span class="n">src</span> <span class="n">port</span>      <span class="o">|</span>      <span class="n">dst</span> <span class="n">port</span>      <span class="o">|</span>  <span class="o">&lt;-</span>  <span class="n">socket</span> <span class="nb">id</span>
+<span class="o">------------------------------------------</span>
+<span class="o">|</span>     <span class="n">Headlen</span>       <span class="o">|</span>      <span class="n">checksum</span>      <span class="o">|</span>
+<span class="o">------------------------------------------</span>
+<span class="o">|</span>                 <span class="n">data</span>                   <span class="o">|</span>
+<span class="o">------------------------------------------</span>
+</pre></div>
+</div>
+<p>For TCP protocol, the segment is defined by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------------------------------------</span>
+<span class="o">|</span>        <span class="n">src</span> <span class="n">port</span>         <span class="o">|</span>        <span class="n">dst</span> <span class="n">port</span>        <span class="o">|</span>  <span class="o">&lt;-</span>  <span class="n">socket</span> <span class="nb">id</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span>                     <span class="n">Sequence</span> <span class="n">Num</span>                 <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span>                       <span class="n">ACK</span> <span class="n">Num</span>                    <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span> <span class="n">Headlen</span> <span class="o">|</span> <span class="n">RSV</span> <span class="o">|</span>  <span class="n">Flags</span>  <span class="o">|</span>      <span class="n">Window</span> <span class="n">Size</span>       <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span>        <span class="n">Checksum</span>         <span class="o">|</span>     <span class="n">Urgent</span> <span class="n">Pointer</span>     <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span>                        <span class="n">Opts</span>                      <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+<span class="o">|</span>                        <span class="n">data</span>                      <span class="o">|</span>
+<span class="o">----------------------------------------------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="udp-and-tcp">
+<h2>2. UDP and TCP<a class="headerlink" href="#udp-and-tcp" title="Permalink to this heading"></a></h2>
+<section id="udp-connectless-multiplexing-demultiplexing">
+<h3>(1) UDP: Connectless Multiplexing/Demultiplexing<a class="headerlink" href="#udp-connectless-multiplexing-demultiplexing" title="Permalink to this heading"></a></h3>
+<p>The identifier of a UDP socket is a <strong>two-item tuple</strong> consisted of</p>
+<ul class="simple">
+<li><p>destination IP</p></li>
+<li><p>destination port number</p></li>
+</ul>
+<p>When the receiving host receives the packet from the sending host, the packet will be de-encapsulated into IP addresses with segments. Then the transport layer in the receiving host identifies the correct socket by looking at the field of the destination port. In case the receiving host runs multiple processes, the segment will be demultiplexed for port numbers to target the apportate socket.</p>
+<p>Note that if the receiving host receives UDP segments with destination port number, it will forward the segments to the same destination process vis the destination socket, even if the segments are coming from different source hosts and/or different source port numbers.</p>
+</section>
+<section id="tcp-connection-oriented-multiplexing-demultiplexing">
+<h3>(2) TCP: Connection Oriented Multiplexing/Demultiplexing<a class="headerlink" href="#tcp-connection-oriented-multiplexing-demultiplexing" title="Permalink to this heading"></a></h3>
+<p>The identifier for a TCP socket is a <strong>four-item tuple</strong> that is consisted by,</p>
+<ul class="simple">
+<li><p>source IP</p></li>
+<li><p>source port number</p></li>
+<li><p>destination IP</p></li>
+<li><p>destination port number</p></li>
+</ul>
+<p>Under this case, the TCP client created a socket and sends a connection request which is a TCP segment with a source port number chosen by the client. When the TCP server receives the connection request, the server would create a socket that is identified by the TCP socket identifier. After that, the upcoming packets with the same socket identifier will be demultiplexed and forward to this socket.</p>
+<p>Note that several connections can be set up to the same socket identifier. In which case, the TCP server will be able to demultiplexing incoming data from multiple connections.</p>
+</section>
+<section id="persistent-http-vs-non-persitent-http">
+<h3>(3) Persistent HTTP vs Non-Persitent HTTP<a class="headerlink" href="#persistent-http-vs-non-persitent-http" title="Permalink to this heading"></a></h3>
+<p>A common TCP example is an HTTP webserver. Suppose we have a HTTP server listens to port 80. Then if multiple users are trying to access the webpage, the client and the server will establish TCP connection. If the connection is established for only once, this is called the <strong>Persistent HTTP</strong>. If the connection has to be established per response, then it is called <strong>Non-Persitent HTTP</strong>. In the second case, a busy webserver may experience severe performance impact.</p>
+</section>
+<section id="udp-properties">
+<h3>(4) UDP Properties<a class="headerlink" href="#udp-properties" title="Permalink to this heading"></a></h3>
+<p>In a word, the UDP protocol has the following proporties</p>
+<ul class="simple">
+<li><p>an unreliable protocol as it lacks the mechanisms that TCP has in place</p></li>
+<li><p>a connectionless protocol that does not require the establishment of a connection before sending packets</p></li>
+</ul>
+<p>However, it does also provide some benefits,</p>
+<ul class="simple">
+<li><p>less delays with no connection management overhead</p></li>
+<li><p>better over sending data with no congestion control</p></li>
+</ul>
+</section>
+<section id="applications-using-udp">
+<h3>(5) Applications Using UDP<a class="headerlink" href="#applications-using-udp" title="Permalink to this heading"></a></h3>
+<p>Some of the real world services are using UDP. Most of them are using it because there’s no need to maintain the connection before sending the packets and in most cases it will be a single question/response.</p>
+<ul class="simple">
+<li><p>Remote File Server: NFS was by default using UDP on RHEL5 but now it supports TCP</p></li>
+<li><p>Network Management: SNMP uses UDP because there’s no need to maintain connections on an internal monitoring application</p></li>
+<li><p>Routing: RIP uses UDP to avoid overheads in transfer</p></li>
+<li><p>Domain Translation: DNS uses UDP because it’s usually a single response</p></li>
+</ul>
+</section>
+<section id="tcp-connection-estsablish-three-way-handshake">
+<h3>(6) TCP Connection Estsablish: Three-way Handshake<a class="headerlink" href="#tcp-connection-estsablish-three-way-handshake" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Handshake 1. Client -&gt; Server:</p>
+<ul>
+<li><p>TCP segment without data</p></li>
+<li><p>flag <code class="docutils literal notranslate"><span class="pre">SYN</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p>sequence number (after the port numbers): initial sequence number (aka. <code class="docutils literal notranslate"><span class="pre">isn</span></code>) generated by client, which is a random number between 0 (<code class="docutils literal notranslate"><span class="pre">hex</span> <span class="pre">=</span> <span class="pre">0x00000000</span></code>) to 4,294,967,295 (<code class="docutils literal notranslate"><span class="pre">hex</span> <span class="pre">=</span> <span class="pre">0xFFFFFFFF</span></code>). This is used to check the same respond stream so the client and the server won’t mess up with the other packets.</p></li>
+</ul>
+</li>
+<li><p>Handshake 2. Server -&gt; Client:</p>
+<ul>
+<li><p>TCP segment without data called SYNACK segment</p></li>
+<li><p>flag <code class="docutils literal notranslate"><span class="pre">SYN</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p>sequence number: <code class="docutils literal notranslate"><span class="pre">isn</span></code></p></li>
+<li><p>ACK number (after the sequence number): <code class="docutils literal notranslate"><span class="pre">isn</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+</ul>
+</li>
+<li><p>Handshake 3. Client -&gt; Server:</p>
+<ul>
+<li><p>TCP segment without data</p></li>
+<li><p>flag <code class="docutils literal notranslate"><span class="pre">SYN</span> <span class="pre">=</span> <span class="pre">0</span></code></p></li>
+<li><p>sequence number: <code class="docutils literal notranslate"><span class="pre">isn</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+<li><p>ACK number: <code class="docutils literal notranslate"><span class="pre">isn</span> <span class="pre">+</span> <span class="pre">1</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="tcp-connection-teardown-four-way-handshake">
+<h3>(7) TCP Connection Teardown: Four-way Handshake<a class="headerlink" href="#tcp-connection-teardown-four-way-handshake" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Handshake 1. Client -&gt; Server</p>
+<ul>
+<li><p>TCP segment with <code class="docutils literal notranslate"><span class="pre">FIN</span> <span class="pre">=</span> <span class="pre">1</span></code> to trigger closing the server connection</p></li>
+</ul>
+</li>
+<li><p>Handshake 2. Server -&gt; Client</p>
+<ul>
+<li><p>TCP segment with <code class="docutils literal notranslate"><span class="pre">ACK</span> <span class="pre">=</span> <span class="pre">1</span></code> to confirm the server is closing</p></li>
+</ul>
+</li>
+<li><p>Handshake 3. Server -&gt; Client</p>
+<ul>
+<li><p>TCP segment with <code class="docutils literal notranslate"><span class="pre">FIN</span> <span class="pre">=</span> <span class="pre">1</span></code> to trigger closing the client connection</p></li>
+</ul>
+</li>
+<li><p>Handshake 4. Client -&gt; Server</p>
+<ul>
+<li><p>TCP segment with <code class="docutils literal notranslate"><span class="pre">ACK</span> <span class="pre">=</span> <span class="pre">1</span></code> to confirm the client is closing</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="reliable-transmission">
+<h3>(8) Reliable Transmission<a class="headerlink" href="#reliable-transmission" title="Permalink to this heading"></a></h3>
+<p>Let’s first think about the lost packets. Because the network layer is not reliable, the packets sent can be easily lost during the transmission, or the internet can easily corrupted.</p>
+<p>With UDP, most responses are one-time single response. So if the client can not get the respond from the server, it will generate a time out error and resend the request to get the respond. Also, the developer can take care of the network losses as well.</p>
+<p>However, with TCP, the packets sequence should be in-order so we can not tolerant any packet loss during the transmission. Thus, TCP needs to implement <strong>reliability</strong>.</p>
+</section>
+<section id="automatic-repeat-request-arq">
+<h3>(9) Automatic Repeat Request (ARQ)<a class="headerlink" href="#automatic-repeat-request-arq" title="Permalink to this heading"></a></h3>
+<p>In order to maintain a reliable communication, the sender should be able to detect any of the packet loss within a short period of time. So one way to do so is to send acknowledgements from the receiver after it successfully receives each segment. If there’s no acknowledgement of a packet within the given time, we can assume the packet is lost. This method of using acknowledgements and timeouts is also known as <strong>Automatic Repeat Request</strong> or <strong>ARQ</strong>.</p>
+</section>
+<section id="stop-and-wait-arq">
+<h3>(10) Stop and Wait ARQ<a class="headerlink" href="#stop-and-wait-arq" title="Permalink to this heading"></a></h3>
+<p>This can be implemented in verious ways. One common implementation is called the <strong>Stop and Wait ARQ</strong>.</p>
+<p>If the receiver hasn’t receive the former packet but it does receive the latter packets, it will respond an acknowledge of the lost packet. When the sender detects <strong>3 duplicate ACKs</strong> from the server, it will be awared that the packet referred in the duplicate ACKs may be lost. So the sender will do a <strong>fast retransmit</strong> to send the lost packet again to the receiver.</p>
+</section>
+<section id="go-back-n">
+<h3>(11) Go-Back-N<a class="headerlink" href="#go-back-n" title="Permalink to this heading"></a></h3>
+<p>After the fast retransmit,</p>
+<ul class="simple">
+<li><p>the <strong>sender</strong> would then send all packets from the most recently received in-order packet, even if some of them had been sent before.</p></li>
+<li><p>the <strong>receiver</strong> can simply discard any out-of-order received packets</p></li>
+</ul>
+<p>This is called <strong>go-back-N</strong>, like a reset.</p>
+<p>Note that in this process, the packets <strong>buffer</strong> is need for both the sender and the receiver.</p>
+<ul class="simple">
+<li><p>the <strong>sender</strong> would need to buffer packets that have been transmitted but not acknowledged.</p></li>
+<li><p>the <strong>receiver</strong> may need to buffer the packets because the rate of consuming these packets (say writing to a disk) is slower than the rate at which packets arrive.</p></li>
+</ul>
+</section>
+<section id="in-order-maintainance">
+<h3>(12) In-Order Maintainance<a class="headerlink" href="#in-order-maintainance" title="Permalink to this heading"></a></h3>
+<p>Now, let’s see another problem. How can the receiver know that which packet is the former one and which is the latter one? The answer is to use the <strong>sequence number</strong> in the TCP segment. After each transmission, the sequence number will be increased by the packet size so that the receiver can check and verify the correct order.</p>
+</section>
+<section id="selective-acking">
+<h3>(13) Selective ACKing<a class="headerlink" href="#selective-acking" title="Permalink to this heading"></a></h3>
+<p>in the above case, a single packet error can cause a lot of unnecessary retransmissions. To solve this, TCP uses <strong>selective ACKing</strong>.</p>
+<p>With this mechanism, the receiver in this case would acknowledge a correctly received packet even if it is not in order. The out-of-order packets are buffered until any missing packets have been received at which point the batch of the packets can be delivered to the application layer.</p>
+<p>Also, TCP would need to use a <strong>timeout</strong> as there is a possibility of ACKs getting lost in the network. In addition, TCP also uses duplicate acknowledgements as a means to detect loss.</p>
+</section>
+</section>
+<section id="flow-control">
+<h2>3. Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this heading"></a></h2>
+<section id="reason-for-flow-control">
+<h3>(1) Reason for Flow Control<a class="headerlink" href="#reason-for-flow-control" title="Permalink to this heading"></a></h3>
+<p>Now we have buffers on both the sender and the receiver, we need to provide some protection mechanism so that the buffer will not overflow.</p>
+</section>
+<section id="receive-window">
+<h3>(2) Receive Window<a class="headerlink" href="#receive-window" title="Permalink to this heading"></a></h3>
+<p>In order to protect the buffer from overflowing, the sender maintains a variable called <strong>receive window</strong>. This variable is defined to provide the sender an idea of how much data the receiver can handle at the moment.</p>
+<p>The receiving host maintains two variables after each  packet received,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LastByteRead</span></code>: number of byte that was last read from the buffer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LastByteRcvd</span></code>: last byte number that has arrived from sender and placed in the buffer</p></li>
+</ul>
+<p>Based on these two variables and the receiver buffer size <code class="docutils literal notranslate"><span class="pre">RcvBuffer</span></code>, the receiver can get the receive window by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rwnd</span> <span class="o">=</span> <span class="n">RcvBuffer</span> <span class="o">-</span> <span class="p">(</span><span class="n">LastByteRcvd</span> <span class="o">-</span> <span class="n">LastByteRead</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The receiver advertises this value of <code class="docutils literal notranslate"><span class="pre">rwnd</span></code> in every ACK segment it sends back to the sender so the sender can know how many packets it can send.</p>
+<p>The sender also keeps track of two variables, <code class="docutils literal notranslate"><span class="pre">LastByteSent</span></code> and <code class="docutils literal notranslate"><span class="pre">LastByteAcked</span></code>, and the data sent should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">UnAcked</span> <span class="n">Data</span> <span class="n">Sent</span> <span class="o">=</span> <span class="n">LastByteSent</span> <span class="o">-</span> <span class="n">LastByteAcked</span> <span class="o">&lt;</span> <span class="n">rwnd</span>
+</pre></div>
+</div>
+</section>
+<section id="problem-sender-blocking-scenario">
+<h3>(3) Problem: Sender Blocking Scenario<a class="headerlink" href="#problem-sender-blocking-scenario" title="Permalink to this heading"></a></h3>
+<p>Even through the method above can avoid the receiver buffer from overflowing, it can also cause a blocking problem. Let’s think about a case when the receiver had informed the sender that <code class="docutils literal notranslate"><span class="pre">rwnd</span> <span class="pre">=</span> <span class="pre">0</span></code>, then the sender stops sending the data.</p>
+<p>However, when the receiver consumes the data in the buffer, the sender will not know the new buffer space is now available and it will continue to be blocked from sending data.</p>
+</section>
+<section id="solution-1b-size-segments">
+<h3>(4) Solution: 1b Size Segments<a class="headerlink" href="#solution-1b-size-segments" title="Permalink to this heading"></a></h3>
+<p>TCP resolves this problem by making sender continue sending segments of size <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">byte</span></code> even after when <code class="docutils literal notranslate"><span class="pre">rwnd</span> <span class="pre">=</span> <span class="pre">0</span></code>. When the receiver acknowledges these segments, it will specify the rwnd value and the sender will know as soon as the receiver has some room in the buffer.</p>
+<p>After the sender gets <code class="docutils literal notranslate"><span class="pre">rwnd</span> <span class="pre">!=</span> <span class="pre">0</span></code>, it will start to send new packets. We call this a <strong>cold start</strong>. Before we look into how we cold start, let’s review the topic of AIMD (additive increase multiplicative decrease).</p>
+</section>
+<section id="congestion-window">
+<h3>(5) Congestion Window<a class="headerlink" href="#congestion-window" title="Permalink to this heading"></a></h3>
+<p>We have discussed how to protect the receiver buffer from overflow, now let’s talk about how to avoid congestion so as to protect the network transmission. Two main results of the network congestion is <strong>packet delay</strong> and <strong>packet loss</strong>, and we definitely don’t want them happen.</p>
+<p>The idea of TCP congestion control is that each source uses the ACK to determine if the packet released earlier to the network was received by the receiving host. <strong>Congestion window</strong> represents the maximum number of unacknowledged data that a sending host can have in transit. It’s actually the upper bound of <code class="docutils literal notranslate"><span class="pre">UnAcked</span> <span class="pre">Data</span> <span class="pre">Sent</span></code> we have discussed in above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cwnd</span> <span class="o">=</span> <span class="nb">max</span><span class="p">{</span><span class="n">UnAcked</span> <span class="n">Data</span> <span class="n">Sent</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> is too small, we will not fully utilize the network so there’s a waste of resource. However, when <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> is too large, there can be a congestion problem in the network. So in the TCP, it uses a <strong>probe-and-adapt</strong> approach in adapting the congestion window. Under regular conditions, TCP increases the congestion window trying to achieve the available throughput. Once it detects congestion then the congestion window is decreased.</p>
+<p>Note that the upper bound of <code class="docutils literal notranslate"><span class="pre">UnAcked</span> <span class="pre">Data</span> <span class="pre">Sent</span></code> is not only decided by <code class="docutils literal notranslate"><span class="pre">cwnd</span></code>, it also has to be decided by <code class="docutils literal notranslate"><span class="pre">rwnd</span></code>, so,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>LastByteSent – LastByteAcked &lt;= min{cwnd, rwnd}
+</pre></div>
+</div>
+<p>In a nutshell, a TCP sender cannot send faster than the slowest component, which is either the network or the receiving host.</p>
+</section>
+<section id="congestion-control-aimd">
+<h3>(6) Congestion Control: AIMD<a class="headerlink" href="#congestion-control-aimd" title="Permalink to this heading"></a></h3>
+<p>TCP decreases the window when the level of congestion goes up, and it increases the window when the level of congestion goes down. We refer to this combined mechanism as <strong>additive increase/multiplicative decrease (AIMD)</strong>.</p>
+<p><strong>Additive increase</strong> means to increase the congestion window by one packet every RTT (i.e. round trip time). So every time the sending host successfully sends a <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> number of packets, <code class="docutils literal notranslate"><span class="pre">cwnd</span> <span class="pre">+=</span> <span class="pre">1</span></code>.</p>
+<p>Also, in practicem, this increase in AIMD happens incrementally. TCP increases <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> as soon as each ACK arrives, and the increment is decided by <strong>MSS</strong> (i.e. <strong>maximum segment size</strong>).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Increment</span> <span class="o">=</span> <span class="n">MSS</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="n">cwnd</span>
+<span class="n">cwnd</span> <span class="o">+=</span> <span class="n">Increment</span>
+</pre></div>
+</div>
+<p>Multiplicative decrease means when congestion is detected by a timeout occuring, it sets the congestion window (<code class="docutils literal notranslate"><span class="pre">cwnd</span></code>) to <strong>half</strong> of its previous value.</p>
+</section>
+<section id="slow-start">
+<h3>(7) Slow Start<a class="headerlink" href="#slow-start" title="Permalink to this heading"></a></h3>
+<p>When we have a connection starts from cold start, it takes too long if we increase congestion window <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> by AIMD. Therefore, we need a mechanism which can rapidly increase the congestion window from a cold start.</p>
+<p>To handle this, a <strong>slow start</strong> phase is introduced where the congestion window is increased exponentially instead of linearly as in the case of AIMD. The congestion window starts from 1 and each time the sender receives an ACK, <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> will be doubled.</p>
+<p>Once the congestion window becomes more than a threshold (often referred to as slow start threshold), it starts using AIMD.</p>
+</section>
+<section id="tcp-tahoe">
+<h3>(8) TCP Tahoe<a class="headerlink" href="#tcp-tahoe" title="Permalink to this heading"></a></h3>
+<p>Tahoe is a lake in the US. This particular TCP was designed around that lake and hence it was named TCP Tahoe. It is designed because the initial TCP in 1981  doesn’t have congestion control.</p>
+<p>TCP Tahoe is designed as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TCP</span> <span class="n">Tahoe</span> <span class="o">=</span> <span class="n">Slow</span> <span class="n">Start</span> <span class="o">+</span> <span class="n">AIMD</span> <span class="o">+</span> <span class="n">Fast</span> <span class="n">Retransmit</span>
+</pre></div>
+</div>
+</section>
+<section id="fast-recovery">
+<h3>(9) Fast Recovery<a class="headerlink" href="#fast-recovery" title="Permalink to this heading"></a></h3>
+<p>Recall what we have discussed for fast retransmit. The idea is when the sender receives triple duplicate ACKs, it will send the lost packet and then do Go-Back-N to resend the data. Selective ACKing is designed to avoid sending to much replicate packets. However, can we further improve Go-Back-N so that we can have a better efficiency?</p>
+<p>When a packet is lost in transmission, it can be caused by either the network is congest or the network has bad connection. In either case, if the sender receives triple duplicate ACKs, it means the network is back and performing well again. So in that case, we don’t have to do Go-Back-N and start over from cold start. Instead, we will do a similar operation like multiplicative decrease. This is to reduce the congestion window by half recover from there. This is called <strong>fast recovery</strong>.</p>
+</section>
+<section id="tcp-reno">
+<h3>(10) TCP Reno<a class="headerlink" href="#tcp-reno" title="Permalink to this heading"></a></h3>
+<p>Reno is another US city near Tahoe Lake and TCP Reno is an algothrim designed upon TCP Tahoe.</p>
+<p>TCP Reno is designed as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">TCP</span> <span class="n">Reno</span> <span class="o">=</span> <span class="n">TCP</span> <span class="n">Tahoe</span> <span class="o">+</span> <span class="n">Fast</span> <span class="n">Recovery</span>
+</pre></div>
+</div>
+</section>
+<section id="sawtooth-pattern">
+<h3>(11) Sawtooth Pattern<a class="headerlink" href="#sawtooth-pattern" title="Permalink to this heading"></a></h3>
+<p>Because TCP continually decreases and increases the congestion window throught the lifetime of the connection, if we plot the cwnd with respect to time, we observe that it follows a sawtooth pattern as shown,</p>
+<p><img alt="" src="https://i.imgur.com/kRE9U50.png" /></p>
+</section>
+</section>
+<section id="tcp-fairness">
+<h2>4. TCP Fairness<a class="headerlink" href="#tcp-fairness" title="Permalink to this heading"></a></h2>
+<section id="goals-of-congestion-control">
+<h3>(1) Goals of Congestion Control<a class="headerlink" href="#goals-of-congestion-control" title="Permalink to this heading"></a></h3>
+<p>For designing the TCP congestion control algorithm, we commonly consider the following properties,</p>
+<ul class="simple">
+<li><p><strong>Efficiency</strong>: High throughput &amp; High network utility</p></li>
+<li><p><strong>Fairness</strong>: End users have fair shares of bandwidth</p></li>
+<li><p><strong>Low delay</strong>: No long packet queues</p></li>
+<li><p><strong>Fast convergence</strong>: Flow should converge to fair allocation as fast as possible</p></li>
+</ul>
+</section>
+<section id="aimd-fairness-1">
+<h3>(2) AIMD Fairness 1<a class="headerlink" href="#aimd-fairness-1" title="Permalink to this heading"></a></h3>
+<p>Now let’s consider if AIMD leads to TCP fairness. Suppoes we have only two connections sharing the same bandwidth, and at a time, the total utilized bandwidth is also smaller than the total utilized bandwidth.</p>
+<p>At this time, both connections will increase their window size. Note that in this process, both connections will have additive increment so that point moving trace will be parallel to the bandwidth share fairness line.</p>
+<p><img alt="" src="https://i.imgur.com/rrYS7wG.png" /></p>
+</section>
+<section id="aimd-fairness-2">
+<h3>(3) AIMD Fairness 2<a class="headerlink" href="#aimd-fairness-2" title="Permalink to this heading"></a></h3>
+<p>When the total utilized bandwidth reached the limitation, the packets will start to get loss. Now both of the connections will be cut to half. Therefore, the point moving trace will be move towards to the fairness line.</p>
+<p><img alt="" src="https://i.imgur.com/Aw4nw3U.png" /></p>
+</section>
+<section id="aimd-fairness-3">
+<h3>(4) AIMD Fairness 3<a class="headerlink" href="#aimd-fairness-3" title="Permalink to this heading"></a></h3>
+<p>Now let’s suppose that after a long time, the point finally reaches the fairness line. Starting from this time, the point will move along the fairness line back and forth and from a long-term prospective, we reach fairness anytime from now on.</p>
+<p><img alt="" src="https://i.imgur.com/XUbr4aE.png" /></p>
+<p>Suppose we have the total bandwidth capacity <code class="docutils literal notranslate"><span class="pre">R</span></code> bps shared by <code class="docutils literal notranslate"><span class="pre">k</span></code> connections, each connection will finally gets an average of <code class="docutils literal notranslate"><span class="pre">R/k</span></code> throughput.</p>
+</section>
+<section id="aimd-fairness-violation">
+<h3>(5) AIMD Fairness Violation<a class="headerlink" href="#aimd-fairness-violation" title="Permalink to this heading"></a></h3>
+<p>There are some cases when AIMD can be violated and the result will not reach to fairness.</p>
+<ul class="simple">
+<li><p><strong>Different RTT</strong></p></li>
+</ul>
+<p>The above discussion is under an assumption that all the connections increment with the same pace. However, in the real practice, this assumption is always violated. It turns out that the connections have smaller RTT values would increase their congestion window faster than the ones with larger RTT values. And this leads to an unequal sharing of the bandwidth.</p>
+<ul class="simple">
+<li><p><strong>Parallel TCP</strong></p></li>
+</ul>
+<p>Another case is that when an application uses multiple parallel TCP connections on the same link, it gets a higher share of the bandwidth due to all the TCP connections are equal.</p>
+</section>
+<section id="tcp-cubic">
+<h3>(6) TCP CUBIC<a class="headerlink" href="#tcp-cubic" title="Permalink to this heading"></a></h3>
+<p>To achieve TCP RTT-fairness, the window growth function is improved from a linear function (additive) to a cubic function. TCP CUBIC is a mechanism implemented in the Linux kernel and it uses CUBIC polynomial as the growth fuction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cwnd</span> <span class="o">=</span> <span class="n">constant</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">K</span><span class="p">)</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="n">cwnd_max</span>
+</pre></div>
+</div>
+<p>where,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cwnd_max</span></code> is the window size when the packet loss was detected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">K</span></code> is the time period that the function takes to increase from <code class="docutils literal notranslate"><span class="pre">cwnd_max/2</span></code> to <code class="docutils literal notranslate"><span class="pre">cwnd_max</span></code> united by RTT</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code> is the time united by RTT</p></li>
+</ul>
+<p>Commonly if we have multiplicative reduction by half, this function will go through point <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">cwnd_max/2)</span></code> so the value of <code class="docutils literal notranslate"><span class="pre">K</span></code> is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constant</span> <span class="o">*</span> <span class="n">K</span><span class="o">^</span><span class="mi">3</span> <span class="o">=</span> <span class="n">cwnd_max</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">cubicroot</span><span class="p">(</span><span class="n">cwnd_max</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">constant</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Or generally,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">cubicroot</span><span class="p">(</span><span class="n">cwnd_max</span> <span class="o">*</span> <span class="n">β</span> <span class="o">/</span> <span class="n">constant</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">β</span></code> is a multiplier.</p>
+<p>Because here we can assign the same <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">*</span> <span class="pre">RTT</span></code> time for each connection, the time for increment will be the same so as to achieve the TCP RTT-fairness.</p>
+</section>
+<section id="bandwidth-limitation">
+<h3>(7) Bandwidth Limitation<a class="headerlink" href="#bandwidth-limitation" title="Permalink to this heading"></a></h3>
+<p>Let’s finally look into the theoretical upper bound of the bandwidth. Suppose we have the congestion window size <code class="docutils literal notranslate"><span class="pre">cwnd_max</span></code> at the packet loss point and the connection follows TCP Reno. Then the time between a packet loss to <code class="docutils literal notranslate"><span class="pre">cwnd</span></code> reaches <code class="docutils literal notranslate"><span class="pre">cwnd_max</span></code> is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">RTT</span> <span class="o">*</span> <span class="n">cwnd_max</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>At this time, assume AIMD follows a constant rate of 1 packet for every RTT. So the total number of packet sent during this time is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Packets</span> <span class="o">=</span> <span class="p">(</span><span class="n">cwnd_max</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">cwnd_max</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+        <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="n">cwnd_max</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Assume that the probability of a packet loss is <code class="docutils literal notranslate"><span class="pre">p</span></code>, so the expected total number of packets sent when we can observe 1 packet loss is <code class="docutils literal notranslate"><span class="pre">1/p</span></code>. Therefore, we have the following equation,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="n">cwnd_max</span><span class="o">^</span><span class="mi">2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">p</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cwnd_max</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Recall the definition of the bandwidth is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BW</span> <span class="o">=</span> <span class="n">data</span> <span class="n">per</span> <span class="n">cycle</span> <span class="o">/</span> <span class="n">time</span> <span class="n">per</span> <span class="n">cycle</span>
+</pre></div>
+</div>
+<p>So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BW</span> <span class="o">=</span> <span class="n">MSS</span> <span class="o">*</span> <span class="n">packets</span> <span class="o">/</span> <span class="n">time</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">MSS</span></code> is the maximum segment size. Therefore,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BW</span> <span class="o">=</span> <span class="n">MSS</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">8</span><span class="p">)</span> <span class="o">*</span> <span class="n">cwnd_max</span><span class="o">^</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">RTT</span> <span class="o">*</span> <span class="n">cwnd_max</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">cwnd_max</span></code> with <code class="docutils literal notranslate"><span class="pre">p</span></code> and assume the constant <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">sqrt(3/2)</span></code>, we have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BW</span> <span class="o">=</span> <span class="n">MSS</span><span class="o">/</span><span class="n">RTT</span> <span class="o">*</span> <span class="n">C</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In practice, becaause of the additional parameters such as small receiver windows, extra bandwidth availability, and TCP timeouts, C is usually less than 1. So,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BW</span> <span class="o">&lt;</span> <span class="n">MSS</span><span class="o">/</span><span class="n">RTT</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the upper bound of the bandwidth.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
