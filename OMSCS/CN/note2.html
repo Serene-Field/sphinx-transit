@@ -20,7 +20,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computer Network 3 | Spanning Tree Protocol Implementation" href="note3.html" />
+    <link rel="prev" title="Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices" href="note1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,8 +64,65 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-transport-layer">1. Introduction to Transport Layer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reasons-for-transport-layer">(1) Reasons for Transport Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-transport-layer-work">(2) How Transport Layer Work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#two-protocols-in-transport-layer">(3) Two Protocols in Transport Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ports">(4) Ports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiplexing">(5) Multiplexing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#demultiplexing">(6) Demultiplexing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#socket-identifiers">(7) Socket Identifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#udp-and-tcp">2. UDP and TCP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#udp-connectless-multiplexing-demultiplexing">(1) UDP: Connectless Multiplexing/Demultiplexing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-connection-oriented-multiplexing-demultiplexing">(2) TCP: Connection Oriented Multiplexing/Demultiplexing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#persistent-http-vs-non-persitent-http">(3) Persistent HTTP vs Non-Persitent HTTP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#udp-properties">(4) UDP Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#applications-using-udp">(5) Applications Using UDP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-connection-estsablish-three-way-handshake">(6) TCP Connection Estsablish: Three-way Handshake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-connection-teardown-four-way-handshake">(7) TCP Connection Teardown: Four-way Handshake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reliable-transmission">(8) Reliable Transmission</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#automatic-repeat-request-arq">(9) Automatic Repeat Request (ARQ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stop-and-wait-arq">(10) Stop and Wait ARQ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#go-back-n">(11) Go-Back-N</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#in-order-maintainance">(12) In-Order Maintainance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#selective-acking">(13) Selective ACKing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#flow-control">3. Flow Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reason-for-flow-control">(1) Reason for Flow Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#receive-window">(2) Receive Window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problem-sender-blocking-scenario">(3) Problem: Sender Blocking Scenario</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solution-1b-size-segments">(4) Solution: 1b Size Segments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#congestion-window">(5) Congestion Window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#congestion-control-aimd">(6) Congestion Control: AIMD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#slow-start">(7) Slow Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-tahoe">(8) TCP Tahoe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-recovery">(9) Fast Recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-reno">(10) TCP Reno</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sawtooth-pattern">(11) Sawtooth Pattern</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tcp-fairness">4. TCP Fairness</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#goals-of-congestion-control">(1) Goals of Congestion Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aimd-fairness-1">(2) AIMD Fairness 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aimd-fairness-2">(3) AIMD Fairness 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aimd-fairness-3">(4) AIMD Fairness 3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aimd-fairness-violation">(5) AIMD Fairness Violation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tcp-cubic">(6) TCP CUBIC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bandwidth-limitation">(7) Bandwidth Limitation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
 </ul>
@@ -86,6 +145,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
       <li class="breadcrumb-item active">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note2.md.txt" rel="nofollow"> View page source</a>
@@ -515,7 +575,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note1.html" class="btn btn-neutral float-left" title="Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note3.html" class="btn btn-neutral float-right" title="Computer Network 3 | Spanning Tree Protocol Implementation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
