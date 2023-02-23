@@ -1,4 +1,4 @@
-# Computer Network 1 ｜ Introduction to Computer Network, OSI Model, Principles, and Devices
+# Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices
 
 ### 1. Introduction to Computer Network
 
