@@ -31,6 +31,12 @@ SereneField Sphinx
    OMSCS/index
 
 .. toctree::
+   :maxdepth: 1
+   :caption: Blender
+
+   Blender/index
+
+.. toctree::
    :hidden:
    :maxdepth: 1
    :caption: Travel
