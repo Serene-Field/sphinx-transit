@@ -32,9 +32,9 @@ SereneField Sphinx
 
 .. toctree::
    :maxdepth: 1
-   :caption: Blender
+   :caption: Arts
 
-   Blender/index
+   Arts/index
 
 .. toctree::
    :hidden:
