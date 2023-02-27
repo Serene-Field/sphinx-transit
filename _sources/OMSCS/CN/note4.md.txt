@@ -507,13 +507,13 @@ While node `z` thinks the shortest route from `z` to `x` is,
 z -> y -> x
 ```
 
-So a packet sent from `y` or `z` to `x` will not reach the destionation because there's a loop in the route and the packet keeps bouncing between `y` and `z`. 
-So how long is the delay? While for `Dy = [6, 0, 1]` to `Dy = [51, 0, 1]`, it takes `45` iterations and for `Dz = [5, 1, 0]` to `Dz = [50, 1, 0]`, it also takes `45` iterations. 
-Therefore, we can expect a delay of packets because,
+So a packet sent from `y` or `z` to `x` will not reach the destionation because there's a loop in the route and the packet keeps bouncing between `y` and `z`. Therefore, we can expect a delay of packets because,
 
 ```
 z <-> y
 ```
+
+So how long is the delay? While for `Dy = [6, 0, 1]` to `Dy = [51, 0, 1]`, it takes `45` iterations and for `Dz = [5, 1, 0]` to `Dz = [50, 1, 0]`, it also takes `45` iterations. 
 
 This is called the **count-to-infinity** problem.
 
@@ -535,16 +535,62 @@ least cost path: z -> y -> x
 
 So now node `z` will notice that this packet came from `y` and the least cost path of it to `x` goes through `y`. This means if `z` follows the path, it will never get the packet delievered to `x`. 
 
-Therefore, while forwarding the packet back to `y`, `z` also advertises `y` a lie that `Dz[x] = inf` even through `z` knows that `Dz[x] = 5`. Since it tells this lie to `y`, `y` acknowledges that `z` has no path to `x` expect via `y`. So it will never send packets to `x` via `z`. And we call it the node `z` poisons the path from `z` to `y`.
+Therefore, while forwarding the packet back to `y`, `z` also advertises `y` a lie that `Dz[x] = inf` even through `z` knows that `Dz[x] = 5`. Since it tells this lie to `y`, `y` acknowledges that `z` has no path to `x` expect via `y`. So it will never send packets to `x` via `z`. And we call it the node `z` **poisons** the path from `z` to `y`.
+
+This technique will solve the problem with 2 nodes, however poisoned reverse will not solve a general count to infinity problem involving 3 or more nodes that are not directly connected.
+
+### 3. Routing Algorithm Applications
+
+#### (1) DV Routing Application: Router Information Protocol (RIP)
 
 
+RIP is a routing protocol based on the distance vector protocol. The first version of it is released as a part of the BSD version of UNIX and it uses hop count as a metric.
 
+As distance verctor shows, the messages are exchanged between router neighbors periodically using a RIP response called **RIP advertisements**. It contain the information about the sender distance to destination subnets as follows,
 
+```
+nextRouter       distSubnet       numOfHops
+A                w                2
+B                y                2
+B                z                7
+```
 
+For a node `C` with the topology,
 
+```
+C ---2---> A ---> w
+|
++ ---2---> B --- 5 ----> D ---> z
+           |
+           + ---> y
+```
 
+#### (2) Link-State Routing Application: Open Shortest Path First (OSPF)
 
+OSPF is introduced as an advanced of the RIP Protocol, operating in upper-tier ISPs because the link-state protocol requires a full map of topology. Here's a briefing of the OSPF protocol.
 
+- Areas: an OSPF autonomous system (aka. AS, meaning a large network with single routing protocol) can be configured to areas where its own OSPF is operaing
+- Border routers: one or more border routers are responsible for routing packets outside the area
+- Backbone area: exactly one OSPF area in the AS is configured to be the backbone area. It always contains all area border routers in the AS and it is responsible to route traffic between the other areas.
+- Link State Advertisements (LSA): Every router within a domain uses LSAs. It is used for building a database called Link State Database containing all the link states. LSAs are typically flooded to every router in the domain and this helps form a consistent network topology view. 
+- LSA refresh rate: OSPF has a default 30-minute refresh rate. If a link states changed before this period is reached, the neighbor routers connected will ensure the LSA flooding.
 
+Next, let's see how a router process an OSPF message. 
 
+- Trigger: the LS-update packet which contain LSAs reach the current router's OSPF
+- Database update: a consistent view of the topology is being formed and this information is stored in the link-state database on the router
+- SPF: Using the information from the database, the current router calculates the shortest path using shortest path first (SPF) algorithm. The result of this step is fed to the** Forwarding Information Base (FIB)**
+- Forwarding: when a data packet arrives at an interface card of the current router, the next hop for the packet is decided based on the FIB of the last step
 
+#### (3) Hot Potato Routing
+
+Compared to RIP and OSPF, there's another routing protocol considering the routing speed over finding the most efficient (shortest) path. This is called the **hot potato routing**. 
+
+Hot potato routing is a technique of choosing a path within the network by choosing the **closest** egress point based on intradomain path cost (aka. Interior Gateway Protocol (IGP) cost) even if the overall path is not optimized. 
+
+Hot potato routing is commonly used for applications that cares more about speed or in a relatively simple network. For example,
+
+- real-time communication
+- high-frequency trading
+- CDNs
+- cloud computing
