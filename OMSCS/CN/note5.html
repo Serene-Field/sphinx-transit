@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 5 | Distance Vector Implementation &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
+    <link rel="prev" title="Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing" href="note4.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n3">🏯  N3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n2">🏯  N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 5 | Distance Vector Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#project-documentation">1. Project Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assistant-file">2. Assistant File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#message-class">3. <code class="docutils literal notranslate"><span class="pre">Message</span></code> Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distancevector-class">4. <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#send-initial-messages-function">5. <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log-distances-function">6. <code class="docutils literal notranslate"><span class="pre">log_distances</span></code> Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process-bf-function">7. <code class="docutils literal notranslate"><span class="pre">process_BF</span></code> Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 5 | Distance Vector Implementation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note5.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-5-distance-vector-implementation">
+<h1>Computer Network 5 | Distance Vector Implementation<a class="headerlink" href="#computer-network-5-distance-vector-implementation" title="Permalink to this heading"></a></h1>
+<section id="project-documentation">
+<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this heading"></a></h2>
+<p>The current project is similar to the last one we ran.</p>
+<p><code class="docutils literal notranslate"><span class="pre">run_topo.py</span></code></p>
+<p>The simple driver that triggers the simulation and write the logs.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">open_log</span></code>: function defined in <code class="docutils literal notranslate"><span class="pre">helpers</span></code> package used to load a file for logging purpose</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Topology</span></code>: define a class of <code class="docutils literal notranslate"><span class="pre">Topology</span></code> which contains a collection of <code class="docutils literal notranslate"><span class="pre">Node</span></code>s</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">topo.run_topo()</span></code>: triggers the simulation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finish_log</span></code>: function defined in <code class="docutils literal notranslate"><span class="pre">helpers</span></code> to end the logging</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">SimpleTopo.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">SimpleNegativeCycleTopo.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">BadTopo.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">SingleLoopTopo.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">ComplexTopo.txt</span></code></p>
+<p>The topology files containing the map information. Note that <code class="docutils literal notranslate"><span class="pre">BadTopo.txt</span></code> is a topology that defined with node <code class="docutils literal notranslate"><span class="pre">A</span></code> link to an nonexistent node <code class="docutils literal notranslate"><span class="pre">z</span></code>. It should give an error message.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Neighbor</span></code></p>
+<p>A simple class defined in <code class="docutils literal notranslate"><span class="pre">Node.py</span></code> with a neighbor node and a path cost.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: neighbor node name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code>: the path cost</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Node</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Node</span></code> is a class defined in <code class="docutils literal notranslate"><span class="pre">Node.py</span></code> used to store the node information.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: node/router name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">incoming_links</span></code>: list of <code class="docutils literal notranslate"><span class="pre">Neighbor</span></code> objects of incoming node name and cost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outgoing_links</span></code>: list of <code class="docutils literal notranslate"><span class="pre">Neighbor</span></code> objects of outgoing node name and cost</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">neighbor_names</span></code>: list of incoming link node names</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">topology</span></code>: a backlink to the <code class="docutils literal notranslate"><span class="pre">Topology</span></code> object and it should not be used in the implementation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">messages</span></code>: list of messages defined by user</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">A.send_msg(msg,</span> <span class="pre">B)</span></code>: send the message <code class="docutils literal notranslate"><span class="pre">msg</span></code> to the node <code class="docutils literal notranslate"><span class="pre">B</span></code> from <code class="docutils literal notranslate"><span class="pre">A</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">B.queue_msg(msg)</span></code>: called when other nodes sends message <code class="docutils literal notranslate"><span class="pre">msg</span></code> to <code class="docutils literal notranslate"><span class="pre">B</span></code>. It contains a simple attend function that will add the message to a list.</p></li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> class is based on this class.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">Topology</span></code></p>
+<p>A class defined by <code class="docutils literal notranslate"><span class="pre">Topology.py</span></code> used to store the topology map.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">topodict</span></code>: a dictionary with each node as the field mapping to its <code class="docutils literal notranslate"><span class="pre">incoming_links</span></code> and <code class="docutils literal notranslate"><span class="pre">outgoing_links</span></code>. It contains <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: a list version of <code class="docutils literal notranslate"><span class="pre">topodict</span></code></p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">helpers.py</span></code></p>
+<p>A helper package that contains several useful functions.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">open_log(filename)</span></code>: function called in <code class="docutils literal notranslate"><span class="pre">run_topo.py</span></code> to open a log file <code class="docutils literal notranslate"><span class="pre">filename</span></code>. Variables <code class="docutils literal notranslate"><span class="pre">logfile</span></code> and <code class="docutils literal notranslate"><span class="pre">current_logs</span></code> are set to zeros. It also initialize the <code class="docutils literal notranslate"><span class="pre">current_logs</span></code> as an empty dictionary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finish_log()</span></code>: close the global <code class="docutils literal notranslate"><span class="pre">logfile</span></code> variable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_entry(switch,</span> <span class="pre">logstring)</span></code>: add <code class="docutils literal notranslate"><span class="pre">switch:</span> <span class="pre">logstring</span></code> entry to <code class="docutils literal notranslate"><span class="pre">current_logs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finish_round()</span></code>: This is the function called in <code class="docutils literal notranslate"><span class="pre">Topology.py</span></code> and it is used to write all the entries in the <code class="docutils literal notranslate"><span class="pre">current_logs</span></code> to the <code class="docutils literal notranslate"><span class="pre">logfile</span></code> with a alphabet order of field names. It will seperate each round with string <code class="docutils literal notranslate"><span class="pre">&quot;-----\n&quot;</span></code> and clear the <code class="docutils literal notranslate"><span class="pre">current_logs</span></code></p></li>
+</ul>
+</section>
+<section id="assistant-file">
+<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code></p>
+<p>This file can be used to simplify the testing process.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Makefile</span>
+
+clean:
+<span class="w">	</span>rm<span class="w"> </span>-rf<span class="w"> </span>./*.log
+
+run:<span class="w"> </span>clean
+<span class="w">	</span>./run.sh<span class="w"> </span>SimpleTopo<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;invalid\|complete&#39;</span>
+<span class="w">	</span>./run.sh<span class="w"> </span>SimpleNegativeCycleTopo<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;invalid\|complete&#39;</span>
+<span class="w">	</span>./run.sh<span class="w"> </span>BadTopo<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;invalid\|complete&#39;</span>
+<span class="w">	</span>./run.sh<span class="w"> </span>SingleLoopTopo<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;invalid\|complete&#39;</span>
+<span class="w">	</span>./run.sh<span class="w"> </span>ComplexTopo<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;invalid\|complete&#39;</span>
+<span class="w">	</span>rm<span class="w"> </span>-rf<span class="w"> </span>__pycache__
+</pre></div>
+</div>
+</section>
+<section id="message-class">
+<h2>3. <code class="docutils literal notranslate"><span class="pre">Message</span></code> Class<a class="headerlink" href="#message-class" title="Permalink to this heading"></a></h2>
+<p>We should define a <code class="docutils literal notranslate"><span class="pre">Message</span></code> class or other data types but it should have the following information.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: source node to forward from</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distVector</span></code>: the distance vector of the source node</p></li>
+</ul>
+</section>
+<section id="distancevector-class">
+<h2>4. <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> Class<a class="headerlink" href="#distancevector-class" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> is a given class based on class <code class="docutils literal notranslate"><span class="pre">Node</span></code> and it should add a mapping variable called <code class="docutils literal notranslate"><span class="pre">distVector</span></code> which keeps track of the distance vector information. it should be initialized with itself as the field and 0 cost as a value.</p>
+</section>
+<section id="send-initial-messages-function">
+<h2>5. <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> Function<a class="headerlink" href="#send-initial-messages-function" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> is relatively simple. It is used to send the initial message to all the incoming links (say, neighboring routers) at the beginning. <code class="docutils literal notranslate"><span class="pre">Node.send_msg(Message,</span> <span class="pre">str)</span></code> function should be called and the implementation of this message queue is a FIFO data structure.</p>
+<p>Note that when passing the <code class="docutils literal notranslate"><span class="pre">distVector</span></code> in <code class="docutils literal notranslate"><span class="pre">Message</span></code>, make sure it is copyed with its current value so a future change won’t effect its value.</p>
+</section>
+<section id="log-distances-function">
+<h2>6. <code class="docutils literal notranslate"><span class="pre">log_distances</span></code> Function<a class="headerlink" href="#log-distances-function" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">log_distances</span></code> is used to output the current <code class="docutils literal notranslate"><span class="pre">distVector</span></code> in a easy-reading way. For example, it should have the pattern like <code class="docutils literal notranslate"><span class="pre">A:A0,B1,C2</span></code> based on <code class="docutils literal notranslate"><span class="pre">{A:</span> <span class="pre">0,</span> <span class="pre">B:</span> <span class="pre">1,</span> <span class="pre">C:</span> <span class="pre">2}</span></code> and its implementation should be very easy.</p>
+</section>
+<section id="process-bf-function">
+<h2>7. <code class="docutils literal notranslate"><span class="pre">process_BF</span></code> Function<a class="headerlink" href="#process-bf-function" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">process_BF</span></code> is actually a impletation of Bellman-Ford algorithm and it must accomplish the two tasks,</p>
+<ol class="arabic simple">
+<li><p>Process queued messages</p></li>
+<li><p>Send neighbors sendMessage distance</p></li>
+</ol>
+<p>The second task is like <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> with the new message so let’s consider the first task. This is a pseudocode for implementing this task,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Loop</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">messages</span><span class="p">:</span>
+    <span class="n">Loop</span> <span class="n">through</span> <span class="nb">all</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">message</span><span class="o">.</span><span class="n">distVector</span><span class="p">:</span>
+    
+        <span class="n">Skip</span> <span class="n">current</span> <span class="n">node</span>
+        
+        <span class="n">Calculate</span> <span class="n">the</span> <span class="n">cost</span> <span class="kn">from</span> <span class="nn">x</span> <span class="o">-&gt;</span> <span class="n">s</span>
+        <span class="o">-</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="o">-</span> <span class="n">dist</span><span class="o">*</span> <span class="o">=</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        
+        <span class="mi">1</span> <span class="n">For</span> <span class="n">new</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">distVector</span>
+        <span class="mi">1</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">neighbor</span>
+            <span class="n">update</span> <span class="k">with</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+        <span class="mi">1</span><span class="o">-</span><span class="mi">2</span> <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">neighbor</span>
+            <span class="n">update</span> <span class="k">with</span> <span class="n">dist</span><span class="o">*</span>
+        
+        <span class="mi">2</span> <span class="n">For</span> <span class="n">existing</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">distVector</span>
+        <span class="mi">2</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">or</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">is</span> <span class="n">smaller</span> <span class="n">than</span> <span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="n">then</span> <span class="n">dist</span><span class="o">*</span> <span class="n">will</span> <span class="n">be</span> <span class="o">-</span><span class="mi">99</span> <span class="n">no</span> <span class="n">matter</span> <span class="n">the</span> <span class="n">other</span> <span class="n">value</span>
+        <span class="mi">2</span><span class="o">-</span><span class="mi">2</span> <span class="k">if</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="n">then</span> <span class="n">dist</span><span class="o">*</span> <span class="n">will</span> <span class="n">be</span> <span class="o">-</span><span class="mi">99</span>
+        <span class="mi">2</span><span class="o">-</span><span class="mi">3</span> <span class="k">if</span> <span class="n">Cost</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">99</span> <span class="n">but</span> <span class="n">smaller</span> <span class="n">than</span> <span class="n">Dv</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">should</span> <span class="n">also</span> <span class="n">update</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note4.html" class="btn btn-neutral float-left" title="Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
