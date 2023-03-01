@@ -69,3 +69,36 @@
 
 ![](https://i.imgur.com/8EAaJn1.png)
 
+### 3-1-1
+
+![](https://i.imgur.com/A3y1zci.png)
+
+### 3-1-2
+
+![](https://i.imgur.com/LIrcCxI.png)
+
+### 3-2
+
+![](https://i.imgur.com/yW7f4h3.png)
+
+### 3-3 
+
+![](https://i.imgur.com/iIqPI6d.png)
+
+### 3-4/5/6
+
+![](https://i.imgur.com/JpDPPz7.png)
+
+### 3-7-1
+
+![](https://i.imgur.com/U1womgL.png)
+
+### 3-7-2
+
+![](https://i.imgur.com/04xtLRA.png)
+
+### 4-1/2/3
+
+![](https://i.imgur.com/YEuaY4D.png)
+
+
