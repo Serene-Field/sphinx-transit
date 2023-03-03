@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; serenefield-sphinx  documentation</title>
+  <title>Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -18,7 +18,9 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computer Network 7 ｜ Implement MiniNet" href="note7.html" />
+    <link rel="prev" title="Computer Network 5 | Distance Vector Implementation" href="note5.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,8 +62,67 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-autonomous-systems-as">1. Introduction to Autonomous Systems (AS)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#internet-service-providers-isps">(1) Internet Service Providers (ISPs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internet-exchange-points-ixps">(2) Internet Exchange Points (IXPs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content-providers">(3) Content Providers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content-delivery-networks-cdns">(4) Content Delivery Networks (CDNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autonomous-system-as">(5) Autonomous System (AS)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#as-competition-and-cooperation">(6) AS Competition and Cooperation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#isp-connection">(5) ISP Connection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hierarchical-to-flat-trend">(6) Hierarchical to Flat Trend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#border-gateway-protocol-bgp">(7) Border Gateway Protocol (BGP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internal-gateway-protocols-igps">(8) Internal Gateway Protocols (IGPs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#as-business-relationships">(9) AS Business Relationships</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-ases-charge-customers">(10) How ASes Charge Customers?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bgp-routing">2. BGP Routing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-routing-policies-1-exporting-routes">(1) BGP Routing Policies 1: Exporting Routes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-routing-policies-2-importing-routes">(2) BGP Routing Policies 2: Importing Routes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-design-goals">(3) BGP Design Goals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-session">(4) BGP Session</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#two-types-of-bgp-sessions">(5) Two Types of BGP Sessions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-session-establishment">(6) BGP Session Establishment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-messages">(7) BGP Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#two-types-of-bgp-messages">(8) Two Types of BGP Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-prefix-reachability-procedure">(9) BGP Prefix Reachability Procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autonomous-system-number-asn">(10) Autonomous System Number (ASN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-attributes">(11) BGP Attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ibgp-vs-ebgp">(12) iBGP vs eBGP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ibgp-vs-igp">(13) iBGP vs IGP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-decision-process-on-routers">(14) BGP Decision Process on Routers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-limitations">(15) BGP Limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flap-damping">(16) Flap Damping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#peering-through-ixps">3. Peering Through IXPs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#as-peering">(1) AS Peering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-of-ixp">(2) Architecture of IXP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ixps-properties">(3) IXPs Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#as-peering-procedure-through-ixp">(4) AS Peering Procedure (through IXP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incentives-to-use-ixps">(5) Incentives to Use IXPs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ixp-services">(6) IXP Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bi-lateral-bgp-session">(7) Bi-lateral BGP Session</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-lateral-bgp-session">(8) Multi-lateral BGP Session</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rs-architecture">(9) RS architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-lateral-peering-process">(10) Multi-lateral Peering Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7 ｜ Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Router Design and Algorithms</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
 </ul>
@@ -90,7 +151,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note6.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,11 +162,386 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="computer-network-6-introduction-to-autonomous-systems-bgp-routing-and-peering-through-ixps">
+<h1>Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs<a class="headerlink" href="#computer-network-6-introduction-to-autonomous-systems-bgp-routing-and-peering-through-ixps" title="Permalink to this heading"></a></h1>
+<section id="introduction-to-autonomous-systems-as">
+<h2>1. Introduction to Autonomous Systems (AS)<a class="headerlink" href="#introduction-to-autonomous-systems-as" title="Permalink to this heading"></a></h2>
+<section id="internet-service-providers-isps">
+<h3>(1) Internet Service Providers (ISPs)<a class="headerlink" href="#internet-service-providers-isps" title="Permalink to this heading"></a></h3>
+<p>An <strong>Internet Service Provider (ISP)</strong> is a company that provides internet access to individuals, households, and businesses, typically through a wired or wireless connection.</p>
+<p>Based on size, there can be three tiers of ISPs,</p>
+<ul class="simple">
+<li><p>Global Scale ISP (Tier-1): AT&amp;T, NTT (Nippon Telegraph and Telephone), Level-3, Sprint</p></li>
+<li><p>Regional ISP (Tier-2)</p></li>
+<li><p>Access ISP (Tier-3)</p></li>
+</ul>
+<p>Note that a company can be both tier-1 and tier-3 based on its product.</p>
+</section>
+<section id="internet-exchange-points-ixps">
+<h3>(2) Internet Exchange Points (IXPs)<a class="headerlink" href="#internet-exchange-points-ixps" title="Permalink to this heading"></a></h3>
+<p>IXPs are physical network exchange infrastructures where multiple networks (eg ISPs and CDNs) can interconnect and exchange traffic locally. Some common IXPs include,</p>
+<ul class="simple">
+<li><p>Equinix (US)</p></li>
+<li><p>LINX (London)</p></li>
+<li><p>AMS-IX (Amsterdam)</p></li>
+<li><p>DE-CIX (Frankfurt)</p></li>
+<li><p>JPNAP (Tokyo)</p></li>
+<li><p>CNCIX (Beijing)</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>As of 2019, there are approximately 500 IXPs around the world.</p>
+</section>
+<section id="content-providers">
+<h3>(3) Content Providers<a class="headerlink" href="#content-providers" title="Permalink to this heading"></a></h3>
+<p>Content providers are companies or individuals who create, produce, or distribute digital content, such as text, images, videos, music, games, software, and other media formats, to end-users. Some common CPs are,</p>
+<ul class="simple">
+<li><p>Google</p></li>
+<li><p>Facebook</p></li>
+<li><p>Amazon</p></li>
+<li><p>Netflix</p></li>
+<li><p>Youtube</p></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+<section id="content-delivery-networks-cdns">
+<h3>(4) Content Delivery Networks (CDNs)<a class="headerlink" href="#content-delivery-networks-cdns" title="Permalink to this heading"></a></h3>
+<p>CDNs are networks created by content providers with the goal of having greater control of how the content is delivered to the end-users, and also to reduce connectivity costs. Some common CDNs are,</p>
+<ul class="simple">
+<li><p>Akamai</p></li>
+<li><p>Cloudflare</p></li>
+<li><p>Amazon CloudFront</p></li>
+<li><p>Google Cloud CDN</p></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+<section id="autonomous-system-as">
+<h3>(5) Autonomous System (AS)<a class="headerlink" href="#autonomous-system-as" title="Permalink to this heading"></a></h3>
+<p>Each of the types of networks that we talked about above (eg ISPs and CDNs) may operate as an <strong>Autonomous System (AS)</strong>. An AS is a group of routers (including the links among them) that operate under the same administrative authority.</p>
+</section>
+<section id="as-competition-and-cooperation">
+<h3>(6) AS Competition and Cooperation<a class="headerlink" href="#as-competition-and-cooperation" title="Permalink to this heading"></a></h3>
+<p>In practice, each level’s ISPs are competing with each other. But at the same time, competing ISPs need to cooperate to provide global connectivity to their respective customer networks.</p>
+</section>
+<section id="isp-connection">
+<h3>(5) ISP Connection<a class="headerlink" href="#isp-connection" title="Permalink to this heading"></a></h3>
+<p>We have discussed that ISPs are connected to larger ISPs for communication and larger ISPs can connect to the same small ISP for communication. However, in today’s Internet, there are more ways for two ISPs to communicate,</p>
+<ul class="simple">
+<li><p>Points of Presence (PoP)</p></li>
+<li><p>Multihoming</p></li>
+<li><p>Peering</p></li>
+</ul>
+</section>
+<section id="hierarchical-to-flat-trend">
+<h3>(6) Hierarchical to Flat Trend<a class="headerlink" href="#hierarchical-to-flat-trend" title="Permalink to this heading"></a></h3>
+<p>As there are more and more presence of IPSs, IXPs, and CDNs, the internet structure has been morphing from hierarchical to flat.</p>
+</section>
+<section id="border-gateway-protocol-bgp">
+<h3>(7) Border Gateway Protocol (BGP)<a class="headerlink" href="#border-gateway-protocol-bgp" title="Permalink to this heading"></a></h3>
+<p>The border routers as we have discussed talk to the ASes outside the current AS using <strong>Border Gateway Protocol (BGP)</strong> to exchange routing information with one another.</p>
+</section>
+<section id="internal-gateway-protocols-igps">
+<h3>(8) Internal Gateway Protocols (IGPs)<a class="headerlink" href="#internal-gateway-protocols-igps" title="Permalink to this heading"></a></h3>
+<p>IGPs are the routing protocols within an AS as what we have discussed in the previous sections. These include,</p>
+<ul class="simple">
+<li><p>Open Shortest Paths First (OSPF)</p></li>
+<li><p>Intermediate System - Intermediate System (IS-IS)</p></li>
+<li><p>Routing Information Protocol (RIP)</p></li>
+<li><p>E-IGRP</p></li>
+</ul>
+</section>
+<section id="as-business-relationships">
+<h3>(9) AS Business Relationships<a class="headerlink" href="#as-business-relationships" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Provider and Customer</strong>: based on financial settlement which determines how much the customer will pay the provider</p></li>
+<li><p><strong>Peering</strong>: based on money saving purpose, two similar size ASes share the access to a subset of each other’s routing tables</p></li>
+</ul>
+</section>
+<section id="how-ases-charge-customers">
+<h3>(10) How ASes Charge Customers?<a class="headerlink" href="#how-ases-charge-customers" title="Permalink to this heading"></a></h3>
+<p>A provider usually charges in one of two ways,</p>
+<ul class="simple">
+<li><p><strong>Flat rate</strong>: Based on a fixed price given that the bandwidth used is within a predefined range.</p></li>
+<li><p><strong>Dynamic</strong>: Based on the bandwidth used based on periodic measurements.</p></li>
+</ul>
+</section>
+</section>
+<section id="bgp-routing">
+<h2>2. BGP Routing<a class="headerlink" href="#bgp-routing" title="Permalink to this heading"></a></h2>
+<section id="bgp-routing-policies-1-exporting-routes">
+<h3>(1) BGP Routing Policies 1: Exporting Routes<a class="headerlink" href="#bgp-routing-policies-1-exporting-routes" title="Permalink to this heading"></a></h3>
+<p>For a given AS, it’s important to decide which routes to export. Export routes in an AS means to advertise its network prefixes to the neighboring ASes so that the packets of the other ASes can reach its network.</p>
+<p>There are three types of routes that an AS can decide whether to export,</p>
+<ul class="simple">
+<li><p>Routes learnt from <strong>customers</strong> (Yes): it wants to advertise as many as possible becasue the AS is getting paid by the customers</p></li>
+<li><p>Routes learnt from <strong>providers</strong> (No): it will not advertise because the customer has no incentive to carry traffic for its provider</p></li>
+<li><p>Routes learnt from <strong>peers</strong> (No): it will not afvertise because the the peers will then use it to share the traffic with no financial benefits</p></li>
+</ul>
+</section>
+<section id="bgp-routing-policies-2-importing-routes">
+<h3>(2) BGP Routing Policies 2: Importing Routes<a class="headerlink" href="#bgp-routing-policies-2-importing-routes" title="Permalink to this heading"></a></h3>
+<p>Similar to export routes, ASes are also selective about which routes to import when it receives the advertisements from its customers, providers, and peers. In order to select the routes to import, the AS will establish a rank of routes based on the following cateria,</p>
+<ul class="simple">
+<li><p>ensure routes towards its customer do not traverse unnecessary costs</p></li>
+<li><p>use free peering routes as much as possible</p></li>
+<li><p>finally resorts to import routes learned from providers as these will add to costs</p></li>
+</ul>
+</section>
+<section id="bgp-design-goals">
+<h3>(3) BGP Design Goals<a class="headerlink" href="#bgp-design-goals" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Scalability</strong>: BGP should be able to handle the network growth</p></li>
+<li><p><strong>Policy Expressions</strong>: BGP should define attributes for AS to implement export and import policies</p></li>
+<li><p><strong>Indenpendency</strong>: BGP should allow each AS to make confidential decisions</p></li>
+<li><p><strong>Security</strong>: as the size and complexity of the Internet growth, BGP is also required to provide security measurements</p></li>
+</ul>
+</section>
+<section id="bgp-session">
+<h3>(4) BGP Session<a class="headerlink" href="#bgp-session" title="Permalink to this heading"></a></h3>
+<p>A BGP session (aka. BGP pair) is a connection between two routers that run the BGP protocol and exchange routing information over a semi-permanent TCP.</p>
+</section>
+<section id="two-types-of-bgp-sessions">
+<h3>(5) Two Types of BGP Sessions<a class="headerlink" href="#two-types-of-bgp-sessions" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>eBGP (external BGP): BGP session between two different ASes</p></li>
+<li><p>iBGP (internal BGP): BGP session within an AS</p></li>
+</ul>
+</section>
+<section id="bgp-session-establishment">
+<h3>(6) BGP Session Establishment<a class="headerlink" href="#bgp-session-establishment" title="Permalink to this heading"></a></h3>
+<p>To begin a BGP session,</p>
+<ul class="simple">
+<li><p><strong>Open</strong>: router <code class="docutils literal notranslate"><span class="pre">A</span></code> sends an <code class="docutils literal notranslate"><span class="pre">OPEN</span></code> message to router <code class="docutils literal notranslate"><span class="pre">B</span></code></p></li>
+<li><p><strong>Exchange</strong>: <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> send each other announcements from their individual routing tables</p></li>
+</ul>
+<p>Depending on the number of routes being exchanged, this can take from seconds up to several minutes.</p>
+</section>
+<section id="bgp-messages">
+<h3>(7) BGP Messages<a class="headerlink" href="#bgp-messages" title="Permalink to this heading"></a></h3>
+<p>After a BGP session is established, the peers can exchange BGP message which provide reachability information and enforce routing policies.</p>
+</section>
+<section id="two-types-of-bgp-messages">
+<h3>(8) Two Types of BGP Messages<a class="headerlink" href="#two-types-of-bgp-messages" title="Permalink to this heading"></a></h3>
+<p>There are two types of BGP messages.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">UPDATE</span></code></p>
+<ul>
+<li><p><strong>Announcements</strong>: used to advertise new routes and update existing routes</p></li>
+<li><p><strong>Withdrawals</strong>: used to remove previously announced routes. This can be caused by some failures or changes in the policy</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KEEPALIVE</span></code>: used to keep a current BGP session going</p></li>
+</ul>
+</section>
+<section id="bgp-prefix-reachability-procedure">
+<h3>(9) BGP Prefix Reachability Procedure<a class="headerlink" href="#bgp-prefix-reachability-procedure" title="Permalink to this heading"></a></h3>
+<p>In BGP protocol, an external subnet is reached with the following steps,</p>
+<ul class="simple">
+<li><p>Destinations are represented by <strong>IP prefixes</strong></p></li>
+<li><p>Each IP prefix represents a <strong>subnet</strong> that AS can reach</p></li>
+<li><p>Gateway routers (running eBGP) advertise IP Prefixes they can reach according to the export policy to routers in neighboring ASes</p></li>
+<li><p>Gateway routers disseminate routes to external destinations to other internal routers according to the import policy using seperate iBGP sessions</p></li>
+<li><p>Internal routers use iBGP to propagate external routes to other internal routers</p></li>
+</ul>
+</section>
+<section id="autonomous-system-number-asn">
+<h3>(10) Autonomous System Number (ASN)<a class="headerlink" href="#autonomous-system-number-asn" title="Permalink to this heading"></a></h3>
+<p>Each AS is identified by a unique number called autonomous system number (ASN).</p>
+</section>
+<section id="bgp-attributes">
+<h3>(11) BGP Attributes<a class="headerlink" href="#bgp-attributes" title="Permalink to this heading"></a></h3>
+<p>In addition to the reachable <code class="docutils literal notranslate"><span class="pre">IP</span> <span class="pre">prefix</span></code> field, advertised BGP routes consist of a number of <strong>BGP attributes</strong>. Two notable attributes are,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AS-PATH</span></code>: the ASN of each AS is included in this attribute as the AS route</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NEXT-HOP</span></code>: the IP address of the next-hop router along the path towards the destination</p>
+<ul>
+<li><p>For <strong>internal routers</strong>, this attribute stores the IP address of one of the border routers based on the best path</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ibgp-vs-ebgp">
+<h3>(12) iBGP vs eBGP<a class="headerlink" href="#ibgp-vs-ebgp" title="Permalink to this heading"></a></h3>
+<p>The eBGP speaking routers learn routes to external prefixes and they disseminate them to all routers within the AS.</p>
+<p>The <strong>dissemination</strong> within AS is happening with iBGP sessions. The dissemination of routes within the AS is done by establishing a full mesh of iBGP sessions between the internal routers. Each eBGP speaking router has an iBGP session with every other BGP router in the AS, so that it can send updates about the routes it learns.</p>
+</section>
+<section id="ibgp-vs-igp">
+<h3>(13) iBGP vs IGP<a class="headerlink" href="#ibgp-vs-igp" title="Permalink to this heading"></a></h3>
+<p>iBGP is not another IGP-like protocol like RIP or OSPF. IGP-like protocols are used to establish paths between the internal routers of an AS based on specific costs within the AS. In contrast, iBGP is only used to disseminate external routes within the AS.</p>
+</section>
+<section id="bgp-decision-process-on-routers">
+<h3>(14) BGP Decision Process on Routers<a class="headerlink" href="#bgp-decision-process-on-routers" title="Permalink to this heading"></a></h3>
+<p>As BGP messages comes to a router, it follows some process to select routes.</p>
+<ul class="simple">
+<li><p>Receive: when the router receives incoming BGP advertisements, it applies import policies to exclude routes entirely from further consideration</p></li>
+<li><p>Decision: the router implements the decision process to select the best routes that reflect the policy in place. A router compares a pair of routes, by going through the list of attributes as follows,</p>
+<ul>
+<li><p>Highest Local Performance (LocalPref): local</p></li>
+<li><p>Lowest AS Path Length: neighbor</p></li>
+<li><p>Lowest Origin Type: neither</p></li>
+<li><p>Lowest Multi-Exit Discriminator (MED): neighbor</p></li>
+<li><p>eBGP-learned over iBGP-learned: neigher</p></li>
+<li><p>Lowest IGP Cost to Border Router: local</p></li>
+<li><p>Lowest Router ID for breaking ties: neigher</p></li>
+</ul>
+</li>
+<li><p>Export: the router decides which neighbors to export the route to by applying the export policy</p></li>
+</ul>
+<p>Note <code class="docutils literal notranslate"><span class="pre">local</span></code>, <code class="docutils literal notranslate"><span class="pre">neighbor</span></code>, and <code class="docutils literal notranslate"><span class="pre">neigher</span></code> means where the attributes are controlled.</p>
+<ul class="simple">
+<li><p>local: locally by the AS</p></li>
+<li><p>neighbor: by the neighboring AS</p></li>
+<li><p>neigher: set by the protocol</p></li>
+</ul>
+<p>Here, let’s look into two of the attributes: highest <code class="docutils literal notranslate"><span class="pre">LocalPref</span></code> and lowest <code class="docutils literal notranslate"><span class="pre">MED</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">LocalPerf</span></code>: this atribute is used to perfer routes from a specific AS due to peering or business. In practice, there may be the following scheme in place, to reflect the business relationships,</p>
+<ul>
+<li><p>Customer: <code class="docutils literal notranslate"><span class="pre">LocalPerf</span> <span class="pre">=</span> <span class="pre">90</span> <span class="pre">~</span> <span class="pre">99</span></code></p></li>
+<li><p>Peer: <code class="docutils literal notranslate"><span class="pre">LocalPerf</span> <span class="pre">=</span> <span class="pre">80</span> <span class="pre">~</span> <span class="pre">89</span></code></p></li>
+<li><p>Provider: <code class="docutils literal notranslate"><span class="pre">LocalPerf</span> <span class="pre">=</span> <span class="pre">70</span> <span class="pre">~</span> <span class="pre">79</span></code></p></li>
+<li><p>Backup Links: <code class="docutils literal notranslate"><span class="pre">LocalPerf</span> <span class="pre">=</span> <span class="pre">60</span> <span class="pre">~</span> <span class="pre">69</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MED</span></code>: this attribute is used by ASes connected by multiple links (the same route) to designate which of those links are preferred for inbound traffic. For example, if AS <code class="docutils literal notranslate"><span class="pre">A</span></code> advertise links to AS <code class="docutils literal notranslate"><span class="pre">B</span></code> (route: A -&gt; B) through the border routers <code class="docutils literal notranslate"><span class="pre">R1</span></code> and <code class="docutils literal notranslate"><span class="pre">R2</span></code>. Then it can assign different <code class="docutils literal notranslate"><span class="pre">MED</span></code> value to these two links and <code class="docutils literal notranslate"><span class="pre">B</span></code> will select the link with a lower <code class="docutils literal notranslate"><span class="pre">MED</span></code> as its route.</p></li>
+</ul>
+</section>
+<section id="bgp-limitations">
+<h3>(15) BGP Limitations<a class="headerlink" href="#bgp-limitations" title="Permalink to this heading"></a></h3>
+<p>There are two major limitations for BGP in practice,</p>
+<ul class="simple">
+<li><p>Faults</p></li>
+<li><p>Misconfigurations</p></li>
+</ul>
+<p>A possible misconfig can largely impact route instability, router processor and memory overloading, outages, and router failures.</p>
+<p>There are also some solutions to these limitations,</p>
+<ul class="simple">
+<li><p>Solution 1: limiting routing table size using filtering or configuring default routes</p></li>
+<li><p>Solution 2: limiting the number of route changes by limiting the propagation of unstable routes using a technique called <strong>flap damping</strong></p></li>
+</ul>
+</section>
+<section id="flap-damping">
+<h3>(16) Flap Damping<a class="headerlink" href="#flap-damping" title="Permalink to this heading"></a></h3>
+<p>AS will track the number of updates to a specific prefix over a certain amount of time. If the tracked value reaches a configurable value, the AS can suppress that route until a later time. Because this can affect reachability, an AS can also be strategic about how it uses this technique for certain prefixes.</p>
+</section>
+</section>
+<section id="peering-through-ixps">
+<h2>3. Peering Through IXPs<a class="headerlink" href="#peering-through-ixps" title="Permalink to this heading"></a></h2>
+<section id="as-peering">
+<h3>(1) AS Peering<a class="headerlink" href="#as-peering" title="Permalink to this heading"></a></h3>
+<p>Commonly, there are two ways for peering ASes,</p>
+<ul class="simple">
+<li><p>Directly: two ASes can directly peer to each other</p></li>
+<li><p>IXP as a Mediation: ASes can also peer at IXPs</p></li>
+</ul>
+</section>
+<section id="architecture-of-ixp">
+<h3>(2) Architecture of IXP<a class="headerlink" href="#architecture-of-ixp" title="Permalink to this heading"></a></h3>
+<p>As we have said, IXPs are physical infras consisted of,</p>
+<ul class="simple">
+<li><p>switches</p></li>
+<li><p>routers</p></li>
+<li><p>redundant switching fabric: for fault-tolerance</p></li>
+</ul>
+<p>Typically, the IXPs are localed large data centers. There are also some other services provided in the data center,</p>
+<ul class="simple">
+<li><p>power backup</p></li>
+<li><p>cooling system</p></li>
+<li><p>monitoring</p></li>
+<li><p>security</p></li>
+</ul>
+<p>For fault tolerance, some nodes in the IXP will be core of the infrastructure and there are also some additional sites in different facilities.</p>
+</section>
+<section id="ixps-properties">
+<h3>(3) IXPs Properties<a class="headerlink" href="#ixps-properties" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>interconnection hubs to handle large traffic volumes</p></li>
+<li><p>mitigating DDoS attacks</p></li>
+<li><p>real-world infra with researching opportunities</p></li>
+<li><p>active marketplace for tech innovations</p></li>
+</ul>
+</section>
+<section id="as-peering-procedure-through-ixp">
+<h3>(4) AS Peering Procedure (through IXP)<a class="headerlink" href="#as-peering-procedure-through-ixp" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Participating AS brings a router to IXP</p></li>
+<li><p>Connect a port of the router to IXP switch</p></li>
+<li><p>Config the router to run BGP</p></li>
+<li><p>Participating AS agrees to IXP’s General Terms and Conditions (GTC)</p></li>
+</ul>
+<p>In this process, the following costs will be calculated,</p>
+<ul class="simple">
+<li><p>one-time cost for establishing a circuit</p></li>
+<li><p>monthly charge for using a chosen IXP port</p></li>
+<li><p>possibly an annual fee for membership of IXP</p></li>
+</ul>
+<p>Depending on the IXP, the time it takes to establish a public peering link can range from a few days to a couple of weeks.</p>
+</section>
+<section id="incentives-to-use-ixps">
+<h3>(5) Incentives to Use IXPs<a class="headerlink" href="#incentives-to-use-ixps" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Keeping local traffic local</p></li>
+<li><p>Lower cost</p></li>
+<li><p>Improve network service and reduce delay</p></li>
+<li><p>Big CP requires to be present in a specific IXP in order for peering</p></li>
+</ul>
+</section>
+<section id="ixp-services">
+<h3>(6) IXP Services<a class="headerlink" href="#ixp-services" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Public peering</p></li>
+<li><p>Private peering</p></li>
+<li><p>Route servers and Service level agreements</p></li>
+<li><p>Remote peering through resellers</p></li>
+<li><p>Mobile peering</p></li>
+<li><p>DDoS blackholing</p></li>
+<li><p>Free value-added services</p></li>
+</ul>
+</section>
+<section id="bi-lateral-bgp-session">
+<h3>(7) Bi-lateral BGP Session<a class="headerlink" href="#bi-lateral-bgp-session" title="Permalink to this heading"></a></h3>
+<p>Bi-lateral BGP session refers to two ASes exchange traffic through the switching fabric was utilizing a two-way BGP session. This is commonly not scalable.</p>
+</section>
+<section id="multi-lateral-bgp-session">
+<h3>(8) Multi-lateral BGP Session<a class="headerlink" href="#multi-lateral-bgp-session" title="Permalink to this heading"></a></h3>
+<p>To mitigate the bi-lateral traffic, IXPs operate a <strong>route server (RS)</strong> that helps with following functions,</p>
+<ul class="simple">
+<li><p><strong>Collect ASN info</strong>: Collects and shares routing information from its peers or participants that connects with</p></li>
+<li><p><strong>Make BGP decisions</strong>: Executes it’s own BGP decision process and also re-advertise the resulting information to all RS’s peer routers</p></li>
+</ul>
+<p>This is called a <strong>multi-lateral BGP</strong> peering session which is essentially an RS that facilitates and manages how multiple ASes can talk on the control plane simultaneously.</p>
+</section>
+<section id="rs-architecture">
+<h3>(9) RS architecture<a class="headerlink" href="#rs-architecture" title="Permalink to this heading"></a></h3>
+<p>The router server maintains,</p>
+<ul class="simple">
+<li><p>AS-specific <strong>Routing Information Bases (RIBs)</strong> to keep track of the individual BGP sessions</p></li>
+<li><p>Two types of route filters</p>
+<ul>
+<li><p>Import filters: each AS only advertises routes that it should advertise</p></li>
+<li><p>Export filters: restrict the set of other IXP member ASes that receive their routes</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="multi-lateral-peering-process">
+<h3>(10) Multi-lateral Peering Process<a class="headerlink" href="#multi-lateral-peering-process" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Step 1 (AS to RS): AS <code class="docutils literal notranslate"><span class="pre">X</span></code> advertise prefix <code class="docutils literal notranslate"><span class="pre">p</span></code> to RS, and it is added to RS’s <code class="docutils literal notranslate"><span class="pre">X</span></code> specific RIB</p></li>
+<li><p>Step 2 (on RS): applying peer-specific import filter to check whether AS <code class="docutils literal notranslate"><span class="pre">X</span></code> is allowed to advertise <code class="docutils literal notranslate"><span class="pre">p</span></code>. If allowed, add <code class="docutils literal notranslate"><span class="pre">p</span></code> to master RIB</p></li>
+<li><p>Step 3 (on RS): applying peer-specific export filter to check if AS <code class="docutils literal notranslate"><span class="pre">X</span></code> allows AS <code class="docutils literal notranslate"><span class="pre">Z</span></code> to receive <code class="docutils literal notranslate"><span class="pre">p</span></code>. If true, add <code class="docutils literal notranslate"><span class="pre">p</span></code> to RS’s <code class="docutils literal notranslate"><span class="pre">Z</span></code> specific RIB</p></li>
+</ul>
+<p>Now, RS advertises <code class="docutils literal notranslate"><span class="pre">p</span></code> to AS <code class="docutils literal notranslate"><span class="pre">Z</span></code> with AS <code class="docutils literal notranslate"><span class="pre">X</span></code> as the next hop.</p>
+</section>
+</section>
+</section>
+
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note5.html" class="btn btn-neutral float-left" title="Computer Network 5 | Distance Vector Implementation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note7.html" class="btn btn-neutral float-right" title="Computer Network 7 ｜ Implement MiniNet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
