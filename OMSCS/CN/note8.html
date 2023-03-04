@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computer Network 8 | Router Design and Algorithms &mdash; serenefield-sphinx  documentation</title>
+  <title>Computer Network 8 | Introduction to Routers and Prefix Match &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -71,7 +71,30 @@
 <li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7 ｜ Implement MiniNet</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 8 | Router Design and Algorithms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 8 | Introduction to Routers and Prefix Match</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-routers">1. Introduction to Routers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#router-components">(1) Router Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#control-plane-vs-data-plane">(2) Control Plane vs Data Plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#functions-of-control-plane">(3) Functions of Control Plane</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#router-architecture">(4) Router Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switching-via-memory">(5) Switching via Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch-via-bus">(6) Switch via Bus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#switch-via-crossbar">(7) Switch via Crossbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#router-bottlenecks">(8) Router Bottlenecks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#prefix-match-algorithm">2. Prefix Match Algorithm</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reason-for-prefix-match">(1) Reason for Prefix Match</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#prefix-notation">(2) Prefix Notation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reason-for-longest-prefix-match">(3) Reason for Longest Prefix Match</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unibit-tries-for-longest-prefix-match">(4) Unibit Tries for Longest Prefix Match</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problem-of-unibit-tries">(5) Problem of Unibit Tries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multibit-tries">(6) Multibit Tries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fixed-length-stride-vs-variable-length-stride">(7) Fixed Length Stride vs Variable Length Stride</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
@@ -103,7 +126,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
-      <li class="breadcrumb-item active">Computer Network 8 | Router Design and Algorithms</li>
+      <li class="breadcrumb-item active">Computer Network 8 | Introduction to Routers and Prefix Match</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note8.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,8 +136,256 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="computer-network-8-router-design-and-algorithms">
-<h1>Computer Network 8 | Router Design and Algorithms<a class="headerlink" href="#computer-network-8-router-design-and-algorithms" title="Permalink to this heading"></a></h1>
+  <section id="computer-network-8-introduction-to-routers-and-prefix-match">
+<h1>Computer Network 8 | Introduction to Routers and Prefix Match<a class="headerlink" href="#computer-network-8-introduction-to-routers-and-prefix-match" title="Permalink to this heading"></a></h1>
+<section id="introduction-to-routers">
+<h2>1. Introduction to Routers<a class="headerlink" href="#introduction-to-routers" title="Permalink to this heading"></a></h2>
+<section id="router-components">
+<h3>(1) Router Components<a class="headerlink" href="#router-components" title="Permalink to this heading"></a></h3>
+<p>The router’s basic function - <strong>forwarding</strong> is implemented in its hardware. The main components of a router are,</p>
+<ul class="simple">
+<li><p>input ports</p>
+<ul>
+<li><p>physically <strong>terminate</strong> the incoming links to router</p></li>
+<li><p><strong>data link processing</strong> unit decapsulates the packets and the implementation of the protocols</p></li>
+<li><p>perform the <strong>lookup</strong> function to the proper output port</p></li>
+</ul>
+</li>
+<li><p>output ports</p>
+<ul>
+<li><p>receive and queue the packets from fabric and send over the outgoing link</p></li>
+</ul>
+</li>
+<li><p>switching fabric</p>
+<ul>
+<li><p>moves the packets from input to output ports</p></li>
+<li><p>there are three types of switching fabrics</p>
+<ul>
+<li><p>memory</p></li>
+<li><p>bus</p></li>
+<li><p>crossbar</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>routing processor</p>
+<ul>
+<li><p>for running the routing and management softwares called control plane</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="control-plane-vs-data-plane">
+<h3>(2) Control Plane vs Data Plane<a class="headerlink" href="#control-plane-vs-data-plane" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Control plane</strong> is the collection of softwares executed on the routing processor</p></li>
+<li><p><strong>Data plane</strong> is the underlying collection of hardwares includes i/o ports and switch fabric</p></li>
+</ul>
+</section>
+<section id="functions-of-control-plane">
+<h3>(3) Functions of Control Plane<a class="headerlink" href="#functions-of-control-plane" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>implementing routing protocols</p></li>
+<li><p>maintaining routing tables</p></li>
+<li><p>computing forwarding table</p></li>
+</ul>
+<p>These functions is implemented in the softwares in the routing processor, or the remote controller of an SDN.</p>
+</section>
+<section id="router-architecture">
+<h3>(4) Router Architecture<a class="headerlink" href="#router-architecture" title="Permalink to this heading"></a></h3>
+<p>Let’s look at what happens when a packet arrives at an input link. Here are the three most time-sensitive tasks,</p>
+<ul class="simple">
+<li><p>Lookup: router looks up destIP at forwarding table (or Forwarding Information Base or <strong>FIB</strong>) and determine the output link</p>
+<ul>
+<li><p>FIBs are mappings of prefix to output links</p></li>
+<li><p>To resolve disambiguities, routers use the <strong>longest prefix match</strong> algorithm</p></li>
+</ul>
+</li>
+<li><p>Switch: router transfers the packet from the input link to the output link using crossbar</p>
+<ul>
+<li><p>Scheduling is important in this step</p></li>
+</ul>
+</li>
+<li><p>Queue: router maintains an FIFO queue (or more complex) at the output port</p></li>
+</ul>
+<p>There are also some less time-sensitive tasks,</p>
+<ul class="simple">
+<li><p>Header validation and checksum</p>
+<ul>
+<li><p>checks the packet’s version number</p></li>
+<li><p>decrements the time-to-live (TTL) field</p></li>
+<li><p>recalculates the header checksum</p></li>
+</ul>
+</li>
+<li><p>Route processing: router build forwarding tables using the following protocols,</p>
+<ul>
+<li><p>RIP</p></li>
+<li><p>OSPF</p></li>
+<li><p>BGP</p></li>
+</ul>
+</li>
+<li><p>Protocol processing: router implement functions using the following protocols,</p>
+<ul>
+<li><p>simple network management protocol (SNMP) for monitoring</p></li>
+<li><p>TCP and UDP</p></li>
+<li><p>Internet control message protocol (ICMP) for error messages</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="switching-via-memory">
+<h3>(5) Switching via Memory<a class="headerlink" href="#switching-via-memory" title="Permalink to this heading"></a></h3>
+<p>Now let’s talk about switching fabric. We have discussed that there are three types of switching fabric and let’s first look into switching via memory. This switch has the following steps,</p>
+<ul class="simple">
+<li><p>input port interrupts routing processor when receiving a packet and the packet is copied in the processor’s memory</p></li>
+<li><p>processor extracts the destination address and looks into the forward table to find the output port</p></li>
+<li><p>finally the packet is copied into that output port’s buffer</p></li>
+</ul>
+</section>
+<section id="switch-via-bus">
+<h3>(6) Switch via Bus<a class="headerlink" href="#switch-via-bus" title="Permalink to this heading"></a></h3>
+<p>If switch via bus, there will be no participation of the processor.</p>
+<ul class="simple">
+<li><p>input port puts an internal header that designates the output port via lookup when receiving a packet, then it sends the packet to the shared bus</p></li>
+<li><p>all the ports will receive the packet, but only the designated one will keep it</p></li>
+<li><p>designated output port removes internal header and the packet is copied into that output port’s buffer</p></li>
+</ul>
+<p>Because only one packet can cross the bus at a given time, and so the speed of the bus limits the speed of the router. In order to solve this issue, we have the crossbar for switching.</p>
+</section>
+<section id="switch-via-crossbar">
+<h3>(7) Switch via Crossbar<a class="headerlink" href="#switch-via-crossbar" title="Permalink to this heading"></a></h3>
+<p>A crossbar is actually a mesh of buses. It connects <code class="docutils literal notranslate"><span class="pre">N</span></code> input ports to <code class="docutils literal notranslate"><span class="pre">N</span></code> output ports using <code class="docutils literal notranslate"><span class="pre">2N</span></code> buses. As long as packets are using different input and output ports, a crossbar network can carry multiple packets at the same time.</p>
+</section>
+<section id="router-bottlenecks">
+<h3>(8) Router Bottlenecks<a class="headerlink" href="#router-bottlenecks" title="Permalink to this heading"></a></h3>
+<p>The fundamental problem of a router is the speed limition problem. Routers have limitations at,</p>
+<ul class="simple">
+<li><p>Bandwidth and Internet population scaling</p></li>
+<li><p>Services at high speeds</p></li>
+</ul>
+<p>These limitations are caused by several bottlenecks for the routers,</p>
+<ul class="simple">
+<li><p>exact lookups</p></li>
+<li><p>prefix lookups</p></li>
+<li><p>packet classification</p></li>
+<li><p>switching</p></li>
+<li><p>fair queuing</p></li>
+<li><p>internal bandwidth</p></li>
+<li><p>measurement</p></li>
+<li><p>security</p></li>
+</ul>
+</section>
+</section>
+<section id="prefix-match-algorithm">
+<h2>2. Prefix Match Algorithm<a class="headerlink" href="#prefix-match-algorithm" title="Permalink to this heading"></a></h2>
+<section id="reason-for-prefix-match">
+<h3>(1) Reason for Prefix Match<a class="headerlink" href="#reason-for-prefix-match" title="Permalink to this heading"></a></h3>
+<p>Because the Internet continues to grow both in terms of networks (AS numbers) and IP addresses. One of the challenges that a router faces is the scalability problem. One way to help with the scalability problem is to “group” multiple IP addresses by the same prefix.</p>
+</section>
+<section id="prefix-notation">
+<h3>(2) Prefix Notation<a class="headerlink" href="#prefix-notation" title="Permalink to this heading"></a></h3>
+<p>There are typically three ways for prefix notation. For example, with a binary prefix</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1000010011101010</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">*</span></code> indicates wildcard character to say that the remaining bits do not matter.</p>
+<ul class="simple">
+<li><p>dot decimal:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">10000100</span> <span class="pre">-&gt;</span> <span class="pre">132</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">11101010</span> <span class="pre">-&gt;</span> <span class="pre">234</span></code></p></li>
+<li><p>So <code class="docutils literal notranslate"><span class="pre">132.234</span></code></p></li>
+</ul>
+</li>
+<li><p>slash notation:</p>
+<ul>
+<li><p>format: Address/Length</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">132.234.0.0/16</span></code> where 16 denotes that only the first 16 bits are relevant for prefixing</p></li>
+</ul>
+</li>
+<li><p>masking:</p>
+<ul>
+<li><p>only the bits value = 1 in the <code class="docutils literal notranslate"><span class="pre">MASK</span></code> are relevant for prefixing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IP=123.234.0.0,</span> <span class="pre">MASK=255.255.0.0</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="reason-for-longest-prefix-match">
+<h3>(3) Reason for Longest Prefix Match<a class="headerlink" href="#reason-for-longest-prefix-match" title="Permalink to this heading"></a></h3>
+<p>In 1993, Classless Internet Domain Routing (CIDR) protocol allowed us to use arbitrary-length prefixes and it largely decrease the router table size.</p>
+<p>However, at the same time, we have to decide the longest prefix match for looking up or we will get multiple results.</p>
+</section>
+<section id="unibit-tries-for-longest-prefix-match">
+<h3>(4) Unibit Tries for Longest Prefix Match<a class="headerlink" href="#unibit-tries-for-longest-prefix-match" title="Permalink to this heading"></a></h3>
+<p>Let’s use the following example to see the unibit tries algorithm. Suppose we have the following 9 prefixes,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="mi">101</span><span class="o">*</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="mi">111</span><span class="o">*</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="mi">11001</span><span class="o">*</span>
+<span class="n">p4</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span>
+<span class="n">p5</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span>
+<span class="n">p6</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">*</span>
+<span class="n">p7</span> <span class="o">=</span> <span class="mi">100000</span><span class="o">*</span>
+<span class="n">p8</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span>
+<span class="n">p9</span> <span class="o">=</span> <span class="mi">110</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>The following figure shows a unibit trie using the prefixes above,</p>
+<p><img alt="" src="https://i.imgur.com/ZYR22tF.png" /></p>
+<p>We use the following steps to perform a longest prefix match,</p>
+<ul class="simple">
+<li><p>begin by tracing the trie path</p></li>
+<li><p>continue the search until we fail</p></li>
+<li><p>when we fail, the last known successful prefix traced in the path is our match</p></li>
+</ul>
+<p>Now let’s see some examples,</p>
+<ul class="simple">
+<li><p>The longest prefix match for <code class="docutils literal notranslate"><span class="pre">111*</span></code> is <code class="docutils literal notranslate"><span class="pre">p2</span></code> because we goes three right</p></li>
+<li><p>The longest prefix match for <code class="docutils literal notranslate"><span class="pre">11011*</span></code> is <code class="docutils literal notranslate"><span class="pre">p9</span></code> because <code class="docutils literal notranslate"><span class="pre">p3</span></code> has the 4th bit not match</p></li>
+<li><p>The longest prefix match for <code class="docutils literal notranslate"><span class="pre">10*</span></code> is <code class="docutils literal notranslate"><span class="pre">p4</span></code> because <code class="docutils literal notranslate"><span class="pre">p1</span></code>, <code class="docutils literal notranslate"><span class="pre">p6</span></code>, <code class="docutils literal notranslate"><span class="pre">p7</span></code>, <code class="docutils literal notranslate"><span class="pre">p8</span></code> must come with more bits</p></li>
+</ul>
+<p>There are also two final notes on the <strong>unibit trie</strong>,</p>
+<ul class="simple">
+<li><p>prefix stored in node (e.g. <code class="docutils literal notranslate"><span class="pre">p4</span></code> and <code class="docutils literal notranslate"><span class="pre">p6</span></code>): when the prefix is the substring of another prefix, then the smaller prefix should be stored in a node along the path</p></li>
+<li><p>one-way branch (e.g. <code class="docutils literal notranslate"><span class="pre">p3</span></code> and <code class="docutils literal notranslate"><span class="pre">p7</span></code>): numbers in a circle means we don’t have another other options branch and we have to go that way</p></li>
+</ul>
+</section>
+<section id="problem-of-unibit-tries">
+<h3>(5) Problem of Unibit Tries<a class="headerlink" href="#problem-of-unibit-tries" title="Permalink to this heading"></a></h3>
+<p>The biggest problem for unibit tries is the number of <strong>memory accesses</strong> that it requires to perform a lookup.</p>
+<p>For example, for 32 bit addresses, we can see that looking up the address in a unibit trie might require 32 memory accesses in the worst case (when we go through 32 nodes). Assuming a 60 nsec latency, the worst case search time is 1.92 microseconds. This could be very inefficient in high speed links.</p>
+<p>One solution is to put multiple bits into one node. For example, if we put three bits into one node, then the worst case for a 32 bit address system requires 11 memory accesses. This is called <strong>multibit tries</strong>.</p>
+<p>The number of bits that we check at each step is called <strong>stride</strong>.</p>
+</section>
+<section id="multibit-tries">
+<h3>(6) Multibit Tries<a class="headerlink" href="#multibit-tries" title="Permalink to this heading"></a></h3>
+<p>Let’s review the prefixes above and now we have the following prefixes if we use <code class="docutils literal notranslate"><span class="pre">stride</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span>  <span class="o">=</span> <span class="mi">101</span><span class="o">*</span>
+<span class="n">p2</span>  <span class="o">=</span> <span class="mi">111</span><span class="o">*</span>
+<span class="n">p31</span> <span class="o">=</span> <span class="mi">110010</span><span class="o">*</span>
+<span class="n">p32</span> <span class="o">=</span> <span class="mi">110011</span><span class="o">*</span>
+<span class="n">p51</span> <span class="o">=</span> <span class="mi">000</span><span class="o">*</span>
+<span class="n">p52</span> <span class="o">=</span> <span class="mi">001</span><span class="o">*</span>
+<span class="n">p53</span> <span class="o">=</span> <span class="mi">010</span><span class="o">*</span>
+<span class="n">p54</span> <span class="o">=</span> <span class="mi">011</span><span class="o">*</span>
+<span class="n">p61</span> <span class="o">=</span> <span class="mi">100001</span><span class="o">*</span>
+<span class="n">p62</span> <span class="o">=</span> <span class="mi">100010</span><span class="o">*</span>
+<span class="n">p63</span> <span class="o">=</span> <span class="mi">100011</span><span class="o">*</span>
+<span class="n">p7</span>  <span class="o">=</span> <span class="mi">100000</span><span class="o">*</span>
+<span class="n">p8</span>  <span class="o">=</span> <span class="mi">100</span><span class="o">*</span>
+<span class="n">p9</span>  <span class="o">=</span> <span class="mi">110</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>With this expansion, we can then have a multibit trie has a worst case of only 11 memory access.</p>
+<p><img alt="" src="https://i.imgur.com/X7tIiTn.png" /></p>
+<p>Here we can find the same result if we check for <code class="docutils literal notranslate"><span class="pre">111*</span></code> and <code class="docutils literal notranslate"><span class="pre">11011*</span></code>.</p>
+</section>
+<section id="fixed-length-stride-vs-variable-length-stride">
+<h3>(7) Fixed Length Stride vs Variable Length Stride<a class="headerlink" href="#fixed-length-stride-vs-variable-length-stride" title="Permalink to this heading"></a></h3>
+<p>Based on the stride length, we can have two flavors of multibit tries. The case above is a <strong>fixed-stride trie</strong> of length 3 so every node has 3 bits.</p>
+<p>Note that in the case above, we don’t have prefix <code class="docutils literal notranslate"><span class="pre">p4</span></code> and if we want to include this prefix, we need to use a variable-stride tree.</p>
+</section>
+</section>
 </section>
 
 
