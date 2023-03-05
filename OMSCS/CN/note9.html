@@ -18,9 +18,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
-    <link rel="prev" title="Computer Network 8 | Introduction to Routers and Prefix Match" href="note8.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,55 +60,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#packet-classification">1. Packet Classification</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#reasons-for-packet-classification">(1) Reasons for Packet Classification</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#variants-of-packet-classification">(2) Variants of Packet Classification</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-simple-solution-1-linear-search">(3) Packet Classification Simple Solution 1: Linear Search</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-simple-solution-2-caching">(4) Packet Classification Simple Solution 2: Caching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-simple-solution-3-passing-labels">(5) Packet Classification Simple Solution 3: Passing Labels</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-fast-solution-1-set-pruning-tries">(6) Packet Classification Fast Solution 1: Set-Pruning Tries</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-fast-solution-2-backtracking">(6) Packet Classification Fast Solution 2: Backtracking</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#packet-classification-fast-solution-3-grid-of-tries">(7) Packet Classification Fast Solution 3: Grid of Tries</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#packet-scheduling">2. Packet Scheduling</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#reasons-for-scheduling">(1) Reasons for Scheduling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scheduling-algorithm-1-take-a-ticket-algorithm">(2) Scheduling Algorithm 1: Take a Ticket Algorithm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#problem-of-take-a-ticket-head-of-line-hol-blocking">(3) Problem of Take a Ticket: Head of Line (HOL) Blocking</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hol-avoidance-solution-1-faster-fabric">(4) HOL Avoidance Solution 1: Faster Fabric</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hol-avoidance-solution-2-parallel-iterative-matching">(5) HOL Avoidance Solution 2: Parallel Iterative Matching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#scheduling-algorithm-2-fifo-with-tail-drop">(6) Scheduling Algorithm 2: FIFO with Tail Drop</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#quality-of-service-qos">(7) Quality of Service (QoS)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#reasons-for-complex-scheduling-algorithms">(8) Reasons for Complex Scheduling Algorithms</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fifo-with-tail-drop-vs-round-robin">(9) FIFO with Tail Drop vs Round Robin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#complex-scheduling-algorithm-1-1-bit-by-bit-round-robin">(9) Complex Scheduling Algorithm 1-1: Bit-by-bit Round Robin</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#complex-scheduling-algorithm-1-2-packet-level-fair-queuing">(10) Complex Scheduling Algorithm 1-2: Packet-level Fair Queuing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#complex-scheduling-algorithm-2-deficit-round-robin-drr">(11) Complex Scheduling Algorithm 2: Deficit Round Robin (DRR)</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#traffic-scheduling">3. Traffic Scheduling</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#reasons-for-traffic-scheduling">(1) Reasons for Traffic Scheduling</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#traffic-policing">(2) Traffic Policing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#traffic-shaping">(3) Traffic Shaping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#traffic-scheduling-approach-1-token-bucket-shaping">(4) Traffic Scheduling Approach 1: Token Bucket Shaping</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#traffic-scheduling-approach-1-token-bucket-policing">(5) Traffic Scheduling Approach 1: Token Bucket Policing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#traffic-scheduling-approach-2-leaky-bucket">(6) Traffic Scheduling Approach 2: Leaky Bucket</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">💻  Computer Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
 </ul>
@@ -139,7 +90,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
       <li class="breadcrumb-item active">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note9.md.txt" rel="nofollow"> View page source</a>
@@ -445,10 +395,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="note8.html" class="btn btn-neutral float-left" title="Computer Network 8 | Introduction to Routers and Prefix Match" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
