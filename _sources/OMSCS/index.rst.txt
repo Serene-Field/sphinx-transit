@@ -13,8 +13,10 @@
    CN/note7
    CN/note8
    CN/note9
+
    .. class:: hidden 
       CN/note10
+      
    CN/note11
  
 💻  High Performance Computing
