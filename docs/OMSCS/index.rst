@@ -8,7 +8,10 @@
    CN/note2
    CN/note3
    CN/note4
-   CN/note5
+
+   .. class:: hidden
+      CN/note5
+      
    CN/note6
    CN/note7
    CN/note8
