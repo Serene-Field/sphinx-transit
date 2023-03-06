@@ -165,32 +165,55 @@
 </section>
 <section id="transport-layer">
 <h2>2. Transport Layer<a class="headerlink" href="#transport-layer" title="Permalink to this heading"></a></h2>
-<section id="id1">
-<h3>(1)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="sockets">
+<h3>(1) Sockets<a class="headerlink" href="#sockets" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>TCP and UDP have almost different functionalities</p></li>
-<li><p>A transport layer protocol provides for logical communication between application processes running on different hosts.</p></li>
 <li><p>An application running on a host can bind to multiple sockets simultaneously</p></li>
 <li><p>A host can maintain a TCP socket and a UDP socket simutaneously</p></li>
+</ul>
+</section>
+<section id="udp">
+<h3>(2) UDP<a class="headerlink" href="#udp" title="Permalink to this heading"></a></h3>
+<ul class="simple">
 <li><p>The identifier of a UDP socket is a 2-item tuple of destination IP address and port</p></li>
-<li><p>The identifier of a TCP socket is a 4-item tuple of source IP address and port, and destination IP address and port.</p></li>
 <li><p>UDP is considered more lightweight than TCP</p></li>
-<li><p>When two hosts use TCP to send and receive messages, they need to signal the end of sending data to each other when they are done</p></li>
-<li><p>TCP and UDP offers basic error checking by 1’s complement for checksums</p></li>
 <li><p>UDP doesn’t offer the function to increase or decrease the pace with which the sender sends data to the receiver.</p></li>
 <li><p>Assume hosts A, B, C. Host A has a UDP socket with port 123. Host B and C each send their own UDP segment to host A. Host B and C can still use the same destination port 123 for sending UDP segment.</p></li>
+<li><p>UDP does not have a mechanism used to estimate the RTT between the sender and the receiver.</p></li>
+</ul>
+</section>
+<section id="tcp">
+<h3>(3) TCP<a class="headerlink" href="#tcp" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>A transport layer protocol provides for logical communication between application processes running on different hosts.</p></li>
+<li><p>TCP and UDP have almost different functionalities</p></li>
+<li><p>TCP and UDP offers basic error checking by 1’s complement for checksums</p></li>
+<li><p>The identifier of a TCP socket is a 4-item tuple of source IP address and port, and destination IP address and port.</p></li>
+<li><p>When two hosts use TCP to send and receive messages, they need to signal the end of sending data to each other when they are done</p></li>
 <li><p>TCP offers in-order delivery of the packets, flow control, and congestion control</p></li>
 <li><p>TCP detects packet loss using timeouts and triple duplicate acknowledges</p></li>
+<li><p>TCP provides a mechanism to estimate the RTT between the sender and the receiver.</p></li>
+<li><p>TCP algorithm can switch from the congestion avoidance phase to slow start</p></li>
 <li><p>Consider TCP, after the sender receives the 3rd duplicate ACK,</p>
 <ul>
 <li><p>the sender will resend the packet shown in the ACK</p></li>
 <li><p>the congestion window will be reduced to half</p></li>
 </ul>
 </li>
-<li><p>A triple duplicate ACKs event is considered a less severe indication of</p></li>
+<li><p>In TCP, a triple duplicate ACKs event is considered a less severe indication of timeout</p></li>
+</ul>
+</section>
+<section id="flow-control">
+<h3>(4) Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this heading"></a></h3>
+<ul class="simple">
 <li><p>Flow control is a rate control mechianism to protect the receiver’s buffer from overflowing</p></li>
-<li><p>Congestion control is a rate control mechanism to protect the network from congestion</p></li>
 <li><p>TCP receive window is designed to not overflow the receiver’s buffer</p></li>
+</ul>
+</section>
+<section id="congestion-control">
+<h3>(5) Congestion Control<a class="headerlink" href="#congestion-control" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Congestion control is a rate control mechanism to protect the network from congestion</p></li>
 <li><p>In TCP, the number of unacknowledged segments that a send can have is the minimum of congestion window and the receive window</p></li>
 <li><p>Consider TCP Reno,</p>
 <ul>
@@ -205,12 +228,370 @@
 <li><p>we can identify the time periods of slow start when the congestion window is increased exponentially per RTT from 1</p></li>
 </ul>
 </li>
+</ul>
+</section>
+<section id="tcp-cubic">
+<h3>(6) TCP Cubic<a class="headerlink" href="#tcp-cubic" title="Permalink to this heading"></a></h3>
+<ul class="simple">
 <li><p>TCP Cubic is designed for better network utilization</p></li>
 <li><p>TCP Cubic uses a cubic function to increase the congestion window</p></li>
 <li><p>TCP Cubic doesn’t increase the congestion window in every RTT.</p></li>
 <li><p>TCP Cubic has a congestion window growth independent of RTTs.</p></li>
 <li><p>TCP Cubic has a congestion window growth independent because CUBIC’s congestion window growth function depends on the real time between congestion events</p></li>
-<li></li>
+<li><p>The event that triggers the TCP algorithm to switch from the slow start to the congestion avoidance phase is the congestion window reaches a threshold.</p></li>
+</ul>
+</section>
+</section>
+<section id="network-layer">
+<h2>3. Network Layer<a class="headerlink" href="#network-layer" title="Permalink to this heading"></a></h2>
+<section id="intradomain-routing">
+<h3>(1) Intradomain Routing<a class="headerlink" href="#intradomain-routing" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>When we talk about route cost about the intradomain routing process, the following items can be the edge weights</p>
+<ul>
+<li><p>length of the cable</p></li>
+<li><p>time delay to traverse the link</p></li>
+<li><p>mometary dost</p></li>
+<li><p>link capacity</p></li>
+<li><p>current load on the link</p></li>
+</ul>
+</li>
+<li><p>Routing and forwarding are not interchangeable terms.</p></li>
+<li><p>Routing is network-wide which involves multiple routers</p></li>
+<li><p>Forwarding is router-wide which refers to send a packet from input link to the apporate output link in a router</p></li>
+<li><p>Consider a source and destination host. Before packets leave the source host, the host doesn’t need to define the path over which the packets will travel to reach the destionation host.</p></li>
+<li><p>Intradomain routing refers to routing that takes place among routers that belong to the same administrative domain.</p></li>
+<li><p>Routers can run different intradomain algorithm even when they are on the same path for a pair of hosts in different administrative domains</p></li>
+</ul>
+</section>
+<section id="link-state">
+<h3>(2) Link State<a class="headerlink" href="#link-state" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Upon termination of Dijkstra’s algorithm, all nodes in a network are aware of the entire network topology</p></li>
+<li><p>Dijkstra is a global algorithnm which is also referred to as a link-state algorithm</p></li>
+<li><p>Consider Link-State Routing Protocol,</p>
+<ul>
+<li><p>the network topology is known to all nodes.</p></li>
+<li><p>the goal is to compute the least-cost pathds from the source to every other node in the network</p></li>
+<li><p>when initialization, we have the initial least cost path for neighbors as the cost of the direct links, and non-neigbors as infinity</p></li>
+</ul>
+</li>
+<li><p>OSPF is based on the link state routing algorithm</p></li>
+<li><p>In the previous example, node u was the source node, and distances were calculated from u to each other node. Consider the same example, but let x be the source node. Notice that node x has more direct neighbors than u does. Suppose x is executing the linkstate algorithm as discussed, and has just finished the initialization step. Node x will execute the same number of iterations that node u did, as the number of immediate neighbors has no impact on the number of iterations the algorithm requires.
+<img alt="" src="https://i.imgur.com/qNDy3j8.png" /></p></li>
+<li><p>Consider the following topo, then decide the cost to all the nodes in from source <code class="docutils literal notranslate"><span class="pre">b</span></code>,
+<img alt="" src="https://i.imgur.com/4PbmRdg.png" /></p>
+<ul>
+<li><p>a: 3</p></li>
+<li><p>c: 4</p></li>
+<li><p>d: 6</p></li>
+<li><p>e: 8</p></li>
+<li><p>f: 9</p></li>
+</ul>
+</li>
+<li><p>Consider the following topo</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">----</span> <span class="mi">1</span> <span class="o">----</span> <span class="n">v</span> <span class="o">----</span> <span class="mi">1</span> <span class="o">----</span> <span class="n">w</span> <span class="o">----</span> <span class="mi">4</span> <span class="o">----</span> <span class="n">x</span>
+<span class="o">|</span>                           <span class="o">|</span>
+<span class="o">+</span> <span class="o">-----------</span> <span class="mi">3</span> <span class="o">-----------</span> <span class="o">+</span> 
+</pre></div>
+</div>
+<p>Then fill in blanks of the following table,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span>    <span class="n">N</span><span class="s1">&#39;        D(v),p(v)      D(w),p(w)      D(x),p(x)</span>
+<span class="mi">0</span>       <span class="n">u</span>         <span class="mi">1</span><span class="p">,</span><span class="n">u</span>            <span class="mi">3</span><span class="p">,</span><span class="n">u</span>            <span class="n">inf</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+<p>The solution is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Step</span>     <span class="n">N</span><span class="s1">&#39;        D(v),p(v)      D(w),p(w)      D(x),p(x)</span>
+<span class="mi">0</span>        <span class="n">u</span>         <span class="mi">1</span><span class="p">,</span><span class="n">u</span>            <span class="mi">3</span><span class="p">,</span><span class="n">u</span>            <span class="n">inf</span>
+<span class="mi">1</span>       <span class="n">u</span><span class="p">,</span><span class="n">v</span>        <span class="mi">1</span><span class="p">,</span><span class="n">u</span>            <span class="mi">2</span><span class="p">,</span><span class="n">v</span>            <span class="n">inf</span>
+<span class="mi">2</span>      <span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span>       <span class="mi">1</span><span class="p">,</span><span class="n">u</span>            <span class="mi">2</span><span class="p">,</span><span class="n">v</span>            <span class="mi">6</span><span class="p">,</span><span class="n">w</span>
+<span class="mi">3</span>     <span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">x</span>      <span class="mi">1</span><span class="p">,</span><span class="n">u</span>            <span class="mi">2</span><span class="p">,</span><span class="n">v</span>            <span class="mi">6</span><span class="p">,</span><span class="n">w</span>
+</pre></div>
+</div>
+</section>
+<section id="distance-vector">
+<h3>(3) Distance Vector<a class="headerlink" href="#distance-vector" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Distance vector algorithm continues iterating as long as neighbors send new updates to each other</p></li>
+<li><p>Distance vector is an example of decentralized algorithm</p></li>
+<li><p>Distance vector is an asynchronous algorithm which doesn’t require synchronization between routers</p></li>
+<li><p>Distance vector is a self-terminating algorithm with no signal to stop</p></li>
+<li><p>In distance vector routing algorithm, each node maintains and updates its own view of the network</p></li>
+<li><p>Consider the DV algorithm,</p>
+<ul>
+<li><p>the Bellman Ford equation is used by each node to update the node’s distance vector</p></li>
+<li><p>the distance vector, that each node maintains, is a table with costs to reach every node in the network.</p></li>
+</ul>
+</li>
+<li><p>The cause of count-to-infinity problem are routing loops</p></li>
+<li><p>The count-to-infinity problem states that a bad news (e.g. an increased link cost) propagates slowly among nodes in the network</p></li>
+<li><p>The poison reserve technique solves the count-to-infinity problems but not for topologies involving 3 or more nodes that are not directly connected</p></li>
+<li><p>RIP is based on distance vector protocol</p></li>
+</ul>
+</section>
+<section id="hot-potato">
+<h3>(4) Hot Potato<a class="headerlink" href="#hot-potato" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>There may be multiple egress points from an administrative domain to an external destination</p></li>
+<li><p>The number of egress points that a network has is unlimited</p></li>
+<li><p>The different egress points in a network that offer different paths to the same external destination can have the same cost</p></li>
+<li><p>According to the hot potato routing technique,</p>
+<ul>
+<li><p>it is in the network’s best interest to route the traffic so that it takes the closest exit out of the network.</p></li>
+<li><p>it is not in a network’s best interest to route the traffic if it exits the network at the router geographically closest to the one from which it entered the network</p></li>
+</ul>
+</li>
+<li><p>Hot potato routing always selects the cloest egress point based on inteadomain path cost rather than the egress point that is geographically closest to the ingress point.</p></li>
+<li><p>Suppose we have the following topo inside an AS with <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> are egresses.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-&gt;</span> <span class="n">S</span> <span class="o">----</span> <span class="mi">20</span> <span class="o">----&gt;</span> <span class="n">C</span> <span class="o">----</span> <span class="mi">31</span> <span class="o">----&gt;</span> <span class="n">D</span> <span class="o">----&gt;</span>  <span class="o">|</span>
+   <span class="o">|</span>                                        <span class="o">|</span> <span class="n">Neighbor</span> <span class="n">AS</span>
+   <span class="o">+</span> <span class="o">----</span> <span class="mi">50</span> <span class="o">----&gt;</span> <span class="n">A</span> <span class="o">--------------------&gt;</span>  <span class="o">|</span> 
+</pre></div>
+</div>
+<p>Then with hot potato routing, <code class="docutils literal notranslate"><span class="pre">S</span></code> will choose the path goes through egress <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</section>
+<section id="interdomain-routing">
+<h3>(5) Interdomain Routing<a class="headerlink" href="#interdomain-routing" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Interdomain routing refers to routing that takes place among routers that belong to different administrative domains.</p></li>
+<li><p>Internet topology has been envolving to an increasingly prominent flat structure</p></li>
+</ul>
+</section>
+<section id="autonomous-system">
+<h3>(6) Autonomous System<a class="headerlink" href="#autonomous-system" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>An AS operates in a single administrative domain</p></li>
+<li><p>An AS is a group of routers that operate under the same administrative domain</p></li>
+<li><p>A CDN ot an ISP can operate over multiple ASes.</p></li>
+<li><p>Two ASes are not required to find common ground in internal policies and traffic engineering approaches to form a peering agreement</p></li>
+<li><p>Suppose we have the following AS relationships, where C1, C2, C3 are customers of ISP-X and ISP-P is a provider of ISP-X. Then,
+<img alt="" src="https://i.imgur.com/2AvTBR0.png" /></p>
+<ul>
+<li><p>ISP-X has the incentive to advertise routes for C3 to Y</p></li>
+<li><p>ISP-X has no incentive to advertise routes for ISP-P’s customers to Y and Z</p></li>
+<li><p>Assume ISP-X learns multiple routs for the same external destination W. These multiple routes are advertised from C3, Y, and ISP-P. Then the rank of importing should be,</p>
+<ul>
+<li><p>routes from C3</p></li>
+<li><p>routes from Y</p></li>
+<li><p>routes from ISP-P</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>In a peering relationship, the traffic exchanged between two peers have to be symmetric so that there’s enough incentive</p></li>
+<li><p>The customer pays AS regardless of the direction of the traffic</p></li>
+<li><p>When a router receives multiple advertisements for the same destination, it prefers the routes it learns from the customer’s networks first</p></li>
+<li><p>Suppose that two peer routers have an open BGP session, it would trigger a router to terminate the session if the peer router is not sending KEEPALIVE messages within the specified keepalive timer.</p></li>
+</ul>
+</section>
+<section id="bgp">
+<h3>(7) BGP<a class="headerlink" href="#bgp" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>ASes implement their own set of policies, make their own traffic engineering decisions and interconnection strategies, and determine how traffic leaves and enters the network.</p></li>
+<li><p>AS has control over which routes are selected through attributes like <code class="docutils literal notranslate"><span class="pre">LocalPerf</span></code> and <code class="docutils literal notranslate"><span class="pre">MED</span></code></p></li>
+<li><p>An AS can use LocalPref to control which routers are used as exit points (for the outgoing traffic), and it can use the MED attribute to control which routers are used as entry points (for the incoming traffic).</p></li>
+<li><p>Once a router learns about a prefix from another router through eBGP, it needs to check the import policy before entering the path and update its Forwarding Information Base (FIB).</p></li>
+<li><p>A router within an AS decides which route to export by first applying import policies to exclude routes entirely from further consideration</p></li>
+<li><p>Consider the following topology
+<img alt="" src="https://i.imgur.com/itP1Foy.png" /></p>
+<ul>
+<li><p>R-A1 to R-A3 uses iBGP</p></li>
+<li><p>R-B1 to R-A3 uses eBGP</p></li>
+<li><p>After R-D2 learns a route to a destination in AS-A via eBGP, R-D2 disseminate this route to R-D3 and R-D1 via iBGP</p></li>
+<li><p>After R-D2 learns a route to a destination in AS-D, R-D2 disseminate this route to R-D3 and R-D1 via IGP</p></li>
+<li><p>After R-B1 learns about a route to a destination in AS-C, it disseminate this route to R-A3 via eBGP</p></li>
+<li><p>Assume AS-B learns about an exteral destination both from AS-C and AS-A, then it can show preference to use the route heard from AS-C by assigning higher LocalPerf value to that route</p></li>
+<li><p>Assume AS-B adertises the routes to its internal destination to AS-A using routers R-B1 and R-B4. Then AS-B can communicate to AS-A that it prefers R-B1 as an entry to the network by assigning lower MED values to these routers</p></li>
+<li><p>R-D1 learns from routes for AS-B with iBGP and eBGP</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ixps">
+<h3>(8) IXPs<a class="headerlink" href="#ixps" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>One of the services provided by IXPs is additional security protections such as mitigation of DDoS (Distributed Denial of Service) attacks.</p></li>
+<li><p>There are costs involved for an AS to participate at an IXP.</p></li>
+<li><p>TXPs tries to limit the traffic local to save cost</p></li>
+<li><p>IXPs handle large volumes of traffic</p></li>
+<li><p>An IXP is not responsible for deep packet inspection and traffic filtering for each AS participant.</p></li>
+<li><p>When a large CP or CDN joins an IXP, this can act as an incentive for other networks to join as well.</p></li>
+<li><p>At an IXP, the members have the choice to peer privately or publicly.</p></li>
+<li><p>The main incentive for an IXP to establish route servers is to simplify the exchange of routing information between participants, which can improve network efficiency, reduce operational costs, and improve network performance.</p></li>
+<li><p>An IXP route server (RS) need to run the BGP protocol to facilitate the establishment of multi- lateral peering sessions.</p></li>
+<li><p>For multi-lateral BGP peering sessions at an IXP,</p>
+<ul>
+<li><p>the participants do not have the choice to advertise routes directly to other participants</p></li>
+<li><p>the participants should advertise routes to the route server</p></li>
+</ul>
+</li>
+<li><p>Private peering PIs do not use IXP’s public peering infrastructure</p></li>
+<li><p>IXPs users can use RS without additional costs</p></li>
+<li><p>RS keeps track of BGP sessions with each particiant AS through RIBs</p></li>
+<li><p>RS uses import filters to maintain each AS only advertises routes that it should advertise</p></li>
+<li><p>RS uses export filters to restrict the set of other IXP member ASes that receive their routes</p></li>
+</ul>
+</section>
+<section id="routers">
+<h3>(9) Routers<a class="headerlink" href="#routers" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The router can have many IP addresses depending on its interfaces.</p></li>
+<li><p>The data plane functions of a traditional router are implemented in hardware</p></li>
+<li><p>The control plane functions of a traditional router are implemented in software</p></li>
+<li><p>Data plane operates on a shorter timescale</p></li>
+<li><p>Data plane operates the following functions,</p>
+<ul>
+<li><p>Forwarding packets at Layer 3</p></li>
+<li><p>Switching packets at Layer 2</p></li>
+<li><p>Decrementing Time To Live (TTL)</p></li>
+<li><p>Computing an IP header checksum</p></li>
+<li><p>Forwarding packets according to installed rules in a middlebox device</p></li>
+<li><p>Filtering packets through a middlebox device</p></li>
+</ul>
+</li>
+<li><p>Control plane operates the following functions,</p>
+<ul>
+<li><p>Computing paths based on a protocol</p></li>
+<li><p>Running routing algorithms</p></li>
+<li><p>Running protocols to build a routing table</p></li>
+<li><p>Computing routing paths to optimize the use of the network</p></li>
+<li><p>Running the Spanning Tree protocol</p></li>
+<li><p>Running a protocol/logic to configure a middlebox device for load balancing</p></li>
+</ul>
+</li>
+<li><p>The forwarding functions of a traditional router refer to transferring packets from the input ports to the appropriate output ports</p></li>
+<li><p>The control plane functions can either be implemented in the router’s processor or they can be outsourced for implementation at a remote controller</p></li>
+<li><p>In traditional routers, traffic forwarding is performed based on destination IP address only</p></li>
+</ul>
+</section>
+<section id="prefix-match">
+<h3>(10) Prefix Match<a class="headerlink" href="#prefix-match" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The mask of 192.168.0.1/24 is 255.255.255.0</p></li>
+<li><p>Unibit tries require the least amount of memory.</p></li>
+<li><p>Consider the following unibit trie. For each prefix look up, determine the node we return.
+<img alt="" src="https://i.imgur.com/q5P0oHb.png" /></p>
+<ul>
+<li><p>0* -&gt; a</p></li>
+<li><p>1* -&gt; b</p></li>
+<li><p>01* -&gt; c</p></li>
+<li><p>00* -&gt; a</p></li>
+<li><p>0000* -&gt; e</p></li>
+<li><p>00011* -&gt; h</p></li>
+</ul>
+</li>
+<li><p>Suppose we have the forwarding table,</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Prefix</span> <span class="n">Match</span>                <span class="n">Output</span> <span class="n">Link</span>
+<span class="mi">11100000</span> <span class="mi">00</span><span class="o">*</span>                <span class="n">A</span>
+<span class="mi">11100000</span> <span class="mi">01000000</span><span class="o">*</span>          <span class="n">B</span>
+<span class="mi">1110000</span><span class="o">*</span>                    <span class="n">C</span>
+<span class="mi">11100001</span> <span class="mi">1</span><span class="o">*</span>                 <span class="n">D</span>
+<span class="n">otherwise</span>                   <span class="n">E</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">10001000</span> <span class="pre">11110001</span> <span class="pre">01010001</span> <span class="pre">11110101</span></code> goes to port E</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">11100001</span> <span class="pre">01000000</span> <span class="pre">11000011</span> <span class="pre">00111100</span></code> goes to port C</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">11100001</span> <span class="pre">10000000</span> <span class="pre">00010001</span> <span class="pre">01110111</span></code> goes to port D</p></li>
+</ul>
+</li>
+<li><p>Consider the following unibit trie
+<img alt="" src="https://i.imgur.com/abip6TI.png" /></p>
+<ul>
+<li><p>longest prefix match for <code class="docutils literal notranslate"><span class="pre">111*</span></code> is P2</p></li>
+<li><p>longest prefix match for <code class="docutils literal notranslate"><span class="pre">11011*</span></code> is P9</p></li>
+<li><p>longest prefix match for <code class="docutils literal notranslate"><span class="pre">10*</span></code> is P4</p></li>
+</ul>
+</li>
+<li><p>By stride we refer to the number of bits that we check at every step when traversing a trie.</p></li>
+<li><p>A multibit trie is shorter than a unibit trie representing the same prefix database and requires fewer memory accesses to perform a lookup.</p></li>
+<li><p>Consider the following rules</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P1</span>   <span class="o">=&gt;</span>   <span class="mi">101</span><span class="o">*</span>  
+<span class="n">P2</span>   <span class="o">=&gt;</span>   <span class="mi">0</span><span class="o">*</span>  
+<span class="n">P3</span>   <span class="o">=&gt;</span>   <span class="mi">1</span><span class="o">*</span>  
+<span class="n">P4</span>   <span class="o">=&gt;</span>   <span class="mi">10101</span><span class="o">*</span>  
+</pre></div>
+</div>
+<p>Consider expanding each prefix with stride length 3, so that we construct a fixed length multibit trie. The the following prefixes are associated with P3,</p>
+<ul class="simple">
+<li><p>Solution:</p>
+<ul>
+<li><p>110*</p></li>
+<li><p>100*</p></li>
+<li><p>111*</p></li>
+</ul>
+</li>
+<li><p>Variant length multibit tries can support an arbitrary number of prefix lengths.</p></li>
+<li><p>Construct the following variable-stride multibit trie
+<img alt="" src="https://i.imgur.com/vS80YOy.png" />
+Then we will have the following prefix,</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="o">*</span>
+<span class="n">b</span> <span class="o">=&gt;</span> <span class="mi">01000</span><span class="o">*</span> 
+<span class="n">c</span> <span class="o">=&gt;</span> <span class="mi">011</span><span class="o">*</span> 
+<span class="n">d</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="o">*</span> 
+<span class="n">e</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="o">*</span> 
+<span class="n">f</span> <span class="o">=&gt;</span> <span class="mi">1100</span><span class="o">*</span> 
+<span class="n">g</span> <span class="o">=&gt;</span> <span class="mi">1101</span><span class="o">*</span> 
+<span class="n">h</span> <span class="o">=&gt;</span> <span class="mi">1110</span><span class="o">*</span> 
+<span class="n">i</span> <span class="o">=&gt;</span> <span class="mi">1111</span><span class="o">*</span> 
+</pre></div>
+</div>
+<p>Then fill in the nodes with the prefixes above,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n1</span><span class="p">:</span> <span class="n">none</span>
+<span class="n">n2</span><span class="p">:</span> <span class="n">a</span> 
+<span class="n">n3</span><span class="p">:</span> <span class="n">a</span>
+<span class="n">n4</span><span class="p">:</span> <span class="n">d</span>
+<span class="n">n5</span><span class="p">:</span> <span class="n">d</span>
+<span class="n">n6</span><span class="p">:</span> <span class="n">a</span>
+<span class="n">n7</span><span class="p">:</span> <span class="n">a</span>
+<span class="n">n8</span><span class="p">:</span> <span class="n">c</span>
+<span class="n">n9</span><span class="p">:</span> <span class="n">c</span>
+<span class="n">n10</span><span class="p">:</span> <span class="n">e</span>
+<span class="n">n11</span><span class="p">:</span> <span class="n">d</span>
+<span class="n">n12</span><span class="p">:</span> <span class="n">f</span>
+<span class="n">n13</span><span class="p">:</span> <span class="n">g</span>
+<span class="n">n14</span><span class="p">:</span> <span class="n">h</span>
+<span class="n">n15</span><span class="p">:</span> <span class="n">i</span>
+<span class="n">n16</span><span class="p">:</span> <span class="n">b</span>
+<span class="n">n17</span><span class="p">:</span> <span class="n">a</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Crossbar switching can send multiple packets across the fabric in parallel.</p></li>
+</ul>
+</section>
+<section id="packet-classification">
+<h3>(11) Packet Classification<a class="headerlink" href="#packet-classification" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Using packet classification techniques we can perform packer forwarding based on multiple criteria, and not just based on destination IP address</p></li>
+<li><p>Set pruning tries are used to solve packet classification problem</p></li>
+<li><p>The backtracking approach has a higher cost in terms of time</p></li>
+<li><p>The set-pruning approach has a higher cost in terms of memory</p></li>
+<li><p>The grid of tries technique offers a “middle ground” approach, merging the backtracking and the set-pruning techniques.</p></li>
+</ul>
+</section>
+<section id="packet-and-traffic-scheduling">
+<h3>(12) Packet and Traffic Scheduling<a class="headerlink" href="#packet-and-traffic-scheduling" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The head-of-line blocking refers to the problem when an entire queue remains blocked because the head of the queue is blocked.</p></li>
+<li><p>One technique to avoid head of line blocking is with parallel iterative matching.</p></li>
+<li><p>With parallel iterative matching the input links are not matched with output links in a fixed manner</p></li>
+<li><p>The reason of make scheduling more complex than FIFO tail drop is because various types of traffic require different QoS</p></li>
+<li><p>The flow with small packet sizes will result in getting served more frequently with a round robin manner</p></li>
+<li><p>With the token bucket traffic approach, we can still have bursts of traffic entering the network, but these bursts are capped</p></li>
+<li><p>With the leaky bucket approach, we only allow the traffic to enter the network in a configured rate.</p></li>
+<li><p>Traffic policers target to limit traffic bursts to a configured max, whereas traffic shapers target to smooth out the overall rate.</p></li>
+<li><p>With the leaky bucket we can still have discarded packets.</p></li>
 </ul>
 </section>
 </section>
