@@ -1,3 +1,11 @@
+🏯  Learning Resource
+=======================
+
+.. toctree::
+   :maxdepth: 1
+
+   resource
+
 🏯  N5
 =============
 
