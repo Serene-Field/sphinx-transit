@@ -36,11 +36,3 @@
 
    hdp/note1
 
-🗝️  Keberos and Dex
-=======================
-
-.. toctree::
-   :maxdepth: 1
-
-   auth/note1
-

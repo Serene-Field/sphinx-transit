@@ -26,22 +26,12 @@
 .. toctree::
    :maxdepth: 1
 
-   N4/quiz1
+   N4/note1
 
-🏯  N3
-=============
-
-.. toctree::
-   :maxdepth: 1
-
-🏯  N2
-=============
+🎶  音楽
+============
 
 .. toctree::
    :maxdepth: 1
 
-🏯  N1
-=============
-
-.. toctree::
-   :maxdepth: 1
+   music/ByoushinwoKamu
