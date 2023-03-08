@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Kubernetes 1 | Kubeadm &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Apache Solr 1 | Installation" href="../solr/note1.html" />
+    <link rel="prev" title="⛴️ Docker" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#advanced-k8s">⛵️  Advanced K8s</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Kubernetes 1 | Kubeadm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cncf-basics">1. CNCF Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cncf-trail-map">(1) CNCF Trail Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#topics-overview">(2) Topics Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-configuration">2. Environment Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-1-node-environment-with-kubeadm">3. Build 1-Node Environment with Kubeadm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test">4. Test</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#keberos-and-dex">🗝️  Keberos and Dex</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n3">🏯  N3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n2">🏯  N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n1">🏯  N1</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
+      <li class="breadcrumb-item active">Advanced Kubernetes 1 | Kubeadm</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/devops/advk8s/note1.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-kubernetes-1-kubeadm">
+<h1>Advanced Kubernetes 1 | Kubeadm<a class="headerlink" href="#advanced-kubernetes-1-kubeadm" title="Permalink to this heading"></a></h1>
+<section id="cncf-basics">
+<h2>1. CNCF Basics<a class="headerlink" href="#cncf-basics" title="Permalink to this heading"></a></h2>
+<section id="cncf-trail-map">
+<h3>(1) CNCF Trail Map<a class="headerlink" href="#cncf-trail-map" title="Permalink to this heading"></a></h3>
+<p><img alt="" src="https://raw.githubusercontent.com/cncf/trailmap/master/CNCF_TrailMap_latest.png" /></p>
+</section>
+<section id="topics-overview">
+<h3>(2) Topics Overview<a class="headerlink" href="#topics-overview" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kubeadm</span></code>: installing kubernetes on-prem</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">K8s</span> <span class="pre">Operators</span></code>: file, block, and object storage</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cert-manager</span></code>: managing ssl</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dex</span></code>: managing LDAP</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Istio</span></code>: service mesh, load balancing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Calico</span></code>: networking</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Vault</span></code>: secret store</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Openshift</span></code>: PaaS</p></li>
+</ul>
+</section>
+</section>
+<section id="environment-configuration">
+<h2>2. Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this heading"></a></h2>
+<p>I’m on a M2 Macbook with Parallel as VM. So I use Parallel to start a Ubuntu 22.04 VM. When the VM is up, install the network tools and use <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> to find the IP address</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools
+$<span class="w"> </span>ifconfig
+</pre></div>
+</div>
+<p>Then ssh through the terminal from the macbook outside the VM.</p>
+<p>Also, install <code class="docutils literal notranslate"><span class="pre">git</span></code> with,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+</pre></div>
+</div>
+</section>
+<section id="build-1-node-environment-with-kubeadm">
+<h2>3. Build 1-Node Environment with Kubeadm<a class="headerlink" href="#build-1-node-environment-with-kubeadm" title="Permalink to this heading"></a></h2>
+<p>First, git clone from the libraray,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/parallels/
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Sadamingh/on-prem-or-cloud-agnostic-kubernetes.git
+</pre></div>
+</div>
+<p>Then go to the directory by,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>su<span class="w"> </span>-
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/parallels/on-prem-or-cloud-agnostic-kubernetes
+</pre></div>
+</div>
+<p>Install <code class="docutils literal notranslate"><span class="pre">docker</span></code>, <code class="docutils literal notranslate"><span class="pre">kubelet</span></code>, <code class="docutils literal notranslate"><span class="pre">kubeadm</span></code>, <code class="docutils literal notranslate"><span class="pre">kubectl</span></code> with <code class="docutils literal notranslate"><span class="pre">scripts/install-node.sh</span></code>,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>scripts/install-node.sh
+</pre></div>
+</div>
+<p>The let’s bring up kubelet service by,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>swapoff<span class="w"> </span>-a
+$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>kubelet.service
+</pre></div>
+</div>
+<p>After installation, configure <code class="docutils literal notranslate"><span class="pre">kubeadm</span></code> through,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>scripts/config-kubeadm.sh<span class="w"> </span>
+</pre></div>
+</div>
+<p>Note that the configuration step is supposed to be run only on the master node. For the other working nodes, we only have to run <code class="docutils literal notranslate"><span class="pre">install-node.sh</span></code>.</p>
+<p>Also note that <code class="docutils literal notranslate"><span class="pre">podSubnet</span></code> value in <code class="docutils literal notranslate"><span class="pre">config-kubeadm.sh</span></code> is originally set to be <code class="docutils literal notranslate"><span class="pre">10.211.0.0/16</span></code>. Please make sure this value aligns to the IP address.</p>
+<p>Finally, let’s create a new user. First we have to go with the root permission. And execute the <code class="docutils literal notranslate"><span class="pre">create-user.sh</span></code> script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>scripts/create-user.sh
+</pre></div>
+</div>
+<p>Then for the newly created user <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code>, we can reset the password by <code class="docutils literal notranslate"><span class="pre">passwd</span></code>,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>passwd<span class="w"> </span>ubuntu
+</pre></div>
+</div>
+</section>
+<section id="test">
+<h2>4. Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h2>
+<p>We can test the cluster through the following commands and the following results are expected.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+NAME<span class="w">                         </span>STATUS<span class="w">   </span>ROLES<span class="w">           </span>AGE<span class="w">     </span>VERSION
+ubuntu-linux-22-04-desktop<span class="w">   </span>Ready<span class="w">    </span>control-plane<span class="w">   </span>3h28m<span class="w">   </span>v1.26.2
+
+$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+NAMESPACE<span class="w">     </span>NAME<span class="w">                                                 </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE
+kube-system<span class="w">   </span>calico-kube-controllers-57b57c56f-4kb6g<span class="w">              </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>canal-vpb26<span class="w">                                          </span><span class="m">2</span>/2<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>coredns-787d4945fb-6kvh2<span class="w">                             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>coredns-787d4945fb-t9cqf<span class="w">                             </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>etcd-ubuntu-linux-22-04-desktop<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>kube-apiserver-ubuntu-linux-22-04-desktop<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>kube-controller-manager-ubuntu-linux-22-04-desktop<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>kube-proxy-dcw8p<span class="w">                                     </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+kube-system<span class="w">   </span>kube-scheduler-ubuntu-linux-22-04-desktop<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>3h28m
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="⛴️ Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../solr/note1.html" class="btn btn-neutral float-right" title="Apache Solr 1 | Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

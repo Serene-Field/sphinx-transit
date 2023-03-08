@@ -16,8 +16,6 @@
 
    .. class:: hidden 
       CN/note10
-      
-   CN/note11
  
 💻  High Performance Computing
 ==============================
