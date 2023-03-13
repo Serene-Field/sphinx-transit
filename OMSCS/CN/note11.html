@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computer Network 11 | &mdash; serenefield-sphinx  documentation</title>
+  <title>Computer Network 11 | Introduction of SDN and SDN Architecture &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -91,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Computer Network 11 |</li>
+      <li class="breadcrumb-item active">Computer Network 11 | Introduction of SDN and SDN Architecture</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note11.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,8 +101,224 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="computer-network-11">
-<h1>Computer Network 11 |<a class="headerlink" href="#computer-network-11" title="Permalink to this heading"></a></h1>
+  <section id="computer-network-11-introduction-of-sdn-and-sdn-architecture">
+<h1>Computer Network 11 | Introduction of SDN and SDN Architecture<a class="headerlink" href="#computer-network-11-introduction-of-sdn-and-sdn-architecture" title="Permalink to this heading"></a></h1>
+<section id="introduction-of-sdn">
+<h2>1. Introduction of SDN<a class="headerlink" href="#introduction-of-sdn" title="Permalink to this heading"></a></h2>
+<section id="difficulties-of-managing-computer-networks">
+<h3>(1) Difficulties of Managing Computer Networks<a class="headerlink" href="#difficulties-of-managing-computer-networks" title="Permalink to this heading"></a></h3>
+<p>In practice, it’s very difficult to manage a computer network because of the following two reasons,</p>
+<ul class="simple">
+<li><p><strong>Diversity of Equipment</strong>: computer networks have a large range of equipments and these equipments require to operate at a level of individual protocols, mechanisms and configuration interfaces, making the network difficult to manage. The common equipments include,</p>
+<ul>
+<li><p>routers</p></li>
+<li><p>switches</p></li>
+<li><p>middleboxes</p>
+<ul>
+<li><p>firewalls</p></li>
+<li><p>network address translators (NATs)</p></li>
+<li><p>server load balancers (LBs)</p></li>
+<li><p>intrusion detection systems (IDSs)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Proprietary Technologies</strong>: Equipments like routers and switches tends to run softwares that are closed-source and proprietary, which means the config interfaces can be various.</p></li>
+</ul>
+</section>
+<section id="software-defined-networking-sdn">
+<h3>(2) Software Defined Networking (SDN)<a class="headerlink" href="#software-defined-networking-sdn" title="Permalink to this heading"></a></h3>
+<p>Because of these difficulties of managing the network, SDN was developed as part of the process to make computer networks more programmable. The basic idea of SDN is to seperate the tasks into <strong>control plane</strong> and <strong>data plane</strong> so the the network become modular and manageable.</p>
+</section>
+<section id="history-of-sdn-1-active-networks-mid-1990s-early-2000s">
+<h3>(3) History of SDN 1: Active Networks (mid 1990s ~ early 2000s)<a class="headerlink" href="#history-of-sdn-1-active-networks-mid-1990s-early-2000s" title="Permalink to this heading"></a></h3>
+<p>In early 1990s, the networking approach was primarily via IP or ATM (we mentioned it when we talked about knockout scheme).</p>
+<p>The network took off and researchers were eager to test out new ideas to improve network efficiency. However, this process was bottlenecked by standardization of new protocols of organization Internet Engineering Task Force (IETF).</p>
+<p>Therefore, this lead to the growth of activate network which aimed at opening up network control. It envisioned <strong>APIs</strong> that exposed the network nodes and it supported customization of functionalities for flows of packets.</p>
+</section>
+<section id="two-active-network-models">
+<h3>(4) Two Active Network Models<a class="headerlink" href="#two-active-network-models" title="Permalink to this heading"></a></h3>
+<p>There are two main types of programming models in activate networking, include,</p>
+<ul class="simple">
+<li><p>Capsule model: each capsulate contains both the data and a set of instructions for processing the data. The capsules are processed by a sequence of Capsule routers.</p></li>
+<li><p>Programmable router/switch model: the routers and switches in the network are themselves programmable.</p></li>
+</ul>
+<p>Note that the capsule model has the following benefits,</p>
+<ul class="simple">
+<li><p>most closely related to active networking</p></li>
+<li><p>bring a new data-plane functionality</p></li>
+<li><p>cache to make code distribution more efficient</p></li>
+</ul>
+</section>
+<section id="reasons-for-active-networking">
+<h3>(5) Reasons for Active Networking<a class="headerlink" href="#reasons-for-active-networking" title="Permalink to this heading"></a></h3>
+<p>There are several technological incentives that lead to the active networks,</p>
+<ul class="simple">
+<li><p>Reduction in computation cost</p></li>
+<li><p>Advancement in programming languages</p></li>
+<li><p>Advances in rapid code compilation and formal methods</p></li>
+<li><p>Funding from agencies such as U.S. Defense Advanced Research Projects Agency (DARPA)</p></li>
+</ul>
+<p>There are also some other emerging use cases require this properity,</p>
+<ul class="simple">
+<li><p>Network service providers require shorter time to develop and deploy new network services.</p></li>
+<li><p>Third party interests to add value by implementing control of specific applications or network conditions.</p></li>
+<li><p>Researchers interest in having a network that would support large-scale experimentation.</p></li>
+<li><p>Unified control over middleboxes.</p></li>
+</ul>
+</section>
+<section id="active-network-s-contributions-to-sdn">
+<h3>(6) Active Network’s Contributions to SDN<a class="headerlink" href="#active-network-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Programmable functions in the network to lower the barrier to innovation.</p></li>
+<li><p>Network virtualization, and the ability to demultiplex to software programs based on packet headers.</p></li>
+<li><p>The vision of a unified architecture for middlebox orchestration.</p></li>
+</ul>
+</section>
+<section id="history-of-sdn-2-control-and-data-plane-separation-2001-2007">
+<h3>(7) History of SDN 2: Control and Data Plane Separation (2001 ~ 2007)<a class="headerlink" href="#history-of-sdn-2-control-and-data-plane-separation-2001-2007" title="Permalink to this heading"></a></h3>
+<p>Because there was a steady increase in traffic volumes during this period of time, the network reliability, predictability and performance became more important.</p>
+<p>Therefore, network providers were looking for better network-management functions and researchers identified the challenge in network management happened because of a tight integrate of control plane and data plane in switches. Once this was identified, efforts to separate the these two planes began.</p>
+</section>
+<section id="reasons-for-seperation">
+<h3>(8) Reasons for Seperation<a class="headerlink" href="#reasons-for-seperation" title="Permalink to this heading"></a></h3>
+<p>There are several technological incentives that lead to the plane seperation,</p>
+<ul class="simple">
+<li><p>Higher link speeds in backbone networks requires direct packet forwarding implement by hardware</p></li>
+<li><p>ISPs found it hard to meet the increasing demands for reliability, VPNs, and scalability</p></li>
+<li><p>Servers are more powerful on processing, storage, and memory</p></li>
+<li><p>Open-source routing software lowered the barrier of creating centralized routing prototype</p></li>
+</ul>
+<p>These incentives lead to two main innovations,</p>
+<ul class="simple">
+<li><p>Open API between control plane and data plane</p></li>
+<li><p>Logically centralized network management</p></li>
+</ul>
+<p>There are also some other emerging use cases require this properity,</p>
+<ul class="simple">
+<li><p>Demand of selecting network paths</p></li>
+<li><p>Minimize routing change disruptions</p></li>
+<li><p>Detect and drop suspicious attacking traffic</p></li>
+<li><p>Allow customized network traffic</p></li>
+<li><p>Provide other services like VPN</p></li>
+</ul>
+<p>As a result, the data plane and control plane seperation leads to the following two main benefits,</p>
+<ul class="simple">
+<li><p><strong>Independency</strong>: Independent evolution and development of data plane and control plane</p></li>
+<li><p><strong>Control</strong>: SDN can control through high-level software program</p></li>
+</ul>
+</section>
+<section id="control-and-data-plane-separation-s-contributions-to-sdn">
+<h3>(9) Control and Data Plane Separation’s Contributions to SDN<a class="headerlink" href="#control-and-data-plane-separation-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Centralized control to data plane through API</p></li>
+<li><p>Distributed state management</p></li>
+</ul>
+<p>What’s more, this separation leads to opportunities in different areas of SDN,</p>
+<ul class="simple">
+<li><p><strong>Data centers</strong>: SDN helps to manage data center networks</p></li>
+<li><p><strong>Routing</strong>: SDN can provide more control over path selection and it’s easier to update router’s state</p></li>
+<li><p><strong>Enterprise networks</strong>: SDN can improve the security applications for enterprise networks</p></li>
+<li><p><strong>Research networks</strong>: SDN allows research networks to coexist with production networks</p></li>
+</ul>
+</section>
+<section id="history-of-sdn-3-openflow-api-2007-2010">
+<h3>(10) History of SDN 3: OpenFlow API (2007 ~ 2010)<a class="headerlink" href="#history-of-sdn-3-openflow-api-2007-2010" title="Permalink to this heading"></a></h3>
+<p>OpenFlow is a network protocol developed with the purpose of increasing network scalability. It allows the server to tell the OpenFlow enabled switch where to send the packets.</p>
+<p>When a packet comes to an OpenFlow enabled switch, it will switch based on a table of packet-handling rules where each rule has,</p>
+<ul class="simple">
+<li><p>a pattern</p></li>
+<li><p>a list of actions</p></li>
+<li><p>a set of counters</p></li>
+<li><p>a priority</p></li>
+</ul>
+<p>The packet-moving decisions are made based on the highest priority matching rule. This process under OpenFlow is centralized so that the network can be programmed independently of the individual switches.</p>
+</section>
+<section id="reasons-for-openflow">
+<h3>(11) Reasons for OpenFlow<a class="headerlink" href="#reasons-for-openflow" title="Permalink to this heading"></a></h3>
+<p>There are several technological incentives that lead to the OpenFlow,</p>
+<ul class="simple">
+<li><p>With microchips, switches are programmable</p></li>
+<li><p>Companies build switches without having to design and fabricate their own data plane</p></li>
+<li><p>Early OpenFlow versions built on technology that the switches already supported</p></li>
+</ul>
+<p>There are also some other emerging use cases require this properity,</p>
+<ul class="simple">
+<li><p>OpenFlow came up to meet the need of conducting large scale experimentation on network architectures</p></li>
+<li><p>OpenFlow was useful in data-center networks</p></li>
+<li><p>Companies started investing more in programmers to write control programs</p></li>
+</ul>
+</section>
+<section id="openflow-s-contributions-to-sdn">
+<h3>(12) OpenFlow’s Contributions to SDN<a class="headerlink" href="#openflow-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Generalize network devices and functions</p></li>
+<li><p>Transfer network to an operating system</p></li>
+<li><p>Enable other distributed state management techniques</p></li>
+</ul>
+</section>
+</section>
+<section id="sdn-architecture">
+<h2>2. SDN Architecture<a class="headerlink" href="#sdn-architecture" title="Permalink to this heading"></a></h2>
+<section id="components-of-sdn">
+<h3>(1) Components of SDN<a class="headerlink" href="#components-of-sdn" title="Permalink to this heading"></a></h3>
+<p>The data plane of an SDN contains infrastructures which is mainly SDN controlled switches. The control plane include the SDN controller and other network control applications.</p>
+<ul class="simple">
+<li><p>Infra layer: SDN controlled switches</p></li>
+<li><p>Controller layer: Network OS (SDN Controller)</p></li>
+<li><p>Application layer: Network Control Applications</p>
+<ul>
+<li><p>Routing</p></li>
+<li><p>Access Control (IAM)</p></li>
+<li><p>Load Balancer (LB)</p></li>
+</ul>
+</li>
+</ul>
+<p>There are two API rules in this structure,</p>
+<ul class="simple">
+<li><p>Northbound API: API between applications and controller</p></li>
+<li><p>Sorthbound API (OpenFlow): API between controller and infra</p></li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/GfGUjtS.png" /></p>
+</section>
+<section id="sdn-architecture-features">
+<h3>(2) SDN Architecture Features<a class="headerlink" href="#sdn-architecture-features" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Flow-based forwarding</p></li>
+</ul>
+<p>The rules for forwarding packets in the SDN-controlled switches can be computed based on any number of header field values in various layers. For example, OpenFlow allows up to 11 header field values to be considered.</p>
+<ul class="simple">
+<li><p>Separation of data plane and control plane</p></li>
+</ul>
+<p>SDN-controlled switches operate on the data plane and they only execute the rules in the flow tables.</p>
+<ul class="simple">
+<li><p>Network control functions</p></li>
+</ul>
+<p>The controller provide update-to-date network states about infra devices for applications to monitor and control.</p>
+<ul class="simple">
+<li><p>Programmable network</p></li>
+</ul>
+<p>Network control applications used to control the network are programmable.</p>
+</section>
+<section id="sdn-controller-architecture">
+<h3>(3) SDN Controller Architecture<a class="headerlink" href="#sdn-controller-architecture" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Communication Layer</p></li>
+</ul>
+<p>This layer consists of a protocol for SDN communication to infra devices. We can have several options on this protocol including <code class="docutils literal notranslate"><span class="pre">OpenFlow</span></code>, <code class="docutils literal notranslate"><span class="pre">PCEP</span></code>, <code class="docutils literal notranslate"><span class="pre">SB</span></code> and etc. This layer is also know as the <strong>Southbound API</strong>.</p>
+<p>Today’s SDN controllers are using <code class="docutils literal notranslate"><span class="pre">OpenFlow</span></code>.</p>
+<ul class="simple">
+<li><p>Network-wide state-management layer</p></li>
+</ul>
+<p>This layer is where the real process happens. It includes the informations like state of the hosts, links, switches and other controlled elements in the network. Network-state information is needed by the SDN control plane to configure the flow tables.</p>
+<ul class="simple">
+<li><p>Interface to application layer</p></li>
+</ul>
+<p>This layer is also known as the <strong>Northbound API</strong>. Through this interface, controller can notify the applications changes of the network state based on the event notifications.</p>
+<p>There are several kinds of interfaces we can choose in this layer include <code class="docutils literal notranslate"><span class="pre">HTTP</span></code>, RESTful API, <code class="docutils literal notranslate"><span class="pre">RPC</span></code>, Java Native Functions, etc.</p>
+<p><img alt="" src="https://i.imgur.com/t9KBaBN.png" /></p>
+</section>
+</section>
 </section>
 
 
