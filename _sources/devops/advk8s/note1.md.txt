@@ -1,4 +1,4 @@
-# Advanced Kubernetes 1 | Kubeadm
+# Advanced Kubernetes 1 | CNCF Basics and Kubeadm
 
 ### 1. CNCF Basics
 
@@ -105,4 +105,21 @@ kube-system   kube-apiserver-ubuntu-linux-22-04-desktop            1/1     Runni
 kube-system   kube-controller-manager-ubuntu-linux-22-04-desktop   1/1     Running   0          3h28m
 kube-system   kube-proxy-dcw8p                                     1/1     Running   0          3h28m
 kube-system   kube-scheduler-ubuntu-linux-22-04-desktop            1/1     Running   0          3h28m
+```
+
+### 5. Debug
+
+After rebooting the VM, the connection to kubernetes will be lost. Logs like
+
+```
+$ kubectl get nodes
+E0313 10:34:40.260814 2711656 mencache.g:238] couldn't get current server API g roup list: Get "http://localhost: 8080/api?timeout=32s": dial tcp 127.0.0.1:8080:connect: connection refused
+```
+
+In this case, rerun `install-node.sh` by,
+
+```bash
+$ source scripts/install-node.sh
+$ swapoff -a
+$ sudo systemctl restart kubelet.service
 ```

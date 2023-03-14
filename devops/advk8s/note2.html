@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Apache Solr 1 | Installation" href="../solr/note1.html" />
+    <link rel="prev" title="Advanced Kubernetes 1 | CNCF Basics and Kubeadm" href="note1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#advanced-k8s">⛵️  Advanced K8s</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Advanced Kubernetes 1 | CNCF Basics and Kubeadm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#minikube-installation">1. Minikube Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-overview">2. Cluster Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interact-with-etcd">3. Interact with Etcd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etcdctl-usage">4. <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code> Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#etcd-pair-example">5. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> Pair Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
+      <li class="breadcrumb-item active">Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/devops/advk8s/note2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-kubernetes-2-minikube-etcdclient-and-etcdctl">
+<h1>Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl<a class="headerlink" href="#advanced-kubernetes-2-minikube-etcdclient-and-etcdctl" title="Permalink to this heading"></a></h1>
+<section id="minikube-installation">
+<h2>1. Minikube Installation<a class="headerlink" href="#minikube-installation" title="Permalink to this heading"></a></h2>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p>Docker</p></li>
+<li><p>Macbook with ARM chip (M1/M2)</p></li>
+</ul>
+<p>For MacOS with ARM chip,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>minikube
+</pre></div>
+</div>
+<p>Then start the cluster with,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>minikube<span class="w"> </span>start
+</pre></div>
+</div>
+<p>If you have a prebuilt minikube cluster, please delete it by,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>minikube<span class="w"> </span>delete
+</pre></div>
+</div>
+<p>Then let’s create a kubernetes cluster with 4 nodes by,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>minikube<span class="w"> </span>start<span class="w"> </span>--nodes<span class="w"> </span><span class="m">4</span>
+$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+NAME<span class="w">           </span>STATUS<span class="w">   </span>ROLES<span class="w">           </span>AGE<span class="w">     </span>VERSION
+minikube<span class="w">       </span>Ready<span class="w">    </span>control-plane<span class="w">   </span>2m23s<span class="w">   </span>v1.25.3
+minikube-m02<span class="w">   </span>Ready<span class="w">    </span>&lt;none&gt;<span class="w">          </span>108s<span class="w">    </span>v1.25.3
+minikube-m03<span class="w">   </span>Ready<span class="w">    </span>&lt;none&gt;<span class="w">          </span>76s<span class="w">     </span>v1.25.3
+minikube-m04<span class="w">   </span>Ready<span class="w">    </span>&lt;none&gt;<span class="w">          </span>44s<span class="w">     </span>v1.25.3
+</pre></div>
+</div>
+</section>
+<section id="cluster-overview">
+<h2>2. Cluster Overview<a class="headerlink" href="#cluster-overview" title="Permalink to this heading"></a></h2>
+<p>Now, let’s have an overview of the cluster,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>-o<span class="w"> </span>wide
+NAME<span class="w">                               </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE<span class="w">   </span>IP<span class="w">             </span>NODE<span class="w">           </span>NOMINATED<span class="w"> </span>NODE<span class="w">   </span>READINESS<span class="w"> </span>GATES
+coredns-565d847f94-kgj6n<span class="w">           </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">10</span>.244.0.2<span class="w">     </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+etcd-minikube<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kindnet-8qn44<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.3<span class="w">   </span>minikube-m02<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kindnet-bpkgz<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kindnet-f26zn<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>13m<span class="w">   </span><span class="m">192</span>.168.49.5<span class="w">   </span>minikube-m04<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kindnet-vmfcm<span class="w">                      </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>14m<span class="w">   </span><span class="m">192</span>.168.49.4<span class="w">   </span>minikube-m03<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-apiserver-minikube<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-controller-manager-minikube<span class="w">   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-proxy-4jrnq<span class="w">                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-proxy-52zp9<span class="w">                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.3<span class="w">   </span>minikube-m02<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-proxy-jmbsk<span class="w">                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>13m<span class="w">   </span><span class="m">192</span>.168.49.5<span class="w">   </span>minikube-m04<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-proxy-s6f7n<span class="w">                   </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>14m<span class="w">   </span><span class="m">192</span>.168.49.4<span class="w">   </span>minikube-m03<span class="w">   </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+kube-scheduler-minikube<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+storage-provisioner<span class="w">                </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>15m<span class="w">   </span><span class="m">192</span>.168.49.2<span class="w">   </span>minikube<span class="w">       </span>&lt;none&gt;<span class="w">           </span>&lt;none&gt;
+</pre></div>
+</div>
+<p>Here we have,</p>
+<ul class="simple">
+<li><p>coredns</p></li>
+<li><p>etcd</p></li>
+<li><p>apiserver</p></li>
+<li><p>controller-manager</p></li>
+<li><p>scheduler</p></li>
+<li><p>storage-provisioner</p></li>
+</ul>
+<p>deployed only on the master (<code class="docutils literal notranslate"><span class="pre">control-plane</span></code>) node and we have,</p>
+<ul class="simple">
+<li><p>kindnet</p></li>
+<li><p>proxy</p></li>
+</ul>
+<p>deployed on each of the node.</p>
+</section>
+<section id="interact-with-etcd">
+<h2>3. Interact with Etcd<a class="headerlink" href="#interact-with-etcd" title="Permalink to this heading"></a></h2>
+<p>In this section we are going to learn about<code class="docutils literal notranslate"> <span class="pre">etcd</span></code>. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> is a distributed key-value store that is used for storing and retrieving configuration data, metadata, and other kinds of data that need to be shared across multiple machines or applications. It was developed by CoreOS, and is now a graduated project of the Cloud Native Computing Foundation (CNCF).</p>
+<p>minikube already created an <code class="docutils literal notranslate"><span class="pre">etcd</span></code> named <code class="docutils literal notranslate"><span class="pre">etcd-minikube</span></code> for us but we have no way to inspect it so far. Therefore, we need a client for interaction purpose. Let’s follow some steps to setup the etcd client,</p>
+<ul class="simple">
+<li><p>Connect to the master node <code class="docutils literal notranslate"><span class="pre">minikube</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>minikube<span class="w"> </span>bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Download the YAML script for the <code class="docutils literal notranslate"><span class="pre">etcdclient</span></code>,</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>curl<span class="w"> </span>-LO<span class="w"> </span>https://gist.githubusercontent.com/Sadamingh/8b63a5741417a5819a185cb20369d1da/raw/db4717373b4e514c52a446c61f478e6c4683a934/etcdclient.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Copy the yaml file to manifests, then exit the connection to master node</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>mv<span class="w"> </span>etcdclient.yaml<span class="w"> </span>/etc/kubernetes/manifests/
+$<span class="w"> </span><span class="nb">exit</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Allow a few seconds for creating the pod, then check if the pod <code class="docutils literal notranslate"><span class="pre">etcdclient-minikube</span></code> is running by,</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>etcdclient
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Note: in case you have to restart the pod, use the following command,</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>delete<span class="w"> </span>po<span class="w"> </span>etcdclient-minikube<span class="w"> </span>-n<span class="w"> </span>kube-system
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Once the pod is up and running, we can access the etcd client through</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>-it<span class="w"> </span>etcdclient-minikube<span class="w"> </span>--<span class="w"> </span>sh
+/<span class="w"> </span><span class="c1">#</span>
+</pre></div>
+</div>
+</section>
+<section id="etcdctl-usage">
+<h2>4. <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code> Usage<a class="headerlink" href="#etcdctl-usage" title="Permalink to this heading"></a></h2>
+<p>Now that we have the etcd client up, we can then access the etcd information through <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code>.</p>
+<p>We can check the <code class="docutils literal notranslate"><span class="pre">etcd</span></code> node by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1"># etcdctl member list --write-out=table</span>
+<span class="o">+------------------+---------+----------+---------------------------+---------------------------+</span>
+<span class="o">|</span>        <span class="n">ID</span>        <span class="o">|</span> <span class="n">STATUS</span>  <span class="o">|</span>   <span class="n">NAME</span>   <span class="o">|</span>        <span class="n">PEER</span> <span class="n">ADDRS</span>         <span class="o">|</span>       <span class="n">CLIENT</span> <span class="n">ADDRS</span>        <span class="o">|</span>
+<span class="o">+------------------+---------+----------+---------------------------+---------------------------+</span>
+<span class="o">|</span> <span class="n">aec36adc501070cc</span> <span class="o">|</span> <span class="n">started</span> <span class="o">|</span> <span class="n">minikube</span> <span class="o">|</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.49.2</span><span class="p">:</span><span class="mi">2380</span> <span class="o">|</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.49.2</span><span class="p">:</span><span class="mi">2379</span> <span class="o">|</span>
+<span class="o">+------------------+---------+----------+---------------------------+---------------------------+</span>
+</pre></div>
+</div>
+<p>From the table above we can know that there’s only one <code class="docutils literal notranslate"><span class="pre">etcd</span></code> node for the minikube cluster. We can inspect the key-value pairs of this <code class="docutils literal notranslate"><span class="pre">etcd</span></code> by <code class="docutils literal notranslate"><span class="pre">etcdctl</span> <span class="pre">get</span> <span class="pre">...</span></code>. For example, we can get the number of etcd keys with prefix <code class="docutils literal notranslate"><span class="pre">/registry</span></code> by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1"># etcdctl get --prefix /registry | wc -l</span>
+<span class="mi">5980</span>
+</pre></div>
+</div>
+<p>We can also view all the kv pairs of keys with the prefix <code class="docutils literal notranslate"><span class="pre">/registry</span></code> as json type,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1"># etcdctl get --prefix /registry --write-out=json</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>Because there’re <code class="docutils literal notranslate"><span class="pre">5980</span></code> results and it’s hard to inspect just one record, we can limit the output number to 1 by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1">#  etcdctl get --limit=1 --prefix /registry --write-out=json</span>
+<span class="p">{</span><span class="s2">&quot;header&quot;</span><span class="p">:{</span><span class="s2">&quot;cluster_id&quot;</span><span class="p">:</span><span class="mi">18038207397139142846</span><span class="p">,</span><span class="s2">&quot;member_id&quot;</span><span class="p">:</span><span class="mi">12593026477526642892</span><span class="p">,</span><span class="s2">&quot;revision&quot;</span><span class="p">:</span><span class="mi">7941</span><span class="p">,</span><span class="s2">&quot;raft_term&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span><span class="s2">&quot;kvs&quot;</span><span class="p">:[{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;L3JlZ2lzdHJ5L2FwaXJlZ2lzdHJhdGlvbi5rOHMuaW8vYXBpc2VydmljZXMvdjEu&quot;</span><span class="p">,</span><span class="s2">&quot;create_revision&quot;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span><span class="s2">&quot;mod_revision&quot;</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span><span class="s2">&quot;version&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;value&quot;</span><span class="p">:</span><span class="s2">&quot;eyJraW5kIjoiQVBJU2VydmljZSIsImFwaVZlcnNpb24iOiJhcGlyZWdpc3RyYXRpb24uazhzLmlvL3YxIiwibWV0YWRhdGEiOnsibmFtZSI6InYxLiIsInVpZCI6ImNiNGFhYWJmLWJkNGQtNDIzMy05OWNmLTA1ZGJhZDU4MTE2OCIsImNyZWF0aW9uVGltZXN0YW1wIjoiMjAyMy0wMy0xM1QyMDo1ODo0MloiLCJsYWJlbHMiOnsia3ViZS1hZ2dyZWdhdG9yLmt1YmVybmV0ZXMuaW8vYXV0b21hbmFnZWQiOiJvbnN0YXJ0In0sIm1hbmFnZWRGaWVsZHMiOlt7Im1hbmFnZXIiOiJrdWJlLWFwaXNlcnZlciIsIm9wZXJhdGlvbiI6IlVwZGF0ZSIsImFwaVZlcnNpb24iOiJhcGlyZWdpc3RyYXRpb24uazhzLmlvL3YxIiwidGltZSI6IjIwMjMtMDMtMTNUMjA6NTg6NDJaIiwiZmllbGRzVHlwZSI6IkZpZWxkc1YxIiwiZmllbGRzVjEiOnsiZjptZXRhZGF0YSI6eyJmOmxhYmVscyI6eyIuIjp7fSwiZjprdWJlLWFnZ3JlZ2F0b3Iua3ViZXJuZXRlcy5pby9hdXRvbWFuYWdlZCI6e319fSwiZjpzcGVjIjp7ImY6Z3JvdXBQcmlvcml0eU1pbmltdW0iOnt9LCJmOnZlcnNpb24iOnt9LCJmOnZlcnNpb25Qcmlvcml0eSI6e319fX1dfSwic3BlYyI6eyJ2ZXJzaW9uIjoidjEiLCJncm91cFByaW9yaXR5TWluaW11bSI6MTgwMDAsInZlcnNpb25Qcmlvcml0eSI6MX0sInN0YXR1cyI6eyJjb25kaXRpb25zIjpbeyJ0eXBlIjoiQXZhaWxhYmxlIiwic3RhdHVzIjoiVHJ1ZSIsImxhc3RUcmFuc2l0aW9uVGltZSI6IjIwMjMtMDMtMTNUMjA6NTg6NDJaIiwicmVhc29uIjoiTG9jYWwiLCJtZXNzYWdlIjoiTG9jYWwgQVBJU2VydmljZXMgYXJlIGFsd2F5cyBhdmFpbGFibGUifV19fQo=&quot;</span><span class="p">}],</span><span class="s2">&quot;more&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;count&quot;</span><span class="p">:</span><span class="mi">301</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>And the value can be shown by <code class="docutils literal notranslate"><span class="pre">--print-value-only</span></code> option with <code class="docutils literal notranslate"><span class="pre">simple</span></code> as the write out layout,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1">#  etcdctl get --limit=1 --prefix --print-value-only /registry --write-out=simple</span>
+<span class="p">{</span><span class="s2">&quot;kind&quot;</span><span class="p">:</span><span class="s2">&quot;APIService&quot;</span><span class="p">,</span><span class="s2">&quot;apiVersion&quot;</span><span class="p">:</span><span class="s2">&quot;apiregistration.k8s.io/v1&quot;</span><span class="p">,</span><span class="s2">&quot;metadata&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;v1.&quot;</span><span class="p">,</span><span class="s2">&quot;uid&quot;</span><span class="p">:</span><span class="s2">&quot;cb4aaabf-bd4d-4233-99cf-05dbad581168&quot;</span><span class="p">,</span><span class="s2">&quot;creationTimestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2023-03-13T20:58:42Z&quot;</span><span class="p">,</span><span class="s2">&quot;labels&quot;</span><span class="p">:{</span><span class="s2">&quot;kube-aggregator.kubernetes.io/automanaged&quot;</span><span class="p">:</span><span class="s2">&quot;onstart&quot;</span><span class="p">},</span><span class="s2">&quot;managedFields&quot;</span><span class="p">:[{</span><span class="s2">&quot;manager&quot;</span><span class="p">:</span><span class="s2">&quot;kube-apiserver&quot;</span><span class="p">,</span><span class="s2">&quot;operation&quot;</span><span class="p">:</span><span class="s2">&quot;Update&quot;</span><span class="p">,</span><span class="s2">&quot;apiVersion&quot;</span><span class="p">:</span><span class="s2">&quot;apiregistration.k8s.io/v1&quot;</span><span class="p">,</span><span class="s2">&quot;time&quot;</span><span class="p">:</span><span class="s2">&quot;2023-03-13T20:58:42Z&quot;</span><span class="p">,</span><span class="s2">&quot;fieldsType&quot;</span><span class="p">:</span><span class="s2">&quot;FieldsV1&quot;</span><span class="p">,</span><span class="s2">&quot;fieldsV1&quot;</span><span class="p">:{</span><span class="s2">&quot;f:metadata&quot;</span><span class="p">:{</span><span class="s2">&quot;f:labels&quot;</span><span class="p">:{</span><span class="s2">&quot;.&quot;</span><span class="p">:{},</span><span class="s2">&quot;f:kube-aggregator.kubernetes.io/automanaged&quot;</span><span class="p">:{}}},</span><span class="s2">&quot;f:spec&quot;</span><span class="p">:{</span><span class="s2">&quot;f:groupPriorityMinimum&quot;</span><span class="p">:{},</span><span class="s2">&quot;f:version&quot;</span><span class="p">:{},</span><span class="s2">&quot;f:versionPriority&quot;</span><span class="p">:{}}}}]},</span><span class="s2">&quot;spec&quot;</span><span class="p">:{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span><span class="s2">&quot;v1&quot;</span><span class="p">,</span><span class="s2">&quot;groupPriorityMinimum&quot;</span><span class="p">:</span><span class="mi">18000</span><span class="p">,</span><span class="s2">&quot;versionPriority&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span><span class="s2">&quot;status&quot;</span><span class="p">:{</span><span class="s2">&quot;conditions&quot;</span><span class="p">:[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;Available&quot;</span><span class="p">,</span><span class="s2">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;True&quot;</span><span class="p">,</span><span class="s2">&quot;lastTransitionTime&quot;</span><span class="p">:</span><span class="s2">&quot;2023-03-13T20:58:42Z&quot;</span><span class="p">,</span><span class="s2">&quot;reason&quot;</span><span class="p">:</span><span class="s2">&quot;Local&quot;</span><span class="p">,</span><span class="s2">&quot;message&quot;</span><span class="p">:</span><span class="s2">&quot;Local APIServices are always available&quot;</span><span class="p">}]}}</span>
+</pre></div>
+</div>
+</section>
+<section id="etcd-pair-example">
+<h2>5. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> Pair Example<a class="headerlink" href="#etcd-pair-example" title="Permalink to this heading"></a></h2>
+<p>From the discussions, we can know that we have an API server pod in minikube as,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>api<span class="w"> </span>
+kube-system<span class="w">   </span>kube-apiserver-minikube<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>151m
+</pre></div>
+</div>
+<p>From the <code class="docutils literal notranslate"><span class="pre">etcd</span></code> node, it’s value is under the key of <code class="docutils literal notranslate"><span class="pre">/registry/pods/kube-system/kube-apiserver-minikube</span></code>. The key value pair of pod <code class="docutils literal notranslate"><span class="pre">kube-apiserver-minikube</span></code> can be queried by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1">#  etcdctl get --prefix /registry/pods/kube-system/kube-apiserver-minikube | more</span>
+</pre></div>
+</div>
+<p>And the output should be,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/registry/pods/kube-system/kube-apiserver-minikube
+k8s
+        
+v1Pod?7
+?
+kube-apiserver-minikube
+                       kube-system&quot;*$7c4837d4-a568-47f4-aef1-7b0b82b278772????Z
+       componentkube-apiserverZ
+control-planebT
+?kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint192.168.49.2:8443b=
+kubernetes.io/config.hash bd8b8fe30652798a5ae3fc51e66ef681b?
+ubernetes.io/config.mirror bd8b8fe30652798a5ae3fc51e66ef681b;
+kubernetes.io/config.seen2023-03-13T20:58:44.823612464Zb#
+ubernetes.io/config.sourcefilej&lt;
+Nodminikube&quot;$19687d12-0294-4c67-9b92-da99bb928665*v10??
+kubeletUpdatev????FieldsV1:?
+?{&quot;f:metadata&quot;:{&quot;f:annotations&quot;:{&quot;.&quot;:{},&quot;f:kubeadm.kubernetes.io/kube-apiserver.advertise-a
+--More-- 
+
+</pre></div>
+</div>
+<p>Here the first line is the key <code class="docutils literal notranslate"><span class="pre">/registry/pods/kube-system/kube-apiserver-minikube</span></code> of the api server pod. The rest lines are the values of this this key.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note1.html" class="btn btn-neutral float-left" title="Advanced Kubernetes 1 | CNCF Basics and Kubeadm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../solr/note1.html" class="btn btn-neutral float-right" title="Apache Solr 1 | Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

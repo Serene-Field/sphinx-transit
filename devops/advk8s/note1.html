@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advanced Kubernetes 1 | Kubeadm &mdash; serenefield-sphinx  documentation</title>
+  <title>Advanced Kubernetes 1 | CNCF Basics and Kubeadm &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -12,14 +12,13 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Apache Solr 1 | Installation" href="../solr/note1.html" />
+    <link rel="next" title="Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl" href="note2.html" />
     <link rel="prev" title="⛴️ Docker" href="../index.html" /> 
 </head>
 
@@ -47,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html#advanced-k8s">⛵️  Advanced K8s</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Kubernetes 1 | Kubeadm</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Kubernetes 1 | CNCF Basics and Kubeadm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#cncf-basics">1. CNCF Basics</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#cncf-trail-map">(1) CNCF Trail Map</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#topics-overview">(2) Topics Overview</a></li>
@@ -56,8 +55,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#environment-configuration">2. Environment Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#build-1-node-environment-with-kubeadm">3. Build 1-Node Environment with Kubeadm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test">4. Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">5. Debug</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a></li>
@@ -107,7 +108,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
-      <li class="breadcrumb-item active">Advanced Kubernetes 1 | Kubeadm</li>
+      <li class="breadcrumb-item active">Advanced Kubernetes 1 | CNCF Basics and Kubeadm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/devops/advk8s/note1.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,8 +118,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="advanced-kubernetes-1-kubeadm">
-<h1>Advanced Kubernetes 1 | Kubeadm<a class="headerlink" href="#advanced-kubernetes-1-kubeadm" title="Permalink to this heading"></a></h1>
+  <section id="advanced-kubernetes-1-cncf-basics-and-kubeadm">
+<h1>Advanced Kubernetes 1 | CNCF Basics and Kubeadm<a class="headerlink" href="#advanced-kubernetes-1-cncf-basics-and-kubeadm" title="Permalink to this heading"></a></h1>
 <section id="cncf-basics">
 <h2>1. CNCF Basics<a class="headerlink" href="#cncf-basics" title="Permalink to this heading"></a></h2>
 <section id="cncf-trail-map">
@@ -210,6 +211,20 @@ kube-system<span class="w">   </span>kube-scheduler-ubuntu-linux-22-04-desktop<s
 </pre></div>
 </div>
 </section>
+<section id="debug">
+<h2>5. Debug<a class="headerlink" href="#debug" title="Permalink to this heading"></a></h2>
+<p>After rebooting the VM, the connection to kubernetes will be lost. Logs like</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl get nodes
+E0313 10:34:40.260814 2711656 mencache.g:238] couldn&#39;t get current server API g roup list: Get &quot;http://localhost: 8080/api?timeout=32s&quot;: dial tcp 127.0.0.1:8080:connect: connection refused
+</pre></div>
+</div>
+<p>In this case, rerun <code class="docutils literal notranslate"><span class="pre">install-node.sh</span></code> by,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>scripts/install-node.sh
+$<span class="w"> </span>swapoff<span class="w"> </span>-a
+$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>kubelet.service
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -217,7 +232,7 @@ kube-system<span class="w">   </span>kube-scheduler-ubuntu-linux-22-04-desktop<s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="⛴️ Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../solr/note1.html" class="btn btn-neutral float-right" title="Apache Solr 1 | Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="note2.html" class="btn btn-neutral float-right" title="Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
