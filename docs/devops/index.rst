@@ -19,6 +19,7 @@
    :maxdepth: 1
 
    advk8s/note1
+   advk8s/note2
 
 🥐  Apache Solr
 ================
