@@ -20,6 +20,7 @@
 
    advk8s/note1
    advk8s/note2
+   advk8s/note3
 
 🥐  Apache Solr
 ================

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Kubernetes 3 | LDAP &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Apache Solr 1 | Installation" href="../solr/note1.html" />
+    <link rel="prev" title="Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl" href="note2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#advanced-k8s">⛵️  Advanced K8s</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Advanced Kubernetes 1 | CNCF Basics and Kubeadm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced Kubernetes 3 | LDAP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ldap">1. LDAP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ldap-introduction">(1) LDAP Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ldap-data-interchange-format-ldif">(2) LDAP Data Interchange Format (LDIF)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-ldap-pod-in-minikube">(3) Example: LDAP Pod in Minikube</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interact-with-ldap">(4) Interact with LDAP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#password-hashing">(5) Password Hashing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#salted-hash">(6) Salted Hash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
+      <li class="breadcrumb-item active">Advanced Kubernetes 3 | LDAP</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/devops/advk8s/note3.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="advanced-kubernetes-3-ldap">
+<h1>Advanced Kubernetes 3 | LDAP<a class="headerlink" href="#advanced-kubernetes-3-ldap" title="Permalink to this heading"></a></h1>
+<section id="ldap">
+<h2>1. LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading"></a></h2>
+<section id="ldap-introduction">
+<h3>(1) LDAP Introduction<a class="headerlink" href="#ldap-introduction" title="Permalink to this heading"></a></h3>
+<p>LDAP is a protocol initially used to manage telephone directories through telecommunication companies. It’s operating on the application layer of OSI. The default port for LDAP is port <code class="docutils literal notranslate"><span class="pre">389</span></code>.</p>
+<p><img alt="" src="https://i.imgur.com/DF7MJbY.png" /></p>
+</section>
+<section id="ldap-data-interchange-format-ldif">
+<h3>(2) LDAP Data Interchange Format (LDIF)<a class="headerlink" href="#ldap-data-interchange-format-ldif" title="Permalink to this heading"></a></h3>
+<p>LDIF is the standard plain text data files used for LDAP directory content and update requests. There are several fields used in LDIF,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dn</span></code>: unique distinguished name for each entry</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dc</span></code>: domain component, for example <code class="docutils literal notranslate"><span class="pre">www.mydomain.com</span></code> would be written as <code class="docutils literal notranslate"><span class="pre">DC=www,DC=mydomain,DC=com</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ou</span></code>: organizational unit, used to specifiy a user as part of one group</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cn</span></code>: common name referring to individual objects</p></li>
+</ul>
+</section>
+<section id="example-ldap-pod-in-minikube">
+<h3>(3) Example: LDAP Pod in Minikube<a class="headerlink" href="#example-ldap-pod-in-minikube" title="Permalink to this heading"></a></h3>
+<p>Let’s continue with the minikube cluster we have built in the last article.</p>
+<p>First, let’s create a new namespace called <code class="docutils literal notranslate"><span class="pre">ldap</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl create ns ldap
+</pre></div>
+</div>
+<p>Then, make a directory named <code class="docutils literal notranslate"><span class="pre">ldif</span></code> and download the LDIF plain text files from github,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir ldif
+$ cd ldif
+$ curl -LO https://raw.githubusercontent.com/Sadamingh/minikube-with-dex/main/ldap/ldif/0-ous.ldif
+$ curl -LO https://raw.githubusercontent.com/Sadamingh/minikube-with-dex/main/ldap/ldif/1-users.ldif
+$ curl -LO https://raw.githubusercontent.com/Sadamingh/minikube-with-dex/main/ldap/ldif/2-groups.ldif
+</pre></div>
+</div>
+<p>Go back to the last directory after this,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ..
+</pre></div>
+</div>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">secert</span></code> and a <code class="docutils literal notranslate"><span class="pre">configmap</span></code> for the deployment under this nameapce,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl create secret generic openldap \
+    --namespace ldap \
+    --from-literal=adminpassword=adminpassword
+    
+$ kubectl create configmap ldap \
+    --namespace ldap \
+    --from-file=ldif
+</pre></div>
+</div>
+<p>Finally, curl the YAML file <code class="docutils literal notranslate"><span class="pre">ldap.yaml</span></code> from github and then apply it to create the <code class="docutils literal notranslate"><span class="pre">service</span></code> and <code class="docutils literal notranslate"><span class="pre">deployment</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -LO https://raw.githubusercontent.com/Sadamingh/minikube-with-dex/main/ldap/ldap.yaml
+$ kubectl apply --namespace ldap -f ldap.yaml
+</pre></div>
+</div>
+<p>Now we have an <code class="docutils literal notranslate"><span class="pre">ldap</span></code> pod running for further exploration.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods -A | grep ldap
+ldap           openldap-6d86d655c5-5bkvc                 1/1     Running   0          73m
+</pre></div>
+</div>
+</section>
+<section id="interact-with-ldap">
+<h3>(4) Interact with LDAP<a class="headerlink" href="#interact-with-ldap" title="Permalink to this heading"></a></h3>
+<p>Now we can access the LDAP pod through,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl exec --stdin --tty -n ldap $LDAP_POD -- /bin/sh
+#
+</pre></div>
+</div>
+<p>We can check the LDIF entries through <code class="docutils literal notranslate"><span class="pre">ldapsearch</span></code> but for now because we have no user or group imported, we will receive <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">such</span> <span class="pre">object</span> <span class="pre">(32)</span></code> errors,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ldapsearch -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -b &quot;ou=groups,dc=example,dc=org&quot;</span>
+<span class="n">No</span> <span class="n">such</span> <span class="nb">object</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="c1"># ldapsearch -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -b &quot;ou=people,dc=example,dc=org&quot;</span>
+<span class="n">No</span> <span class="n">such</span> <span class="nb">object</span> <span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From <code class="docutils literal notranslate"><span class="pre">ldap.yaml</span></code> and config map <code class="docutils literal notranslate"><span class="pre">ldap</span></code>, we have mounted local path <code class="docutils literal notranslate"><span class="pre">ldap/ldif</span></code> to <code class="docutils literal notranslate"><span class="pre">/ldifs</span></code>. Therefore, now we are able to access the LDIF files,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ls -lrt /ldifs</span>
+<span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">20</span> <span class="n">Mar</span> <span class="mi">15</span> <span class="mi">03</span><span class="p">:</span><span class="mi">31</span> <span class="mi">2</span><span class="o">-</span><span class="n">groups</span><span class="o">.</span><span class="n">ldif</span> <span class="o">-&gt;</span> <span class="o">..</span><span class="n">data</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">groups</span><span class="o">.</span><span class="n">ldif</span>
+<span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">19</span> <span class="n">Mar</span> <span class="mi">15</span> <span class="mi">03</span><span class="p">:</span><span class="mi">31</span> <span class="mi">1</span><span class="o">-</span><span class="n">users</span><span class="o">.</span><span class="n">ldif</span> <span class="o">-&gt;</span> <span class="o">..</span><span class="n">data</span><span class="o">/</span><span class="mi">1</span><span class="o">-</span><span class="n">users</span><span class="o">.</span><span class="n">ldif</span>
+<span class="n">lrwxrwxrwx</span> <span class="mi">1</span> <span class="n">root</span> <span class="n">root</span> <span class="mi">17</span> <span class="n">Mar</span> <span class="mi">15</span> <span class="mi">03</span><span class="p">:</span><span class="mi">31</span> <span class="mi">0</span><span class="o">-</span><span class="n">ous</span><span class="o">.</span><span class="n">ldif</span> <span class="o">-&gt;</span> <span class="o">..</span><span class="n">data</span><span class="o">/</span><span class="mi">0</span><span class="o">-</span><span class="n">ous</span><span class="o">.</span><span class="n">ldif</span>
+</pre></div>
+</div>
+<p>These LDIF files can be mapped to the following tree structure,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├─dc=example,dc=org    # example.org
+│  ├─ou=people
+│  │  ├─cn=admin1
+│  │  ├─cn=admin2
+│  │  ├─cn=developer1
+│  │  └─cn=developer2
+│  └─ou=groups
+│     ├─cn=admins
+│     │  ├─cn=admin1
+│     │  └─cn=admin2
+│     └─cn=developers
+│        ├─cn=developer1
+│        └─cn=developer2
+</pre></div>
+</div>
+<p>Then, we can add them to the LDAP server at <code class="docutils literal notranslate"><span class="pre">localhost:389</span></code> by using command <code class="docutils literal notranslate"><span class="pre">ldapadd</span></code>,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ldapadd -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -H ldap://localhost:389 -f /ldifs/0-ous.ldif</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;ou=people,dc=example,dc=org&quot;</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;ou=groups,dc=example,dc=org&quot;</span>
+<span class="c1"># ldapadd -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -H ldap://localhost:389 -f /ldifs/1-users.ldif</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=admin1,ou=people,dc=example,dc=org&quot;</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=admin2,ou=people,dc=example,dc=org&quot;</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=developer1,ou=people,dc=example,dc=org&quot;</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=developer2,ou=people,dc=example,dc=org&quot;</span>
+<span class="c1"># ldapadd -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -H ldap://localhost:389 -f /ldifs/2-groups.ldif</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=admins,ou=groups,dc=example,dc=org&quot;</span>
+<span class="n">adding</span> <span class="n">new</span> <span class="n">entry</span> <span class="s2">&quot;cn=developers,ou=groups,dc=example,dc=org&quot;</span>
+</pre></div>
+</div>
+<p>After the LDIF is added to the LDAP server, we can access the data through <code class="docutils literal notranslate"><span class="pre">ldapsearch</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">cn=admin,dc=example,dc=org</span></code> means the default admin account for the LDAP server which has access to all the objects in the server.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ldapsearch -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -b &quot;ou=groups,dc=example,dc=org&quot;</span>
+<span class="o">...</span>
+<span class="c1"># numResponses: 4</span>
+<span class="c1"># numEntries: 3</span>
+<span class="c1"># ldapsearch -x -D &quot;cn=admin,dc=example,dc=org&quot; -w adminpassword -b &quot;ou=people,dc=example,dc=org&quot;</span>
+<span class="o">...</span>
+<span class="c1"># numResponses: 6</span>
+<span class="c1"># numEntries: 5</span>
+</pre></div>
+</div>
+</section>
+<section id="password-hashing">
+<h3>(5) Password Hashing<a class="headerlink" href="#password-hashing" title="Permalink to this heading"></a></h3>
+<p>There’s one remaining problem. In the LDIF file <code class="docutils literal notranslate"><span class="pre">1-users.ldif</span></code>, <code class="docutils literal notranslate"><span class="pre">userPassword</span></code> is defined through a hash value <code class="docutils literal notranslate"><span class="pre">{SSHA}RRN6AM9u0tpTEOn6oBcIt9X3BbFPKVk5</span></code> according to the code. You can check it out through this <a class="reference external" href="https://github.com/Sadamingh/minikube-with-dex/blob/main/ldap/ldif/1-users.ldif#L8-L9">link</a>.</p>
+<p>This value is generated by <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code> command with,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># slappasswd -h {SSHA} -s secret</span>
+</pre></div>
+</div>
+<p>And here the original password for <code class="docutils literal notranslate"><span class="pre">admin1</span></code> is actually <code class="docutils literal notranslate"><span class="pre">secret</span></code>. People don’t store the original password <code class="docutils literal notranslate"><span class="pre">secret</span></code> directly in LDIF files because someone can easily retrieve the password and it’s not secure.</p>
+<p>Now, let’s try to use <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code> using <code class="docutils literal notranslate"><span class="pre">SSHA</span></code> (using SHA-1 algorithm) to generate the hash value for secret <code class="docutils literal notranslate"><span class="pre">secret</span></code>. We will have something like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># slappasswd -h {SSHA} -s secret  </span>
+<span class="p">{</span><span class="n">SSHA</span><span class="p">}</span><span class="n">wH8Y5PJH9h31HoWBj9ZafqB43pyslcjS</span>
+</pre></div>
+</div>
+<p>Here the hash code is very different from the one we have in the <code class="docutils literal notranslate"><span class="pre">1-users.ldif</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code> utility uses a random <code class="docutils literal notranslate"><span class="pre">salt</span></code> by default to make the hash more secure and the server can know both of the hash values means <code class="docutils literal notranslate"><span class="pre">secret</span></code>.</p>
+</section>
+<section id="salted-hash">
+<h3>(6) Salted Hash<a class="headerlink" href="#salted-hash" title="Permalink to this heading"></a></h3>
+<p>Let’s see how salted hash works.</p>
+<p><img alt="" src="https://i.imgur.com/LizSFpA.png" /></p>
+<p>The idea of salted hash is to add some random bits to the password each time before hash so that the hash value will become more randomlized. We will put this salt after the hash value as an appendix for the program to verify.</p>
+<p>Suppose we use <code class="docutils literal notranslate"><span class="pre">secret</span></code> as our password. Then after using command <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code>, we get a hash value as follows,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">SSHA</span><span class="p">}</span><span class="n">RRN6AM9u0tpTEOn6oBcIt9X3BbFPKVk5</span>
+</pre></div>
+</div>
+<p>This hash value is encoded with base64. So let’s first decode it, and then we <code class="docutils literal notranslate"><span class="pre">od</span></code> command to change it to hexed bin values,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo -n RRN6AM9u0tpTEOn6oBcIt9X3BbFPKVk5 | base64 -d | od -A n -t x1
+45  13  7a  00  cf  6e  d2  da  53  10  e9  fa  a0  17  08  b7  d5  f7  05  b1  4f  29  59  39 
+</pre></div>
+</div>
+<p>The value above has two parts. The first 20 bytes are the actual hash value and the last 4 bytes is the salt we used for extra security.</p>
+<p>When user enters password as <code class="docutils literal notranslate"><span class="pre">secret</span></code>, we will append the salt after the secret as <code class="docutils literal notranslate"><span class="pre">secret\x4f\x29\x59\x39</span></code>. Then the same encryption process will generate the hash value for us. It should be exactly the same as the one we stored in the LDAP server to pass the authentication.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ slappasswd -h {SHA} -s $(printf &#39;secret\x4f\x29\x59\x39&#39;) | sed &#39;s/{SHA}//&#39; | base64 -d | od -A n -t x1
+45  13  7a  00  cf  6e  d2  da  53  10  e9  fa  a0  17  08  b7  d5  f7  05  b1  
+</pre></div>
+</div>
+<p>Because the salt is randomly added, we will have different hash values even for the same password. This is useful when the passwords are simple, and the attackers can not guess the password through the hash value.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note2.html" class="btn btn-neutral float-left" title="Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../solr/note1.html" class="btn btn-neutral float-right" title="Apache Solr 1 | Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
