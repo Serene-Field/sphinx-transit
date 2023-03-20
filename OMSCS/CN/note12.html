@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 12 | SDN Firewall Project &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computer Network 13 |" href="note13.html" />
+    <link rel="prev" title="Computer Network 11 | Introduction of SDN and SDN Architecture" href="note11.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 12 | SDN Firewall Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submission-and-rubic">1. Submission and Rubic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recall-setup-vm">2. Recall: Setup VM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wireshark">3. Wireshark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firewall-config-file-review">4. Firewall Config File Review</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-pox-api">5. Basic POX API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-control">6. Access Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openflow-actions">7. OpenFlow Actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sdn-firewall-py-test">8. <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firewall-rules">9. Firewall Rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-pol-tests">10. <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submission">11. Submission</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 |</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 12 | SDN Firewall Project</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note12.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-12-sdn-firewall-project">
+<h1>Computer Network 12 | SDN Firewall Project<a class="headerlink" href="#computer-network-12-sdn-firewall-project" title="Permalink to this heading"></a></h1>
+<section id="submission-and-rubic">
+<h2>1. Submission and Rubic<a class="headerlink" href="#submission-and-rubic" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">packetcapture.pcap</span></code> (15)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> (5)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> (5)</p></li>
+<li><p>Pass SDN firewall unit tests (35 + 15 + 25)</p></li>
+</ul>
+</section>
+<section id="recall-setup-vm">
+<h2>2. Recall: Setup VM<a class="headerlink" href="#recall-setup-vm" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> for IDE connection</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span></code> for code version control and sync to github</p></li>
+</ul>
+<p>Reference: <a class="reference external" href="https://serene-field.github.io/sphinx-transit/OMSCS/CN/note7.html">Link</a></p>
+<ul class="simple">
+<li><p>Remeber to clean up mininet in case of any conflicts,</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mn -c
+</pre></div>
+</div>
+</section>
+<section id="wireshark">
+<h2>3. Wireshark<a class="headerlink" href="#wireshark" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Start a mininet prompt by topo file <code class="docutils literal notranslate"><span class="pre">ws-topology.py</span></code>,</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo python ws-topology.py
+mininet&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start two xterm windows for <code class="docutils literal notranslate"><span class="pre">us1</span></code> and <code class="docutils literal notranslate"><span class="pre">us2</span></code> hosts</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mininet</span><span class="o">&gt;</span> <span class="n">us1</span> <span class="n">xterm</span><span class="o">&amp;</span>
+<span class="n">mininet</span><span class="o">&gt;</span> <span class="n">us2</span> <span class="n">xterm</span><span class="o">&amp;</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">us1</span></code> xterm window, change the command prompt by,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># export PS1=&quot;us1 &gt;&quot;</span>
+<span class="n">us1</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Similarly, in <code class="docutils literal notranslate"><span class="pre">us2</span></code> xterm window,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># export PS1=&quot;us2 &gt;&quot;</span>
+<span class="n">us2</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Note that this step should only be executed with the non-root role. This means we can not use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">su</span> <span class="pre">-</span></code>.</p>
+<ul class="simple">
+<li><p>In mininet prompt, use wireshark command <code class="docutils literal notranslate"><span class="pre">tshark</span></code> to generate packet information of <code class="docutils literal notranslate"><span class="pre">us1</span></code> host.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mininet</span><span class="o">&gt;</span> <span class="n">us1</span> <span class="n">sudo</span> <span class="n">tshark</span> <span class="o">-</span><span class="n">w</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">packetcapture</span><span class="o">.</span><span class="n">pcap</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Simulate network traffic with the following steps</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">us1</span></code>: <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.0.1.2</span></code>, then ctrl+C to kill the process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us2</span></code>: <code class="docutils literal notranslate"><span class="pre">ping</span> <span class="pre">10.0.1.1</span></code>, then ctrl+C to kill the process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us1</span></code>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test-server.py</span> <span class="pre">T</span> <span class="pre">80</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us2</span></code>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test-client.py</span> <span class="pre">T</span> <span class="pre">80</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us1</span></code>: ctrl+C to kill the process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us1</span></code>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test-server.py</span> <span class="pre">T</span> <span class="pre">8000</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us2</span></code>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test-client.py</span> <span class="pre">T</span> <span class="pre">8000</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us1</span></code>: ctrl+C to kill the process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mininet</span></code>: ctrl+C to kill <code class="docutils literal notranslate"><span class="pre">tshark</span></code> process</p></li>
+<li><p>exit <code class="docutils literal notranslate"><span class="pre">mininet</span></code>, <code class="docutils literal notranslate"><span class="pre">us1</span></code>, <code class="docutils literal notranslate"><span class="pre">us2</span></code></p></li>
+</ul>
+</li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">packetcapture.pcap</span></code> to project path</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/tmp/packetcapture.pcap<span class="w"> </span>
+$<span class="w"> </span>ls<span class="w"> </span>-lrt<span class="w"> </span>/tmp/packetcapture.pcap
+-rwxrwxrwx<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">755</span><span class="w"> </span>root<span class="w"> </span><span class="m">19564</span><span class="w"> </span>Mar<span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">01</span>:57<span class="w"> </span>/tmp/packetcapture.pcap
+$<span class="w"> </span>cp<span class="w"> </span>/tmp/packetcapture.pcap<span class="w"> </span><span class="nv">$PROJECT_PATH</span><span class="w"> </span><span class="c1"># replace with the path</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>(Optional) Use git and github for version control</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">wireshark</span></code> to examine the packet information</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo wireshark
+</pre></div>
+</div>
+<p>Then File -&gt; Open, choose the <code class="docutils literal notranslate"><span class="pre">packetcapture.pcap</span></code> we have generated.</p>
+</section>
+<section id="firewall-config-file-review">
+<h2>4. Firewall Config File Review<a class="headerlink" href="#firewall-config-file-review" title="Permalink to this heading"></a></h2>
+<p>In this project, the firewall configuration rules are stated in the <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> file. The file is like a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file format with each line representing a firewall rule. There are 9 fields in a line of rule,</p>
+<ul class="simple">
+<li><p>RuleNumber: has to be unique numbers and it is not validated in the program</p></li>
+<li><p>Action: <code class="docutils literal notranslate"><span class="pre">Block</span></code> or <code class="docutils literal notranslate"><span class="pre">Allow</span></code>, cannot be <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p>Source MAC: source host MAC addr</p></li>
+<li><p>Destination MAC: destination host MAC addr</p></li>
+<li><p>Source IP: source host IP addr</p></li>
+<li><p>Destination IP: destination host IP addr. For source/dest IP, we have the following hosts/networks defined in <code class="docutils literal notranslate"><span class="pre">sdn-topology.py</span></code></p>
+<ul>
+<li><p>Headquarters Network: Subnet <code class="docutils literal notranslate"><span class="pre">10.0.0.0/24</span></code> for <code class="docutils literal notranslate"><span class="pre">hq1</span></code> to <code class="docutils literal notranslate"><span class="pre">hq5</span></code></p></li>
+<li><p>US Network: Subnet <code class="docutils literal notranslate"><span class="pre">10.0.1.0/24</span></code> for <code class="docutils literal notranslate"><span class="pre">us1</span></code> to <code class="docutils literal notranslate"><span class="pre">us5</span></code></p></li>
+<li><p>India Network: Subnet <code class="docutils literal notranslate"><span class="pre">10.0.20.0/24</span></code> for <code class="docutils literal notranslate"><span class="pre">in1</span></code> to <code class="docutils literal notranslate"><span class="pre">in5</span></code></p></li>
+<li><p>China Network: Subnet <code class="docutils literal notranslate"><span class="pre">10.0.30.0/24</span></code> for <code class="docutils literal notranslate"><span class="pre">cn1</span></code> to <code class="docutils literal notranslate"><span class="pre">cn5</span></code></p></li>
+<li><p>UK Network: Subnet <code class="docutils literal notranslate"><span class="pre">10.0.40.0/24</span></code> for <code class="docutils literal notranslate"><span class="pre">uk1</span></code> to <code class="docutils literal notranslate"><span class="pre">uk5</span></code></p></li>
+</ul>
+</li>
+<li><p>Protocol: protocol number based on <a class="reference external" href="https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml">IANA</a></p>
+<ul>
+<li><p>ICMP: <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p>TCP: <code class="docutils literal notranslate"><span class="pre">6</span></code></p></li>
+<li><p>UDP: <code class="docutils literal notranslate"><span class="pre">17</span></code></p></li>
+</ul>
+</li>
+<li><p>Source Port: source host application port. Only for TCP/UDP</p></li>
+<li><p>Destination Port: destination host application port. Only for TCP/UDP</p></li>
+<li><p>Comment/Note: extra notes not validated in the program</p></li>
+</ul>
+<p>Let’s see two examples,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">,</span><span class="n">Block</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="mf">10.0.0.1</span><span class="o">/</span><span class="mi">32</span><span class="p">,</span><span class="mf">10.0.1.0</span><span class="o">/</span><span class="mi">24</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="n">Block</span> <span class="mf">10.0.0.1</span> <span class="kn">from</span> <span class="nn">accessing</span> <span class="n">a</span> <span class="n">web</span> <span class="n">server</span> <span class="n">on</span> <span class="n">the</span> <span class="mf">10.0.1.0</span><span class="o">/</span><span class="mi">24</span> <span class="n">network</span>
+</pre></div>
+</div>
+<p>The first rule basically blocks host <code class="docutils literal notranslate"><span class="pre">hq1</span></code> (IP Address <code class="docutils literal notranslate"><span class="pre">10.0.0.1/32</span></code>) from accessing a web server on any host on the <code class="docutils literal notranslate"><span class="pre">us</span></code> network (the subnet 10.0.1.0/24 network). The web server is running on the TCP IP Protocol (6) and uses TCP Port 80.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span><span class="p">,</span><span class="n">Allow</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="mf">10.0.0.1</span><span class="o">/</span><span class="mi">32</span><span class="p">,</span><span class="mf">10.0.1.125</span><span class="o">/</span><span class="mi">32</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="o">-</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="n">Allow</span> <span class="mf">10.0.0.1</span> <span class="n">to</span> <span class="n">access</span> <span class="n">a</span> <span class="n">web</span> <span class="n">server</span> <span class="n">on</span> <span class="mf">10.0.1.125</span> <span class="n">overriding</span> <span class="n">previous</span> <span class="n">rule</span>
+</pre></div>
+</div>
+<p>The second rule overrides the initial rule to allow <code class="docutils literal notranslate"><span class="pre">hq1</span></code> (IP Address 10.0.0.1/32) to access a web server running on <code class="docutils literal notranslate"><span class="pre">us5</span></code> (IP Address 10.0.1.125/32). The web server is running on the TCP IP Protocol (6) and uses TCP Port 80.</p>
+</section>
+<section id="basic-pox-api">
+<h2>5. Basic POX API<a class="headerlink" href="#basic-pox-api" title="Permalink to this heading"></a></h2>
+<p>Now, let’s see how we can implement the firewall with file <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code>. The code is based on OpenFlow and POX (which is a software for OpenFlow control). As it is provided, we must implement code that does the following steps,</p>
+<ul class="simple">
+<li><p>Create a OpenFlow Flow Modification object <code class="docutils literal notranslate"><span class="pre">of.ofp_flow_mod()</span></code></p></li>
+<li><p>Create a POX Packet Matching object for the rules</p>
+<ul>
+<li><p>Set up OpenFlow rules with matching attributes</p></li>
+<li><p>Set up access control with rule’s priority</p></li>
+</ul>
+</li>
+<li><p>Create a POX output action to specify what to do with the traffic after it is matched.</p></li>
+</ul>
+<p>Now, let’s view the code in <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code>. First, we have to comment out <code class="docutils literal notranslate"><span class="pre">rule</span> <span class="pre">=</span> <span class="pre">None</span></code> and replace it with a flow modificatio object with <code class="docutils literal notranslate"><span class="pre">of.ofp_flow_mod()</span></code>.</p>
+<p>The flow modification object is the main object used for this project. This adds a rule to the OpenFlow controller that will affect a modification to the traffic flow based on priority, packet characteristic matchin, and an action that will be done to the traffic that is matched. It is defined in Python <a class="reference external" href="https://github.com/noxrepo/pox/blob/gar-experimental/pox/openflow/libopenflow_01.py#L2268">here</a> and as follows,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ofp_flow_mod</span> <span class="p">(</span><span class="n">ofp_header</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">ofp_header</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">header_type</span> <span class="o">=</span> <span class="n">OFPT_FLOW_MOD</span> 
+        <span class="k">if</span> <span class="s1">&#39;match&#39;</span> <span class="ow">in</span> <span class="n">kw</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">ofp_match</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="n">OFP_DEFAULT_PRIORITY</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">actions</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>OpenFlow also defines a matching data structure shown above as <code class="docutils literal notranslate"><span class="pre">ofp_match()</span></code>. This enable us to define a set of headers for the packets to match against. Initially, it will check if there’s a <code class="docutils literal notranslate"><span class="pre">match</span></code> string in <code class="docutils literal notranslate"><span class="pre">kw</span></code> to decide whether to create a ofp matching object. Because we are not including string <code class="docutils literal notranslate"><span class="pre">match</span></code> in <code class="docutils literal notranslate"><span class="pre">kw</span></code>, we have to create a match object and attach it to the flow modification object manually by,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">match</span> <span class="o">=</span> <span class="n">of</span><span class="o">.</span><span class="n">ofp_match</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We should also be aware of the following attributes in the ofp matching object,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span>           <span class="n">Type</span>              <span class="n">Usage</span>
+<span class="n">dl_src</span>         <span class="n">EthAddr</span>           <span class="n">Src</span> <span class="n">MAC</span> <span class="n">Addr</span>
+<span class="n">dl_dst</span>         <span class="n">EthAddr</span>           <span class="n">Dst</span> <span class="n">MAC</span> <span class="n">Addr</span>
+<span class="n">dl_type</span>        <span class="n">Int</span>               <span class="n">Ethertype</span> <span class="o">/</span> <span class="n">length</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="mh">0x0800</span><span class="o">=</span><span class="n">IPv4</span><span class="p">)</span>
+<span class="n">nw_proto</span>       <span class="n">Int</span>               <span class="n">IP</span> <span class="n">protocol</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="mi">6</span> <span class="o">=</span> <span class="n">TCP</span><span class="p">)</span> 
+<span class="n">nw_src</span>         <span class="n">String</span><span class="o">/</span><span class="n">IPAddr</span>     <span class="n">Src</span> <span class="n">IP</span> <span class="n">Addr</span>
+<span class="n">nw_dst</span>         <span class="n">String</span><span class="o">/</span><span class="n">IPAddr</span>     <span class="n">Dst</span> <span class="n">IP</span> <span class="n">Addr</span>
+<span class="n">tp_src</span>         <span class="n">Int</span>               <span class="n">TCP</span><span class="o">/</span><span class="n">UDP</span> <span class="n">src</span> <span class="n">application</span> <span class="n">port</span>
+<span class="n">tp_dst</span>         <span class="n">Int</span>               <span class="n">TCP</span><span class="o">/</span><span class="n">UDP</span> <span class="n">dst</span> <span class="n">application</span> <span class="n">port</span>
+</pre></div>
+</div>
+<p>These attributed can be specified on the match object to specify the rules. For example,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">tp_src</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rule</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">dl_dst</span> <span class="o">=</span> <span class="n">EthAddr</span><span class="p">(</span><span class="s2">&quot;01:02:03:04:05:06&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For IP address, there are several ways to specify,</p>
+<ul class="simple">
+<li><p>Easiest: use the string with mask format</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">nw_src</span> <span class="o">=</span> <span class="s2">&quot;192.168.42.0/24&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Formal: use <code class="docutils literal notranslate"><span class="pre">IPAddr</span></code> type</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">nw_src</span> <span class="o">=</span> <span class="p">(</span><span class="n">IPAddr</span><span class="p">(</span><span class="s2">&quot;192.168.42.0&quot;</span><span class="p">),</span> <span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Other: give IP and mask addresses</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">match</span><span class="o">.</span><span class="n">nw_src</span> <span class="o">=</span> <span class="s2">&quot;192.168.42.0/255.255.255.0&quot;</span>
+</pre></div>
+</div>
+<p>In this project, the string method is recommended because it’s the easiest way to do so based on the <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> file. Note the <code class="docutils literal notranslate"><span class="pre">policies</span></code> variable is actually the return value of <code class="docutils literal notranslate"><span class="pre">process_configuration()</span></code> function defined in file <code class="docutils literal notranslate"><span class="pre">setup-firewall.py</span></code>. It does use a CSV mapper to go through the configuration file <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> so the original values in property should be <code class="docutils literal notranslate"><span class="pre">string</span></code> type.</p>
+<p>Note that in this project, we need to assume all traffic is IPv4 and it’s acceptable to hardcode <code class="docutils literal notranslate"><span class="pre">0x0800</span></code> for <code class="docutils literal notranslate"><span class="pre">dl_type</span></code> as we have mentioned above.</p>
+</section>
+<section id="access-control">
+<h2>6. Access Control<a class="headerlink" href="#access-control" title="Permalink to this heading"></a></h2>
+<p>In the POX modification object <code class="docutils literal notranslate"><span class="pre">ofp_flow_mod()</span></code>, there’s another attribute defined as <code class="docutils literal notranslate"><span class="pre">priority</span></code>. It is initialized as value <code class="docutils literal notranslate"><span class="pre">OFP_DEFAULT_PRIORITY</span></code>.</p>
+<p>In this case, there should be two priorities – one for <code class="docutils literal notranslate"><span class="pre">ALLOW</span></code> and one for <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code>. Separate them sufficiently
+to override any exact matching behavior that the POX controller implements).</p>
+<p>It is suggested the <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code> priority be 0 or 1 and the <code class="docutils literal notranslate"><span class="pre">ALLOW</span></code> priority above 10000.</p>
+</section>
+<section id="openflow-actions">
+<h2>7. OpenFlow Actions<a class="headerlink" href="#openflow-actions" title="Permalink to this heading"></a></h2>
+<p>There’s another attribute in OpenFlow modification object <code class="docutils literal notranslate"><span class="pre">ofp_flow_mod.actions</span></code>. With this, we can define what we want to do for a port after it is matched to a rule.</p>
+<p>To make an action, we have to append an <code class="docutils literal notranslate"><span class="pre">ofp_action_output</span></code> object to the <code class="docutils literal notranslate"><span class="pre">actions</span></code> list. The <code class="docutils literal notranslate"><span class="pre">ofp_action_output</span></code> object has the following structure,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ofp_action_output</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span> 
+    <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">port</span></code> attribute of this class is the integer output port for the matching packet. Its value could be an actual physical switch port number or one of the
+following virtual ports expressed as constants,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">of.OFPP_IN_PORT</span></code>: Send back to input switch port</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">of.OFPP_NORMAL</span></code>:  Process via normal L2/L3 legacy switch configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">of.OFPP_FLOOD</span></code>: Output to all OpenFlow ports except the input port with flooding enable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">of.OFPP_ALL</span></code>: Output to all OpenFlow ports except the input port</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">of.OFPP_CONTROLLER</span></code>: Send to the OpenFlow controller</p></li>
+</ul>
+<p>Here’s an example if we redirect the matching packet out to physical switch port number 4,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">of</span><span class="o">.</span><span class="n">ofp_action_output</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="sdn-firewall-py-test">
+<h2>8. <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> Test<a class="headerlink" href="#sdn-firewall-py-test" title="Permalink to this heading"></a></h2>
+<p>At project root directory, copy <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> to <code class="docutils literal notranslate"><span class="pre">test-suite/extra</span></code>. Then go to <code class="docutils literal notranslate"><span class="pre">test-suite/extra</span></code>. Change all the files to executable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>sdn-firewall.py<span class="w"> </span>test-suite/extra/
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>test-suite/extra/
+$<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">777</span><span class="w"> </span>.
+</pre></div>
+</div>
+<p>Open two terminal,</p>
+<ul class="simple">
+<li><p>One run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./start-firewall.sh</span> <span class="pre">configure.pol</span></code></p></li>
+<li><p>Thr other run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">test_all.py</span></code></p></li>
+</ul>
+<p>A success test should show <code class="docutils literal notranslate"><span class="pre">Passed</span> <span class="pre">15</span> <span class="pre">/</span> <span class="pre">15</span></code>.</p>
+</section>
+<section id="firewall-rules">
+<h2>9. Firewall Rules<a class="headerlink" href="#firewall-rules" title="Permalink to this heading"></a></h2>
+<p>As we discussed, we also need a CSV-format file <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> to create firewall policies. Here’s the tasks we have when creating this firewall.</p>
+<p>Note that for the specific IP address of each host, we can go to file <code class="docutils literal notranslate"><span class="pre">sdn-topology.py</span></code> to check them out.</p>
+<p>Also note that we should not use <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> to address for world due to the restrictions placed on the implementation by POX. Match arbitrary traffic from anywhere on the network with a <code class="docutils literal notranslate"><span class="pre">-</span></code> instead.</p>
+<p>What’s more, don’t overblock.</p>
+<ul class="simple">
+<li><p><strong>TASK 1 - DNS</strong>: On the headquarters network, there are two active DNS servers,</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq1</span></code> provides DNS service to the public, which allows TCP/UDP connects from world at port <code class="docutils literal notranslate"><span class="pre">853</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq2</span></code> provides private DNS service only to 5 corporate networks (us, cn, in, uk, hq). So only hosts in corporate networks can TCP/UDP connect to <code class="docutils literal notranslate"><span class="pre">hq2</span></code> at port <code class="docutils literal notranslate"><span class="pre">853</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq2</span></code> blocks the world from TCP/UDP access at 853</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq2</span></code> allows corp TCP access at 853</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq2</span></code> allows corp UDP access at 853</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>TASK 2 - VPN</strong>: On the headquarters network, <code class="docutils literal notranslate"><span class="pre">hq3</span></code> acts as a VPN server</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq3</span></code> blocks the world from TCP/UDP access at 1194</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq3</span></code> allows TCP access at 1194 from us3, uk3, in3, and cn3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hq3</span></code> allows UDP access at 1194 from us3, uk3, in3, and cn3</p></li>
+</ul>
+</li>
+<li><p><strong>TASK 3 - ICMP</strong>: hosts except for the ones in headquarters are not pingable from the world</p>
+<ul>
+<li><p>US, UK, IN, and CN networks are not reachable by ICMP from the world</p></li>
+<li><p>All corporate hosts can receive a complete ping from any headquarter hosts</p></li>
+</ul>
+</li>
+<li><p><strong>TASK 4 - VNC</strong>: for remote desktop and VNC purposes</p>
+<ul>
+<li><p>Block the world from TCP access to port 3389 and port 5900</p></li>
+<li><p>All corporate hosts can TCP connect to headquarter network at port 3389 and port 5900</p></li>
+</ul>
+</li>
+<li><p><strong>TASK 5 - Webserver</strong>: block corporate hosts for sensitive financial information</p>
+<ul>
+<li><p>Server <code class="docutils literal notranslate"><span class="pre">us3</span></code> and <code class="docutils literal notranslate"><span class="pre">us4</span></code> should block TCP access from uk2, uk3, uk4, uk5, in4, in5, us5, and hq5 at port 8510</p></li>
+<li><p>Note that we should use CIDR notations to make the rules simple. We may use the smallest subnet mask that handles the listed hosts using CIDR notation. We can also use this <a class="reference external" href="https://www.browserling.com/tools/ip-to-bin">IP to bin converter</a> to make your life easier.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="configure-pol-tests">
+<h2>10. <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> Tests<a class="headerlink" href="#configure-pol-tests" title="Permalink to this heading"></a></h2>
+<p>First, clean up the minimap we created through,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>./cleanup.sh
+</pre></div>
+</div>
+<p>At project root directory, copy <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> and <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> to <code class="docutils literal notranslate"><span class="pre">test-suite</span></code>. Then go to <code class="docutils literal notranslate"><span class="pre">test-suite</span></code>. Change all the files to executable.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>sdn-firewall.py<span class="w"> </span>test-suite
+$<span class="w"> </span>cp<span class="w"> </span>configure.pol<span class="w"> </span>test-suite
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>test-suite
+$<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">777</span><span class="w"> </span>.
+</pre></div>
+</div>
+<p>Open two terminal,</p>
+<ul class="simple">
+<li><p>One run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./start-firewall.sh</span> <span class="pre">configure.pol</span></code></p></li>
+<li><p>Thr other run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">test_all.py</span></code></p></li>
+</ul>
+<p>A success test should show <code class="docutils literal notranslate"><span class="pre">Passed</span> <span class="pre">100</span> <span class="pre">/</span> <span class="pre">100</span></code>.</p>
+</section>
+<section id="submission">
+<h2>11. Submission<a class="headerlink" href="#submission" title="Permalink to this heading"></a></h2>
+<p>Go to the git root directory where you implement the code.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>zip<span class="w"> </span>gtusr_sdn.zip<span class="w"> </span>packetcapture.pcap<span class="w"> </span>configure.pol<span class="w"> </span>sdn-firewall.py
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note11.html" class="btn btn-neutral float-left" title="Computer Network 11 | Introduction of SDN and SDN Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note13.html" class="btn btn-neutral float-right" title="Computer Network 13 |" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
