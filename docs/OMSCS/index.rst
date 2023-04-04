@@ -17,6 +17,8 @@
    CN/note11
    CN/note12
    CN/note13
+   CN/note14
+   CN/note15
  
 💻  High Performance Computing
 ==============================
