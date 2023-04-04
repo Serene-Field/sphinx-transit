@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 14 ｜ &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computer Network 15 ｜ BGP Hijacking Project" href="note15.html" />
+    <link rel="prev" title="Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX" href="note13.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 14 ｜</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-internet-security">1. Introduction to Internet Security</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#internet-security">(1) Internet Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#secure-communication">(2) Secure Communication</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dns-abuse">2. DNS Abuse</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dns-records">(1) DNS Records</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-usage-1-round-robin-dns-rrdns">(2) DNS Usage 1: Round Robin DNS (RRDNS)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-based-content-delivery-networks-cdns">(3) DNS-based Content Delivery Networks (CDNs)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fast-flux-service-networks-ffsns">(4) Fast-Flux Service Networks (FFSNs)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#network-reputation">3. Network Reputation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rogue-networks">(1) Rogue networks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#infer-network-reputation">(2) Infer Network Reputation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dns-abuse-detection-finding-rogue-networks-fire-system">(3) DNS Abuse Detection: Finding Rogue Networks (FIRE) System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitations-of-dns-abuse-detection">(4) Limitations of DNS Abuse Detection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interconnection-pattern-inference-aswatch">(5) Interconnection Pattern Inference: ASwatch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#likelihood-of-breach">(6) Likelihood of Breach</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bgp-hijacking">4. BGP Hijacking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note15.html">Computer Network 15 ｜ BGP Hijacking Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 14 ｜</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note14.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-14">
+<h1>Computer Network 14 ｜<a class="headerlink" href="#computer-network-14" title="Permalink to this heading"></a></h1>
+<section id="introduction-to-internet-security">
+<h2>1. Introduction to Internet Security<a class="headerlink" href="#introduction-to-internet-security" title="Permalink to this heading"></a></h2>
+<section id="internet-security">
+<h3>(1) Internet Security<a class="headerlink" href="#internet-security" title="Permalink to this heading"></a></h3>
+<p>The Internet was not designed or built with security in mind, so all the protocols that we have learned so far can be exploited by attackers for malicious purposes. Here are some of the common attacks we will discuss,</p>
+<ul class="simple">
+<li><p>Traffic attraction attacks: BGP Hijacking</p></li>
+<li><p>Denial-of-Service (DoS) attacks</p></li>
+<li><p>Distributed Denial-of-Service (DDoS) attacks</p></li>
+</ul>
+</section>
+<section id="secure-communication">
+<h3>(2) Secure Communication<a class="headerlink" href="#secure-communication" title="Permalink to this heading"></a></h3>
+<p>When we talk about secure communication, we are talking about the following properties,</p>
+<ul class="simple">
+<li><p>Confidentiality</p></li>
+</ul>
+<p>The message that is sent from the sender to the receiver is only available to the two parties.</p>
+<ul class="simple">
+<li><p>Integrity</p></li>
+</ul>
+<p>The message should not be somehow modified while in transit.</p>
+<ul class="simple">
+<li><p>Authentication</p></li>
+</ul>
+<p>The communication parties should confirm the identities.</p>
+<ul class="simple">
+<li><p>Availability</p></li>
+</ul>
+<p>The message should be available.</p>
+</section>
+</section>
+<section id="dns-abuse">
+<h2>2. DNS Abuse<a class="headerlink" href="#dns-abuse" title="Permalink to this heading"></a></h2>
+<section id="dns-records">
+<h3>(1) DNS Records<a class="headerlink" href="#dns-records" title="Permalink to this heading"></a></h3>
+<p>DNS records (aka zone files) are instructions that live in authoritative DNS servers and provide domain information. Here are some common types of DNS record types,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: IPv4 address for a domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AAAA</span></code>: IPv6 address for a domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CNAME</span></code>: canonical name, used to forward one domain to another domain. This is common for subdomain to its parent domain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MX</span></code>: redirect to mail server</p></li>
+</ul>
+<p>Note that in the DNS records,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code>: means exact match of the root domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*</span></code>: means wildcard prefix match of the domain</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">www</span></code>: means the prefix of the domain should be <code class="docutils literal notranslate"><span class="pre">www</span></code></p></li>
+</ul>
+<p>Each record will also have a Time to Live (TTL) value which represents how long will this record be valid after a DNS client receives it. When a record reaches it’s TTL, it will no longer be valid and the client has to request for it again. TTL is also the longest time that a record update will be aware of on all the DNS clients.</p>
+</section>
+<section id="dns-usage-1-round-robin-dns-rrdns">
+<h3>(2) DNS Usage 1: Round Robin DNS (RRDNS)<a class="headerlink" href="#dns-usage-1-round-robin-dns-rrdns" title="Permalink to this heading"></a></h3>
+<p>With RRDNS, the DNS server responds to a DNS request with a list of DNS A records (it indicates the IP address). Then the list of DNS A records will be cycled in a round robin manner. This list is only a part of the mapping list.</p>
+<p><img alt="" src="https://i.imgur.com/isWacKR.png" /></p>
+<p>When the list arrives at the DNS client, it can then choose a record using different strategies,</p>
+<ul class="simple">
+<li><p><strong>first record</strong>: so it will balance the load</p></li>
+<li><p><strong>closest record</strong>: in terms of network proximity</p></li>
+</ul>
+<p>Note that if the DNS lookup happens within the same TTL period, the list of records will be the same in a different order because of round robin. However, if it’s not the same TTL period, it’s likely the DNS client will receive a different set of A records.</p>
+</section>
+<section id="dns-based-content-delivery-networks-cdns">
+<h3>(3) DNS-based Content Delivery Networks (CDNs)<a class="headerlink" href="#dns-based-content-delivery-networks-cdns" title="Permalink to this heading"></a></h3>
+<p>CDNs also use DNS-based techniques to distribute content but using more complex strategies. CDNs not only distribute the load among multiple servers at a single location, but it also distribute these servers across the world.</p>
+<p>When accessing the name of the service using DNS, the CDN computes the nearest edge server (or in the figure as surrogate server) and returns its IP address to the DNS client. This results in the content being moved closer to the DNS client which increases responsiveness and availability. CDNs can also react quickly to changes in links as their TTL is lower than RRDNS.</p>
+<p><img alt="" src="https://i.imgur.com/fSSveEv.png" /></p>
+</section>
+<section id="fast-flux-service-networks-ffsns">
+<h3>(4) Fast-Flux Service Networks (FFSNs)<a class="headerlink" href="#fast-flux-service-networks-ffsns" title="Permalink to this heading"></a></h3>
+<p>Although RRDNS provides reliability for the network, it can also be benefit to spammers. One famous criminal technique is called the fast-flux service networks (FFSNs).</p>
+<p>FFSNs utilitize the feature DNS provides.</p>
+<ul class="simple">
+<li><p>DNS <code class="docutils literal notranslate"><span class="pre">A</span></code> record list: a DNS request receives multiple A records make it hard to shut down online scams because even if there’s one IP functional, the spam is still working</p></li>
+<li><p>Low TTL: FFSNs also use low TTLs lower than RRDNS and CDNs so that it will rapidly change in DNS answers. Each time the TTL of current records reached, the records will expired and new IP addresses will be captured from a zombie network (a large set of compromised machines). The machines in this network are then used as proxies to communicate with the mothership node (the node hosts spam contents and it is normally blocked).</p></li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/nmQRCkP.png" /></p>
+</section>
+</section>
+<section id="network-reputation">
+<h2>3. Network Reputation<a class="headerlink" href="#network-reputation" title="Permalink to this heading"></a></h2>
+<section id="rogue-networks">
+<h3>(1) Rogue networks<a class="headerlink" href="#rogue-networks" title="Permalink to this heading"></a></h3>
+<p>Rogue networks are networks whose main purpose is malicious activity such as phishing, hosting spam pages, hosting pirated software, etc.</p>
+</section>
+<section id="infer-network-reputation">
+<h3>(2) Infer Network Reputation<a class="headerlink" href="#infer-network-reputation" title="Permalink to this heading"></a></h3>
+<p>There are several ways to infer a network reputation,</p>
+<ul class="simple">
+<li><p>By Evidence of DNS Abuse</p></li>
+<li><p>By Interconnection Patterns</p></li>
+<li><p>By Likelihood of Breach</p></li>
+</ul>
+<p>We will talk in details about them in the following discussions.</p>
+</section>
+<section id="dns-abuse-detection-finding-rogue-networks-fire-system">
+<h3>(3) DNS Abuse Detection: Finding Rogue Networks (FIRE) System<a class="headerlink" href="#dns-abuse-detection-finding-rogue-networks-fire-system" title="Permalink to this heading"></a></h3>
+<p>FIRE (Finding Rogue Networks) is a system that monitors the data plane for rogue networks. It uses three main data sources to identify hosts that likely belong to rogue networks,</p>
+<ul class="simple">
+<li><p>Botnet command and control providers: use centralized command and control (C&amp;C) on networks where it is unlikely to be taken down.</p>
+<ul>
+<li><p>IRC-based botnets</p></li>
+<li><p>HTTP-based botnets</p></li>
+</ul>
+</li>
+<li><p>Drive-by-download hosting providers: method of malware installation without interaction with the user. It occurs when the victims visit a web page that contains an exploit for their vulnerable browser.</p></li>
+<li><p>Phish housing providers: phishing pages mimic aithentic sites to steal the login credentials, credit card numbers, as well as other personal information. These pages are hosted on compromised servers and usually are up only for a short period of time.</p></li>
+</ul>
+<p>Because each of these data sources produces a list of malicious IP addresses daily, FIRE can combine the information from these three lists to identify rogue AS. The approach is to identify the most malicious networks as those which have the highest ratio of malicious IP addresses as compared to the total owned IP addresses of
+that AS.</p>
+<p>Therefore, only if a network has a large enough concentration of blacklisted IPs for a long enough period of time, it will be flagged as malicious.</p>
+</section>
+<section id="limitations-of-dns-abuse-detection">
+<h3>(4) Limitations of DNS Abuse Detection<a class="headerlink" href="#limitations-of-dns-abuse-detection" title="Permalink to this heading"></a></h3>
+<p>In practice, it is not feasible to monitor the traffic of all networks as decribed with the FIRE system. There are several reasons,</p>
+<ul class="simple">
+<li><p>It requires a <strong>long time</strong> to confirm a malicious behavior</p></li>
+<li><p>The approach does not differentiate well between malicious and cyberactors (i.e. networks that are legitimate but abused)</p></li>
+</ul>
+<p>With the limitations mentioned above, <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> was improved as an other network reputation inference technique.</p>
+</section>
+<section id="interconnection-pattern-inference-aswatch">
+<h3>(5) Interconnection Pattern Inference: ASwatch<a class="headerlink" href="#interconnection-pattern-inference-aswatch" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> uses the information exclusively from the data plane and it also aims to detect malicious networks run by cyberactors (also called bulletproof). It was first mention in <a class="reference external" href="https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p625.pdf">this article</a>.</p>
+<p>The idea of <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code>  is based on the observation that bulletproof ASes have</p>
+<ul class="simple">
+<li><p>distinct interconnection patterns</p></li>
+<li><p>overall different control plane behavior from legitimate networks</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> system has two phases the training phase and the operation phase.</p>
+<ul class="simple">
+<li><p>Training phase</p>
+<ul>
+<li><p>The system is given a list of known malicious and legitimate ASes, and then it learns control-plane behavior typical of both types of ASes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> then tracks ASes’ business relationships and their BGP updates/withdrawals patterns. Commonly, there are three main features that <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> will look into</p>
+<ul>
+<li><p>Rewiring activities</p>
+<ul>
+<li><p>frequent changes in customers/providers</p></li>
+<li><p>connecting with less popular providers</p></li>
+</ul>
+</li>
+<li><p>IP Space Fragmentation and Churn: to avoid all the host IPs being taken down if detected</p>
+<ul>
+<li><p>use small BGP prefixes</p></li>
+<li><p>advertise a small section of its IP space</p></li>
+</ul>
+</li>
+<li><p>BGP Routing Dynamics</p>
+<ul>
+<li><p>periodically announcing prefixes for short periods of time</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Operational phase</p>
+<ul>
+<li><p>Given an unknown AS, <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> uses the model to assign a reputation score based on its features.</p></li>
+<li><p>If one AS got a low reputation score for several days, it will be inferred as malicious</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="likelihood-of-breach">
+<h3>(6) Likelihood of Breach<a class="headerlink" href="#likelihood-of-breach" title="Permalink to this heading"></a></h3>
+<p>Another way to infer a network reputation is to use a system for predicting the likelihood of a security breach within an organization. The system will only use externally observable features so the model can be scalable to all organizations.</p>
+<p>The idea of predicting with a likelihood of breach is based on the random forest model with 258 features. These features can be classified into three classes,</p>
+<ul class="simple">
+<li><p>Mismanagement Symptoms</p>
+<ul>
+<li><p>Open Recursive Resolvers</p></li>
+<li><p>DNS Source Port Randomization</p></li>
+<li><p>BGP Misconfiguration</p></li>
+<li><p>Untrusted HTTPS Certificates</p></li>
+<li><p>Open SMTP Mail Relays</p></li>
+</ul>
+</li>
+<li><p>Malicious Activities</p>
+<ul>
+<li><p>Capturing spam activity</p></li>
+<li><p>Capturing phishing and malware activities</p></li>
+<li><p>Capturing scanning activity</p></li>
+</ul>
+</li>
+<li><p>Security Incident Reports</p>
+<ul>
+<li><p>VERIS Community Database</p></li>
+<li><p>Hackmageddon</p></li>
+<li><p>The Web Hacking Incidents Database</p></li>
+</ul>
+</li>
+</ul>
+<p>With these features for the random forest model, we can get a prediction on the likelihood of breach for us to infer whether a network is malicious or legitimate.</p>
+</section>
+</section>
+<section id="bgp-hijacking">
+<h2>4. BGP Hijacking<a class="headerlink" href="#bgp-hijacking" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note13.html" class="btn btn-neutral float-left" title="Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note15.html" class="btn btn-neutral float-right" title="Computer Network 15 ｜ BGP Hijacking Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

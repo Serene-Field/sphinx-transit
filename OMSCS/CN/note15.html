@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 15 ｜ BGP Hijacking Project &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
+    <link rel="prev" title="Computer Network 14 ｜" href="note14.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note14.html">Computer Network 14 ｜</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 15 ｜ BGP Hijacking Project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bgp-hijacking-demo">1. BGP Hijacking Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-architecture">2. Code Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system-design">3. System Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#implementation">4. Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 15 ｜ BGP Hijacking Project</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note15.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-15-bgp-hijacking-project">
+<h1>Computer Network 15 ｜ BGP Hijacking Project<a class="headerlink" href="#computer-network-15-bgp-hijacking-project" title="Permalink to this heading"></a></h1>
+<section id="bgp-hijacking-demo">
+<h2>1. BGP Hijacking Demo<a class="headerlink" href="#bgp-hijacking-demo" title="Permalink to this heading"></a></h2>
+<p><img alt="" src="https://i.imgur.com/XOACdZk.png" /></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+$<span class="w"> </span>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>termcolor
+</pre></div>
+</div>
+<p>Then for the file <code class="docutils literal notranslate"><span class="pre">bgp.py</span></code>, replace line 87 of,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">routers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">addSwitch</span><span class="p">(</span><span class="s1">&#39;R4&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>to,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">addSwitch</span><span class="p">(</span><span class="s1">&#39;R4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Open a second terminal, we will use this terminal to start a remote session with AS1’s routing daemon,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./connect.sh
+</pre></div>
+</div>
+<p>Then enter the password for the VM and the quagga password <code class="docutils literal notranslate"><span class="pre">en</span></code> to access the administration shell and R1 routing table. When we get the prompt <code class="docutils literal notranslate"><span class="pre">bgpd-R1&gt;</span></code>, type in the command <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">ip</span> <span class="pre">bgp</span></code> for the BGP table</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bgpd-R1&gt; sh ip bgp
+BGP table version is 3, local router ID is 9.0.0.1, vrf id 0
+Default local pref 100, local AS 1
+Status codes:  s suppressed, d damped, h history, * valid, &gt; best, = multipath,
+               i internal, r RIB-failure, S Stale, R Removed
+Nexthop codes: @NNN nexthop&#39;s vrf id, &lt; announce-nh-self
+Origin codes:  i - IGP, e - EGP, ? - incomplete
+
+   Network          Next Hop            Metric LocPrf Weight Path
+*&gt; 11.0.0.0/8       0.0.0.0                  0         32768 i
+*&gt; 12.0.0.0/8       9.0.0.2                  0             0 2 i
+*&gt; 13.0.0.0/8       9.0.0.2                                0 2 3 i
+
+Displayed  3 routes and 3 total paths
+</pre></div>
+</div>
+<p>To test a BGP hijacking process, open a third terminal  to setup a web server in AS3,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./website.sh
+</pre></div>
+</div>
+<p>Then open a fourth terminal to start a rogue AS (AS4) connecting directly to AS1 and advertising the same 13.0.0.0/8 prefix.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./start_rogue.sh
+</pre></div>
+</div>
+<p>To stop the attack, we can use the following command in the fourth terminal,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./stop_rogue.sh
+</pre></div>
+</div>
+</section>
+<section id="code-architecture">
+<h2>2. Code Architecture<a class="headerlink" href="#code-architecture" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Zebra</span></code> is a multi-server routing software which provides TCP/IP based routing protocols. <code class="docutils literal notranslate"><span class="pre">Zebra</span></code> has been decommissioned and <code class="docutils literal notranslate"><span class="pre">Quagga</span></code> is the latest fork</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bgpd</span></code> is a routing component that works with the Quagga routing engine.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: set the bgpd config file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code>: runs in daemon mode, forking and exiting from tty</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code>: the pid-file path where process identifier is written to</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">getIP()</span></code></p>
+<ul class="simple">
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h1-1</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">11.0.1.1/24</span></code>.</p></li>
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h2-1</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">12.0.1.1/24</span></code>.</p></li>
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h1-2</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">11.0.2.1/24</span></code>.</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">getGateway()</span></code></p>
+<ul class="simple">
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h1-1</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">1.0.1.254</span></code>.</p></li>
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h2-1</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">2.0.1.254</span></code>.</p></li>
+<li><p>Given a host name <code class="docutils literal notranslate"><span class="pre">h1-2</span></code>, map it to <code class="docutils literal notranslate"><span class="pre">1.0.2.254</span></code>.</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">startWebserver()</span></code></p>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">webserver.py</span></code> with message <code class="docutils literal notranslate"><span class="pre">text</span></code> on a given node. This function is called twice with different messages,</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>on the legit webserver</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>on the malicious webserver</p></li>
+</ol>
+</li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">webserver.py</span></code></p>
+<p>This is a script for starting a TCP webserver on a node at port 80. It takes one argument <code class="docutils literal notranslate"><span class="pre">--text</span></code> as the message in the <code class="docutils literal notranslate"><span class="pre">h1</span></code> tag. By default, the message is <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">web</span> <span class="pre">server</span></code>.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">connect.sh</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${parameter:-word}</span></code>:  If <code class="docutils literal notranslate"><span class="pre">parameter</span></code> is unset or null, the expansion of <code class="docutils literal notranslate"><span class="pre">word</span></code> is substituted. Otherwise, the value of <code class="docutils literal notranslate"><span class="pre">parameter</span></code> is substituted.</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">run.py</span></code></p>
+<p>A simple run script used to execute a command in a node.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">run.py</span> <span class="pre">--node</span> <span class="pre">R1</span> <span class="pre">--cmd</span> <span class="pre">&quot;telnet</span> <span class="pre">localhost</span> <span class="pre">bgpd&quot;</span></code>, the command used in <code class="docutils literal notranslate"><span class="pre">connect.sh</span></code> to login to <code class="docutils literal notranslate"><span class="pre">R1</span></code> router</p></li>
+</ul>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">website.sh</span></code></p>
+<p>A loop script curls from the webserver every second. It can be used to check if the current webserver is normal or malicious.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">start_rouge.sh</span></code></p>
+<p>The script executes <code class="docutils literal notranslate"><span class="pre">run.py</span></code> for the rogue AS.</p>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">stop_rouge.sh</span></code></p>
+<p>The script kills the rogue AS by command <code class="docutils literal notranslate"><span class="pre">pkill</span> <span class="pre">-f</span> <span class="pre">--signal</span> <span class="pre">9</span> <span class="pre">...</span></code>.</p>
+</section>
+<section id="system-design">
+<h2>3. System Design<a class="headerlink" href="#system-design" title="Permalink to this heading"></a></h2>
+<p>In this project, we have to modify the BGP hijacking demo above to mock the following network.</p>
+<p><img alt="" src="https://i.imgur.com/YY9wH5o.png" /></p>
+<p>Here we have 6 ASes. AS5 is the webserver and AS6 should be the rouge AS that will perform BGP hijacking. All the ASes advertise single prefix,</p>
+<ul class="simple">
+<li><p>AS1: 11.0.0.0/8</p></li>
+<li><p>AS2: 12.0.0.0/8</p></li>
+<li><p>AS3: 13.0.0.0/8</p></li>
+<li><p>AS4: 14.0.0.0/8</p></li>
+<li><p>AS5: 15.0.0.0/8</p></li>
+<li><p>AS6: 11.0.0.0/8</p></li>
+</ul>
+<p>To design the network, we should keep the neighbour <code class="docutils literal notranslate"><span class="pre">eth</span></code> ports under the same subnet so they can communicate. A helpful network graph <code class="docutils literal notranslate"><span class="pre">fig2_topo.pdf</span></code> should be created before the implementation so that we are able to align the edges.</p>
+</section>
+<section id="implementation">
+<h2>4. Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
+<p>To complete this project, we have to modify the following files,</p>
+<ul class="simple">
+<li><p>config files under <code class="docutils literal notranslate"><span class="pre">conf/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bgp.py</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connect.sh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">website.sh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_rogue.sh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop_rogue.sh</span></code></p></li>
+</ul>
+<p>Note the <code class="docutils literal notranslate"><span class="pre">self.addLink</span></code>, the <code class="docutils literal notranslate"><span class="pre">zebra</span></code> configurations, and the <code class="docutils literal notranslate"><span class="pre">eth</span></code> definitions should be in the same order for building the proper network.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note14.html" class="btn btn-neutral float-left" title="Computer Network 14 ｜" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
