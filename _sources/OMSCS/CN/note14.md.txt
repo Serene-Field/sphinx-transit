@@ -1,4 +1,4 @@
-# Computer Network 14 ｜ 
+# Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack
 
 ### 1. Introduction to Internet Security
 
@@ -171,4 +171,248 @@ The idea of predicting with a likelihood of breach is based on the random forest
 With these features for the random forest model, we can get a prediction on the likelihood of breach for us to infer whether a network is malicious or legitimate.
 
 ### 4. BGP Hijacking
+
+#### (1) BGP Hijacking Category 1: by Affected Prefix
+
+In this class of hijacking attacks, we are primarily concerned with the IP prefixes that are advertised by BGP.
+
+- Exact prefix hijacking
+
+Two different ASes (one genuine one counterfeit) announce a path for the same prefix, the routing is disruppted to the hijacker wherever the ASpath is shorter.
+
+- Sub-prefix hijacking
+
+The hijacking AS works with a subprefix of the genuine prefix of the real AS, and as a result
+route large/entire amount of traffic to the hijacking AS.
+
+- Squatting
+
+In this type of attack, the hijacking AS announces a prefix that has not yet been announced by the owner AS.
+
+#### (2) BGP Hijacking Category 2: by AS-Path announcement
+
+In this class of attacks, an illegitimate AS announces the AS-path for a prefix for which it doesn’t have ownership rights.
+
+- Type-0 hijacking
+
+This is simply an AS announcing a prefix not owned by itself.
+
+- Type-N hijacking
+
+This is an attack where the counterfeit AS announces an illegitimate path for a prefix that it does not own to create a fake link (path) between different ASes.
+
+- Type-U hijacking
+
+In this attack the hijacking AS does not modify the AS-PATH but may change the prefix.
+
+#### (3) BGP Hijacking Category 3: by Data-Plane traffic manipulation
+
+In this class of attacks, the intention of the attacker is to hijack the network traffic and manipulate the redirected network traffic on its way to the receiving AS.
+
+- Dropped
+
+Blackholing (BH) attack, means the traffic intercepted by the hijacker can never reach the intended destination.
+
+- Manipulated
+
+Man-in-the-middle (MM) attack, means the traffic intercepted by the hijacker can be eavesdropped or manipulated before it reaches the receiving AS
+
+- Impersonated
+
+Imposture (IM) attack, means the network traffic of the victim AS is impersonated and the response to this network traffic is sent back to the sender.
+
+#### (4) BGP Hijacking Attacks Causes
+
+There are several causes behind the BGP hijacking attacks. 
+
+- Human Error
+
+Accendital routing misconfiguration due to manual errors can lead to large scale exact-prefix hijacking. For example, China Telecom's Type-0 hijacking
+
+- Targeted Attack
+
+Hijacking AS intercepts network traffic (MM attack) while operating in stealth mode to remain under the radar on the control plane (Type-N and Type-U attacks). For example, Visa and Mastercard’s traffic were hijacked by in 2017.
+
+- High Impact Attack
+
+The attacker is obvious in their intent to cause widespread disruption of services. For example, Pakistan Telecom in a Type-0 sub-prefix hijacking, essentially blackholing all of YouTube’s services worldwide for nearly 2 hours.
+
+#### (5) BGP Hijacking Example 1: Hijack Prefix
+
+Let's suppose we have AS1 ~ AS5 and AS1 has a subnet with prefix 10.10.0.0/16 and it announce this prefix to the network so the other ASes in the network can route to this subnet. Assume we have the following network topology, as a result, we have the paths as,
+
+![](https://i.imgur.com/Vx5an60.png)
+
+Now suppose AS4 is a malicious AS and it has no path to subnet with prefix 10.10.0.0/16. However, it can announce fake messages to pretend that 10.10.0.0/16 belongs to AS4.
+
+![](https://i.imgur.com/8wwLC3H.png)
+
+As a result, several paths are modified, 
+
+- AS3 to 10.10.0.0/16 now routing to AS4
+- AS5 to 10.10.0.0/16 now routing to AS4
+
+So in this network, both AS3 and AS4 can not route to subnet 10.10.0.0/16 because the path is now misleading.
+
+#### (6) BGP Hijacking Example 2: Hijack Path
+
+Another way for AS4 to hijack the route is by annoncing the path. For example, AS4 can create a fake to pretend it has a direct path to AS1. So,
+
+![](https://i.imgur.com/2x6aEgd.png)
+
+As a result, the path from AS5 to AS1 is modified, 
+
+- AS5 to 10.10.0.0/16 now routing to AS4
+
+In this case, AS4 performs BGP hijacking by hijacking a path.
+
+#### (7) BGP Hijacking Detection System
+
+One of the high level idea for BGP hijacking defense is to use a detection system called ARTEMIS. RTEMIS is a system that is run locally by network operators to safeguard its own prefixes against malicious BGP hijacking attempts.
+
+The key idea of ARTEMIS is as following,
+
+- configuration file: prefixes owned by the network are listed
+- mechanism for BGP updates: allows receiving updates from local routers and monitoring services
+
+Using the local configuration file as a reference, for the received BGP updates, ARTEMIS can check for prefixes and AS-PATH fields and trigger alerts when there are anomalies.
+
+#### (8) BGP Hijacking Mitigation Techniques
+
+The ARTEMIS system uses two automated techniques in mitigating BGP hijacking attacks,
+
+- Prefix deaggregation
+
+The affected network can either contact other networks or it can simply deaggregate the prefixes that were targeted by announcing more specific prefixes of a certain prefix.
+
+- Mitigation with Multiple Origin AS (MOAS)
+
+The idea is to have third party organizations and service providers do BGP announcements for a given network. When a BGP hijacking event occurs, the following steps occur,
+
+- a. A third party is notified and immediately announces from the hijacked prefix.
+- b. In this way, network traffic from across the world is attracted to the third party organization, which then scrubbs it and tunnels it to the legitimate AS
+
+### 5. Distributed Denial of Service (DDoS) Attack
+
+#### (1) Distributed Denial of Service (DDoS) Attack
+
+Distributed Denial of Service (DDoS) attack is an attempt to compromise a server or network resources with a flood of traffic. To achieve this, the attacker first compromises and deploys flooding servers (slaves).
+
+![](https://i.imgur.com/Kws5EFG.png)
+
+#### (2) IP spoofing
+
+IP spoofing is the act of setting a false IP address in the source field of a packet with the purpose of impersonating a legitimate server. In DDoS attacks, this can happen in two forms,
+
+- spoof source IP address
+
+It results in the response of the server sent to some other client instead of the attacker’s machine. It also results in wastage of network resources and the client
+resources while also causing denial of service to legitimate users.
+
+- spoof same source IP and destination IP
+
+In the second type of attack, the attacker sets the same IP address in both the source and destination IP fields. This results in the server sending the replies to itself, causing it to crash.
+
+#### (3) DDoS Reflection and Amplification
+
+A **reflector** in DDoS is any server that sends a response to a request. In a **reflection attack**, the attackers use a set of reflectors to initiate an attack on the victim. 
+
+For example, the master directs the slaves to send spoofed requests to a very large number of reflectors, usually in the range of 1 million. The slaves set the source address of the packets to the victim’s IP address, thereby redirecting the response of the reflectors to the victim. 
+
+Thus, the victim receives responses from millions of reflectors resulting in exhaustion of its bandwidth. In addition, the resources of the victim is wasted in processing these responses, making it unable to respond to legitimate requests.
+
+![](https://i.imgur.com/tYGjPtV.png)
+
+The master commands the three slaves to send spoofed requests to the reflectors, which in turn sends traffic to the victim. This is in contrast with the conventional DDoS attack we saw in the previous section, where the slaves directly send traffic to the victim. 
+
+Note that the victim can easily identify the reflectors from the response packets. However, the reflector cannot identify the slave sending the spoofed requests.
+
+If the requests are chosen in such a way that the reflectors send large responses to the victim, it is a **reflection and amplification attack**. Not only would the victim receive traffic from millions of servers, the response sent would be large in size, making it further difficult for the victim to handle it.
+
+#### (4) DDoS Attack Defense
+
+Then, let's look into some tools that we can leverage to help detect the DDoS attack.
+
+- **Traffic Scrubbing** Services: A scrubbing service diverts the incoming traffic to a specialized server, where the traffic is “scrubbed” into either clean or unwanted traffic. The problem of this tools is the monetary costs of the service (in-time subscription, setup and other recurring costs). Also the performance will be decreased because of rerouting.
+    - Clean traffic: sent to its original destination
+    - Unwanted traffic: filtered out
+- **Access Control List (ACL)** Filters: deployed by ISPs or IXPs at their AS border routers to filter out unwanted traffic. The drawbacks of these filters include limited scalability and since the filtering does not occur at the ingress points, it can exhaust the bandwidth to a neighboring AS.
+- **BGP Flowspec**: The flow specification feature of BGP, called `Flowspec`, helps to mitigate DDoS attacks by supporting the deployment and propagation of fine-grained filters across AS domain borders. Let's discuss more about it in the next section.
+
+#### (5) BGP Flowspec
+
+BGP Flowspec is an extension to the BGP protocol which allows rules to be created on the traffic flows and take corresponding actions. 
+
+This feature of BGP can help mitigate DDoS attacks by specifying appropriate rules. The AS domain borders supporting BGP Flowspec are capable of matching packets in a specific flow based on a variety of parameters such as source IP, destination IP, packet length, protocol used, etc. Please refer to [this document](https://content.cisco.com/chapter.sjs?uri=/searchable/chapter/content/en/us/td/docs/routers/ncs6000/software/ncs6k-r7-0/routing/configuration/guide/b-routing-cg-ncs6000-70x/b-routing-cg-ncs6000-70x_chapter_011.html.xml) for the 12 types of matching components.
+
+Let's now see an example. Suppose we want to specify the following rule as "all HTTP/HTTPS traffic from port 80 and 443 to one of the Google servers with IP 172.217.19.195 from subnet 130.89.161.0/24", then we will have,
+
+```
+{
+“type 1”: "172.217.19.195/32”
+“type 2": "130.89.161.0/24" "type 3": [6],
+"type 5": [80, 443], 
+"action": {
+    "type ": "traffic-rate", 
+    “value ": "0"
+    }
+}
+```
+
+The `traffic-rate = 0` means we discard the matching traffic. The other possible actions include rate limiting, redirecting or filtering. If no rule is specified, the default action for a rule is to accept the incoming traffic.
+
+In contrast to ACL filters, FlowSpec leverages the BGP control plane making it easier to add rules to all the routers simultaneously. Although FlowSpec is seen to be effective in intra-domain environment, it is not so popular in inter-domain environments as it depends on trust and cooperation among competitive networks. Also, it might not scale for large attacks where the attack traffic originates from multiple sources as it would multiple rules or combining the sources into one prefix.
+
+#### (6) DDoS Mitigation Technique: BGP Blackholing
+
+BGP blackholing is a countermeasure to mitigate a DDoS attack. With this mechanism, all the attack traffic to a targeted DoS destination is dropped to a null location.
+
+BGP blackholing is implemented with either the help of IX or the upstream provider (ISP). The blackhole messages are tagged with a specific BGP blackhole community attribute, usually publicly available, to differentiate it from the regular routing updates.
+
+#### (7) BGP Blackholing Example 1: Peering or ISP
+
+Let's see two examples. Assume the IP `130.149.1.1` in AS2 is under attack.
+
+First, if the blackholing provider is a peer or an upstream provider, the AS must announce its associated blackhole community along with the blackhole prefix.
+
+![](https://i.imgur.com/fllet4m.png)
+
+To mitigate this attack, AS2 (victim network) announces a blackholing message to AS1, which is the provider network. The message contains,
+
+- the IP `130.149.1.1/32`, which is the host IP under attack
+- the community field `AS1:666`, which is the blackholing community of the AS1 provider
+
+Once the provider receives the message, AS1 identifies it as a blackholing message since it contains its blackholing community and sets the next-hop field of the `130.149.1.1` IP to a blackholing IP, thereby effectively dropping all the incoming traffic to host `130.149.1.1`. Thus, the victim host stops receiving the attack traffic that was sent to it.
+
+#### (8) BGP Blackholing Example 2: IXP
+
+Let's look at the scenario, where blackholing is implemented with the help of the IXP.
+
+If the AS is a member of an IXP and it's under attack, it sends the blackholing messages to the **IXP route server** when a member connects to the route server. The route server then announces the message to all the connected IXP member ASes, which then drops the traffic towards the blackholed prefix.
+
+![](https://i.imgur.com/HLWEPdk.png)
+
+Here when AS2 is under attack, AS2 connects to the
+router server of the IXP and sends a BGP blackholing message. The message contains,
+
+- IP under attack: `130.149.1.1`
+- Community field `ASIXP:666`
+
+The route server identifies it as a blackholing message and sets the next-hop of `130.149.1.1` to a blackholing IP. It propagates this announcement to all its member ASes, which then drops all the traffic to host `130.149.1.1`.
+
+#### (9) BGP Blackholing Limitations
+
+There are also some limitations of the BGP blackholing.
+
+- Unreachable
+
+One of the major drawbacks of BGP blackholing is that the destination under attack becomes unreachable since all the traffic including the legitimate traffic is dropped.
+
+- Collateral damage
+
+All the traffic including legitimate traffic via a neighbor AS is dropped.
+
+- Rejection leads to ineffectiveness
+
+If the majority of the attack traffic is coming through a neighbor AS choosing not to participate in blackholing and rejecting the updates, then the mitigation is ineffective. The same is true if a large number of peers do not accept the blackholing announcements.
 

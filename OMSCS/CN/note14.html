@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Computer Network 14 ｜ &mdash; serenefield-sphinx  documentation</title>
+  <title>Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack &mdash; serenefield-sphinx  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
@@ -77,7 +77,7 @@
 <li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 14 ｜</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introduction-to-internet-security">1. Introduction to Internet Security</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#internet-security">(1) Internet Security</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#secure-communication">(2) Secure Communication</a></li>
@@ -99,7 +99,29 @@
 <li class="toctree-l4"><a class="reference internal" href="#likelihood-of-breach">(6) Likelihood of Breach</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#bgp-hijacking">4. BGP Hijacking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bgp-hijacking">4. BGP Hijacking</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-category-1-by-affected-prefix">(1) BGP Hijacking Category 1: by Affected Prefix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-category-2-by-as-path-announcement">(2) BGP Hijacking Category 2: by AS-Path announcement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-category-3-by-data-plane-traffic-manipulation">(3) BGP Hijacking Category 3: by Data-Plane traffic manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-attacks-causes">(4) BGP Hijacking Attacks Causes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-example-1-hijack-prefix">(5) BGP Hijacking Example 1: Hijack Prefix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-example-2-hijack-path">(6) BGP Hijacking Example 2: Hijack Path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-detection-system">(7) BGP Hijacking Detection System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-hijacking-mitigation-techniques">(8) BGP Hijacking Mitigation Techniques</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#distributed-denial-of-service-ddos-attack">5. Distributed Denial of Service (DDoS) Attack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">(1) Distributed Denial of Service (DDoS) Attack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ip-spoofing">(2) IP spoofing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ddos-reflection-and-amplification">(3) DDoS Reflection and Amplification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ddos-attack-defense">(4) DDoS Attack Defense</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-flowspec">(5) BGP Flowspec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ddos-mitigation-technique-bgp-blackholing">(6) DDoS Mitigation Technique: BGP Blackholing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-blackholing-example-1-peering-or-isp">(7) BGP Blackholing Example 1: Peering or ISP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-blackholing-example-2-ixp">(8) BGP Blackholing Example 2: IXP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp-blackholing-limitations">(9) BGP Blackholing Limitations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="note15.html">Computer Network 15 ｜ BGP Hijacking Project</a></li>
@@ -134,7 +156,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
-      <li class="breadcrumb-item active">Computer Network 14 ｜</li>
+      <li class="breadcrumb-item active">Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/OMSCS/CN/note14.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -144,8 +166,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="computer-network-14">
-<h1>Computer Network 14 ｜<a class="headerlink" href="#computer-network-14" title="Permalink to this heading"></a></h1>
+  <section id="computer-network-14-introduction-to-internet-security-dns-abuse-network-reputation-bgp-hijacking-ddos-attack">
+<h1>Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack<a class="headerlink" href="#computer-network-14-introduction-to-internet-security-dns-abuse-network-reputation-bgp-hijacking-ddos-attack" title="Permalink to this heading"></a></h1>
 <section id="introduction-to-internet-security">
 <h2>1. Introduction to Internet Security<a class="headerlink" href="#introduction-to-internet-security" title="Permalink to this heading"></a></h2>
 <section id="internet-security">
@@ -345,6 +367,230 @@ that AS.</p>
 </section>
 <section id="bgp-hijacking">
 <h2>4. BGP Hijacking<a class="headerlink" href="#bgp-hijacking" title="Permalink to this heading"></a></h2>
+<section id="bgp-hijacking-category-1-by-affected-prefix">
+<h3>(1) BGP Hijacking Category 1: by Affected Prefix<a class="headerlink" href="#bgp-hijacking-category-1-by-affected-prefix" title="Permalink to this heading"></a></h3>
+<p>In this class of hijacking attacks, we are primarily concerned with the IP prefixes that are advertised by BGP.</p>
+<ul class="simple">
+<li><p>Exact prefix hijacking</p></li>
+</ul>
+<p>Two different ASes (one genuine one counterfeit) announce a path for the same prefix, the routing is disruppted to the hijacker wherever the ASpath is shorter.</p>
+<ul class="simple">
+<li><p>Sub-prefix hijacking</p></li>
+</ul>
+<p>The hijacking AS works with a subprefix of the genuine prefix of the real AS, and as a result
+route large/entire amount of traffic to the hijacking AS.</p>
+<ul class="simple">
+<li><p>Squatting</p></li>
+</ul>
+<p>In this type of attack, the hijacking AS announces a prefix that has not yet been announced by the owner AS.</p>
+</section>
+<section id="bgp-hijacking-category-2-by-as-path-announcement">
+<h3>(2) BGP Hijacking Category 2: by AS-Path announcement<a class="headerlink" href="#bgp-hijacking-category-2-by-as-path-announcement" title="Permalink to this heading"></a></h3>
+<p>In this class of attacks, an illegitimate AS announces the AS-path for a prefix for which it doesn’t have ownership rights.</p>
+<ul class="simple">
+<li><p>Type-0 hijacking</p></li>
+</ul>
+<p>This is simply an AS announcing a prefix not owned by itself.</p>
+<ul class="simple">
+<li><p>Type-N hijacking</p></li>
+</ul>
+<p>This is an attack where the counterfeit AS announces an illegitimate path for a prefix that it does not own to create a fake link (path) between different ASes.</p>
+<ul class="simple">
+<li><p>Type-U hijacking</p></li>
+</ul>
+<p>In this attack the hijacking AS does not modify the AS-PATH but may change the prefix.</p>
+</section>
+<section id="bgp-hijacking-category-3-by-data-plane-traffic-manipulation">
+<h3>(3) BGP Hijacking Category 3: by Data-Plane traffic manipulation<a class="headerlink" href="#bgp-hijacking-category-3-by-data-plane-traffic-manipulation" title="Permalink to this heading"></a></h3>
+<p>In this class of attacks, the intention of the attacker is to hijack the network traffic and manipulate the redirected network traffic on its way to the receiving AS.</p>
+<ul class="simple">
+<li><p>Dropped</p></li>
+</ul>
+<p>Blackholing (BH) attack, means the traffic intercepted by the hijacker can never reach the intended destination.</p>
+<ul class="simple">
+<li><p>Manipulated</p></li>
+</ul>
+<p>Man-in-the-middle (MM) attack, means the traffic intercepted by the hijacker can be eavesdropped or manipulated before it reaches the receiving AS</p>
+<ul class="simple">
+<li><p>Impersonated</p></li>
+</ul>
+<p>Imposture (IM) attack, means the network traffic of the victim AS is impersonated and the response to this network traffic is sent back to the sender.</p>
+</section>
+<section id="bgp-hijacking-attacks-causes">
+<h3>(4) BGP Hijacking Attacks Causes<a class="headerlink" href="#bgp-hijacking-attacks-causes" title="Permalink to this heading"></a></h3>
+<p>There are several causes behind the BGP hijacking attacks.</p>
+<ul class="simple">
+<li><p>Human Error</p></li>
+</ul>
+<p>Accendital routing misconfiguration due to manual errors can lead to large scale exact-prefix hijacking. For example, China Telecom’s Type-0 hijacking</p>
+<ul class="simple">
+<li><p>Targeted Attack</p></li>
+</ul>
+<p>Hijacking AS intercepts network traffic (MM attack) while operating in stealth mode to remain under the radar on the control plane (Type-N and Type-U attacks). For example, Visa and Mastercard’s traffic were hijacked by in 2017.</p>
+<ul class="simple">
+<li><p>High Impact Attack</p></li>
+</ul>
+<p>The attacker is obvious in their intent to cause widespread disruption of services. For example, Pakistan Telecom in a Type-0 sub-prefix hijacking, essentially blackholing all of YouTube’s services worldwide for nearly 2 hours.</p>
+</section>
+<section id="bgp-hijacking-example-1-hijack-prefix">
+<h3>(5) BGP Hijacking Example 1: Hijack Prefix<a class="headerlink" href="#bgp-hijacking-example-1-hijack-prefix" title="Permalink to this heading"></a></h3>
+<p>Let’s suppose we have AS1 ~ AS5 and AS1 has a subnet with prefix 10.10.0.0/16 and it announce this prefix to the network so the other ASes in the network can route to this subnet. Assume we have the following network topology, as a result, we have the paths as,</p>
+<p><img alt="" src="https://i.imgur.com/Vx5an60.png" /></p>
+<p>Now suppose AS4 is a malicious AS and it has no path to subnet with prefix 10.10.0.0/16. However, it can announce fake messages to pretend that 10.10.0.0/16 belongs to AS4.</p>
+<p><img alt="" src="https://i.imgur.com/8wwLC3H.png" /></p>
+<p>As a result, several paths are modified,</p>
+<ul class="simple">
+<li><p>AS3 to 10.10.0.0/16 now routing to AS4</p></li>
+<li><p>AS5 to 10.10.0.0/16 now routing to AS4</p></li>
+</ul>
+<p>So in this network, both AS3 and AS4 can not route to subnet 10.10.0.0/16 because the path is now misleading.</p>
+</section>
+<section id="bgp-hijacking-example-2-hijack-path">
+<h3>(6) BGP Hijacking Example 2: Hijack Path<a class="headerlink" href="#bgp-hijacking-example-2-hijack-path" title="Permalink to this heading"></a></h3>
+<p>Another way for AS4 to hijack the route is by annoncing the path. For example, AS4 can create a fake to pretend it has a direct path to AS1. So,</p>
+<p><img alt="" src="https://i.imgur.com/2x6aEgd.png" /></p>
+<p>As a result, the path from AS5 to AS1 is modified,</p>
+<ul class="simple">
+<li><p>AS5 to 10.10.0.0/16 now routing to AS4</p></li>
+</ul>
+<p>In this case, AS4 performs BGP hijacking by hijacking a path.</p>
+</section>
+<section id="bgp-hijacking-detection-system">
+<h3>(7) BGP Hijacking Detection System<a class="headerlink" href="#bgp-hijacking-detection-system" title="Permalink to this heading"></a></h3>
+<p>One of the high level idea for BGP hijacking defense is to use a detection system called ARTEMIS. RTEMIS is a system that is run locally by network operators to safeguard its own prefixes against malicious BGP hijacking attempts.</p>
+<p>The key idea of ARTEMIS is as following,</p>
+<ul class="simple">
+<li><p>configuration file: prefixes owned by the network are listed</p></li>
+<li><p>mechanism for BGP updates: allows receiving updates from local routers and monitoring services</p></li>
+</ul>
+<p>Using the local configuration file as a reference, for the received BGP updates, ARTEMIS can check for prefixes and AS-PATH fields and trigger alerts when there are anomalies.</p>
+</section>
+<section id="bgp-hijacking-mitigation-techniques">
+<h3>(8) BGP Hijacking Mitigation Techniques<a class="headerlink" href="#bgp-hijacking-mitigation-techniques" title="Permalink to this heading"></a></h3>
+<p>The ARTEMIS system uses two automated techniques in mitigating BGP hijacking attacks,</p>
+<ul class="simple">
+<li><p>Prefix deaggregation</p></li>
+</ul>
+<p>The affected network can either contact other networks or it can simply deaggregate the prefixes that were targeted by announcing more specific prefixes of a certain prefix.</p>
+<ul class="simple">
+<li><p>Mitigation with Multiple Origin AS (MOAS)</p></li>
+</ul>
+<p>The idea is to have third party organizations and service providers do BGP announcements for a given network. When a BGP hijacking event occurs, the following steps occur,</p>
+<ul class="simple">
+<li><p>a. A third party is notified and immediately announces from the hijacked prefix.</p></li>
+<li><p>b. In this way, network traffic from across the world is attracted to the third party organization, which then scrubbs it and tunnels it to the legitimate AS</p></li>
+</ul>
+</section>
+</section>
+<section id="distributed-denial-of-service-ddos-attack">
+<h2>5. Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#distributed-denial-of-service-ddos-attack" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h3>(1) Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Distributed Denial of Service (DDoS) attack is an attempt to compromise a server or network resources with a flood of traffic. To achieve this, the attacker first compromises and deploys flooding servers (slaves).</p>
+<p><img alt="" src="https://i.imgur.com/Kws5EFG.png" /></p>
+</section>
+<section id="ip-spoofing">
+<h3>(2) IP spoofing<a class="headerlink" href="#ip-spoofing" title="Permalink to this heading"></a></h3>
+<p>IP spoofing is the act of setting a false IP address in the source field of a packet with the purpose of impersonating a legitimate server. In DDoS attacks, this can happen in two forms,</p>
+<ul class="simple">
+<li><p>spoof source IP address</p></li>
+</ul>
+<p>It results in the response of the server sent to some other client instead of the attacker’s machine. It also results in wastage of network resources and the client
+resources while also causing denial of service to legitimate users.</p>
+<ul class="simple">
+<li><p>spoof same source IP and destination IP</p></li>
+</ul>
+<p>In the second type of attack, the attacker sets the same IP address in both the source and destination IP fields. This results in the server sending the replies to itself, causing it to crash.</p>
+</section>
+<section id="ddos-reflection-and-amplification">
+<h3>(3) DDoS Reflection and Amplification<a class="headerlink" href="#ddos-reflection-and-amplification" title="Permalink to this heading"></a></h3>
+<p>A <strong>reflector</strong> in DDoS is any server that sends a response to a request. In a <strong>reflection attack</strong>, the attackers use a set of reflectors to initiate an attack on the victim.</p>
+<p>For example, the master directs the slaves to send spoofed requests to a very large number of reflectors, usually in the range of 1 million. The slaves set the source address of the packets to the victim’s IP address, thereby redirecting the response of the reflectors to the victim.</p>
+<p>Thus, the victim receives responses from millions of reflectors resulting in exhaustion of its bandwidth. In addition, the resources of the victim is wasted in processing these responses, making it unable to respond to legitimate requests.</p>
+<p><img alt="" src="https://i.imgur.com/tYGjPtV.png" /></p>
+<p>The master commands the three slaves to send spoofed requests to the reflectors, which in turn sends traffic to the victim. This is in contrast with the conventional DDoS attack we saw in the previous section, where the slaves directly send traffic to the victim.</p>
+<p>Note that the victim can easily identify the reflectors from the response packets. However, the reflector cannot identify the slave sending the spoofed requests.</p>
+<p>If the requests are chosen in such a way that the reflectors send large responses to the victim, it is a <strong>reflection and amplification attack</strong>. Not only would the victim receive traffic from millions of servers, the response sent would be large in size, making it further difficult for the victim to handle it.</p>
+</section>
+<section id="ddos-attack-defense">
+<h3>(4) DDoS Attack Defense<a class="headerlink" href="#ddos-attack-defense" title="Permalink to this heading"></a></h3>
+<p>Then, let’s look into some tools that we can leverage to help detect the DDoS attack.</p>
+<ul class="simple">
+<li><p><strong>Traffic Scrubbing</strong> Services: A scrubbing service diverts the incoming traffic to a specialized server, where the traffic is “scrubbed” into either clean or unwanted traffic. The problem of this tools is the monetary costs of the service (in-time subscription, setup and other recurring costs). Also the performance will be decreased because of rerouting.</p>
+<ul>
+<li><p>Clean traffic: sent to its original destination</p></li>
+<li><p>Unwanted traffic: filtered out</p></li>
+</ul>
+</li>
+<li><p><strong>Access Control List (ACL)</strong> Filters: deployed by ISPs or IXPs at their AS border routers to filter out unwanted traffic. The drawbacks of these filters include limited scalability and since the filtering does not occur at the ingress points, it can exhaust the bandwidth to a neighboring AS.</p></li>
+<li><p><strong>BGP Flowspec</strong>: The flow specification feature of BGP, called <code class="docutils literal notranslate"><span class="pre">Flowspec</span></code>, helps to mitigate DDoS attacks by supporting the deployment and propagation of fine-grained filters across AS domain borders. Let’s discuss more about it in the next section.</p></li>
+</ul>
+</section>
+<section id="bgp-flowspec">
+<h3>(5) BGP Flowspec<a class="headerlink" href="#bgp-flowspec" title="Permalink to this heading"></a></h3>
+<p>BGP Flowspec is an extension to the BGP protocol which allows rules to be created on the traffic flows and take corresponding actions.</p>
+<p>This feature of BGP can help mitigate DDoS attacks by specifying appropriate rules. The AS domain borders supporting BGP Flowspec are capable of matching packets in a specific flow based on a variety of parameters such as source IP, destination IP, packet length, protocol used, etc. Please refer to <a class="reference external" href="https://content.cisco.com/chapter.sjs?uri=/searchable/chapter/content/en/us/td/docs/routers/ncs6000/software/ncs6k-r7-0/routing/configuration/guide/b-routing-cg-ncs6000-70x/b-routing-cg-ncs6000-70x_chapter_011.html.xml">this document</a> for the 12 types of matching components.</p>
+<p>Let’s now see an example. Suppose we want to specify the following rule as “all HTTP/HTTPS traffic from port 80 and 443 to one of the Google servers with IP 172.217.19.195 from subnet 130.89.161.0/24”, then we will have,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>{
+“type 1”: &quot;172.217.19.195/32”
+“type 2&quot;: &quot;130.89.161.0/24&quot; &quot;type 3&quot;: [6],
+&quot;type 5&quot;: [80, 443], 
+&quot;action&quot;: {
+    &quot;type &quot;: &quot;traffic-rate&quot;, 
+    “value &quot;: &quot;0&quot;
+    }
+}
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">traffic-rate</span> <span class="pre">=</span> <span class="pre">0</span></code> means we discard the matching traffic. The other possible actions include rate limiting, redirecting or filtering. If no rule is specified, the default action for a rule is to accept the incoming traffic.</p>
+<p>In contrast to ACL filters, FlowSpec leverages the BGP control plane making it easier to add rules to all the routers simultaneously. Although FlowSpec is seen to be effective in intra-domain environment, it is not so popular in inter-domain environments as it depends on trust and cooperation among competitive networks. Also, it might not scale for large attacks where the attack traffic originates from multiple sources as it would multiple rules or combining the sources into one prefix.</p>
+</section>
+<section id="ddos-mitigation-technique-bgp-blackholing">
+<h3>(6) DDoS Mitigation Technique: BGP Blackholing<a class="headerlink" href="#ddos-mitigation-technique-bgp-blackholing" title="Permalink to this heading"></a></h3>
+<p>BGP blackholing is a countermeasure to mitigate a DDoS attack. With this mechanism, all the attack traffic to a targeted DoS destination is dropped to a null location.</p>
+<p>BGP blackholing is implemented with either the help of IX or the upstream provider (ISP). The blackhole messages are tagged with a specific BGP blackhole community attribute, usually publicly available, to differentiate it from the regular routing updates.</p>
+</section>
+<section id="bgp-blackholing-example-1-peering-or-isp">
+<h3>(7) BGP Blackholing Example 1: Peering or ISP<a class="headerlink" href="#bgp-blackholing-example-1-peering-or-isp" title="Permalink to this heading"></a></h3>
+<p>Let’s see two examples. Assume the IP <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> in AS2 is under attack.</p>
+<p>First, if the blackholing provider is a peer or an upstream provider, the AS must announce its associated blackhole community along with the blackhole prefix.</p>
+<p><img alt="" src="https://i.imgur.com/fllet4m.png" /></p>
+<p>To mitigate this attack, AS2 (victim network) announces a blackholing message to AS1, which is the provider network. The message contains,</p>
+<ul class="simple">
+<li><p>the IP <code class="docutils literal notranslate"><span class="pre">130.149.1.1/32</span></code>, which is the host IP under attack</p></li>
+<li><p>the community field <code class="docutils literal notranslate"><span class="pre">AS1:666</span></code>, which is the blackholing community of the AS1 provider</p></li>
+</ul>
+<p>Once the provider receives the message, AS1 identifies it as a blackholing message since it contains its blackholing community and sets the next-hop field of the <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> IP to a blackholing IP, thereby effectively dropping all the incoming traffic to host <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code>. Thus, the victim host stops receiving the attack traffic that was sent to it.</p>
+</section>
+<section id="bgp-blackholing-example-2-ixp">
+<h3>(8) BGP Blackholing Example 2: IXP<a class="headerlink" href="#bgp-blackholing-example-2-ixp" title="Permalink to this heading"></a></h3>
+<p>Let’s look at the scenario, where blackholing is implemented with the help of the IXP.</p>
+<p>If the AS is a member of an IXP and it’s under attack, it sends the blackholing messages to the <strong>IXP route server</strong> when a member connects to the route server. The route server then announces the message to all the connected IXP member ASes, which then drops the traffic towards the blackholed prefix.</p>
+<p><img alt="" src="https://i.imgur.com/HLWEPdk.png" /></p>
+<p>Here when AS2 is under attack, AS2 connects to the
+router server of the IXP and sends a BGP blackholing message. The message contains,</p>
+<ul class="simple">
+<li><p>IP under attack: <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code></p></li>
+<li><p>Community field <code class="docutils literal notranslate"><span class="pre">ASIXP:666</span></code></p></li>
+</ul>
+<p>The route server identifies it as a blackholing message and sets the next-hop of <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> to a blackholing IP. It propagates this announcement to all its member ASes, which then drops all the traffic to host <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code>.</p>
+</section>
+<section id="bgp-blackholing-limitations">
+<h3>(9) BGP Blackholing Limitations<a class="headerlink" href="#bgp-blackholing-limitations" title="Permalink to this heading"></a></h3>
+<p>There are also some limitations of the BGP blackholing.</p>
+<ul class="simple">
+<li><p>Unreachable</p></li>
+</ul>
+<p>One of the major drawbacks of BGP blackholing is that the destination under attack becomes unreachable since all the traffic including the legitimate traffic is dropped.</p>
+<ul class="simple">
+<li><p>Collateral damage</p></li>
+</ul>
+<p>All the traffic including legitimate traffic via a neighbor AS is dropped.</p>
+<ul class="simple">
+<li><p>Rejection leads to ineffectiveness</p></li>
+</ul>
+<p>If the majority of the attack traffic is coming through a neighbor AS choosing not to participate in blackholing and rejecting the updates, then the mitigation is ineffective. The same is true if a large number of peers do not accept the blackholing announcements.</p>
+</section>
 </section>
 </section>
 
