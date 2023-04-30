@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 19 | Content Distribution Networks (CDNs) &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
+    <link rel="prev" title="Computer Network 18 | VoIP and Live/On-Demand Streaming" href="note18.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note14.html">Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note15.html">Computer Network 15 ｜ BGP Hijacking Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note16.html">Computer Network 16｜DNS Censorship, Connectivity Disruption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note17.html">Computer Network 17 | BGP Measurement Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note18.html">Computer Network 18 | VoIP and Live/On-Demand Streaming</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 19 | Content Distribution Networks (CDNs)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#content-distribution-networks-cdns">1. Content Distribution Networks (CDNs)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#motivations-for-cdn">(1) Motivations for CDN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#types-of-cdns">(2) Types of CDNs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-placement-strategies">(3) Server Placement Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cdn-operation-example">(4) CDN Operation Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cdn-server-selection-process-2-steps">(5) CDN Server Selection Process: 2-Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cdn-cluster-selection-1-geographically-closest-cluster">(6) CDN Cluster Selection 1: geographically closest cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cdn-cluster-selection-2-real-time-measurements">(7) CDN Cluster Selection 2: real-time measurements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-policy">(8) Server Selection Policy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-policy-1-random-selection">(9) Server Selection Policy 1: Random selection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-policy-2-random-selection-with-simple-load-balancer">(10) Server Selection Policy 2: Random selection with simple load-balancer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-policy-3-random-selection-with-consistant-hasing">(11) Server Selection Policy 3: Random selection with consistant hasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-protocols">(12) Server Selection Protocols</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-protocols-1-dns">(13) Server Selection Protocols 1: DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-protocols-2-ip-anycast">(14) Server Selection Protocols 2: IP Anycast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-selection-protocols-3-http-redirection">(15) Server Selection Protocols 3: HTTP Redirection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 19 | Content Distribution Networks (CDNs)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note19.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-19-content-distribution-networks-cdns">
+<h1>Computer Network 19 | Content Distribution Networks (CDNs)<a class="headerlink" href="#computer-network-19-content-distribution-networks-cdns" title="Permalink to this heading"></a></h1>
+<section id="content-distribution-networks-cdns">
+<h2>1. Content Distribution Networks (CDNs)<a class="headerlink" href="#content-distribution-networks-cdns" title="Permalink to this heading"></a></h2>
+<section id="motivations-for-cdn">
+<h3>(1) Motivations for CDN<a class="headerlink" href="#motivations-for-cdn" title="Permalink to this heading"></a></h3>
+<p>Almost all major video-streaming companies use Content Distribution Networks (CDNs). CDNs are networks of multiple, geographically distributed servers and/or data
+centers with copies of content that direct users to a server or a server cluster that can best serve the user’s request.</p>
+<p>Here are some motivations of CDNs,</p>
+<ul class="simple">
+<li><p>users are located all over the globe</p></li>
+<li><p>vital videos got fetched again and again which wastes the resource of the data center</p></li>
+<li><p>a single data center leads to one point failure</p></li>
+</ul>
+<p>There are some other challenges that content delivery facing,</p>
+<ul class="simple">
+<li><p>Peering point congestion: middle mile bottlenecks</p></li>
+<li><p>Inefficient routing protocols: BGP not enough</p></li>
+<li><p>Unreliable networks</p></li>
+<li><p>Inefficient communication protocols: TCP not enough</p></li>
+<li><p>Scalability: scaling up is expensive</p></li>
+<li><p>Application limitations and slow rate of change adoption</p></li>
+</ul>
+<p>Therefore, there are two shifts impacted the Internet ecosystem,</p>
+<ul class="simple">
+<li><p>increased demand for online content</p></li>
+<li><p>topological flattening</p></li>
+</ul>
+<p>These shifts imply that more traffics are generated and exchanged locally instead of traversing the complete hierarchy.</p>
+</section>
+<section id="types-of-cdns">
+<h3>(2) Types of CDNs<a class="headerlink" href="#types-of-cdns" title="Permalink to this heading"></a></h3>
+<p>Some CDNs are <strong>private</strong>, such as Google’s CDN, which distributes YouTube videos and other content. Private CDNs are CDNs that are owned by the content provider.</p>
+<p>Other CDNs are <strong>third party</strong>, such as Akamai and Limelight. Third party CDNs distribute content on behalf of multiple content providers. These third parties provide CDN as a service for content providers because operating CDNs has its own challenges include,</p>
+<ul class="simple">
+<li><p>cost</p></li>
+<li><p>real estate worldwide</p></li>
+<li><p>physical devices</p></li>
+<li><p>power consumption</p></li>
+<li><p>need to be well-connected</p></li>
+<li><p>performing maintenance and upgrades</p></li>
+</ul>
+</section>
+<section id="server-placement-strategies">
+<h3>(3) Server Placement Strategies<a class="headerlink" href="#server-placement-strategies" title="Permalink to this heading"></a></h3>
+<p>To find out where to put the CDN servers, CDN providers have two different philosophies,</p>
+<ul class="simple">
+<li><p><strong>Enter deep</strong>: deploying lots of small clusters to get as close as possible to the users</p></li>
+<li><p><strong>Bring Home</strong>: deploying fewer but larger clusters to critical areas</p></li>
+</ul>
+<p>There’s a tradeoff between these approaches.</p>
+<p>With the Enter Deep strategy, CDN reduces the delay and increases the available throughput for each user. However, it is a highly distributed approach so it’s much more difficult to manage and maintain.</p>
+<p>With the Bring Home strategy, CDNs place fewer larger server clusters at key points to “bring the ISPs home”. It’s good because only few server clusters are needed be managed or maintained. But the users will experience higher delay and lower throughput.</p>
+<p>There’s also a hybrid approach. For example, Google owns 16 mega data centers and many small server clusters.</p>
+</section>
+<section id="cdn-operation-example">
+<h3>(4) CDN Operation Example<a class="headerlink" href="#cdn-operation-example" title="Permalink to this heading"></a></h3>
+<p>Let’s see how CDN works through an example. Suppose content provider <strong>ExampleMovies</strong> pays <strong>ExampleCDN</strong> to distribute their content. ExampleMovies has URLs with videos and an ID for the video. For example, movie <em>Star Wars 37</em> might have a URL of <code class="docutils literal notranslate"><span class="pre">http://video.examplemovies.com/R2D2C3PO37</span></code>.</p>
+<p>Let’s walk through the six steps that occur when a user requests to watch <em>Star Wars 37</em> on ExampleMovies.</p>
+<ul class="simple">
+<li><p>The user visits <code class="docutils literal notranslate"><span class="pre">examplemovies.com</span></code> and navigates to the web page with <em>Star Wars 37</em>.</p></li>
+<li><p>The user clicks on the link <code class="docutils literal notranslate"><span class="pre">http://video.examplemovies.com/R2D2C3PO37</span></code> and the user’s host sends a DNS query for the domain <code class="docutils literal notranslate"><span class="pre">video.examplemovies.com</span></code>.</p></li>
+<li><p>DNS query then goes to the local DNS server (LDNS). It then issues an iterative DNS query for video to the authoritative DNS server for <code class="docutils literal notranslate"><span class="pre">examplemovies.com</span></code>, which is ExampleMovies’s DNS server. Because ExampleMovies’s DNS server knows that the “video” domain is stored on ExampleCDN, so it sends back a hostname in ExampleCDN’s domain, like <code class="docutils literal notranslate"><span class="pre">a1130.examplecdn.com</span></code>.</p></li>
+<li><p>The user’s LDNS performs an iterative DNS query to ExampleCDN’s name server for a1130.examplecdn.com. ExampleCDN’s name server system eventually returns an IP address of an appropriate ExampleCDN content server to the user’s LDNS.</p></li>
+<li><p>LDNS returns the ExampleCDN IP address to the user. From the end-user’s side, they asked for <code class="docutils literal notranslate"><span class="pre">http://video.examplemovies.com/R2D2C3PO37</span></code> and got an IP address back.</p></li>
+<li><p>The user’s client directly connects via TCP to the IP address provided by the user’s LDNS, and then sends an HTTP GET request for the video.</p></li>
+</ul>
+</section>
+<section id="cdn-server-selection-process-2-steps">
+<h3>(5) CDN Server Selection Process: 2-Steps<a class="headerlink" href="#cdn-server-selection-process-2-steps" title="Permalink to this heading"></a></h3>
+<p>In order to serve an end-user, the first thing is the CDN server selection process. In this process, we need to pick up a cluster not too far away or overwhelmed. There are two main steps in this process,</p>
+<ul class="simple">
+<li><p>mapping the client to a cluster</p></li>
+<li><p>a server is selected from the cluster</p></li>
+</ul>
+</section>
+<section id="cdn-cluster-selection-1-geographically-closest-cluster">
+<h3>(6) CDN Cluster Selection 1: geographically closest cluster<a class="headerlink" href="#cdn-cluster-selection-1-geographically-closest-cluster" title="Permalink to this heading"></a></h3>
+<p>To select a cluster, there are different strategies,</p>
+<ul class="simple">
+<li><p>pick the geographically closest cluster</p></li>
+<li><p>rely on a real-time cluster selection measurements</p></li>
+</ul>
+<p>Let’s first talk about the selecting the geographically closest cluster. This approach is very simple and it works well in a lot of cases. However, there are also some limitations,</p>
+<ul class="simple">
+<li><p>it’s picking actually closest to LDNS, not to the user</p></li>
+<li><p>geographically closest may not be the best choice</p>
+<ul>
+<li><p>due to routing inefficiencies, geographically closest doesn’t mean BGP routing closest</p></li>
+<li><p>path congestion issues</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cdn-cluster-selection-2-real-time-measurements">
+<h3>(7) CDN Cluster Selection 2: real-time measurements<a class="headerlink" href="#cdn-cluster-selection-2-real-time-measurements" title="Permalink to this heading"></a></h3>
+<p>To get a real-time snapshot for the end-user, there are two key aspects to note here,</p>
+<ul class="simple">
+<li><p>decide which end-to-end performance metrics to consider while selecting the cluster</p>
+<ul>
+<li><p>network-layer metrics</p>
+<ul>
+<li><p>delay</p></li>
+<li><p>available bandwidth</p></li>
+<li><p>both</p></li>
+</ul>
+</li>
+<li><p>application-layer metrics (better)</p>
+<ul>
+<li><p>re-buffering ratio</p></li>
+<li><p>average bitrate</p></li>
+<li><p>page load time</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>find a way to obtain the measurements</p>
+<ul>
+<li><p>Active measurements: LDNS could probe multiple clusters by sending ICMP ping requests to clusters for monitoring the RTT and then use the “closest” server.</p>
+<ul>
+<li><p>most of the LDNS are not equipped to perform these actions</p></li>
+<li><p>this would create lots of extra traffic</p></li>
+</ul>
+</li>
+<li><p>Passive measurements: CDN’s name server system can also use passive measurements to keep track of the network conditions because we can infer the cluster measurements from the IPs under the same subnet.</p>
+<ul>
+<li><p>requires a centralized controller</p></li>
+<li><p>it needs to have data for different subnet-cluster pairs. So  some of the clients are deliberately routed to sub-optimal clusters</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="server-selection-policy">
+<h3>(8) Server Selection Policy<a class="headerlink" href="#server-selection-policy" title="Permalink to this heading"></a></h3>
+<p>Once the cluster has been selected, the next step is to select a server within the cluster.</p>
+<p>There are several policies that we can select a server within a cluster,</p>
+<ul class="simple">
+<li><p>Random selection</p></li>
+<li><p>Random selection with simple load-balancer</p></li>
+<li><p>Random selection with consistant hasing</p></li>
+</ul>
+</section>
+<section id="server-selection-policy-1-random-selection">
+<h3>(9) Server Selection Policy 1: Random selection<a class="headerlink" href="#server-selection-policy-1-random-selection" title="Permalink to this heading"></a></h3>
+<p>The implest strategy could be to assign a server from the cluster randomly. This is not optimal because the workload for different servers can be unbalanced and it might end up selecting a highly loaded server whereas a less loaded server was available.</p>
+<p>To deal with this, we can add some load-balancers.</p>
+</section>
+<section id="server-selection-policy-2-random-selection-with-simple-load-balancer">
+<h3>(10) Server Selection Policy 2: Random selection with simple load-balancer<a class="headerlink" href="#server-selection-policy-2-random-selection-with-simple-load-balancer" title="Permalink to this heading"></a></h3>
+<p>Another solution is to select a server with some load-balancing techniques and route a client to the least-loaded server. While this solves the above mentioned problem, it is still not optimal.</p>
+<p>This happens because if we just use a simple load balancing technique for server selection, a server that already had the requested content is not selected because the client was loaded to a less- loaded server.</p>
+<p>So finally, we come to the idea that we have to map the requests based on the content.</p>
+</section>
+<section id="server-selection-policy-3-random-selection-with-consistant-hasing">
+<h3>(11) Server Selection Policy 3: Random selection with consistant hasing<a class="headerlink" href="#server-selection-policy-3-random-selection-with-consistant-hasing" title="Permalink to this heading"></a></h3>
+<p>In order to create a mapping strategy for all the objects, we need a continuous hash table across different servers.</p>
+<p><strong>Consistent hashing</strong> is an example of distributed hash table has been developed. It tends to balance the load by mapping servers and the content objects to the same ID space. For instance, imagine we map the servers to the edge of a circle (say uniformly).</p>
+<p><img alt="" src="https://i.imgur.com/g6yqDlN.png" /></p>
+<p>In this case, the solution is optimal, which means that least number of keys need to be remapped to maintain load-balance on an average.</p>
+</section>
+<section id="server-selection-protocols">
+<h3>(12) Server Selection Protocols<a class="headerlink" href="#server-selection-protocols" title="Permalink to this heading"></a></h3>
+<p>We have already known the policies used for selecting a CDN server. Now let’s see three different network protocols that can be used for server selection,</p>
+<ul class="simple">
+<li><p>DNS</p></li>
+<li><p>IP Anycast</p></li>
+<li><p>HTTP Redirection</p></li>
+</ul>
+<p>We will talk about them in the following sections.</p>
+</section>
+<section id="server-selection-protocols-1-dns">
+<h3>(13) Server Selection Protocols 1: DNS<a class="headerlink" href="#server-selection-protocols-1-dns" title="Permalink to this heading"></a></h3>
+<p>The DNS is implemented to map human readable domain names to IP address. It is designed with a distributed hierarchical pattern.</p>
+<ul class="simple">
+<li><p>root DNS: 13 servers, mostly in north America</p></li>
+<li><p>Top level domain (TLD) Servers: responsible for top level domains like .com, .org, .edu and .uk, .fr, .jp.</p></li>
+<li><p>Authoritative servers: an organization’s authoritative DNS server can also keep DNS records</p></li>
+<li><p>Local DNS (LDNS) servers: Each Internet Service Provider (ISP), such as a university, a company or a small residential ISP, has one or more local DNS servers.</p></li>
+</ul>
+<p>There are also two types of DNS queries,</p>
+<ul class="simple">
+<li><p>Recursive</p></li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/rF5WbOp.png" /></p>
+<ul class="simple">
+<li><p>Iterative</p></li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/MW6G8r2.png" /></p>
+<p>DNS also provide fast responding through <strong>DNS caching</strong> so in both iterative and recursive queries, after a server receives the DNS reply of mapping from any host to IP address, it stores this information in the cache memory before sending it to the client.</p>
+<p>The DNS servers store the mappings between hostnames and IP addresses as <strong>resource records (RRs)</strong>. A DNS resource record has four fields,</p>
+<ul class="simple">
+<li><p>name: depend on type</p></li>
+<li><p>value: depend on type</p></li>
+<li><p>Type</p></li>
+<li><p>TTL: specifies how long record should remain in the cache</p></li>
+</ul>
+<p>The most common DNS RR types are four,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: domain name to IP mapping</p>
+<ul>
+<li><p>name = domain name</p></li>
+<li><p>value = IP</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NS</span></code>: DNS IP of domain name</p>
+<ul>
+<li><p>name = domain name</p></li>
+<li><p>value = IP of the appropriate authoritative DNS server that can obtain the IP addresses for hosts in that domain</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CNAME</span></code>: alias hostname to domain name</p>
+<ul>
+<li><p>name = alias hostname</p></li>
+<li><p>value = canonical name</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MX</span></code>: alias email server hostname to domain name</p>
+<ul>
+<li><p>name = alias hostname of email server</p></li>
+<li><p>value = canonical name of email server</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="server-selection-protocols-2-ip-anycast">
+<h3>(14) Server Selection Protocols 2: IP Anycast<a class="headerlink" href="#server-selection-protocols-2-ip-anycast" title="Permalink to this heading"></a></h3>
+<p>The main goal of IP anycast is to route a client to the closest server determained by BGP routing. It uses a trick that different physical servers in different clusters shares the same IP address. Therefore, the BGP router will treat them as multiple paths to the same locations, and the shortest path will be stored and
+used for routing packets.</p>
+<p><img alt="" src="https://i.imgur.com/YgJqilw.png" /></p>
+<p>By nature of the internet, it could happen that the link is congested and thus for a new client it was actually better to go to another alternative cluster. Thus, it is not commonly used in practice by CDNs.</p>
+<p>Though not for content delivery, IP anycasting is used is in routing to the DNS server. In order to serve clients from multiple locations, it has multiple DNS servers distributed geographically with all of the servers being assigned the same address.</p>
+</section>
+<section id="server-selection-protocols-3-http-redirection">
+<h3>(15) Server Selection Protocols 3: HTTP Redirection<a class="headerlink" href="#server-selection-protocols-3-http-redirection" title="Permalink to this heading"></a></h3>
+<p>When a client sends a GET request to a server <code class="docutils literal notranslate"><span class="pre">A</span></code>, it can redirect the client to another server <code class="docutils literal notranslate"><span class="pre">B</span></code> by sending an HTTP response with a code 3xx and the name of the new server. This means the client should now fetch the content from this new server.</p>
+<p>HTTP redirection is widely used by CDNs for load-balancing when a popular video is requested by a large number of clients from the same region.</p>
+<p>A recent measurement study reports that YouTube uses this kind of mechanism for load balancing. According to the study, YouTube first tries to use HTTP redirection for sharing the load within a cluster, and then can also use it to redirect clients to a different cluster if the former is not enough.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note18.html" class="btn btn-neutral float-left" title="Computer Network 18 | VoIP and Live/On-Demand Streaming" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

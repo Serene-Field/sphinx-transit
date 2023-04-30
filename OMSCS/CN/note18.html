@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 18 | VoIP and Live/On-Demand Streaming &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Computer Network 19 | Content Distribution Networks (CDNs)" href="note19.html" />
+    <link rel="prev" title="Computer Network 17 | BGP Measurement Project" href="note17.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note14.html">Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note15.html">Computer Network 15 ｜ BGP Hijacking Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note16.html">Computer Network 16｜DNS Censorship, Connectivity Disruption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note17.html">Computer Network 17 | BGP Measurement Project</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 18 | VoIP and Live/On-Demand Streaming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#voip">1. VoIP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-multimedia-applications">(1) Common Multimedia Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">(2) VoIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-topic-1-audio-encoding">(3) VoIP Topic 1: Audio Encoding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio-encoding-example">(4) Audio Encoding Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-topic-2-signaling">(5) VoIP Topic 2: Signaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-topic-3-qos">(6) VoIP Topic 3: QoS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-for-voip-1-end-to-end-delay">(7) QoS for VoIP 1: End-to-End Delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-for-voip-2-delay-jitter">(8) QoS for VoIP 2: Delay Jitter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-for-voip-3-packet-loss">(9) QoS for VoIP 3: Packet Loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-packet-loss-mitigation-1-fec-forward-error-concealment">(10) VoIP Packet Loss Mitigation 1: FEC (Forward Error Concealment)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-packet-loss-mitigation-2-interleaving">(11) VoIP Packet Loss Mitigation 2: Interleaving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#voip-packet-loss-mitigation-3-error-concealment">(12) VoIP Packet Loss Mitigation 3: Error Concealment</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#live-and-on-demand-streaming">2. Live And On-Demand Streaming</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#streaming-prerequisites">(1) Streaming Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#types-of-streaming-content">(2) Types of Streaming Content</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-of-video-stream">(3) Steps of Video Stream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-compression-jpeg-file-interchange-format">(4) Image Compression: JPEG File Interchange Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-compression-1-i-frame-and-p-frame">(5) Video Compression 1: I-Frame and P-Frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-compression-2-group-of-pictures-gop">(6) Video Compression 2: Group of Pictures (GoP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-compression-3-b-frame">(7) Video Compression 3: B-frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-compression-4-vbr-vs-cbr">(8) Video Compression 4: VBR vs CBR</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-packet-transport-layer-protocol-tcp">(9) Video Packet Transport Layer Protocol: TCP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video-packet-application-layer-protocol-http">(10) Video Packet Application Layer Protocol: HTTP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#progressive-download">(11) Progressive Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitrate-adaptation">(12) Bitrate Adaptation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitrate-adaptation-in-dynamic-streaming-over-http-dash">(13) Bitrate Adaptation in Dynamic Streaming over HTTP (DASH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#goals-of-bitrate-adaptation">(14) Goals of Bitrate Adaptation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitrate-adaptation-algorithms">(15) Bitrate Adaptation Algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rate-based-adaptation-mechanisms">(16) Rate-Based Adaptation Mechanisms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#throughput-based-adaptation-mechanisms">(17) Throughput-Based Adaptation Mechanisms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bandwidth-estimation-problem-with-rate-based-adaption">(18) Bandwidth Estimation Problem with Rate-Based Adaption</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="note19.html">Computer Network 19 | Content Distribution Networks (CDNs)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 18 | VoIP and Live/On-Demand Streaming</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note18.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-18-voip-and-live-on-demand-streaming">
+<h1>Computer Network 18 | VoIP and Live/On-Demand Streaming<a class="headerlink" href="#computer-network-18-voip-and-live-on-demand-streaming" title="Permalink to this heading"></a></h1>
+<section id="voip">
+<h2>1. VoIP<a class="headerlink" href="#voip" title="Permalink to this heading"></a></h2>
+<section id="common-multimedia-applications">
+<h3>(1) Common Multimedia Applications<a class="headerlink" href="#common-multimedia-applications" title="Permalink to this heading"></a></h3>
+<p>The different kinds of multimedia applications can be organized into three major categories. These are,</p>
+<ul class="simple">
+<li><p>streaming stored audio and video: e.g. Youtube</p>
+<ul>
+<li><p>streamed</p></li>
+<li><p>interative</p></li>
+<li><p>continuous olayout</p></li>
+</ul>
+</li>
+<li><p>conversational voice and video over IP (VoIP): e.g. Skype</p>
+<ul>
+<li><p>delay-sensitive</p></li>
+<li><p>loss-tolerant</p></li>
+</ul>
+</li>
+<li><p>streaming live audio and video: e.g. Twitch</p>
+<ul>
+<li><p>many simultaneous users</p></li>
+<li><p>delay-sensitive</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id1">
+<h3>(2) VoIP<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>VoIP is a technique used in conversational voice over IP. Since internet packet transmission is based on best effort and it makes no promises that a datagram will actually make it to its final destination, or even on time.</p>
+<p>In this topic, we’ll discuss three major topics in VoIP,</p>
+<ul class="simple">
+<li><p>encoding</p></li>
+<li><p>signaling</p></li>
+<li><p>QoS</p></li>
+</ul>
+</section>
+<section id="voip-topic-1-audio-encoding">
+<h3>(3) VoIP Topic 1: Audio Encoding<a class="headerlink" href="#voip-topic-1-audio-encoding" title="Permalink to this heading"></a></h3>
+<p>Analog audio by nature is represented as a continuous wave, but digital data by nature is discrete. Therefore, all digital representations of analog audio are only approximations. Generally speaking, audio is <strong>encoded</strong> by taking many of samples per second, and then rounding each sample’s value to a discrete number within a particular range. This rounding to a discrete number is
+called <strong>quantization</strong>.</p>
+<p>There are three major categories of encoding schemes and different characteristics and tradeoffs,</p>
+<ul class="simple">
+<li><p>narrowband</p></li>
+<li><p>broadband</p></li>
+<li><p>multimode (for both narrowband and broadband)</p></li>
+</ul>
+<p>For VoIP, the important thing is that we want to still be
+able to understand the speech and the words that are being said, while at the same time still using as little bandwidth as possible.</p>
+<p>Audio can also be compressed but there are some tradeoffs there too. We will discuss video compression techniques later and the concepts also apply to audio compression.</p>
+</section>
+<section id="audio-encoding-example">
+<h3>(4) Audio Encoding Example<a class="headerlink" href="#audio-encoding-example" title="Permalink to this heading"></a></h3>
+<p>PCM (Pulse Code Modulation) is one technique used with speech, taking 8000 samples per second and each sample’s size is 1 byte.</p>
+<p>PCM with an audio CD takes 44,100 samples per second with each sample’s as 2 bytes.</p>
+<p>If there are more samples per second or a large range of quantization values, this means a higher quality of audio while playing back.</p>
+</section>
+<section id="voip-topic-2-signaling">
+<h3>(5) VoIP Topic 2: Signaling<a class="headerlink" href="#voip-topic-2-signaling" title="Permalink to this heading"></a></h3>
+<p>In traditional telephony, a signaling protocol takes care of how calls are set up and torn down. Signaling protocols are responsible for four major functions,</p>
+<ul class="simple">
+<li><p>User location</p></li>
+<li><p>Session establishment: callee can accepting, rejecting, or redirecting a call</p></li>
+<li><p>Session negotiation: the endpoints synchronizing with each other on a set of properties for the session</p></li>
+<li><p>Call participation management: handling endpoints joining or leaving an existing session</p></li>
+</ul>
+<p>For example, SIP (Session Initiation Protocol) is one example of a signaling protocol used in many VoIP applications.</p>
+</section>
+<section id="voip-topic-3-qos">
+<h3>(6) VoIP Topic 3: QoS<a class="headerlink" href="#voip-topic-3-qos" title="Permalink to this heading"></a></h3>
+<p>QoS metrics for VoIP is a big topic and there are three metrics we used to measure the quality of services,</p>
+<ul class="simple">
+<li><p>end-to-end delay</p></li>
+<li><p>jitter</p></li>
+<li><p>packet loss</p></li>
+</ul>
+<p>Let’s talk about them in the next section.</p>
+</section>
+<section id="qos-for-voip-1-end-to-end-delay">
+<h3>(7) QoS for VoIP 1: End-to-End Delay<a class="headerlink" href="#qos-for-voip-1-end-to-end-delay" title="Permalink to this heading"></a></h3>
+<p>In VoIP, the end-to-end delay is composed of the time for,</p>
+<ul class="simple">
+<li><p>encoding audio delay</p></li>
+<li><p>data to packets</p></li>
+<li><p>network delay (e.g. queueing delay)</p></li>
+<li><p>playback delay</p></li>
+<li><p>decoding audio delay</p></li>
+</ul>
+<p>Human have different experiences based on the length of end-to-end delay. According to ITU-T Rec.G.114, we have delay time,</p>
+<ul class="simple">
+<li><p>&lt; 150 ms: unnoticeable by human listeners</p></li>
+<li><p>150 ~ 400 ms: noticeable but acceptable</p></li>
+<li><p>&gt; 400 ms: unacceptable</p></li>
+</ul>
+</section>
+<section id="qos-for-voip-2-delay-jitter">
+<h3>(8) QoS for VoIP 2: Delay Jitter<a class="headerlink" href="#qos-for-voip-2-delay-jitter" title="Permalink to this heading"></a></h3>
+<p>Because different voice packets can end up with different amounts of delay, so VoIP has to reconstruct the analog voice stream. The phenomenon that voice packets delay for different lengths of time is called <strong>jitter</strong> (aka. <strong>packet jitter</strong> or <strong>delay jitter</strong>).</p>
+<p>With a larger jitter, we can end up more delayed packets and that can lead to a gap in the audio. Because the human ear is pretty intolerant of audio gaps, audio gaps should ideally be kept below 30ms, but depending on the type of voice codec used and other factors, audio gaps between 30 ~ 75ms can be acceptable.</p>
+<p>One jitter mitigating technique is to maintain a buffer called <strong>jitter buffer</strong> or <strong>play-out buffer</strong>. The buffer helps smooth out and hide the variation in delay between different received packets by buffering them and playing them out for decoding at a steady rate.</p>
+<ul class="simple">
+<li><p>A longer jitter buffer: reduces the number of packets that are discarded because they were received too late, but that adds to the end-to-end delay.</p></li>
+<li><p>A shorter jitter buffer: not add to the end-to-end delay as much, but that can lead to more dropped packets, which reduces the speech quality.</p></li>
+</ul>
+<p>So there has to be a tradeoff in the buffer size.</p>
+</section>
+<section id="qos-for-voip-3-packet-loss">
+<h3>(9) QoS for VoIP 3: Packet Loss<a class="headerlink" href="#qos-for-voip-3-packet-loss" title="Permalink to this heading"></a></h3>
+<p>The design of TCP has a problem for VoIP. We have learned that TCP eliminates packet loss by fast retransmission, and the loss packet ends up arriving too late.</p>
+<p>What’s more, TCP congestion control algorithms drop the sender’s transmission rate by half every time there’s a dropped packet, so most of the time, VoIP protocols use <strong>UDP</strong>.</p>
+<p>So when we talk about packet loss for VoIP, we have a different definition because of the requirement of real-time conversation. For VoIP, a packet is considered lost if,</p>
+<ul class="simple">
+<li><p>it never arrives</p></li>
+<li><p>or it arrives after its scheduled playout</p></li>
+</ul>
+<p>To deal with the packet loss of VoIP, there are three major methods,</p>
+<ul class="simple">
+<li><p>FEC (Forward Error Correction)</p></li>
+<li><p>Interleaving</p></li>
+<li><p>Error concealment</p></li>
+</ul>
+<p>Let’s talk about them in the following sections.</p>
+</section>
+<section id="voip-packet-loss-mitigation-1-fec-forward-error-concealment">
+<h3>(10) VoIP Packet Loss Mitigation 1: FEC (Forward Error Concealment)<a class="headerlink" href="#voip-packet-loss-mitigation-1-fec-forward-error-concealment" title="Permalink to this heading"></a></h3>
+<p>The idea of FEC is to transmit redundant data which allows the receiver to replace lost data with the redundant data. This redundant data could be a copy or a lower-quality copy of the original stream.</p>
+<p>However, the more redundant data transmitted, the more bandwidth is consumed. Also, some of these FEC techniques require the receiving end to receive more chunks before playing out the audio, and that increases playout delay.</p>
+<p><img alt="" src="https://i.imgur.com/hxOxr3X.png" /></p>
+</section>
+<section id="voip-packet-loss-mitigation-2-interleaving">
+<h3>(11) VoIP Packet Loss Mitigation 2: Interleaving<a class="headerlink" href="#voip-packet-loss-mitigation-2-interleaving" title="Permalink to this heading"></a></h3>
+<p>The idea of interleaving is to mix chunks of audio together so that if one set of chunks is lost, the
+lost chunks aren’t consecutive. The idea is that many smaller audio gaps are preferable to one large audio gap.</p>
+<p>This technique has good performance for streaming stored audio but it’s limited for VoIP. This is because the receiving side has to wait longer to receive consecutive chunks of audio which increases the latency.</p>
+<p><img alt="" src="https://i.imgur.com/qCC4lQD.png" /></p>
+</section>
+<section id="voip-packet-loss-mitigation-3-error-concealment">
+<h3>(12) VoIP Packet Loss Mitigation 3: Error Concealment<a class="headerlink" href="#voip-packet-loss-mitigation-3-error-concealment" title="Permalink to this heading"></a></h3>
+<p>Error concealment is basically <strong>guessing</strong> what the lost audio might be. This works becasue generally small audio snippets are very similar to its neighboor.</p>
+<p>The solution is quick and dirty, it means we replace the lost packet with a copy of the previous packetand hopefully that’s good enough. Or we can also interpolate an appropriate packet, but there’s more computational cost.</p>
+</section>
+</section>
+<section id="live-and-on-demand-streaming">
+<h2>2. Live And On-Demand Streaming<a class="headerlink" href="#live-and-on-demand-streaming" title="Permalink to this heading"></a></h2>
+<section id="streaming-prerequisites">
+<h3>(1) Streaming Prerequisites<a class="headerlink" href="#streaming-prerequisites" title="Permalink to this heading"></a></h3>
+<p>Nowadays, streaming media over the internet can be more efficient. Various enabling technologies and trends have led to this development of consuming median content over the Internet.</p>
+<ul class="simple">
+<li><p>bandwidth for both the core network and last-mile access links have increased</p></li>
+<li><p>video compression technologies have become more efficient</p></li>
+<li><p>the development of Digital Rights Management (DRM) culture has encouraged content providers to put their content on the Internet</p></li>
+</ul>
+</section>
+<section id="types-of-streaming-content">
+<h3>(2) Types of Streaming Content<a class="headerlink" href="#types-of-streaming-content" title="Permalink to this heading"></a></h3>
+<p>The types of content that is streamed over the Internet can be divided into two categories,</p>
+<ul class="simple">
+<li><p>Live</p></li>
+</ul>
+<p>The video content is created and delivered to the clients simultaneously. For example, sports events, music concerts etc.</p>
+<ul class="simple">
+<li><p>On-demand</p></li>
+</ul>
+<p>Streaming stored video based on users’ convenience. For example, Netflix, non-live videos on YouTube etc.</p>
+<p>In this topic, we will focus mostly on the on-demand streaming.</p>
+</section>
+<section id="steps-of-video-stream">
+<h3>(3) Steps of Video Stream<a class="headerlink" href="#steps-of-video-stream" title="Permalink to this heading"></a></h3>
+<p>Let’s begin with a high-level overview of how streaming works,</p>
+<ul class="simple">
+<li><p>Video Creation (high quality)</p></li>
+<li><p>Video Compression and Encoding (medium quality)</p></li>
+<li><p>Video Secured by DRM hosted over a server</p></li>
+<li><p>End-user download video content over the Internet (low quality)</p></li>
+<li><p>End-user view the video through user’s screen</p></li>
+</ul>
+</section>
+<section id="image-compression-jpeg-file-interchange-format">
+<h3>(4) Image Compression: JPEG File Interchange Format<a class="headerlink" href="#image-compression-jpeg-file-interchange-format" title="Permalink to this heading"></a></h3>
+<p>In this topic we will talk about how to compress images because videos are essentially sequences of digital pictures. An efficient compression can be achieved in two-ways,</p>
+<ul class="simple">
+<li><p>within an image: similarities among nearby pixel (aka. spatial redundancy)</p></li>
+<li><p>across images: similarities among consecutive pictures (aka. temporal redundancy)</p></li>
+</ul>
+<p>To standardize, Joint Photographics Experts Group (JPEG) standard was developed. The main idea behind JPEG is how to represent an image using components that can be further compressed. There are 4 steps in a JPEG format,</p>
+<ul class="simple">
+<li><p>RGB conversion - RGB to <a class="reference external" href="https://en.wikipedia.org/wiki/YCbCr">YCbCr</a></p>
+<ul>
+<li><p>Y means luminance representing brightness component</p></li>
+<li><p>Cb and Cr are chrominance</p></li>
+</ul>
+</li>
+<li><p>DCT compress (Y Cb Cr) independently</p>
+<ul>
+<li><p>Divide the image into <code class="docutils literal notranslate"><span class="pre">8*8</span></code> blocks (sub-image)</p></li>
+<li><p>Apply Discrete Cosine Transformation (DCT) to each sub-images, the result for each image block is an <code class="docutils literal notranslate"><span class="pre">8*8</span></code> table of DCT coefficients. This is done because the human eye is less sensitive to high-frequency coefficients as compared to low-frequency coefficients.</p></li>
+</ul>
+</li>
+<li><p>Compress DCT Coefficients with Quantization table (Q)</p>
+<ul>
+<li><p>Compress the matrix of the coefficients using a pre-defined Quantization table (Q)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F_quantized(u,</span> <span class="pre">v)</span> <span class="pre">=</span> <span class="pre">F(u,</span> <span class="pre">v)</span> <span class="pre">/</span> <span class="pre">Q</span> <span class="pre">(u,</span> <span class="pre">v)</span></code></p></li>
+<li><p>Note that based on the desired image quality, different levels of quantizations can be performed</p></li>
+<li><p>Quantization table is stored in the image header so the image can be later decoded</p></li>
+<li><p>After this step, we will get multiple quantized matrices for each of the 8*8 block in the image</p></li>
+</ul>
+</li>
+<li><p>Lossless Encoding</p>
+<ul>
+<li><p>Perform a lossless encoding to store the coefficients.</p></li>
+<li><p>This finishes the encoding process. This encoded image is then transferred over the network and is decoded at the user-end.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="video-compression-1-i-frame-and-p-frame">
+<h3>(5) Video Compression 1: I-Frame and P-Frame<a class="headerlink" href="#video-compression-1-i-frame-and-p-frame" title="Permalink to this heading"></a></h3>
+<p>So far, we looked at how a frame in the video is compressed. But because videos have consecutive frames of temporal redundancy, we can improve the method further more.</p>
+<p>So instead of encoding every image as a JPEG, we encode the first (known as <strong>I-frame</strong>) as a JPEG and then encode the difference between two frames. The in-between encoded frame is known as Predicted or <strong>P-frame</strong>.</p>
+<p><img alt="" src="https://i.imgur.com/oPPhFwV.png" /></p>
+</section>
+<section id="video-compression-2-group-of-pictures-gop">
+<h3>(6) Video Compression 2: Group of Pictures (GoP)<a class="headerlink" href="#video-compression-2-group-of-pictures-gop" title="Permalink to this heading"></a></h3>
+<p>There’s also a problem when the scene changes and in this case the frame becomes drastically different from the last frame and even if we are using the difference, it is almost like encoding a fresh image. This can lead to loss in image quality.</p>
+<p>A typical solution is to insert an I-frame periodically, say after every 15 frames. All the frames between two consecutive I- frames is known as a <strong>Group of Pictures (GoP)</strong>.</p>
+<p><img alt="" src="https://i.imgur.com/26RZm7f.png" /></p>
+</section>
+<section id="video-compression-3-b-frame">
+<h3>(7) Video Compression 3: B-frame<a class="headerlink" href="#video-compression-3-b-frame" title="Permalink to this heading"></a></h3>
+<p>An additional way to improve encoding efficiency is to encode a frame as a function of the past and the future I (or P)-frames. Such a frame is known as a Bi-directional or <strong>B-frame</strong>.</p>
+<p><img alt="" src="https://i.imgur.com/oNKl7rD.png" /></p>
+</section>
+<section id="video-compression-4-vbr-vs-cbr">
+<h3>(8) Video Compression 4: VBR vs CBR<a class="headerlink" href="#video-compression-4-vbr-vs-cbr" title="Permalink to this heading"></a></h3>
+<p>With GoP, the output size of the video is fixed over time and this is known as <strong>Constant BitRate (CBR)</strong> encoding.</p>
+<p>With B-frames, the output size remains the same on an average, but varies here and there based on the underlying scene complexity. This is known as <strong>Variable BitRate (VBR)</strong> encoding.</p>
+<p>The image quality is better in VBR as compared to CBR for the same bitrate. However, VBR is more computationally expensive as compared to CBR. In fact, for live streaming, wherein the video compression has to be done real-time, specialized (but expensive) hardware encoders are used by content providers.</p>
+<p>In summary,</p>
+<ul class="simple">
+<li><p>CBR: less computational cost</p></li>
+<li><p>VBR: higher quality</p></li>
+</ul>
+</section>
+<section id="video-packet-transport-layer-protocol-tcp">
+<h3>(9) Video Packet Transport Layer Protocol: TCP<a class="headerlink" href="#video-packet-transport-layer-protocol-tcp" title="Permalink to this heading"></a></h3>
+<p>Between UDP and TCP, content providers ended up choosing TCP for video delivery as it provides <strong>reliability</strong>. For instance, if an I-frame is lost partially, we may not be able to obtain the RGB matrices correctly. Similarly, if an I-frame was lost, P-frame can not be decoded.</p>
+<p>Another benefit from TCP is that it already provides <strong>congestion control</strong> which is required for effectively sharing bandwidth over the Internet.</p>
+</section>
+<section id="video-packet-application-layer-protocol-http">
+<h3>(10) Video Packet Application Layer Protocol: HTTP<a class="headerlink" href="#video-packet-application-layer-protocol-http" title="Permalink to this heading"></a></h3>
+<p>With existing HTTP protocol, the server is essentially stateless and the intelligence to download the video will be stored at the clients and this provides several benefits,</p>
+<ul class="simple">
+<li><p>Distributed control: the server is essentially stateless and the intelligence to download the video will be stored at the client</p></li>
+<li><p>Providers could use the already existing CDN infrastructure</p></li>
+<li><p>Bypassing middleboxes and firewalls easier as they already understood HTTP</p></li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/T6cMF83.png" /></p>
+</section>
+<section id="progressive-download">
+<h3>(11) Progressive Download<a class="headerlink" href="#progressive-download" title="Permalink to this heading"></a></h3>
+<p>Given all the intelligence for streaming the video would lie at the client-side, there are two ways for a client to fetch a video from a stateless HTTP server,</p>
+<ul class="simple">
+<li><p>HTTP GET: this means to download the whole video as fast as possible</p>
+<ul>
+<li><p>waste of network resources because users often leave the video mid-way</p></li>
+<li><p>takes up large memory or storage</p></li>
+</ul>
+</li>
+<li><p>Byte-range requests and playout buffer: instead the client can pace the video download rate by sending byte-range requests. It can also pre-fetches some video ahead and stores it in a playout buffer. Streaming in this manner typically has two states</p>
+<ul>
+<li><p>Filling state: video buffer is empty client tries to fill it as soon as possible</p></li>
+<li><p>Steady state: the buffer has become full, the client waits for it to become lower than a threshold. The steady state is characterized by these ON-OFF patterns shown as follows</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/vROSlPT.png" /></p>
+</section>
+<section id="bitrate-adaptation">
+<h3>(12) Bitrate Adaptation<a class="headerlink" href="#bitrate-adaptation" title="Permalink to this heading"></a></h3>
+<p>Bitrate adaptation means the video is chunked into segments which are usually of equal duration and each of these segments is then encoded at multiple bitrates and stored at the server. The client knows about the different URLs of each of the video segments through downloading a <code class="docutils literal notranslate"><span class="pre">manifest</span></code> file at the beginning. The client request while requesting for a segment also specifies its <strong>quality</strong>.</p>
+<p>For example, once the available bandwidth reduces due to a background download, you can reduce the video quality. This is known as <strong>bitrate adaptation</strong>.</p>
+</section>
+<section id="bitrate-adaptation-in-dynamic-streaming-over-http-dash">
+<h3>(13) Bitrate Adaptation in Dynamic Streaming over HTTP (DASH)<a class="headerlink" href="#bitrate-adaptation-in-dynamic-streaming-over-http-dash" title="Permalink to this heading"></a></h3>
+<p>A video in <strong>DynAmic Streaming over HTTP (DASH)</strong> is divided into chunks and each chunk is encoded into multiple bitrates. Each time the video player needs to download a video chunk, it calls the bitrate adaptation function, say <code class="docutils literal notranslate"><span class="pre">f</span></code>. The function f that takes in some input and outputs the bitrate of the chunk to be downloaded,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="n">where</span> <span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">in</span> <span class="p">{</span><span class="n">R1</span><span class="p">,</span> <span class="n">R2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">Rm</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">R(n)</span></code> denotes the set of available bitrates.</p>
+</section>
+<section id="goals-of-bitrate-adaptation">
+<h3>(14) Goals of Bitrate Adaptation<a class="headerlink" href="#goals-of-bitrate-adaptation" title="Permalink to this heading"></a></h3>
+<p>A good quality of experience (QoE) of bitrate adaptation algorithm is defined as,</p>
+<ul class="simple">
+<li><p>Low or zero re-buffering</p></li>
+<li><p>High video quality</p></li>
+<li><p>Low video quality variations</p></li>
+<li><p>Low startup latency</p></li>
+</ul>
+</section>
+<section id="bitrate-adaptation-algorithms">
+<h3>(15) Bitrate Adaptation Algorithms<a class="headerlink" href="#bitrate-adaptation-algorithms" title="Permalink to this heading"></a></h3>
+<p>In this topic, we will look into the bitrate adaptation algorithm which is the function <code class="docutils literal notranslate"><span class="pre">f</span></code> we have talked about above.</p>
+<p>Here are some signals that can serve as an input to a bitrate adaptation algorithm,</p>
+<ul class="simple">
+<li><p>Network throughput: select a bitrate that is equal or lesser than the available throughput</p></li>
+<li><p>Video buffer: amount of video in the buffer. If the video buffer is full, then the player can possibly afford to download high-quality chunks</p></li>
+</ul>
+<p>So we will have <strong>rate-based adaptatio</strong>n as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">throughput</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Or <strong>buffer-based adaptation</strong> as,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">buffer_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="rate-based-adaptation-mechanisms">
+<h3>(16) Rate-Based Adaptation Mechanisms<a class="headerlink" href="#rate-based-adaptation-mechanisms" title="Permalink to this heading"></a></h3>
+<p>A simple rate-based adaptation algorithm has the following steps,</p>
+<ul class="simple">
+<li><p>Estimation: estimating the future bandwidth by considering the last few downloaded chunks</p></li>
+<li><p>Quantization: select the maximum bitrate that is less than the estimate of the throughput with a <strong>factor</strong></p></li>
+<li><p>Requst: player sends the HTTP GET request for the next chunk once the chunk-bitrate is decided</p></li>
+<li><p>Download: the video chunk is downloaded and the download throughput is taken into account in estimating</p></li>
+</ul>
+<p>For this factor we mentioned above, we need it because of the following reasons,</p>
+<ul class="simple">
+<li><p>conservative estimate to avoid re-buffering</p></li>
+<li><p>bitrate can exceed the nominal bitrate if VBR</p></li>
+<li><p>other additional overheads</p></li>
+</ul>
+</section>
+<section id="throughput-based-adaptation-mechanisms">
+<h3>(17) Throughput-Based Adaptation Mechanisms<a class="headerlink" href="#throughput-based-adaptation-mechanisms" title="Permalink to this heading"></a></h3>
+<p>The throughput-based adaptation is based on the buffer filling rate and the depletion rate,</p>
+<ul class="simple">
+<li><p>buffer-filling rate</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">buffer</span><span class="o">-</span><span class="n">filling</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">network</span> <span class="n">bandwidth</span> <span class="n">C</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">chunk</span> <span class="n">bitrate</span> <span class="n">R</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>buffer-depletion rate: 1s of video content gets played in 1s</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">buffer</span><span class="o">-</span><span class="n">depletion</span> <span class="n">rate</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>Clearly, for stall-free streaming, the buffer-filling rate should be greater than the buffer-depletion rate. In other words,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">R</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">C</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">R</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, <code class="docutils literal notranslate"><span class="pre">C(t)</span></code> is the future bandwidth and there is no way of knowing it. A good estimate of the future bandwidth is the bandwidth observed in the past. Therefore it uses the previous chunk throughput to decide the bitrate of the next chunk. This is similar to the rate-based adaptation.</p>
+</section>
+<section id="bandwidth-estimation-problem-with-rate-based-adaption">
+<h3>(18) Bandwidth Estimation Problem with Rate-Based Adaption<a class="headerlink" href="#bandwidth-estimation-problem-with-rate-based-adaption" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Overestimation</p></li>
+</ul>
+<p>Under the case when the bandwidth changes rapidly, the player takes some time to converge to the right estimate of the bandwidth.</p>
+<p>When there’s an overestimation on the bandwidth, the video player buffer will deplete and the video will eventually re-buffer.</p>
+<p>If the player uses weighted average then it may even take more time to reflect the drop in the network bandwidth and the player may end up requesting higher bitrate than it should.</p>
+<ul class="simple">
+<li><p>Underestimation</p></li>
+</ul>
+<p>The underestimation of bandwidth happens during the steady state of the DASH clients. Recall we mentioned there’s an ON-OFF pattern in the steady state when the buffer is full.</p>
+<p>In the OFF period, if the TCP connection reset the congestion window, it does take time for the flows to converge to their fair share. So in our example, it ends up picking a lower bitrate than the observed throughput because of the conservative factor. As the bitrate becomes lower, the chunk size reduces. So this further aggravates the problem.</p>
+<p>Note that this problem happens because of the ON-OFF behavior in DASH. While we have seen this problem for DASH and a competing TCP flow, it can also happen in competing DASH players leading to an unfair-allocation of network bandwidth.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note17.html" class="btn btn-neutral float-left" title="Computer Network 17 | BGP Measurement Project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="note19.html" class="btn btn-neutral float-right" title="Computer Network 19 | Content Distribution Networks (CDNs)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
