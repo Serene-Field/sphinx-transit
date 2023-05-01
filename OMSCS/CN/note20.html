@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Network 20 | Final Review &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="High Performance Computing 1 | Memory Locality Theory" href="../HPC/note1.html" />
+    <link rel="prev" title="Computer Network 19 | Content Distribution Networks (CDNs)" href="note19.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html">⛴️  Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#ckad">☸️  CKAD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../devops/index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">💻  Computer Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">Computer Network 1｜Introduction to Computer Network, OSI Model, Principles, and Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note2.html">Computer Network 2 | Introduction to Transport Layer, UDP and TCP, Congestion Control, Fairness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note3.html">Computer Network 3 | Spanning Tree Protocol Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note4.html">Computer Network 4 | Introduction to Routing, Link State, Distance Vector, RIP, OSPF, Hot Potato Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note5.html">Computer Network 5 | Distance Vector Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note6.html">Computer Network 6 | Introduction to Autonomous Systems, BGP Routing, and Peering Through IXPs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note7.html">Computer Network 7｜Implement MiniNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note8.html">Computer Network 8 | Introduction to Routers and Prefix Match</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note9.html">Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note10.html">Computer Network 10 | Midterm Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note11.html">Computer Network 11 | Introduction of SDN and SDN Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note12.html">Computer Network 12 | SDN Firewall Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note13.html">Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note14.html">Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note15.html">Computer Network 15 ｜ BGP Hijacking Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note16.html">Computer Network 16｜DNS Censorship, Connectivity Disruption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note17.html">Computer Network 17 | BGP Measurement Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note18.html">Computer Network 18 | VoIP and Live/On-Demand Streaming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note19.html">Computer Network 19 | Content Distribution Networks (CDNs)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Computer Network 20 | Final Review</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sdn">1. SDN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network-security">2. Network Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#censorship">3. Censorship</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voip">4. VoIP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming">5. Streaming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cdns">5. CDNs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">💻  Computer Network</a></li>
+      <li class="breadcrumb-item active">Computer Network 20 | Final Review</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/OMSCS/CN/note20.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="computer-network-20-final-review">
+<h1>Computer Network 20 | Final Review<a class="headerlink" href="#computer-network-20-final-review" title="Permalink to this heading"></a></h1>
+<section id="sdn">
+<h2>1. SDN<a class="headerlink" href="#sdn" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The SDN paradigm is based on separating the control plane from the data plane.</p></li>
+<li><p>In the SDN paradigm, the rules for forwarding packets can be computed based on any number of header field values in various layers, such as the transport-layer, network-layer and link-layer.</p></li>
+<li><p>The introduction of a software layer in an SDN architecture allows network administrators to easily configure network devices, through software as opposed to manually configuring the hardware.</p></li>
+<li><p>SDNs use software to control the routers’ behavior (e.g., the path selection of process).</p></li>
+<li><p>The main reason why SDNs were created was not because of the increase of internet users.</p></li>
+<li><p>The ain reason why SDNs were created was the diversity of equipment and proprietary technologies.</p></li>
+<li><p>A few of the main reasons that SDN arose are: a diversity of different network equipment (eg routers, switches, firewalls, etc.) using different protocols that made managing the network difficult, and second a lack of a central platform to control network equipment.</p></li>
+<li><p>The main idea behind SDNs is to divide tasks into smaller functions so the code is more modular and easy to manage.</p></li>
+<li><p>The Active Networks phase consisted mainly of creating a programming interface that exposed resources/network nodes and supported customization of functionalities for subsets of packets passing through the network.</p></li>
+<li><p>SDNs divide the network in two planes: control plane and data plane, to ease management and speed up innovation.</p></li>
+<li><p>Software implementations in SDN controllers are increasingly open and publicly available, which speed up innovation in the field.</p></li>
+<li><p>With SDNs the control plane and data plane have independent evolution and development.</p></li>
+<li><p>An OpenFlow switch has a table of packet-handling rules, and whenever it receives a packet, it determines the highest priority matching rule, performs the action associated with it and increments the respective counter.</p></li>
+<li><p>OpenFlow API can be deployed and scaled easily.</p></li>
+<li><p>In the SDN approach, the SDN controller can be a centralized or a distributed software.</p></li>
+<li><p>The data plane of an SDN contains infrastructures which is mainly SDN controlled switches.</p></li>
+<li><p>The control plane include the SDN controller and other network control applications.</p></li>
+<li><p>With the separation of the control plane and the data plane, any change to the forwarding functions on a router is independent from the routing functions of the control plane.</p></li>
+<li><p>In the SDN approach, the controller that computes and distributes the forwarding tables to be used by the routers is physically separate from the routers.</p></li>
+<li><p>The application layer contains network control applications for loading, IAM, and load-balancing.</p></li>
+<li><p>By separating the control plane and the data plane, controlling the router’s behavior became easier using higher order programs. For example, it is easier to update the router’s state or control the path selection.</p></li>
+<li><p>In the SDN approach, ISPs or other third parties can take up the responsibility for computing and distributing the router’s forwarding tables.</p></li>
+<li><p>For software technologies like SDNs, having openly available allows for finding more bugs or security vulnerabilites</p></li>
+<li><p>In SDN networks, the SDN controller is responsible for enforcing policies.</p></li>
+<li><p>In SDN networks, the infrastructure layer is responsible for the forwarding of traffic.</p></li>
+<li><p>The network-control applications are programs that manage the underlying network with the help of the SDN controller.</p></li>
+<li><p>In SDN networks forwarding rules of traffic can be based on other metrics, packet header info etc. as well as IP destinations.</p></li>
+<li><p>SDN-controlled switches operate on the Data Plane.</p></li>
+<li><p>In an SDN Architecture, the southbound interface keeps track of information about the state of the hosts, links, switches and other controlled elements in the network, as well as copies of the flow tables of the switches.</p></li>
+<li><p>In an SDN Architecture, the northbound interface is responsible for receiving info and passing up to application that either keep track of operate on that info.</p></li>
+<li><p>In SDN networks, the southbound interface is responsible for the communication between SDN controller and the controlled devices.</p></li>
+<li><p>In SDN networks, the controller can be implemented over a centralized server or distibuted.</p></li>
+<li><p>An OpenFlow switch may also be used for routing.</p></li>
+<li><p>An OpenFlow switch can function as a router.</p></li>
+<li><p>Data plane executes a network policy like switch or middle box that performs some operation.</p></li>
+<li><p>Both conventional and software defined networks (SDNs) can implement load balancing.</p></li>
+<li><p>SDN decouples the control and data planes.</p></li>
+<li><p>Middleboxes can only be used in both conventional and SDN networks.</p></li>
+<li><p>Routing, security enforcement, QoS enforcement can all be implemented as a network application in software-defined networking.</p></li>
+<li><p>The networking operating system (NOS) is a part of the control plane.</p></li>
+<li><p>The physical devices in an SDN network have no embedded intelligence and control required to perform forwarding tasks, through SDN stack will lead to control.</p></li>
+<li><p>When a packet arrives in an OpenFlow device and it does not match any of the rules in one of the tables, there can be several possible actions like forward or drop.</p></li>
+<li><p>The Northbound interfaces are the separating medium between the Network-control Applications and the Control plane functionality.</p></li>
+<li><p>OpenFlow enables the communication between the control plane and data plane through event-based messages, flow statistics and packet messages that are sent from forwarding devices to controller.</p></li>
+<li><p>One of the disadvantages of an SDN centralized controller architecture is that it can introduce a single point of failure and also scaling issues.</p></li>
+<li><p>A distributed controller can be a centralized cluster of nodes or a physically distributed set of elements.</p></li>
+<li><p>A distributed controller can be used in large networks and it can also be used in small networks.</p></li>
+<li><p>ONOS is an example of a distributed controller platform.</p></li>
+<li><p>In order to make forwarding and policy decisions in ONOS, applications get information from the view and then update these decisions back to the view.</p></li>
+<li><p>In order to achieve fault tolerance, whenever there is a failure of an ONOS instance, a master is chosen by election.</p></li>
+<li><p>The purpose of the creation of the P4 language was to offer programmability on the data plane.</p></li>
+<li><p>P4 acts as an interface between the switches and the controller, and its main goal is to allow the controller to define how the switches operate.</p></li>
+<li><p>The P4 model allows the design of a common language to write packet processing programs that are independent of the underlying devices.</p></li>
+<li><p>In an SDX architecture, each AS can define forwarding policies as if it is the only participant at the SDX, as well as having its own SDN applications for dropping, modifying or forwarding their traffic.</p></li>
+<li><p>The network-control applications use the information about the network devices and elements, provided by the controller, to monitor and control the network devices.</p></li>
+<li><p>Traffic forwarding can be based on any number of header field values in various layers like the transport-layer, network-layer and link-layer.</p></li>
+<li><p>In an SDN, the controller is responsible for the routing of the traffic, and the SDN-controlled network elements such as the switches are responsible for the forwarding of the traffic.</p></li>
+<li><p>SDN controllers operate on the control plane.</p></li>
+<li><p>The northbound interface is used by the controller and the network-control applications to interact with each other.</p></li>
+<li><p>A REST interface is an example of a Northbound API.</p></li>
+<li><p>OpenFlow API is an example of a southbound API.</p></li>
+<li><p>SDN controllers that are implemented by distributed servers are more likely to achieve fault tolerance, high availability and efficiency.</p></li>
+<li><p>In a software defined networking, the controller is designed to make decisions in the routing process.</p></li>
+<li><p>The transition to IPv6 would be faster with a software defined networking paradigm compared to a conventional networking paradigm.</p></li>
+<li><p>An OpenFlow switch may also be used for routing.</p></li>
+<li><p>The management plane defines a network policy.</p></li>
+<li><p>The control plane enforces a network policy.</p></li>
+<li><p>The data plane executes a network policy.</p></li>
+<li><p>Load balancing is possible with software defined networking and conventional networking.</p></li>
+<li><p>In software defined networking, load-balancing would take precedence when managing incoming traffic.</p></li>
+<li><p>In software defined networking, middleboxes would take precedence when managing incoming traffic.</p></li>
+<li><p>OpenFlow is used in the data plane and it is an example of southbound interface.</p></li>
+<li><p>The northbound interfaces separate the Management plane and control plane</p></li>
+<li><p>The southbound interfaces separate the Data plane and control plane</p></li>
+<li><p>When an incoming flow does NOT match any rules in any of the flow tables in the pipeline, OpenFlow device sends a message to the controller</p></li>
+<li><p>An flow statistics message sent by OpenFlow device to the network OS allows for quality of service (QoS) policies to be implemented.</p></li>
+<li><p>An event-based message would be sent by an OpenFlow device to the network OS in when it receives new routing information</p></li>
+<li><p>A network controller prioritizes the rules generated by various services.</p></li>
+<li><p>A distributed controller with a centralized cluster of nodes provides the best throughput</p></li>
+<li><p>A distributed controller with a physically distributed set of elements provides the highest level of fault tolerance</p></li>
+<li><p>A centralized controller has the strongest consistency semantics</p></li>
+<li><p>If an ONOS instance fails, the other instances elect a new master for each of the switches that were previously controlled by the failed instance.</p></li>
+<li><p>The P4 programming language can not be used with a conventional network paradigm.</p></li>
+<li><p>The P4 language is not designed as a replacement for OpenFlow.</p></li>
+<li><p>The P4 language allows programmers to use multiple header fields to parse, match, and perform actions on packets.</p></li>
+<li><p>The P4 language is used to program the data plane.</p></li>
+<li><p>A multiport switch and a SmartNIC are two devices that can be programmed using P4. This is possible because of the target independence goal of P4.</p></li>
+<li><p>The forwarding model used by P4 is a pipeline.</p></li>
+<li><p>The match+action tables in P4 are more flexible than those in current version of OpenFlow.</p></li>
+<li><p>Two operations in the P4 forwarding model is Configure and Populate.</p></li>
+<li><p>SDX architectures provides an AS more flexibility for managing traffic.</p></li>
+<li><p>In the SDX architecture, each participant AS doesn’t have to use the same network applications for traffic engineering.</p></li>
+<li><p>In the SDX architecture, two ASes can choose to only exchange video traffic.</p></li>
+<li><p>SDX applications are</p>
+<ul>
+<li><p>Inbound traffic engineering</p></li>
+<li><p>Wide-area server load balancing</p></li>
+<li><p>Redirection of traffic through middleboxes</p></li>
+</ul>
+</li>
+<li><p>An OpenFlow switch can function as a router.</p></li>
+</ul>
+</section>
+<section id="network-security">
+<h2>2. Network Security<a class="headerlink" href="#network-security" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Authentication property of secure communication ensures that people are who they say they are when communicating over the internet.</p></li>
+<li><p>Integrity property of secure communication ensures that a message is not modified before it reaches the receiver.</p></li>
+<li><p>Confidentiality  property of secure communication is protected by encrypting the messages exchanged.</p></li>
+<li><p>Availability is offended when there is a hardware failure on critical network infrastructure.</p></li>
+<li><p>Availability is offended when a network experiences connectivity disruptions.</p></li>
+<li><p>In the event that Trudy is able to access and modify the contents of a message between Alice and Bob, confidentiality and integrity properties of secure communication are violated.</p></li>
+<li><p>The uptime of domains used for malicious purposes are kept based on the purpose of attackers.</p></li>
+<li><p>Round Robin DNS is a mechanism used by large websites to distribute the load of incoming requests to several servers at a single physical location.</p></li>
+<li><p>Fast-Flux Service Networks (FFSNs) can be leveraged by malicious actors to extend the availability of a scam.</p></li>
+<li><p>Fast-Flux Service Networks makes it easier to shut down online scams</p></li>
+<li><p>Using the fast flux technique to extend the availability of a scam domain name, it makes it complex for the scam to be taken down.</p></li>
+<li><p>The main qualitative difference between rogue and legitimate networks is the persistence of malicious behavior.</p></li>
+<li><p>Legitimate networks will not let malicious content be up for weeks to more than a year.</p></li>
+<li><p>The FIRE system takes primarily a reactive approach to infer network reputation, relying on monitoring IP blacklists.</p></li>
+<li><p>FIRE identify the most malicious networks by analyzing the information given by data sources and searching for ASes with a large percentage of malicious IP addresses.</p></li>
+<li><p>FIRE system flag a network as malicious only after we have observed indications of malicious behavior (network has a large enough concentration of blacklisted IPs) for a long enough period of time.</p></li>
+<li><p>ASwatch which uses information only from the control plane (ie. routing behavior) to identify malicious networks.</p></li>
+<li><p>ASwatch takes primarily a proactive approach to infer network reputation by monitoring the routing behavior of networks.</p></li>
+<li><p>A rogue network remain undetected by ASwatch (stay under the radar) by maintaining a stable control plane behavior.</p></li>
+<li><p>ASwatch monitors routing behavior to determine the legitimacy of a network.</p></li>
+<li><p>ASwatch parts from the premise that “bulletproof” ASes have distinct interconnection patterns and overall different control plane behavior from most legitimate networks.</p></li>
+<li><p>ARTEMIS uses routing behavior to detect BGP hijacking attacks.</p></li>
+<li><p>Prefix deaggregation is a defense against prefix hijacking.</p></li>
+<li><p>BGP Blackholing is a defense against DDoS attacks.</p></li>
+<li><p>One of the major drawbacks of BGP blackholing is that the destination under attack becomes unreachable since all the traffic including the legitimate traffic is dropped.</p></li>
+<li><p>The BGP blackholing technique can not be applied for traffic related to specific applications.</p></li>
+<li><p>Consider the reflection and amplification attack as shown in the figure below. IP Address of the Victim s being spoofed in this attack.
+<img alt="" src="https://i.imgur.com/ieA4TkO.png" /></p></li>
+<li><p>Suppose that you are designing a detection system to detect DNS reflection and amplification attacks. To accomplish that you need access to data plane data.</p></li>
+<li><p>Suppose that you are designing a detection system to detect BGP hijacking attacks (specifically BGP path and prefix attacks). To accomplish that you need access to control plane data.</p></li>
+<li><p>Which of the following techniques can help an attacker to attract more traffic when attempting to hijack a prefix? Select all that apply.</p>
+<ul>
+<li><p>Advertise a more specific prefix than the original owner AS</p></li>
+<li><p>Advertise a shorter path to the prefix.</p></li>
+<li><p>Advertise the same path as the original owner AS but change the origin AS.</p></li>
+</ul>
+</li>
+<li><p>In order to stop a prefix or AS-Path announcement attack, we need access to the control plane data, such as IP prefixes and AS-paths.</p></li>
+<li><p>ARTEMIS uses a configuration file and a mechanism for receiving BGP updates from routers and monitoring services to detect BGP hijacking attacks.</p></li>
+<li><p>Prefix deaggregation and mitigation with Multiple Origin AS (MOAS) are dependent to ARTEMIS.</p></li>
+<li><p>Sub-prefix hijacking attack disrupts the BGP characteristic to favor more specific prefixes.</p></li>
+<li><p>In attacks where network traffic is dropped, manipulated or impersonated, the data accessed is located at the data plane</p></li>
+<li><p>A DDoS Attack consists on the attacker sending a large volume of traffic to the victim through servers (slaves), so that the victim host becoming unreachable or in exhaustion of its bandwidth.</p></li>
+<li><p>IP spoofing is the act of setting a false IP address in the source field of a packet with the purpose of impersonating a legitimate server.</p></li>
+<li><p>In a reflection attack, the attackers use a set of reflectors to initiate an attack on the victim.</p></li>
+<li><p>During a Reflection and Amplification attack, the slaves set the source address of the packets to the victim’s IP address.</p></li>
+<li><p>In a DDos attack, the slaves send traffic directly to the victim as opposed to a reflector sending the traffic to the victim.</p></li>
+<li><p>BGP Flowspec mitigation technique uses fine-grained filters across AS domain borders, and attributes such as length and fragment can be used to match traffic.</p></li>
+<li><p>Traffic Scrubbing Services consists on a service that diverts the incoming traffic to a specialized server, where traffic is divided in either clean or unwanted traffic, and clean traffic is then sent to its original destination.</p></li>
+<li><p>BGP Blackholing stops the traffic closer to the source of the attack.</p></li>
+<li><p>BGP Blackholing is used to mitigate DDoS attacks.</p></li>
+<li><p>One of the disadvantages of a data plane monitoring-based approach to infer network reputation is that it is not feasible to monitor the traffic of all networks to detect malicious behaviors.</p></li>
+<li><p>Two different ASes (one genuine one counterfeit) announce a path for the same prefix called exact prefix hijacking</p></li>
+<li><p>The hijacking AS works with a subprefix of the genuine prefix of the real AS called sub-prefix hijacking</p></li>
+<li><p>Hijacking AS announces a prefix that has not yet been announced by the owner AS called squatting</p></li>
+<li><p>Type-0 hijacking means an AS announcing a prefix not owned by itself.</p></li>
+<li><p>Type-N hijacking means counterfeit AS announces an illegitimate path for a prefix that it does not own to create a fake path.</p></li>
+<li><p>Type-U hijacking means the hijacking AS does not modify the AS-PATH but may change the prefix.</p></li>
+<li><p>Legitimate traffic is also affected with BGP blackholing</p></li>
+<li><p>BGP Blackholing is a defense against DDoS</p></li>
+<li><p>The BGP blackholing technique can be applied for traffic related to specific applications.</p></li>
+<li><p>Victim AS is responsible to detect the DDoS</p></li>
+<li><p>Provider AS is responsible to filter the DDoS traffic</p></li>
+<li><p>Attackers set false source and/or destination IP addresses when attempting DDoS to impersonate legitimate servers.</p></li>
+<li><p>Assume AS1 is a legitimate network with very low fraction of IPs blacklisted for malicious activity (eg spam, fraudulent activity, etc). Assume that AS2 becomes a customer network of AS1. Monitoring systems will not automatically whitelist AS2.</p></li>
+<li><p>Assume that you are the operator of a network where a network range that hosts a critical sever is hijacked. The fastest method to mitigate is to advertise a more specific prefix.</p></li>
+<li><p>Suppose that you are designing a detection system to detect DNS reflection and amplification attacks. To accomplish that, at a minimum, you need access to data plane data</p></li>
+</ul>
+</section>
+<section id="censorship">
+<h2>3. Censorship<a class="headerlink" href="#censorship" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>The Great Firewall of China injects fake DNS A records to block domain names.</p></li>
+<li><p>The Great Firewall of China injects fake DNS record responses to restrict access to specific domain names.</p></li>
+<li><p>Packet Dropping is prone to overblocking traffic</p></li>
+<li><p>Suppose a user loads a webpage, but a single image will not load. The user has determined that some entity is likely censoring the content. In this case, content inspection is the most likely to be used.</p></li>
+<li><p>TCP RSTs allow blocking of individual connections.</p></li>
+<li><p>The Great Firewall of China is likely managed by a single entity.</p></li>
+<li><p>The Great Firewall of China may block content based on</p>
+<ul>
+<li><p>Keywords within the URL</p></li>
+<li><p>Images on webpage</p></li>
+<li><p>Destination IP</p></li>
+</ul>
+</li>
+<li><p>The GFW can block a portion of a website using content inspection</p></li>
+<li><p>Suppose a client in Cambridge makes a request to a website based in China. GFW resets the connection after the ACK sent by the client in Cambridge</p></li>
+<li><p>A censorship technique can use any combination of criteria based on content, source IP and destination IP to block access to objectionable content.</p></li>
+<li><p>DNS injection uses DNS replies to censor network traffic based on faking DNS A record response values.</p></li>
+<li><p>With a censorship technique based on packet dropping, all network traffic going to a set of specific IP addresses is discarded.</p></li>
+<li><p>When using DNS poisoning, there is no answer returned or an incorrect answer is sent to redirect or mislead the user request.</p></li>
+<li><p>When using content inspection, all traffic passes through a proxy where it is examined for content, and the proxy rejects requests that serve objectionable content.</p></li>
+<li><p>When using the Blocking with Resets technique, if a client sends a request containing flaggable keywords, only the connection containing requests with objectionable content is blocked.</p></li>
+<li><p>With the Immediate Reset of Connections technique, whenever a request is sent containing flaggable keywords, any subsequent request will receive resets from the firewall for a certain amount of time.</p></li>
+<li><p>One of the obstacles to fully understand DNS censorship is the heterogeneity of DNS manipulation across the globe.</p></li>
+<li><p>It is difficult to infer if there is DNS manipulation based on few indications such as inconsistent or anomalous DNS responses.</p></li>
+<li><p>There is a need for methods and tools independent of human intervention and participation in order to achieve the scalability necessary to measure Internet censorship.</p></li>
+<li><p>It is considered dangerous for volunteers to participate in censorship measurement studies and accessing DNS resolvers or DNS forwarders.</p></li>
+<li><p>Augur targets to identify IP-based disruptions as opposed to DNS-based manipulations.</p></li>
+<li><p>CensMon is a global censorship measurement tool used PlanetLab nodes in different countries.</p></li>
+<li><p>OpenNet Initiative requires volunteers perform measurements on their home networks at different times since the past decade.</p></li>
+<li><p>Iris uses open DNS resolvers for diversity and  identifies DNS manipluation via machine learning.</p></li>
+<li><p>In order to infer DNS manipulation, Iris relies on consistency metrics (internal metrics that should be consist) and independent verifiability metrics (metrics that can be externally verified using external data sources).</p></li>
+<li><p>In Augur, assume a scenario where there is no blocking. The Measurement Machine sends a <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> to the reflector, then the return IPID from the reflector to the Measurement Machine should increase by 2.</p></li>
+<li><p>In Augur, assume a scenario where there is inbound blocking. The Measurement Machine sends a <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> to the reflector, then the return IPID from the reflector to the Measurement Machine will increase by 1.</p></li>
+<li><p>In Augur, assume a scenario where there is outbound blocking. The Measurement Machine sends a <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> to the reflector, then the return IPID from the reflector to the Measurement Machine will increase by 4.</p></li>
+<li><p>Censorship methods are inconsistent across ISPs making it difficult to measure DNS manipulation.</p></li>
+<li><p>Current research methods for understanding DNS methods are not scalable due to the little number of volunteers participating.</p></li>
+<li><p>The use of Open DNS resolvers resolves some of the ethical concerns associated with Internet censorship studies.</p></li>
+<li><p>DNS manipulation occurs when making mistake due to misconfigurations and some entity attempts to block access to particular content.</p></li>
+<li><p>Iris uses Open DNS Resolvers to obtain a dataset for machine learning.</p></li>
+<li><p>Suppose Iris is being used to detect DNS manipulation. Iris queries a global resolver for an IP addresses (consistency metric) and receives a DNS A record with a different IP address than the ones stored. The response is inconsistent, but might not be classified as manipulated.</p></li>
+<li><p>Augur is used to identify IP-based manipulations.</p></li>
+<li><p>Iris is used to identify DNS-based manipulations.</p></li>
+<li><p>Which of the following censorship methods can be deployed to enable connectivity disruption?</p>
+<ul>
+<li><p>Physically disconnect critical network infrastructure</p></li>
+<li><p>Disrupting the routers responsible for communicating BGP updates to other routers in a network</p></li>
+<li><p>Filtering packets that match certain criteria</p></li>
+</ul>
+</li>
+<li><p>The greatest weakness of the packet dropping DNS censorship technique is the difficulty to maintain up-to-date blocklists</p></li>
+<li><p>One of the challenges associated with measuring DNS manipulation is the ethical issues related to involving citizens in censorship measurement studies.</p></li>
+<li><p>The techniques used for DNS manipulation is inconsistent across Internet service providers.</p></li>
+<li><p>There is no trend to design censorship detection and circumvention techniques that rely on the participation of volunteers across the globe.</p></li>
+<li><p>Iris uses both its own consistency metrics and also independent verifiability metrics to identify manipulation.</p></li>
+<li><p>Iris identifies and uses Open DNS resolvers to obtain a dataset for its censorship detection module.</p></li>
+<li><p>Augur is a method and accompanying system that utilizes TCP/IP side channels to measure reachability (if there is any filtering) between two Internet locations without directly controlling a measurement vantage point at either location.</p></li>
+</ul>
+</section>
+<section id="voip">
+<h2>4. VoIP<a class="headerlink" href="#voip" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>File Transfer is the less sensitive to network delays compared to VoIP.</p></li>
+<li><p>File Transfer is the more tolerant to packet losses compared to VoIP.</p></li>
+<li><p>Consider packet loss with VoIP application, using TCP instead of UDP results in less packet loss and more end-to-end delay.</p></li>
+<li><p>QoS metrics for VoIP applications are</p>
+<ul>
+<li><p>end-to-end delay</p></li>
+<li><p>jitter</p></li>
+<li><p>packet loss</p></li>
+</ul>
+</li>
+<li><p>In VoIP applications, increased packet jitter results in increased end-to-end delay.</p></li>
+<li><p>A longer jitter reduces the number of packets that are discarded because they were received too late, but that adds to the end-to-end delay.</p></li>
+<li><p>A shorter jitter buffer will not add to the end-to-end delay as much but thet can lead to more dropped packets, which reduces the speech quality.</p></li>
+<li><p>Network conditions such as buffer sizes, queueing delays, network congestion levels has an impackt on packet jitter.</p></li>
+<li><p>In VoIP applications, we have a harsher definition for packet loss, as we consider a packet to be lost if it never arrives or if it arrives after its scheduled playout.</p></li>
+<li><p>With Forward Error Concealment we also transmit redundant data that can be used for reconstructing the stream at the receiver’s side. This approach to error recovery can lead to more bandwidth consumption.</p></li>
+<li><p>With interleaving we mix chunks of audio together so we avoid scenarios where consecutive chunks are lost. This approach can lead to increased latency.</p></li>
+<li><p>UDP is the preferred transport-level protocol for VoIP.</p></li>
+<li><p>Conversational voice and video over IP is not using traditional circuit-switched telephony networks.</p></li>
+<li><p>The rounding of samples to a discrete number in a particular range is called quantization.</p></li>
+<li><p>For VoIP, the important thing is that we want to still be able to understand the speech and the words that are being said, while at the same time still using as little bandwidth as possible.</p></li>
+<li><p>VoIP maintains a jitter buffer as a mechanism for mitigating jitter.</p></li>
+<li><p>Most of the time, VoIP uses UDP to transmit audio.</p></li>
+<li><p>Interleaving has added latency for VoIP</p></li>
+<li><p>Error concealment can be computationally cheap if a lost packet is simply replaced with a previous packet.</p></li>
+</ul>
+</section>
+<section id="streaming">
+<h2>5. Streaming<a class="headerlink" href="#streaming" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>When streaming stored multimedia applications, users don’t have to download the entire content before it can start playing.</p></li>
+<li><p>With streaming stored multimedia applications, the user can pause, fast forward, skip ahead the audio/video.</p></li>
+<li><p>TCP is the preferred transport-level protocol for video streaming.</p></li>
+<li><p>From the user’s perspective, the characteristics of good quality of experience include</p>
+<ul>
+<li><p>Low or zero re-buffering</p></li>
+<li><p>High video quality</p></li>
+<li><p>Low video quality variations</p></li>
+<li><p>Low start up latency</p></li>
+</ul>
+</li>
+<li><p>With throughout-based rate adaption, our goal is to have a buffer-filling rate that is greater than the buffer-depletion rate.</p></li>
+<li><p>With rate-based adaption, when the bandwidth changes rapidly, the player takes some time to converge to the right estimate of the bandwidth, which can lead to overestimation of the future bandwidth.</p></li>
+<li><p>When streaming stored multimedia applications, the user must download first the entire content before it can start playing.</p></li>
+<li><p>Streaming audio and video is interactive and should have a continuous playout.</p></li>
+<li><p>Streaming live audio and video is usually not interactive and is delay-sensitive.</p></li>
+<li><p>Video delivery does not tolerant to packet losses.</p></li>
+<li><p>Content providers store all the intelligence to download the video at the client.</p></li>
+<li><p>A manifest files is the first item downloaded by a client’s video player.</p></li>
+<li><p>A single-bitrate encoded video is not the best solution for video streaming because network conditions can vary.</p></li>
+<li><p>Forward Error Concealment (FEC) increases playout delay, because it results in the generation of additional data.</p></li>
+</ul>
+</section>
+<section id="cdns">
+<h2>5. CDNs<a class="headerlink" href="#cdns" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Having a single server for providing Internet content has the following disadvantages</p>
+<ul>
+<li><p>Single point of failure.</p></li>
+<li><p>Bandwidth waste in high demand for the same content.</p></li>
+<li><p>Scalability issues.</p></li>
+<li><p>Potentially big geographic distance between Internet hosts/users and the server.</p></li>
+</ul>
+</li>
+<li><p>Although routing protocols are challenging for content delivery, CDNs doesn’t take aspects like congestion and latency into consideration.</p></li>
+<li><p>There are several factors that can make a CDN network unreliable, such as misconfigured routers, power outages, malicious attacks or natural disasters.</p></li>
+<li><p>As the Internet evolves, the topology of the ISPs has become flatter, and the number of IXPs increases as the time progresses due to the services they offer and the lower costs for the ISPs.</p></li>
+<li><p>The major drawback of the Enter Deep approach is the difficulties to manage and maintain so many clusters.</p></li>
+<li><p>The major drawback of the Bring Home approach is that, if one server is lost, that geographic area will experience a higher delay and lower throughput.</p></li>
+<li><p>When using CDN servers for content delivery, there is more overhead than when using the traditional approach.</p></li>
+<li><p>For a CDN to deliver content to an Internet user, a cluster is mapped to a client first and then a server within that cluster is selected.</p></li>
+<li><p>Picking the geographically closest cluster location for a user is always not the optimal choice in terms of performance for content delivery.</p></li>
+<li><p>By using consistent hashing for server selection, in the case of a server failure, the objects that the server was responsible for can be taken care of by the next server within the same ID space.</p></li>
+<li><p>When using DNS caching, if a host A makes a request for a domain that was just previously queried by another host, the local DNS server will immediately answer the host with the IP address.</p></li>
+<li><p>The type of DNS record <code class="docutils literal notranslate"><span class="pre">amazon.com,</span> <span class="pre">dns.amazon.com,</span> <span class="pre">?,</span> <span class="pre">TTL</span></code> is NS.</p></li>
+<li><p>IP Anycast assigns the same IP address to multiple servers in order to deliver content from CDNs by using the closest server to a client based on BGP path length.</p></li>
+<li><p>HTTP redirection can be used in order to share the load of content requests among servers for load-balancing.</p></li>
+<li><p>DNS-based content delivery aims to distribute the load amongst multiple servers at a single location, but also distribute these servers across the world.</p></li>
+<li><p>DNS-based content delivery determines the nearest server, which results in increased responsiveness and availability.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note19.html" class="btn btn-neutral float-left" title="Computer Network 19 | Content Distribution Networks (CDNs)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../HPC/note1.html" class="btn btn-neutral float-right" title="High Performance Computing 1 | Memory Locality Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -104,6 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="note17.html">Computer Network 17 | BGP Measurement Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note18.html">Computer Network 18 | VoIP and Live/On-Demand Streaming</a></li>
 <li class="toctree-l2"><a class="reference internal" href="note19.html">Computer Network 19 | Content Distribution Networks (CDNs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="note20.html">Computer Network 20 | Final Review</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
@@ -404,6 +405,7 @@ network.</p>
 <p>Outbound blocking is the filtering imposed on the outgoing path from the reflector. Here, the reflector receives the <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> packet and generates a <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet.</p>
 <p>As per our example, in step 3, the IP ID increments to 7. However, the <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet does not reach the site. When the site doesn’t receive a <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet, it continues to resend the <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> packets at regular intervals depending on the site’s OS and its configuration. This is shown in step 5 of the figure. It results in further increment of the IP ID value of the reflector.</p>
 <p>In step 6, the probe by the measurement machine reveals the IP ID has again increased by 2, which shows that retransmission of packets has occurred. In this way, outbound blocking can be detected.</p>
+<p><img alt="" src="https://i.imgur.com/4c0Rea9.png" /></p>
 </section>
 </section>
 </section>
