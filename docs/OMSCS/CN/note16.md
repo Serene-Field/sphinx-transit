@@ -240,3 +240,5 @@ Outbound blocking is the filtering imposed on the outgoing path from the reflect
 As per our example, in step 3, the IP ID increments to 7. However, the `RST` packet does not reach the site. When the site doesn’t receive a `RST` packet, it continues to resend the `SYN-ACK` packets at regular intervals depending on the site’s OS and its configuration. This is shown in step 5 of the figure. It results in further increment of the IP ID value of the reflector. 
 
 In step 6, the probe by the measurement machine reveals the IP ID has again increased by 2, which shows that retransmission of packets has occurred. In this way, outbound blocking can be detected.
+
+![](https://i.imgur.com/4c0Rea9.png)
