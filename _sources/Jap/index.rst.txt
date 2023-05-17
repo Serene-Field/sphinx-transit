@@ -4,7 +4,8 @@
 .. toctree::
    :maxdepth: 1
 
-   resource
+   resource/resource
+   resource/hiragana
 
 🏯  N5
 =============
