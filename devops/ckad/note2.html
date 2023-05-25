@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CKAD 2 | Multicontainer Pods &mdash; serenefield-sphinx  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Advanced Kubernetes 1 | CNCF Basics and Kubeadm" href="../advk8s/note1.html" />
+    <link rel="prev" title="CKAD 1 | Core Concepts" href="note1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            serenefield-sphinx
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">DevOps</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">⛴️  Docker</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html#ckad">☸️  CKAD</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="note1.html">CKAD 1 | Core Concepts</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CKAD 2 | Multicontainer Pods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitoring">Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#probes">Probes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initcontainers">initContainers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#advanced-k8s">⛵️  Advanced K8s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#apache-solr">🥐  Apache Solr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#hadoop-ecosystem">🐘  Hadoop Ecosystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#web-application">📄  Web Application</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Japanese</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html">🏯  Learning Resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n5">🏯  N5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html#level-2">🎸  Level 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">OMSCS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Arts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html">🖼️  Drawing - Perspective</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-basic">🧊  Blender - Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Arts/index.html#blender-anime">🎥  Blender - Anime</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tests</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tests/index.html">🧪  Sphinx Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">serenefield-sphinx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">⛴️  Docker</a></li>
+      <li class="breadcrumb-item active">CKAD 2 | Multicontainer Pods</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/devops/ckad/note2.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ckad-2-multicontainer-pods">
+<h1>CKAD 2 | Multicontainer Pods<a class="headerlink" href="#ckad-2-multicontainer-pods" title="Permalink to this heading"></a></h1>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Check pod logs</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">podName</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check container logs in a pod</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">logs</span> <span class="n">podName</span> <span class="n">containerName</span>
+</pre></div>
+</div>
+</section>
+<section id="monitoring">
+<h2>Monitoring<a class="headerlink" href="#monitoring" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Check node resource</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">top</span> <span class="n">nodes</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check pod resource</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">top</span> <span class="n">pods</span>
+</pre></div>
+</div>
+</section>
+<section id="probes">
+<h2><a class="reference external" href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#:~:text=The%20kubelet%20uses%20readiness%20probes,removed%20from%20Service%20load%20balancers.">Probes</a><a class="headerlink" href="#probes" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Readiness Probe</p></li>
+</ul>
+<p>By leveraging readiness probes, Kubernetes can ensure that only healthy and fully operational containers receive traffic from services or other pods, preventing requests from being sent to containers that are still starting up or experiencing issues. Here’s a http readiness probe example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span> <span class="o">-&gt;</span> <span class="n">containers</span> <span class="o">-&gt;</span>
+
+<span class="o">-</span> <span class="n">readinessProbe</span><span class="p">:</span>
+    <span class="n">httpGet</span><span class="p">:</span>
+      <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span>
+      <span class="n">port</span><span class="p">:</span> <span class="n">portNum</span>
+    <span class="n">periodSeconds</span><span class="p">:</span> <span class="n">periodValue</span>
+    <span class="n">initialDelaySeconds</span><span class="p">:</span> <span class="n">delayValue</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Liveness Probe</p></li>
+</ul>
+<p>The liveness probe focuses on the ongoing health of a container, automatically restarting it if needed. Here’s a http liveness probe example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span> <span class="o">-&gt;</span> <span class="n">containers</span> <span class="o">-&gt;</span>
+
+<span class="o">-</span> <span class="n">livenessProbe</span><span class="p">:</span>
+    <span class="n">httpGet</span><span class="p">:</span>
+      <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">path</span>
+      <span class="n">port</span><span class="p">:</span> <span class="n">portNum</span>
+    <span class="n">periodSeconds</span><span class="p">:</span> <span class="n">periodValue</span>
+    <span class="n">initialDelaySeconds</span><span class="p">:</span> <span class="n">delayValue</span>
+</pre></div>
+</div>
+</section>
+<section id="initcontainers">
+<h2><a class="reference external" href="https://kubernetes.io/docs/concepts/workloads/pods/init-containers/">initContainers</a><a class="headerlink" href="#initcontainers" title="Permalink to this heading"></a></h2>
+<p>Init containers are specialized containers that run before app containers in a Pod.</p>
+<ul class="simple">
+<li><p>Configuration</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spec</span> <span class="o">-&gt;</span> <span class="n">initContainers</span> <span class="o">-&gt;</span> 
+
+<span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">initContainerName</span>
+  <span class="n">image</span><span class="p">:</span> <span class="n">initContainerImage</span>
+<span class="c1"># The rest is similar to a normal container</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="note1.html" class="btn btn-neutral float-left" title="CKAD 1 | Core Concepts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../advk8s/note1.html" class="btn btn-neutral float-right" title="Advanced Kubernetes 1 | CNCF Basics and Kubeadm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Yufeng Xing.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
