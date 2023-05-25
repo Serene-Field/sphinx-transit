@@ -11,6 +11,7 @@
    :maxdepth: 1
 
    ckad/note1
+   ckad/note2
 
 ⛵️  Advanced K8s
 ==================
