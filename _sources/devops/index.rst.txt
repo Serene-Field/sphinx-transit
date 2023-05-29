@@ -13,6 +13,8 @@
    ckad/note1
    ckad/note2
    ckad/note3
+   ckad/note4
+   ckad/note5
 
 ⛵️  Advanced K8s
 ==================
