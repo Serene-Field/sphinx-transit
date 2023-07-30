@@ -1,3 +1,6 @@
+# ん、先生、ちょっと時間もらうね。 #1
+
+
 <iframe width="344" height="612" src="https://www.youtube.com/embed/JxNoB_BJQH0" title="ん、先生、ちょっと時間もらうね。 #1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
