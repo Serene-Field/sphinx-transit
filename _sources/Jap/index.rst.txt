@@ -69,6 +69,7 @@
    :maxdepth: 1
 
    live/script1
+   live/script2
 
 🎶  音楽
 ============
