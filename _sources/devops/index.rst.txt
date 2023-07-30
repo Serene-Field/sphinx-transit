@@ -1,3 +1,14 @@
+🦫 golang
+=============
+
+.. toctree::
+   :maxdepth: 1
+
+   golang/note1
+   golang/note2
+   golang/note3
+   golang/note4
+
 ⛴️  Docker
 =============
 
