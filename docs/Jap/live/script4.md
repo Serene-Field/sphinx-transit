@@ -1,4 +1,4 @@
-# ん、先生、ちょっと時間もらうね。 #3
+# ん、先生、ちょっと時間もらうね。 #4
 
 
 <iframe width="344" height="612" src="https://www.youtube.com/embed/TaJbrhOs1hM" title="ん、先生、ちょっと時間もらうね。 #3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -43,7 +43,7 @@
 - になる (平假名：になる) - 这是用来表示变成某种状态或情况的结构，相当于汉语的“变成”。
 
 
-たぶん、ホシノ先輩はまだ寝てるだろうから、先生は起こしてきて、私は学校から道具を持ってくるから。
+たぶん、ホシノ先輩はまだ寝てるだろうから、先生は起こしてきて、私来るは学校から道具を持ってくるから。
 よろしくね、先生。
 
 
