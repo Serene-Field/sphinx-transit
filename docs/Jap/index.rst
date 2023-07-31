@@ -70,6 +70,7 @@
 
    live/script1
    live/script2
+   live/script3
 
 🎶  音楽
 ============
