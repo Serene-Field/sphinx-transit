@@ -72,6 +72,7 @@
    live/script2
    live/script3
    live/script4
+   live/script5
 
 🎶  音楽
 ============
