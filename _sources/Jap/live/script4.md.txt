@@ -1,7 +1,7 @@
 # ん、先生、ちょっと時間もらうね。 #4
 
 
-<iframe width="1440" height="740" src="https://www.youtube.com/embed/KgzOwPHrJnc" title="ん、先生、ちょっと時間もらうね。 #4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="344" height="612" src="https://www.youtube.com/embed/KgzOwPHrJnc" title="ん、先生、ちょっと時間もらうね。 #4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 あ、先生。これ見て、とある銀行の周辺マップと建物の見取り図。
