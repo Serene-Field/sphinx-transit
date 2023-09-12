@@ -51,3 +51,13 @@
    IIS/note2
    IIS/note3
    IIS/note4
+
+💻  JavaScript Quick Notes
+==============================
+
+.. toctree::
+   :maxdepth: 1
+
+   JS/note1
+   
+

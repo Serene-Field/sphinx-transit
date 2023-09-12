@@ -20,6 +20,12 @@ SereneField Sphinx
 
 .. toctree::
    :maxdepth: 1
+   :caption: French
+
+   French/index
+
+.. toctree::
+   :maxdepth: 1
    :caption: Guitar
 
    Guitar/index
