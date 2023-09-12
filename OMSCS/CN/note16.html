@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -114,6 +122,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -152,16 +161,16 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-16-dns-censorship-connectivity-disruption">
-<h1>Computer Network 16｜DNS Censorship, Connectivity Disruption<a class="headerlink" href="#computer-network-16-dns-censorship-connectivity-disruption" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 16｜DNS Censorship, Connectivity Disruption<a class="headerlink" href="#computer-network-16-dns-censorship-connectivity-disruption" title="Link to this heading"></a></h1>
 <section id="dns-censorship">
-<h2>1. DNS Censorship<a class="headerlink" href="#dns-censorship" title="Permalink to this heading"></a></h2>
+<h2>1. DNS Censorship<a class="headerlink" href="#dns-censorship" title="Link to this heading"></a></h2>
 <section id="id1">
-<h3>(1) DNS Censorship<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>(1) DNS Censorship<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>DNS censorship is a large scale network traffic filtering strategy opted by a network to enforce control and censorship over Internet infrastructure to suppress material which they deem as objectionable.</p>
 <p>An example of large scale DNS censorship is that implemented by networks located in China, which use a Firewall, popularly known as the Great Firewall of China (GFW).The GFW works on injecting <strong>fake DNS record</strong> responses so that access to a domain name is blocked.</p>
 </section>
 <section id="properties-of-gfw">
-<h3>(2) Properties of GFW<a class="headerlink" href="#properties-of-gfw" title="Permalink to this heading"></a></h3>
+<h3>(2) Properties of GFW<a class="headerlink" href="#properties-of-gfw" title="Link to this heading"></a></h3>
 <p>Since the GFW is an opaque system, several different studies have been performed to deduce the actual nature of the system and its functionality. Researchers have tried to reverse engineer the GFW and to understand how it works. Here are some of the properties,</p>
 <ul class="simple">
 <li><p>Locality of GFW nodes</p></li>
@@ -177,7 +186,7 @@
 <p>GFW load balances between processes based on source and destination IP address. The processes are clustered together to collectively send injected DNS responses.</p>
 </section>
 <section id="dns-censorship-techniques">
-<h3>(3) DNS Censorship Techniques<a class="headerlink" href="#dns-censorship-techniques" title="Permalink to this heading"></a></h3>
+<h3>(3) DNS Censorship Techniques<a class="headerlink" href="#dns-censorship-techniques" title="Link to this heading"></a></h3>
 <p>There are some techniques developed by the GFW including,</p>
 <p><strong>(i) DNS injection</strong></p>
 <p>GFW uses a ruleset to determine when to inject DNS replies to censor network traffic. When tested against probes for restricted and benign domains, the accuracy of DNS open resolvers to accurately pollute the response is recorded over 99.9%.</p>
@@ -266,7 +275,7 @@ china(http) → cam(54191) [RST] TTL=49, seq=1
 <p>The reset packet received by the client is from the firewall. It does not matter that the client sends out legitimate GET requests following one “questionable” request. It will continue to receive resets from the firewall for a particular duration. Running different experiments suggests that this blocking period is variable for “questionable” requests.</p>
 </section>
 <section id="difficulties-to-measure-dns-manipulation">
-<h3>(4) Difficulties to Measure DNS Manipulation<a class="headerlink" href="#difficulties-to-measure-dns-manipulation" title="Permalink to this heading"></a></h3>
+<h3>(4) Difficulties to Measure DNS Manipulation<a class="headerlink" href="#difficulties-to-measure-dns-manipulation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Diverse Measurements</p></li>
 </ul>
@@ -285,13 +294,13 @@ china(http) → cam(54191) [RST] TTL=49, seq=1
 <p>There are also risks associated with involving citizens in censorship measurement studies based on how different countries maybe penalizing access to censored material.</p>
 </section>
 <section id="censorship-detection-system-censmon-opennet-initiative-and-augur">
-<h3>(5) Censorship Detection System: CensMon, OpenNet Initiative, and Augur<a class="headerlink" href="#censorship-detection-system-censmon-opennet-initiative-and-augur" title="Permalink to this heading"></a></h3>
+<h3>(5) Censorship Detection System: CensMon, OpenNet Initiative, and Augur<a class="headerlink" href="#censorship-detection-system-censmon-opennet-initiative-and-augur" title="Link to this heading"></a></h3>
 <p><strong>CensMon</strong> is a global censorship measurement tool used PlanetLab nodes in different countries. It’s no longer in use.</p>
 <p>Another tool is the <strong>OpenNet Initiative</strong> where volunteers perform measurements on their home networks at different times since the past decade. Relying on volunteer efforts make continuous and diverse measurements very difficult.</p>
 <p><strong>Augur</strong> is a new system created to perform longitudinal global measurements using TCP/IP side channels. However, this system focuses on identifying IP-based disruptions as opposed to DNS-based manipulations.</p>
 </section>
 <section id="iris-network-measurement-system">
-<h3>(6) Iris Network Measurement System<a class="headerlink" href="#iris-network-measurement-system" title="Permalink to this heading"></a></h3>
+<h3>(6) Iris Network Measurement System<a class="headerlink" href="#iris-network-measurement-system" title="Link to this heading"></a></h3>
 <p>Then, let’s explore an example of global measurement methodology called Iris. It is a method to identify DNS manipluation via machine learning. Let’s the steps of measuring DNS manipluation based on Iris,</p>
 <ul class="simple">
 <li><p>Using open <strong>DNS resolvers</strong> for diversity</p>
@@ -331,9 +340,9 @@ china(http) → cam(54191) [RST] TTL=49, seq=1
 </section>
 </section>
 <section id="connectivity-disruption">
-<h2>2. Connectivity Disruption<a class="headerlink" href="#connectivity-disruption" title="Permalink to this heading"></a></h2>
+<h2>2. Connectivity Disruption<a class="headerlink" href="#connectivity-disruption" title="Link to this heading"></a></h2>
 <section id="id2">
-<h3>(1) Connectivity Disruption<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>(1) Connectivity Disruption<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>The highest level of Internet censorship is to completely block access to the Internet. However, it may not be feasible as the infrastructure could be distributed over a wide area.</p>
 <p>A more subtle approach is to use software to interrupt the routing or packet forwarding mechanisms. This is called connectivity disruption. There are two types of connectivity disruption, <strong>routing disruption</strong> and <strong>packet filtering</strong>.</p>
 <p>Connectivity disruption can include multiple layers apart from the two methods mentioned above. It can include,</p>
@@ -345,18 +354,18 @@ china(http) → cam(54191) [RST] TTL=49, seq=1
 </ul>
 </section>
 <section id="routing-disruption">
-<h3>(2) Routing Disruption<a class="headerlink" href="#routing-disruption" title="Permalink to this heading"></a></h3>
+<h3>(2) Routing Disruption<a class="headerlink" href="#routing-disruption" title="Link to this heading"></a></h3>
 <p>A routing mechanism decides which part of the network can be reachable. If this communication is disrupted or disabled on critical routers, it could result in unreachability of the large parts of a network.</p>
 <p>Using this approach can be easily detectable, as it involves withdrawing previously advertised prefixes must be withdrawn or re-advertising them with different properties and therefore modifying the global
 routing state of the network.</p>
 </section>
 <section id="packet-filtering">
-<h3>(3) Packet Filtering<a class="headerlink" href="#packet-filtering" title="Permalink to this heading"></a></h3>
+<h3>(3) Packet Filtering<a class="headerlink" href="#packet-filtering" title="Link to this heading"></a></h3>
 <p>Packet filtering is used as a security mechanism in firewalls and switches. However, it can also be used to block packets matching a certain criteria disrupting the normal forwarding action. This approach can be harder to detect and might require active probing of the forwarding path or monitoring traffic of the impacted
 network.</p>
 </section>
 <section id="detect-connectivity-disruptions-augur">
-<h3>(4) Detect Connectivity disruptions: Augur<a class="headerlink" href="#detect-connectivity-disruptions-augur" title="Permalink to this heading"></a></h3>
+<h3>(4) Detect Connectivity disruptions: Augur<a class="headerlink" href="#detect-connectivity-disruptions-augur" title="Link to this heading"></a></h3>
 <p>In this section, we will talk about another monitoring Augur which is a measurement machine to detect filtering between hosts.</p>
 <p>The system aims to detect if filtering exists between two hosts, a reflector and a site,</p>
 <ul class="simple">
@@ -380,7 +389,7 @@ network.</p>
 (iii) The reflector returns a TCP <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet to the site while also incrementing its global IP ID counter by 1</p>
 </section>
 <section id="filtering-detection-example">
-<h3>(5) Filtering Detection Example<a class="headerlink" href="#filtering-detection-example" title="Permalink to this heading"></a></h3>
+<h3>(5) Filtering Detection Example<a class="headerlink" href="#filtering-detection-example" title="Link to this heading"></a></h3>
 <p>Let the initial IP ID counter of the reflector be 5. Assume a scenario where there’s no filtering,</p>
 <p><img alt="" src="https://i.imgur.com/qzgkzFY.png" /></p>
 <ul class="simple">
@@ -400,13 +409,13 @@ network.</p>
 <p>The measurement machine thus observes that the difference in IP IDs between steps 1 and 4 is 2 and infers that communication has occurred between the two hosts.</p>
 </section>
 <section id="filtering-scenario-1-inbound-blocking">
-<h3>(6) Filtering Scenario 1: Inbound Blocking<a class="headerlink" href="#filtering-scenario-1-inbound-blocking" title="Permalink to this heading"></a></h3>
+<h3>(6) Filtering Scenario 1: Inbound Blocking<a class="headerlink" href="#filtering-scenario-1-inbound-blocking" title="Link to this heading"></a></h3>
 <p>The scenario where filtering occurs on the path from the site to the reflector is termed as inbound blocking. In this case, the <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> packet sent from the site in step 3 does not reach the reflector.</p>
 <p>Hence, there is no response generated and the IP ID of the reflector does not increase. The returned IP ID in step 4 will be 7 (<code class="docutils literal notranslate"><span class="pre">IPID(t4)</span>&#160; <span class="pre">=</span> <span class="pre">7</span></code>) as shown in the figure. Since the measurement machine observes the increment in IP ID value as 1, it detects filtering on the path from the site to the reflector.</p>
 <p><img alt="" src="https://i.imgur.com/MVquBVr.png" /></p>
 </section>
 <section id="filtering-scenario-2-outbound-blocking">
-<h3>(7) Filtering Scenario 2: Outbound Blocking<a class="headerlink" href="#filtering-scenario-2-outbound-blocking" title="Permalink to this heading"></a></h3>
+<h3>(7) Filtering Scenario 2: Outbound Blocking<a class="headerlink" href="#filtering-scenario-2-outbound-blocking" title="Link to this heading"></a></h3>
 <p>Outbound blocking is the filtering imposed on the outgoing path from the reflector. Here, the reflector receives the <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> packet and generates a <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet.</p>
 <p>As per our example, in step 3, the IP ID increments to 7. However, the <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet does not reach the site. When the site doesn’t receive a <code class="docutils literal notranslate"><span class="pre">RST</span></code> packet, it continues to resend the <code class="docutils literal notranslate"><span class="pre">SYN-ACK</span></code> packets at regular intervals depending on the site’s OS and its configuration. This is shown in step 5 of the figure. It results in further increment of the IP ID value of the reflector.</p>
 <p>In step 6, the probe by the measurement machine reveals the IP ID has again increased by 2, which shows that retransmission of packets has occurred. In this way, outbound blocking can be detected.</p>

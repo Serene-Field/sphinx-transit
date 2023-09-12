@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -73,6 +73,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -83,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -121,9 +130,9 @@
            <div itemprop="articleBody">
              
   <section id="advanced-kubernetes-2-minikube-etcdclient-and-etcdctl">
-<h1>Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl<a class="headerlink" href="#advanced-kubernetes-2-minikube-etcdclient-and-etcdctl" title="Permalink to this heading"></a></h1>
+<h1>Advanced Kubernetes 2 | Minikube, Etcdclient, and Etcdctl<a class="headerlink" href="#advanced-kubernetes-2-minikube-etcdclient-and-etcdctl" title="Link to this heading"></a></h1>
 <section id="minikube-installation">
-<h2>1. Minikube Installation<a class="headerlink" href="#minikube-installation" title="Permalink to this heading"></a></h2>
+<h2>1. Minikube Installation<a class="headerlink" href="#minikube-installation" title="Link to this heading"></a></h2>
 <p>Prerequisites:</p>
 <ul class="simple">
 <li><p>Docker</p></li>
@@ -153,7 +162,7 @@ minikube-m04<span class="w">   </span>Ready<span class="w">    </span>&lt;none&g
 </div>
 </section>
 <section id="cluster-overview">
-<h2>2. Cluster Overview<a class="headerlink" href="#cluster-overview" title="Permalink to this heading"></a></h2>
+<h2>2. Cluster Overview<a class="headerlink" href="#cluster-overview" title="Link to this heading"></a></h2>
 <p>Now, let’s have an overview of the cluster,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>kube-system<span class="w"> </span>-o<span class="w"> </span>wide
 NAME<span class="w">                               </span>READY<span class="w">   </span>STATUS<span class="w">    </span>RESTARTS<span class="w">   </span>AGE<span class="w">   </span>IP<span class="w">             </span>NODE<span class="w">           </span>NOMINATED<span class="w"> </span>NODE<span class="w">   </span>READINESS<span class="w"> </span>GATES
@@ -190,7 +199,7 @@ storage-provisioner<span class="w">                </span><span class="m">1</spa
 <p>deployed on each of the node.</p>
 </section>
 <section id="interact-with-etcd">
-<h2>3. Interact with Etcd<a class="headerlink" href="#interact-with-etcd" title="Permalink to this heading"></a></h2>
+<h2>3. Interact with Etcd<a class="headerlink" href="#interact-with-etcd" title="Link to this heading"></a></h2>
 <p>In this section we are going to learn about<code class="docutils literal notranslate"> <span class="pre">etcd</span></code>. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> is a distributed key-value store that is used for storing and retrieving configuration data, metadata, and other kinds of data that need to be shared across multiple machines or applications. It was developed by CoreOS, and is now a graduated project of the Cloud Native Computing Foundation (CNCF).</p>
 <p>minikube already created an <code class="docutils literal notranslate"><span class="pre">etcd</span></code> named <code class="docutils literal notranslate"><span class="pre">etcd-minikube</span></code> for us but we have no way to inspect it so far. Therefore, we need a client for interaction purpose. Let’s follow some steps to setup the etcd client,</p>
 <ul class="simple">
@@ -233,7 +242,7 @@ $<span class="w"> </span><span class="nb">exit</span>
 </div>
 </section>
 <section id="etcdctl-usage">
-<h2>4. <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code> Usage<a class="headerlink" href="#etcdctl-usage" title="Permalink to this heading"></a></h2>
+<h2>4. <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code> Usage<a class="headerlink" href="#etcdctl-usage" title="Link to this heading"></a></h2>
 <p>Now that we have the etcd client up, we can then access the etcd information through <code class="docutils literal notranslate"><span class="pre">etcdctl</span></code>.</p>
 <p>We can check the <code class="docutils literal notranslate"><span class="pre">etcd</span></code> node by,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span> <span class="c1"># etcdctl member list --write-out=table</span>
@@ -266,7 +275,7 @@ $<span class="w"> </span><span class="nb">exit</span>
 </div>
 </section>
 <section id="etcd-pair-example">
-<h2>5. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> Pair Example<a class="headerlink" href="#etcd-pair-example" title="Permalink to this heading"></a></h2>
+<h2>5. <code class="docutils literal notranslate"><span class="pre">etcd</span></code> Pair Example<a class="headerlink" href="#etcd-pair-example" title="Link to this heading"></a></h2>
 <p>From the discussions, we can know that we have an API server pod in minikube as,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>api<span class="w"> </span>
 kube-system<span class="w">   </span>kube-apiserver-minikube<span class="w">            </span><span class="m">1</span>/1<span class="w">     </span>Running<span class="w">   </span><span class="m">0</span><span class="w">          </span>151m

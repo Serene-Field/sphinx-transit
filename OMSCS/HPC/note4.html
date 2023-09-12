@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -101,6 +109,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -139,19 +148,19 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-4-cache-oblivious-algorithms">
-<h1>High Performance Computing 4｜Cache Oblivious Algorithms<a class="headerlink" href="#high-performance-computing-4-cache-oblivious-algorithms" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 4｜Cache Oblivious Algorithms<a class="headerlink" href="#high-performance-computing-4-cache-oblivious-algorithms" title="Link to this heading"></a></h1>
 <section id="basic-concepts">
-<h2>1. Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h2>
+<h2>1. Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
 <section id="the-definition-of-oblivious">
-<h3>(1) The Definition of Oblivious<a class="headerlink" href="#the-definition-of-oblivious" title="Permalink to this heading"></a></h3>
+<h3>(1) The Definition of Oblivious<a class="headerlink" href="#the-definition-of-oblivious" title="Link to this heading"></a></h3>
 <p>Oblivious to the fast memory or cache means the algorithm makes no reference to the fast memory or its parameters (e.g. <code class="docutils literal notranslate"><span class="pre">Z</span></code> or <code class="docutils literal notranslate"><span class="pre">L</span></code>).</p>
 </section>
 <section id="cache-hit-and-cache-miss">
-<h3>(2) Cache Hit and Cache Miss<a class="headerlink" href="#cache-hit-and-cache-miss" title="Permalink to this heading"></a></h3>
+<h3>(2) Cache Hit and Cache Miss<a class="headerlink" href="#cache-hit-and-cache-miss" title="Link to this heading"></a></h3>
 <p>When a load or a store happens in the program, the hardware will first check the cache. If the value it needs exist in the cache, then we will call it a cache hit. Instead, there will be a cache miss, and it will cost a memory transfer.</p>
 </section>
 <section id="the-ideal-cache-model">
-<h3>(3) The Ideal Cache Model<a class="headerlink" href="#the-ideal-cache-model" title="Permalink to this heading"></a></h3>
+<h3>(3) The Ideal Cache Model<a class="headerlink" href="#the-ideal-cache-model" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Program issues load &amp; store operations</p></li>
 <li><p>Hardware manages <code class="docutils literal notranslate"><span class="pre">Z/L</span></code> cache lines</p></li>
@@ -161,14 +170,14 @@
 </ul>
 </section>
 <section id="memory-transfer-costs-for-ideal-cache-model">
-<h3>(4) Memory Transfer Costs for Ideal Cache Model<a class="headerlink" href="#memory-transfer-costs-for-ideal-cache-model" title="Permalink to this heading"></a></h3>
+<h3>(4) Memory Transfer Costs for Ideal Cache Model<a class="headerlink" href="#memory-transfer-costs-for-ideal-cache-model" title="Link to this heading"></a></h3>
 <p>In the ideal cache model, we also calculate the number of transfers, and this will be equal to the number of misses and the number of store evictions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="c1"># of misses + # of store evictions</span>
 </pre></div>
 </div>
 </section>
 <section id="recall-lru-replacement">
-<h3>(5) Recall: LRU Replacement<a class="headerlink" href="#recall-lru-replacement" title="Permalink to this heading"></a></h3>
+<h3>(5) Recall: LRU Replacement<a class="headerlink" href="#recall-lru-replacement" title="Link to this heading"></a></h3>
 <p>LRU is a common replacement rule and it evicts the least recently used address. The number of evictions of LRU is commonly higher than the ideal number of evictions.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of eviction (Ideal) &lt;= # of eviction (LRU)</span>
 </pre></div>
@@ -188,7 +197,7 @@
 <p>In this case that we can figure out that the optimal replacement is not a very strong assumption.</p>
 </section>
 <section id="example-of-lru-opt-lemma">
-<h3>(7) Example of LRU-OPT Lemma<a class="headerlink" href="#example-of-lru-opt-lemma" title="Permalink to this heading"></a></h3>
+<h3>(7) Example of LRU-OPT Lemma<a class="headerlink" href="#example-of-lru-opt-lemma" title="Link to this heading"></a></h3>
 <p>Now, let’s see how to use the lemma. Suppose we have a matrix multiplication problem and we have discussed that,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">)))</span>
 </pre></div>
@@ -207,7 +216,7 @@
 </div>
 </section>
 <section id="proof-of-lru-opt-lemma">
-<h3>(6) Proof of LRU-OPT Lemma<a class="headerlink" href="#proof-of-lru-opt-lemma" title="Permalink to this heading"></a></h3>
+<h3>(6) Proof of LRU-OPT Lemma<a class="headerlink" href="#proof-of-lru-opt-lemma" title="Link to this heading"></a></h3>
 <p>Recall the lemma,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_LRU</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="n">Q_OPT</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">L</span><span class="p">)</span>
 </pre></div>
@@ -226,7 +235,7 @@
 </div>
 </section>
 <section id="tall-cache-assumption">
-<h3>(7) Tall Cache Assumption<a class="headerlink" href="#tall-cache-assumption" title="Permalink to this heading"></a></h3>
+<h3>(7) Tall Cache Assumption<a class="headerlink" href="#tall-cache-assumption" title="Link to this heading"></a></h3>
 <p>The tall cache assumption says that the cache should be taller (aka. the number of lines) than its wide (aka. the number of words per line).</p>
 <p>The number of lines are defined as,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of lines = Z / L</span>
@@ -248,9 +257,9 @@
 </section>
 </section>
 <section id="cache-oblivious-algorithms">
-<h2>2. Cache Oblivious Algorithms<a class="headerlink" href="#cache-oblivious-algorithms" title="Permalink to this heading"></a></h2>
+<h2>2. Cache Oblivious Algorithms<a class="headerlink" href="#cache-oblivious-algorithms" title="Link to this heading"></a></h2>
 <section id="matrix-multiplication">
-<h3>(1) Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this heading"></a></h3>
+<h3>(1) Matrix Multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading"></a></h3>
 <p>Recall the cache aware matrix multiply we have discussed. The matrics are divided into blocks of size <code class="docutils literal notranslate"><span class="pre">b</span></code> times <code class="docutils literal notranslate"><span class="pre">b</span></code> and,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">Θ</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Z</span><span class="p">))</span>
 </pre></div>
@@ -305,7 +314,7 @@
 <p>This matches the lower bound.</p>
 </section>
 <section id="binary-search">
-<h3>(2) Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this heading"></a></h3>
+<h3>(2) Binary Search<a class="headerlink" href="#binary-search" title="Link to this heading"></a></h3>
 <p>Also, let’s first recall the binary search. The number of cache misses is,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">L</span>
          <span class="o">=</span> <span class="mi">1</span>              <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">L</span>
@@ -319,12 +328,12 @@
 <p>But how to achieve the lower bound? There’s a way out if we change the data layout. Let’s replace the array to a binary search tree and then let’s see how we can achieve it.</p>
 </section>
 <section id="binary-tree">
-<h3>(3) Binary Tree<a class="headerlink" href="#binary-tree" title="Permalink to this heading"></a></h3>
+<h3>(3) Binary Tree<a class="headerlink" href="#binary-tree" title="Link to this heading"></a></h3>
 <p>Because the binary search tree maintains some ordering of its elements and we can number a tree to its in-order traversal. Then we can interpret these numbers as addresses or index positions.</p>
 <p>However, there’s nothing secret about this layout and let’s consider a different ordering called the Van Emde Boas layout or a Van Emde Boas tree.</p>
 </section>
 <section id="van-emde-boas-layout">
-<h3>(4) Van Emde Boas layout<a class="headerlink" href="#van-emde-boas-layout" title="Permalink to this heading"></a></h3>
+<h3>(4) Van Emde Boas layout<a class="headerlink" href="#van-emde-boas-layout" title="Link to this heading"></a></h3>
 <p>If we have a complete binary tree of <code class="docutils literal notranslate"><span class="pre">n</span></code> nodes, then we will have <code class="docutils literal notranslate"><span class="pre">logn</span></code> levels. If we split the levels in half, then we have two parts of the levels and each of them has <code class="docutils literal notranslate"><span class="pre">logn/2</span></code> levels. Above the split line, there will be <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code> nodes and below the split line, there will be about <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code> subtrees and each of size <code class="docutils literal notranslate"><span class="pre">sqrt(n)</span></code>.</p>
 <p>The idea of a Van Emde Boas layout is to put a binary tree linearly in the slow memory by,</p>
 <ul class="simple">

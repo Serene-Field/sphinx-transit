@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -101,6 +109,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -139,26 +148,26 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-1-memory-locality-theory">
-<h1>High Performance Computing 1 | Memory Locality Theory<a class="headerlink" href="#high-performance-computing-1-memory-locality-theory" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 1 | Memory Locality Theory<a class="headerlink" href="#high-performance-computing-1-memory-locality-theory" title="Link to this heading"></a></h1>
 <section id="memory-locality-theory">
-<h2>1. Memory Locality Theory<a class="headerlink" href="#memory-locality-theory" title="Permalink to this heading"></a></h2>
+<h2>1. Memory Locality Theory<a class="headerlink" href="#memory-locality-theory" title="Link to this heading"></a></h2>
 <section id="definition">
-<h3>(1) Definition<a class="headerlink" href="#definition" title="Permalink to this heading"></a></h3>
+<h3>(1) Definition<a class="headerlink" href="#definition" title="Link to this heading"></a></h3>
 <p>Between a processor and a primary storage device, there are layers of memories in between.</p>
 </section>
 <section id="von-nevmann-model">
-<h3>(2) Von Nevmann Model<a class="headerlink" href="#von-nevmann-model" title="Permalink to this heading"></a></h3>
+<h3>(2) Von Nevmann Model<a class="headerlink" href="#von-nevmann-model" title="Link to this heading"></a></h3>
 <p>Between the slower memory and the processor, there’s a fast memory.</p>
 </section>
 <section id="two-rules-for-von-nevmann-model">
-<h3>(3) Two Rules for Von Nevmann Model<a class="headerlink" href="#two-rules-for-von-nevmann-model" title="Permalink to this heading"></a></h3>
+<h3>(3) Two Rules for Von Nevmann Model<a class="headerlink" href="#two-rules-for-von-nevmann-model" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Local Data Rule</strong>: Processor may only compute the data in the fast memory. Or the processor can not do any operations unless the operands sit in fast memory</p></li>
 <li><p><strong>Block Transfer Rule</strong>: When data moves between the slow memory and the fast memory, it does so by in chunks of size <code class="docutils literal notranslate"><span class="pre">L</span></code> words.</p></li>
 </ul>
 </section>
 <section id="cost-of-block-transfers">
-<h3>(4) Cost of Block Transfers<a class="headerlink" href="#cost-of-block-transfers" title="Permalink to this heading"></a></h3>
+<h3>(4) Cost of Block Transfers<a class="headerlink" href="#cost-of-block-transfers" title="Link to this heading"></a></h3>
 <p>Suppose we want to transfer <code class="docutils literal notranslate"><span class="pre">W(n)</span></code> number of computation operations. The data transfers in chunks of size <code class="docutils literal notranslate"><span class="pre">L</span></code> words and the fast memory LLC has a size of <code class="docutils literal notranslate"><span class="pre">Z</span></code> words. And we denote the number of block transfers as <code class="docutils literal notranslate"><span class="pre">Q(n;Z,L)</span></code>.</p>
 <p>Then let’s see an example. Suppose the processor needs to sum an array of <code class="docutils literal notranslate"><span class="pre">n</span></code> elements. So we will have at least <code class="docutils literal notranslate"><span class="pre">(n-1)</span></code> additions. And the work should be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="n">additions</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -171,7 +180,7 @@
 <p>Here we can find out that the cost doesn’t rely on the fast memory size <code class="docutils literal notranslate"><span class="pre">Z</span></code> and reduction does not reuse data. However, not reusing data is pad.</p>
 </section>
 <section id="maximum-cost-of-block-transfers">
-<h3>(5) Maximum Cost of Block Transfers<a class="headerlink" href="#maximum-cost-of-block-transfers" title="Permalink to this heading"></a></h3>
+<h3>(5) Maximum Cost of Block Transfers<a class="headerlink" href="#maximum-cost-of-block-transfers" title="Link to this heading"></a></h3>
 <p>Now let’s consider how alignment can impact the cost transfers. Suppose we have the same case above with a <code class="docutils literal notranslate"><span class="pre">Z</span></code> words fast memory and we have to sum a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> elements. The block size is <code class="docutils literal notranslate"><span class="pre">L</span></code> words and we know nothing about how the words are aligned with respect to the transfer size <code class="docutils literal notranslate"><span class="pre">L</span></code>. Now, let’s consider the worst case transfer cost.</p>
 <p>Let’s see an example. Suppose we have the following assumptions,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
@@ -194,7 +203,7 @@
 </div>
 </section>
 <section id="cost-of-block-sorting">
-<h3>(6) Cost of Block Sorting<a class="headerlink" href="#cost-of-block-sorting" title="Permalink to this heading"></a></h3>
+<h3>(6) Cost of Block Sorting<a class="headerlink" href="#cost-of-block-sorting" title="Link to this heading"></a></h3>
 <p>Now let’s suppose we want to sort a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> words and the work load should be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">(</span><span class="n">nlogn</span><span class="p">)</span>
 </pre></div>
@@ -210,7 +219,7 @@
 <p>We will reserve this to the later sections.</p>
 </section>
 <section id="cost-of-matrix-matrix-multiplication">
-<h3>(7) Cost of Matrix-matrix Multiplication<a class="headerlink" href="#cost-of-matrix-matrix-multiplication" title="Permalink to this heading"></a></h3>
+<h3>(7) Cost of Matrix-matrix Multiplication<a class="headerlink" href="#cost-of-matrix-matrix-multiplication" title="Link to this heading"></a></h3>
 <p>Suppose we have three n by n matrix A, B and C, and</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">B</span>
 </pre></div>
@@ -230,7 +239,7 @@
 <p>And we will also save this for the future lessons.</p>
 </section>
 <section id="reduction-vs-block-reduction-algo">
-<h3>(8) Reduction Vs. Block Reduction Algo<a class="headerlink" href="#reduction-vs-block-reduction-algo" title="Permalink to this heading"></a></h3>
+<h3>(8) Reduction Vs. Block Reduction Algo<a class="headerlink" href="#reduction-vs-block-reduction-algo" title="Link to this heading"></a></h3>
 <p>Now, let’s go back to the reduction case and suppose we have an array <code class="docutils literal notranslate"><span class="pre">X</span></code> of n elements. Assume that <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&gt;&gt;</span> <span class="pre">Z</span></code> and <code class="docutils literal notranslate"><span class="pre">X</span></code> aligned on the L-word boundary. To summarize this array, normally we have the following algorithm,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">local</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">do</span>
@@ -254,7 +263,7 @@
 </div>
 </section>
 <section id="matrix-vector-multiplication">
-<h3>(9) Matrix-Vector Multiplication<a class="headerlink" href="#matrix-vector-multiplication" title="Permalink to this heading"></a></h3>
+<h3>(9) Matrix-Vector Multiplication<a class="headerlink" href="#matrix-vector-multiplication" title="Link to this heading"></a></h3>
 <p>Let’s now see an example of a matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> (n by n) multiply vector <code class="docutils literal notranslate"><span class="pre">x</span></code> (n by 1). The matrix is supposed to store in a column major order, which means the elements of the matrix are laid out in the memory column-wised, for instance,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>   <span class="o">---&gt;</span>  <span class="n">A</span><span class="s1">&#39; = [1, 4, 7, 2, 5, 8, 3, 6, 9]</span>
@@ -296,7 +305,7 @@
 <p>So even through in both of these cases we have <code class="docutils literal notranslate"><span class="pre">O(f)</span> <span class="pre">=</span> <span class="pre">n^2</span></code>, the second algo shows a better performance by making the transfer L times faster.</p>
 </section>
 <section id="algorthmic-design-goals">
-<h3>(10) Algorthmic Design Goals<a class="headerlink" href="#algorthmic-design-goals" title="Permalink to this heading"></a></h3>
+<h3>(10) Algorthmic Design Goals<a class="headerlink" href="#algorthmic-design-goals" title="Link to this heading"></a></h3>
 <p>Another important question about this model is what are the goals with respect to the complexity measures. Basically, there are two goals,</p>
 <ul class="simple">
 <li><p>work optimality: the two level algo should do the same work as the best asymptotic algorithm. This actually means to say we should have parallel algorithms</p></li>
@@ -313,7 +322,7 @@
 <p>In the end, what we are saying is that we want our algorithm to max out the computational intensity without messing up with the work, and this should reminding you the concept of <strong>work and span</strong>.</p>
 </section>
 <section id="work-transfers-execution-time-balance">
-<h3>(11) Work, Transfers &amp; Execution Time Balance<a class="headerlink" href="#work-transfers-execution-time-balance" title="Permalink to this heading"></a></h3>
+<h3>(11) Work, Transfers &amp; Execution Time Balance<a class="headerlink" href="#work-transfers-execution-time-balance" title="Link to this heading"></a></h3>
 <p>Now let’s consider the relationship between the work, transfers, and the execution time. Suppose we have,</p>
 <ul class="simple">
 <li><p>the processor takes τ time to execute a operation</p></li>
@@ -355,13 +364,13 @@
 </div>
 </section>
 <section id="roofline-plots">
-<h3>(12) Roofline Plots<a class="headerlink" href="#roofline-plots" title="Permalink to this heading"></a></h3>
+<h3>(12) Roofline Plots<a class="headerlink" href="#roofline-plots" title="Link to this heading"></a></h3>
 <p>Then to visualize the relationship between I, B, and R, let’s consider a roofline plot. Suppose the x-axis is the computational intensity and the y-axis is the maxmium normalized performance R_max. Then we can draw the following plot.</p>
 <p><img alt="roogline plot" src="https://raw.githubusercontent.com/Sadamingh/notepics/main/hpc/1.png" /></p>
 <p>This plot is called roofline because of the shape and we should remember the critical point (B, W’/W).</p>
 </section>
 <section id="intensity-of-conventional-matrix-multiply">
-<h3>(13) Intensity of Conventional Matrix Multiply<a class="headerlink" href="#intensity-of-conventional-matrix-multiply" title="Permalink to this heading"></a></h3>
+<h3>(13) Intensity of Conventional Matrix Multiply<a class="headerlink" href="#intensity-of-conventional-matrix-multiply" title="Link to this heading"></a></h3>
 <p>Now let’s consider back to our matrix muplication problem <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">&lt;-</span> <span class="pre">C</span> <span class="pre">+</span> <span class="pre">A</span> <span class="pre">*</span> <span class="pre">B</span></code>. Suppose we have the following algorithm,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">do</span><span class="p">:</span>                          <span class="o">//</span> <span class="n">load</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
     <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">do</span><span class="p">:</span>                      <span class="o">//</span> <span class="n">load</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">B</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> 
@@ -395,7 +404,7 @@
 </div>
 </section>
 <section id="better-algorithm-for-conventional-matrix-multiply">
-<h3>(14) Better Algorithm for Conventional Matrix Multiply<a class="headerlink" href="#better-algorithm-for-conventional-matrix-multiply" title="Permalink to this heading"></a></h3>
+<h3>(14) Better Algorithm for Conventional Matrix Multiply<a class="headerlink" href="#better-algorithm-for-conventional-matrix-multiply" title="Link to this heading"></a></h3>
 <p>Now let’s consider another algorithm for the matrix multiplication problem. Suppose we have the following algorithm,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">by</span> <span class="n">b</span> <span class="n">do</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">to</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="n">by</span> <span class="n">b</span> <span class="n">do</span><span class="p">:</span>
@@ -440,7 +449,7 @@
 <p>Therefore we can see that the current algorithm is <code class="docutils literal notranslate"><span class="pre">b</span></code> or <code class="docutils literal notranslate"><span class="pre">sqrt(Z)</span></code> times better than the last one.</p>
 </section>
 <section id="application-informing-the-arch">
-<h3>(15) Application: Informing the Arch<a class="headerlink" href="#application-informing-the-arch" title="Permalink to this heading"></a></h3>
+<h3>(15) Application: Informing the Arch<a class="headerlink" href="#application-informing-the-arch" title="Link to this heading"></a></h3>
 <p>Suppose we have a machine that is really good at solving the matrix multiply issues at a particular size. If we have its machine balance doubles, then by how much should the fast memory increase?</p>
 <p>To slove this question, let’s first recall the machine balance is defined by,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">ɑ</span> <span class="o">/</span> <span class="n">τ</span>

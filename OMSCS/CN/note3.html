@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -109,6 +117,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -147,9 +156,9 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-3-spanning-tree-protocol-implementation">
-<h1>Computer Network 3 | Spanning Tree Protocol Implementation<a class="headerlink" href="#computer-network-3-spanning-tree-protocol-implementation" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 3 | Spanning Tree Protocol Implementation<a class="headerlink" href="#computer-network-3-spanning-tree-protocol-implementation" title="Link to this heading"></a></h1>
 <section id="project-documentation">
-<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this heading"></a></h2>
+<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">run.py</span></code></p>
 <p>The entry of the program. It will take one argument <code class="docutils literal notranslate"><span class="pre">topology_file</span></code> which is the file name of the map file without <code class="docutils literal notranslate"><span class="pre">.py</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python run.py &lt;topology_file&gt;
@@ -183,7 +192,7 @@
 </ul>
 </section>
 <section id="assistant-file">
-<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Permalink to this heading"></a></h2>
+<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code></p>
 <p>This file can be used to simplify the testing process.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Makefile</span>
@@ -208,7 +217,7 @@ test:<span class="w"> </span>run
 </div>
 </section>
 <section id="the-goal-of-this-project">
-<h2>3. The Goal of This Project<a class="headerlink" href="#the-goal-of-this-project" title="Permalink to this heading"></a></h2>
+<h2>3. The Goal of This Project<a class="headerlink" href="#the-goal-of-this-project" title="Link to this heading"></a></h2>
 <p>Let’s use the simple single loop topology <code class="docutils literal notranslate"><span class="pre">SimpleLoopTopology</span></code> as an example to see our goal of this project.</p>
 <p>Initially we have the topo map as,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">topo</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
@@ -234,7 +243,7 @@ test:<span class="w"> </span>run
 <p>In fact, the final edges we have are <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">-</span> <span class="pre">3</span></code>, and <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">-</span> <span class="pre">4</span></code>. Note that in the final output, the number of edges must be a multiple of 2 because all edges are round-way.</p>
 </section>
 <section id="implement-generate-logstring">
-<h2>4. Implement <code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code><a class="headerlink" href="#implement-generate-logstring" title="Permalink to this heading"></a></h2>
+<h2>4. Implement <code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code><a class="headerlink" href="#implement-generate-logstring" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">generate_logstring</span></code> is the smiplest task among all the functions. Based on the description, it will be called after we have the spanning tree represented by a list called <code class="docutils literal notranslate"><span class="pre">ActiveLinks</span></code>.</p>
 <p>So now our task is to create a list of strings with all the strings represent the activated links from the current node to another node.</p>
 <p>The following script can be used for testing,</p>
@@ -245,7 +254,7 @@ test:<span class="w"> </span>run
 </div>
 </section>
 <section id="revisit-message-py-and-stpswitch-py">
-<h2>5. Revisit <code class="docutils literal notranslate"><span class="pre">Message.py</span></code> and <code class="docutils literal notranslate"><span class="pre">StpSwitch.py</span></code><a class="headerlink" href="#revisit-message-py-and-stpswitch-py" title="Permalink to this heading"></a></h2>
+<h2>5. Revisit <code class="docutils literal notranslate"><span class="pre">Message.py</span></code> and <code class="docutils literal notranslate"><span class="pre">StpSwitch.py</span></code><a class="headerlink" href="#revisit-message-py-and-stpswitch-py" title="Link to this heading"></a></h2>
 <p>Now let’s review what variables we have for a <code class="docutils literal notranslate"><span class="pre">Message</span></code> and a based <code class="docutils literal notranslate"><span class="pre">Switch</span></code>.</p>
 <p>For a <code class="docutils literal notranslate"><span class="pre">Message</span></code> class, we have,</p>
 <ul class="simple">
@@ -270,7 +279,7 @@ test:<span class="w"> </span>run
 </div>
 </section>
 <section id="switch-data-structure">
-<h2>6. Switch Data Structure<a class="headerlink" href="#switch-data-structure" title="Permalink to this heading"></a></h2>
+<h2>6. Switch Data Structure<a class="headerlink" href="#switch-data-structure" title="Link to this heading"></a></h2>
 <p>Now we have put the list <code class="docutils literal notranslate"><span class="pre">activateLinks</span></code> into the <code class="docutils literal notranslate"><span class="pre">Switch</span></code> data structure, we should consider what else do we need to complete it. From the document we are awared that we need to have,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">root</span></code>: a variable to store the switch ID that this switch sees as the root</p></li>
@@ -279,17 +288,17 @@ test:<span class="w"> </span>run
 </ul>
 </section>
 <section id="message-process">
-<h2>7. Message Process<a class="headerlink" href="#message-process" title="Permalink to this heading"></a></h2>
+<h2>7. Message Process<a class="headerlink" href="#message-process" title="Link to this heading"></a></h2>
 <p>When a message comes to a switch, it has to process the message with the following steps,</p>
 <section id="whether-to-activate-the-link">
-<h3>(1) Whether to activate the link<a class="headerlink" href="#whether-to-activate-the-link" title="Permalink to this heading"></a></h3>
+<h3>(1) Whether to activate the link<a class="headerlink" href="#whether-to-activate-the-link" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>If the message have <code class="docutils literal notranslate"><span class="pre">pathThrough</span> <span class="pre">==</span> <span class="pre">True</span></code>, the link in the message should be activated</p></li>
 <li><p>If the message have <code class="docutils literal notranslate"><span class="pre">pathThrough</span> <span class="pre">==</span> <span class="pre">False</span></code>, and the current switch don’t path through the switch where the message came from, the link in the message should be inactivated</p></li>
 </ul>
 </section>
 <section id="whether-to-update-root">
-<h3>(2) Whether to update <code class="docutils literal notranslate"><span class="pre">root</span></code><a class="headerlink" href="#whether-to-update-root" title="Permalink to this heading"></a></h3>
+<h3>(2) Whether to update <code class="docutils literal notranslate"><span class="pre">root</span></code><a class="headerlink" href="#whether-to-update-root" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">root</span></code> stored in its data structure if it receives a message with a lower claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value</p></li>
 <li><p>Update related other fields in the data structure</p></li>
@@ -301,7 +310,7 @@ test:<span class="w"> </span>run
 </ul>
 </section>
 <section id="whether-to-update-distance">
-<h3>(3) Whether to update <code class="docutils literal notranslate"><span class="pre">distance</span></code><a class="headerlink" href="#whether-to-update-distance" title="Permalink to this heading"></a></h3>
+<h3>(3) Whether to update <code class="docutils literal notranslate"><span class="pre">distance</span></code><a class="headerlink" href="#whether-to-update-distance" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">distance</span></code> stored in its data structure if it receives a message with the same claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value but a lower <code class="docutils literal notranslate"><span class="pre">distance</span></code> compared to the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">distance</span> <span class="pre">-</span> <span class="pre">1</span></code></p></li>
 <li><p>Update related other fields in the data structure</p></li>
@@ -309,7 +318,7 @@ test:<span class="w"> </span>run
 </ul>
 </section>
 <section id="whether-to-update-paththroughlink">
-<h3>(4) Whether to update <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code><a class="headerlink" href="#whether-to-update-paththroughlink" title="Permalink to this heading"></a></h3>
+<h3>(4) Whether to update <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code><a class="headerlink" href="#whether-to-update-paththroughlink" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The switch should update the <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code> stored in its data structure if it receives a message with the same claimed <code class="docutils literal notranslate"><span class="pre">root</span></code> value and the same <code class="docutils literal notranslate"><span class="pre">distance</span></code>, but with a lower <code class="docutils literal notranslate"><span class="pre">pathThroughLink</span></code></p></li>
 <li><p>Update related other fields in the data structure</p></li>
@@ -318,7 +327,7 @@ test:<span class="w"> </span>run
 </section>
 </section>
 <section id="local-test">
-<h2>7. Local Test<a class="headerlink" href="#local-test" title="Permalink to this heading"></a></h2>
+<h2>7. Local Test<a class="headerlink" href="#local-test" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>make<span class="w"> </span><span class="nb">test</span>
 $<span class="w"> </span>make<span class="w"> </span>clean
 </pre></div>

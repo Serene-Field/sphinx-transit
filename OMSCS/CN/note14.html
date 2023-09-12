@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -139,6 +147,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -177,11 +186,11 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-14-introduction-to-internet-security-dns-abuse-network-reputation-bgp-hijacking-ddos-attack">
-<h1>Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack<a class="headerlink" href="#computer-network-14-introduction-to-internet-security-dns-abuse-network-reputation-bgp-hijacking-ddos-attack" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 14 ｜ Introduction to Internet Security, DNS Abuse, Network Reputation, BGP Hijacking, DDoS Attack<a class="headerlink" href="#computer-network-14-introduction-to-internet-security-dns-abuse-network-reputation-bgp-hijacking-ddos-attack" title="Link to this heading"></a></h1>
 <section id="introduction-to-internet-security">
-<h2>1. Introduction to Internet Security<a class="headerlink" href="#introduction-to-internet-security" title="Permalink to this heading"></a></h2>
+<h2>1. Introduction to Internet Security<a class="headerlink" href="#introduction-to-internet-security" title="Link to this heading"></a></h2>
 <section id="internet-security">
-<h3>(1) Internet Security<a class="headerlink" href="#internet-security" title="Permalink to this heading"></a></h3>
+<h3>(1) Internet Security<a class="headerlink" href="#internet-security" title="Link to this heading"></a></h3>
 <p>The Internet was not designed or built with security in mind, so all the protocols that we have learned so far can be exploited by attackers for malicious purposes. Here are some of the common attacks we will discuss,</p>
 <ul class="simple">
 <li><p>Traffic attraction attacks: BGP Hijacking</p></li>
@@ -190,7 +199,7 @@
 </ul>
 </section>
 <section id="secure-communication">
-<h3>(2) Secure Communication<a class="headerlink" href="#secure-communication" title="Permalink to this heading"></a></h3>
+<h3>(2) Secure Communication<a class="headerlink" href="#secure-communication" title="Link to this heading"></a></h3>
 <p>When we talk about secure communication, we are talking about the following properties,</p>
 <ul class="simple">
 <li><p>Confidentiality</p></li>
@@ -211,9 +220,9 @@
 </section>
 </section>
 <section id="dns-abuse">
-<h2>2. DNS Abuse<a class="headerlink" href="#dns-abuse" title="Permalink to this heading"></a></h2>
+<h2>2. DNS Abuse<a class="headerlink" href="#dns-abuse" title="Link to this heading"></a></h2>
 <section id="dns-records">
-<h3>(1) DNS Records<a class="headerlink" href="#dns-records" title="Permalink to this heading"></a></h3>
+<h3>(1) DNS Records<a class="headerlink" href="#dns-records" title="Link to this heading"></a></h3>
 <p>DNS records (aka zone files) are instructions that live in authoritative DNS servers and provide domain information. Here are some common types of DNS record types,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">A</span></code>: IPv4 address for a domain</p></li>
@@ -230,7 +239,7 @@
 <p>Each record will also have a Time to Live (TTL) value which represents how long will this record be valid after a DNS client receives it. When a record reaches it’s TTL, it will no longer be valid and the client has to request for it again. TTL is also the longest time that a record update will be aware of on all the DNS clients.</p>
 </section>
 <section id="dns-usage-1-round-robin-dns-rrdns">
-<h3>(2) DNS Usage 1: Round Robin DNS (RRDNS)<a class="headerlink" href="#dns-usage-1-round-robin-dns-rrdns" title="Permalink to this heading"></a></h3>
+<h3>(2) DNS Usage 1: Round Robin DNS (RRDNS)<a class="headerlink" href="#dns-usage-1-round-robin-dns-rrdns" title="Link to this heading"></a></h3>
 <p>With RRDNS, the DNS server responds to a DNS request with a list of DNS A records (it indicates the IP address). Then the list of DNS A records will be cycled in a round robin manner. This list is only a part of the mapping list.</p>
 <p><img alt="" src="https://i.imgur.com/isWacKR.png" /></p>
 <p>When the list arrives at the DNS client, it can then choose a record using different strategies,</p>
@@ -241,13 +250,13 @@
 <p>Note that if the DNS lookup happens within the same TTL period, the list of records will be the same in a different order because of round robin. However, if it’s not the same TTL period, it’s likely the DNS client will receive a different set of A records.</p>
 </section>
 <section id="dns-based-content-delivery-networks-cdns">
-<h3>(3) DNS-based Content Delivery Networks (CDNs)<a class="headerlink" href="#dns-based-content-delivery-networks-cdns" title="Permalink to this heading"></a></h3>
+<h3>(3) DNS-based Content Delivery Networks (CDNs)<a class="headerlink" href="#dns-based-content-delivery-networks-cdns" title="Link to this heading"></a></h3>
 <p>CDNs also use DNS-based techniques to distribute content but using more complex strategies. CDNs not only distribute the load among multiple servers at a single location, but it also distribute these servers across the world.</p>
 <p>When accessing the name of the service using DNS, the CDN computes the nearest edge server (or in the figure as surrogate server) and returns its IP address to the DNS client. This results in the content being moved closer to the DNS client which increases responsiveness and availability. CDNs can also react quickly to changes in links as their TTL is lower than RRDNS.</p>
 <p><img alt="" src="https://i.imgur.com/fSSveEv.png" /></p>
 </section>
 <section id="fast-flux-service-networks-ffsns">
-<h3>(4) Fast-Flux Service Networks (FFSNs)<a class="headerlink" href="#fast-flux-service-networks-ffsns" title="Permalink to this heading"></a></h3>
+<h3>(4) Fast-Flux Service Networks (FFSNs)<a class="headerlink" href="#fast-flux-service-networks-ffsns" title="Link to this heading"></a></h3>
 <p>Although RRDNS provides reliability for the network, it can also be benefit to spammers. One famous criminal technique is called the fast-flux service networks (FFSNs).</p>
 <p>FFSNs utilitize the feature DNS provides.</p>
 <ul class="simple">
@@ -258,13 +267,13 @@
 </section>
 </section>
 <section id="network-reputation">
-<h2>3. Network Reputation<a class="headerlink" href="#network-reputation" title="Permalink to this heading"></a></h2>
+<h2>3. Network Reputation<a class="headerlink" href="#network-reputation" title="Link to this heading"></a></h2>
 <section id="rogue-networks">
-<h3>(1) Rogue networks<a class="headerlink" href="#rogue-networks" title="Permalink to this heading"></a></h3>
+<h3>(1) Rogue networks<a class="headerlink" href="#rogue-networks" title="Link to this heading"></a></h3>
 <p>Rogue networks are networks whose main purpose is malicious activity such as phishing, hosting spam pages, hosting pirated software, etc.</p>
 </section>
 <section id="infer-network-reputation">
-<h3>(2) Infer Network Reputation<a class="headerlink" href="#infer-network-reputation" title="Permalink to this heading"></a></h3>
+<h3>(2) Infer Network Reputation<a class="headerlink" href="#infer-network-reputation" title="Link to this heading"></a></h3>
 <p>There are several ways to infer a network reputation,</p>
 <ul class="simple">
 <li><p>By Evidence of DNS Abuse</p></li>
@@ -274,7 +283,7 @@
 <p>We will talk in details about them in the following discussions.</p>
 </section>
 <section id="dns-abuse-detection-finding-rogue-networks-fire-system">
-<h3>(3) DNS Abuse Detection: Finding Rogue Networks (FIRE) System<a class="headerlink" href="#dns-abuse-detection-finding-rogue-networks-fire-system" title="Permalink to this heading"></a></h3>
+<h3>(3) DNS Abuse Detection: Finding Rogue Networks (FIRE) System<a class="headerlink" href="#dns-abuse-detection-finding-rogue-networks-fire-system" title="Link to this heading"></a></h3>
 <p>FIRE (Finding Rogue Networks) is a system that monitors the data plane for rogue networks. It uses three main data sources to identify hosts that likely belong to rogue networks,</p>
 <ul class="simple">
 <li><p>Botnet command and control providers: use centralized command and control (C&amp;C) on networks where it is unlikely to be taken down.</p>
@@ -291,7 +300,7 @@ that AS.</p>
 <p>Therefore, only if a network has a large enough concentration of blacklisted IPs for a long enough period of time, it will be flagged as malicious.</p>
 </section>
 <section id="limitations-of-dns-abuse-detection">
-<h3>(4) Limitations of DNS Abuse Detection<a class="headerlink" href="#limitations-of-dns-abuse-detection" title="Permalink to this heading"></a></h3>
+<h3>(4) Limitations of DNS Abuse Detection<a class="headerlink" href="#limitations-of-dns-abuse-detection" title="Link to this heading"></a></h3>
 <p>In practice, it is not feasible to monitor the traffic of all networks as decribed with the FIRE system. There are several reasons,</p>
 <ul class="simple">
 <li><p>It requires a <strong>long time</strong> to confirm a malicious behavior</p></li>
@@ -300,7 +309,7 @@ that AS.</p>
 <p>With the limitations mentioned above, <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> was improved as an other network reputation inference technique.</p>
 </section>
 <section id="interconnection-pattern-inference-aswatch">
-<h3>(5) Interconnection Pattern Inference: ASwatch<a class="headerlink" href="#interconnection-pattern-inference-aswatch" title="Permalink to this heading"></a></h3>
+<h3>(5) Interconnection Pattern Inference: ASwatch<a class="headerlink" href="#interconnection-pattern-inference-aswatch" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ASwatch</span></code> uses the information exclusively from the data plane and it also aims to detect malicious networks run by cyberactors (also called bulletproof). It was first mention in <a class="reference external" href="https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p625.pdf">this article</a>.</p>
 <p>The idea of <code class="docutils literal notranslate"><span class="pre">ASwatch</span></code>  is based on the observation that bulletproof ASes have</p>
 <ul class="simple">
@@ -344,7 +353,7 @@ that AS.</p>
 </ul>
 </section>
 <section id="likelihood-of-breach">
-<h3>(6) Likelihood of Breach<a class="headerlink" href="#likelihood-of-breach" title="Permalink to this heading"></a></h3>
+<h3>(6) Likelihood of Breach<a class="headerlink" href="#likelihood-of-breach" title="Link to this heading"></a></h3>
 <p>Another way to infer a network reputation is to use a system for predicting the likelihood of a security breach within an organization. The system will only use externally observable features so the model can be scalable to all organizations.</p>
 <p>The idea of predicting with a likelihood of breach is based on the random forest model with 258 features. These features can be classified into three classes,</p>
 <ul class="simple">
@@ -376,9 +385,9 @@ that AS.</p>
 </section>
 </section>
 <section id="bgp-hijacking">
-<h2>4. BGP Hijacking<a class="headerlink" href="#bgp-hijacking" title="Permalink to this heading"></a></h2>
+<h2>4. BGP Hijacking<a class="headerlink" href="#bgp-hijacking" title="Link to this heading"></a></h2>
 <section id="bgp-hijacking-category-1-by-affected-prefix">
-<h3>(1) BGP Hijacking Category 1: by Affected Prefix<a class="headerlink" href="#bgp-hijacking-category-1-by-affected-prefix" title="Permalink to this heading"></a></h3>
+<h3>(1) BGP Hijacking Category 1: by Affected Prefix<a class="headerlink" href="#bgp-hijacking-category-1-by-affected-prefix" title="Link to this heading"></a></h3>
 <p>In this class of hijacking attacks, we are primarily concerned with the IP prefixes that are advertised by BGP.</p>
 <ul class="simple">
 <li><p>Exact prefix hijacking</p></li>
@@ -395,7 +404,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>In this type of attack, the hijacking AS announces a prefix that has not yet been announced by the owner AS.</p>
 </section>
 <section id="bgp-hijacking-category-2-by-as-path-announcement">
-<h3>(2) BGP Hijacking Category 2: by AS-Path announcement<a class="headerlink" href="#bgp-hijacking-category-2-by-as-path-announcement" title="Permalink to this heading"></a></h3>
+<h3>(2) BGP Hijacking Category 2: by AS-Path announcement<a class="headerlink" href="#bgp-hijacking-category-2-by-as-path-announcement" title="Link to this heading"></a></h3>
 <p>In this class of attacks, an illegitimate AS announces the AS-path for a prefix for which it doesn’t have ownership rights.</p>
 <ul class="simple">
 <li><p>Type-0 hijacking</p></li>
@@ -411,7 +420,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>In this attack the hijacking AS does not modify the AS-PATH but may change the prefix.</p>
 </section>
 <section id="bgp-hijacking-category-3-by-data-plane-traffic-manipulation">
-<h3>(3) BGP Hijacking Category 3: by Data-Plane traffic manipulation<a class="headerlink" href="#bgp-hijacking-category-3-by-data-plane-traffic-manipulation" title="Permalink to this heading"></a></h3>
+<h3>(3) BGP Hijacking Category 3: by Data-Plane traffic manipulation<a class="headerlink" href="#bgp-hijacking-category-3-by-data-plane-traffic-manipulation" title="Link to this heading"></a></h3>
 <p>In this class of attacks, the intention of the attacker is to hijack the network traffic and manipulate the redirected network traffic on its way to the receiving AS.</p>
 <ul class="simple">
 <li><p>Dropped</p></li>
@@ -427,7 +436,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>Imposture (IM) attack, means the network traffic of the victim AS is impersonated and the response to this network traffic is sent back to the sender.</p>
 </section>
 <section id="bgp-hijacking-attacks-causes">
-<h3>(4) BGP Hijacking Attacks Causes<a class="headerlink" href="#bgp-hijacking-attacks-causes" title="Permalink to this heading"></a></h3>
+<h3>(4) BGP Hijacking Attacks Causes<a class="headerlink" href="#bgp-hijacking-attacks-causes" title="Link to this heading"></a></h3>
 <p>There are several causes behind the BGP hijacking attacks.</p>
 <ul class="simple">
 <li><p>Human Error</p></li>
@@ -443,7 +452,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>The attacker is obvious in their intent to cause widespread disruption of services. For example, Pakistan Telecom in a Type-0 sub-prefix hijacking, essentially blackholing all of YouTube’s services worldwide for nearly 2 hours.</p>
 </section>
 <section id="bgp-hijacking-example-1-hijack-prefix">
-<h3>(5) BGP Hijacking Example 1: Hijack Prefix<a class="headerlink" href="#bgp-hijacking-example-1-hijack-prefix" title="Permalink to this heading"></a></h3>
+<h3>(5) BGP Hijacking Example 1: Hijack Prefix<a class="headerlink" href="#bgp-hijacking-example-1-hijack-prefix" title="Link to this heading"></a></h3>
 <p>Let’s suppose we have AS1 ~ AS5 and AS1 has a subnet with prefix 10.10.0.0/16 and it announce this prefix to the network so the other ASes in the network can route to this subnet. Assume we have the following network topology, as a result, we have the paths as,</p>
 <p><img alt="" src="https://i.imgur.com/Vx5an60.png" /></p>
 <p>Now suppose AS4 is a malicious AS and it has no path to subnet with prefix 10.10.0.0/16. However, it can announce fake messages to pretend that 10.10.0.0/16 belongs to AS4.</p>
@@ -456,7 +465,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>So in this network, both AS3 and AS4 can not route to subnet 10.10.0.0/16 because the path is now misleading.</p>
 </section>
 <section id="bgp-hijacking-example-2-hijack-path">
-<h3>(6) BGP Hijacking Example 2: Hijack Path<a class="headerlink" href="#bgp-hijacking-example-2-hijack-path" title="Permalink to this heading"></a></h3>
+<h3>(6) BGP Hijacking Example 2: Hijack Path<a class="headerlink" href="#bgp-hijacking-example-2-hijack-path" title="Link to this heading"></a></h3>
 <p>Another way for AS4 to hijack the route is by annoncing the path. For example, AS4 can create a fake to pretend it has a direct path to AS1. So,</p>
 <p><img alt="" src="https://i.imgur.com/2x6aEgd.png" /></p>
 <p>As a result, the path from AS5 to AS1 is modified,</p>
@@ -466,7 +475,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>In this case, AS4 performs BGP hijacking by hijacking a path.</p>
 </section>
 <section id="bgp-hijacking-detection-system">
-<h3>(7) BGP Hijacking Detection System<a class="headerlink" href="#bgp-hijacking-detection-system" title="Permalink to this heading"></a></h3>
+<h3>(7) BGP Hijacking Detection System<a class="headerlink" href="#bgp-hijacking-detection-system" title="Link to this heading"></a></h3>
 <p>One of the high level idea for BGP hijacking defense is to use a detection system called ARTEMIS. RTEMIS is a system that is run locally by network operators to safeguard its own prefixes against malicious BGP hijacking attempts.</p>
 <p>The key idea of ARTEMIS is as following,</p>
 <ul class="simple">
@@ -476,7 +485,7 @@ route large/entire amount of traffic to the hijacking AS.</p>
 <p>Using the local configuration file as a reference, for the received BGP updates, ARTEMIS can check for prefixes and AS-PATH fields and trigger alerts when there are anomalies.</p>
 </section>
 <section id="bgp-hijacking-mitigation-techniques">
-<h3>(8) BGP Hijacking Mitigation Techniques<a class="headerlink" href="#bgp-hijacking-mitigation-techniques" title="Permalink to this heading"></a></h3>
+<h3>(8) BGP Hijacking Mitigation Techniques<a class="headerlink" href="#bgp-hijacking-mitigation-techniques" title="Link to this heading"></a></h3>
 <p>The ARTEMIS system uses two automated techniques in mitigating BGP hijacking attacks,</p>
 <ul class="simple">
 <li><p>Prefix deaggregation</p></li>
@@ -493,14 +502,14 @@ route large/entire amount of traffic to the hijacking AS.</p>
 </section>
 </section>
 <section id="distributed-denial-of-service-ddos-attack">
-<h2>5. Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#distributed-denial-of-service-ddos-attack" title="Permalink to this heading"></a></h2>
+<h2>5. Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#distributed-denial-of-service-ddos-attack" title="Link to this heading"></a></h2>
 <section id="id1">
-<h3>(1) Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>(1) Distributed Denial of Service (DDoS) Attack<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>Distributed Denial of Service (DDoS) attack is an attempt to compromise a server or network resources with a flood of traffic. To achieve this, the attacker first compromises and deploys flooding servers (slaves).</p>
 <p><img alt="" src="https://i.imgur.com/Kws5EFG.png" /></p>
 </section>
 <section id="ip-spoofing">
-<h3>(2) IP spoofing<a class="headerlink" href="#ip-spoofing" title="Permalink to this heading"></a></h3>
+<h3>(2) IP spoofing<a class="headerlink" href="#ip-spoofing" title="Link to this heading"></a></h3>
 <p>IP spoofing is the act of setting a false IP address in the source field of a packet with the purpose of impersonating a legitimate server. In DDoS attacks, this can happen in two forms,</p>
 <ul class="simple">
 <li><p>spoof source IP address</p></li>
@@ -513,7 +522,7 @@ resources while also causing denial of service to legitimate users.</p>
 <p>In the second type of attack, the attacker sets the same IP address in both the source and destination IP fields. This results in the server sending the replies to itself, causing it to crash.</p>
 </section>
 <section id="ddos-reflection-and-amplification">
-<h3>(3) DDoS Reflection and Amplification<a class="headerlink" href="#ddos-reflection-and-amplification" title="Permalink to this heading"></a></h3>
+<h3>(3) DDoS Reflection and Amplification<a class="headerlink" href="#ddos-reflection-and-amplification" title="Link to this heading"></a></h3>
 <p>A <strong>reflector</strong> in DDoS is any server that sends a response to a request. In a <strong>reflection attack</strong>, the attackers use a set of reflectors to initiate an attack on the victim.</p>
 <p>For example, the master directs the slaves to send spoofed requests to a very large number of reflectors, usually in the range of 1 million. The slaves set the source address of the packets to the victim’s IP address, thereby redirecting the response of the reflectors to the victim.</p>
 <p>Thus, the victim receives responses from millions of reflectors resulting in exhaustion of its bandwidth. In addition, the resources of the victim is wasted in processing these responses, making it unable to respond to legitimate requests.</p>
@@ -523,7 +532,7 @@ resources while also causing denial of service to legitimate users.</p>
 <p>If the requests are chosen in such a way that the reflectors send large responses to the victim, it is a <strong>reflection and amplification attack</strong>. Not only would the victim receive traffic from millions of servers, the response sent would be large in size, making it further difficult for the victim to handle it.</p>
 </section>
 <section id="ddos-attack-defense">
-<h3>(4) DDoS Attack Defense<a class="headerlink" href="#ddos-attack-defense" title="Permalink to this heading"></a></h3>
+<h3>(4) DDoS Attack Defense<a class="headerlink" href="#ddos-attack-defense" title="Link to this heading"></a></h3>
 <p>Then, let’s look into some tools that we can leverage to help detect the DDoS attack.</p>
 <ul class="simple">
 <li><p><strong>Traffic Scrubbing</strong> Services: A scrubbing service diverts the incoming traffic to a specialized server, where the traffic is “scrubbed” into either clean or unwanted traffic. The problem of this tools is the monetary costs of the service (in-time subscription, setup and other recurring costs). Also the performance will be decreased because of rerouting.</p>
@@ -537,7 +546,7 @@ resources while also causing denial of service to legitimate users.</p>
 </ul>
 </section>
 <section id="bgp-flowspec">
-<h3>(5) BGP Flowspec<a class="headerlink" href="#bgp-flowspec" title="Permalink to this heading"></a></h3>
+<h3>(5) BGP Flowspec<a class="headerlink" href="#bgp-flowspec" title="Link to this heading"></a></h3>
 <p>BGP Flowspec is an extension to the BGP protocol which allows rules to be created on the traffic flows and take corresponding actions.</p>
 <p>This feature of BGP can help mitigate DDoS attacks by specifying appropriate rules. The AS domain borders supporting BGP Flowspec are capable of matching packets in a specific flow based on a variety of parameters such as source IP, destination IP, packet length, protocol used, etc. Please refer to <a class="reference external" href="https://content.cisco.com/chapter.sjs?uri=/searchable/chapter/content/en/us/td/docs/routers/ncs6000/software/ncs6k-r7-0/routing/configuration/guide/b-routing-cg-ncs6000-70x/b-routing-cg-ncs6000-70x_chapter_011.html.xml">this document</a> for the 12 types of matching components.</p>
 <p>Let’s now see an example. Suppose we want to specify the following rule as “all HTTP/HTTPS traffic from port 80 and 443 to one of the Google servers with IP 172.217.19.195 from subnet 130.89.161.0/24”, then we will have,</p>
@@ -556,12 +565,12 @@ resources while also causing denial of service to legitimate users.</p>
 <p>In contrast to ACL filters, FlowSpec leverages the BGP control plane making it easier to add rules to all the routers simultaneously. Although FlowSpec is seen to be effective in intra-domain environment, it is not so popular in inter-domain environments as it depends on trust and cooperation among competitive networks. Also, it might not scale for large attacks where the attack traffic originates from multiple sources as it would multiple rules or combining the sources into one prefix.</p>
 </section>
 <section id="ddos-mitigation-technique-bgp-blackholing">
-<h3>(6) DDoS Mitigation Technique: BGP Blackholing<a class="headerlink" href="#ddos-mitigation-technique-bgp-blackholing" title="Permalink to this heading"></a></h3>
+<h3>(6) DDoS Mitigation Technique: BGP Blackholing<a class="headerlink" href="#ddos-mitigation-technique-bgp-blackholing" title="Link to this heading"></a></h3>
 <p>BGP blackholing is a countermeasure to mitigate a DDoS attack. With this mechanism, all the attack traffic to a targeted DoS destination is dropped to a null location.</p>
 <p>BGP blackholing is implemented with either the help of IX or the upstream provider (ISP). The blackhole messages are tagged with a specific BGP blackhole community attribute, usually publicly available, to differentiate it from the regular routing updates.</p>
 </section>
 <section id="bgp-blackholing-example-1-peering-or-isp">
-<h3>(7) BGP Blackholing Example 1: Peering or ISP<a class="headerlink" href="#bgp-blackholing-example-1-peering-or-isp" title="Permalink to this heading"></a></h3>
+<h3>(7) BGP Blackholing Example 1: Peering or ISP<a class="headerlink" href="#bgp-blackholing-example-1-peering-or-isp" title="Link to this heading"></a></h3>
 <p>Let’s see two examples. Assume the IP <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> in AS2 is under attack.</p>
 <p>First, if the blackholing provider is a peer or an upstream provider, the AS must announce its associated blackhole community along with the blackhole prefix.</p>
 <p><img alt="" src="https://i.imgur.com/fllet4m.png" /></p>
@@ -573,7 +582,7 @@ resources while also causing denial of service to legitimate users.</p>
 <p>Once the provider receives the message, AS1 identifies it as a blackholing message since it contains its blackholing community and sets the next-hop field of the <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> IP to a blackholing IP, thereby effectively dropping all the incoming traffic to host <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code>. Thus, the victim host stops receiving the attack traffic that was sent to it.</p>
 </section>
 <section id="bgp-blackholing-example-2-ixp">
-<h3>(8) BGP Blackholing Example 2: IXP<a class="headerlink" href="#bgp-blackholing-example-2-ixp" title="Permalink to this heading"></a></h3>
+<h3>(8) BGP Blackholing Example 2: IXP<a class="headerlink" href="#bgp-blackholing-example-2-ixp" title="Link to this heading"></a></h3>
 <p>Let’s look at the scenario, where blackholing is implemented with the help of the IXP.</p>
 <p>If the AS is a member of an IXP and it’s under attack, it sends the blackholing messages to the <strong>IXP route server</strong> when a member connects to the route server. The route server then announces the message to all the connected IXP member ASes, which then drops the traffic towards the blackholed prefix.</p>
 <p><img alt="" src="https://i.imgur.com/HLWEPdk.png" /></p>
@@ -586,7 +595,7 @@ router server of the IXP and sends a BGP blackholing message. The message contai
 <p>The route server identifies it as a blackholing message and sets the next-hop of <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code> to a blackholing IP. It propagates this announcement to all its member ASes, which then drops all the traffic to host <code class="docutils literal notranslate"><span class="pre">130.149.1.1</span></code>.</p>
 </section>
 <section id="bgp-blackholing-limitations">
-<h3>(9) BGP Blackholing Limitations<a class="headerlink" href="#bgp-blackholing-limitations" title="Permalink to this heading"></a></h3>
+<h3>(9) BGP Blackholing Limitations<a class="headerlink" href="#bgp-blackholing-limitations" title="Link to this heading"></a></h3>
 <p>There are also some limitations of the BGP blackholing.</p>
 <ul class="simple">
 <li><p>Unreachable</p></li>

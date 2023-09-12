@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -107,6 +115,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -145,15 +154,15 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-3-i-o-avoiding-algorithms">
-<h1>High Performance Computing 3 | I/O Avoiding Algorithms<a class="headerlink" href="#high-performance-computing-3-i-o-avoiding-algorithms" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 3 | I/O Avoiding Algorithms<a class="headerlink" href="#high-performance-computing-3-i-o-avoiding-algorithms" title="Link to this heading"></a></h1>
 <section id="i-o-basics">
-<h2>1. I/O Basics<a class="headerlink" href="#i-o-basics" title="Permalink to this heading"></a></h2>
+<h2>1. I/O Basics<a class="headerlink" href="#i-o-basics" title="Link to this heading"></a></h2>
 <section id="i-o-definition">
-<h3>(1) I/O Definition<a class="headerlink" href="#i-o-definition" title="Permalink to this heading"></a></h3>
+<h3>(1) I/O Definition<a class="headerlink" href="#i-o-definition" title="Link to this heading"></a></h3>
 <p>In our case, I/O refers to the transfers of data between slow and fast memories.</p>
 </section>
 <section id="a-sense-of-scale">
-<h3>(2) A Sense of Scale<a class="headerlink" href="#a-sense-of-scale" title="Permalink to this heading"></a></h3>
+<h3>(2) A Sense of Scale<a class="headerlink" href="#a-sense-of-scale" title="Link to this heading"></a></h3>
 <p>Before we start to discuss, let’s first see an example. Suppose we are given an input dataset to sort and we have the following inforation,</p>
 <ul class="simple">
 <li><p>Record (item) size: <code class="docutils literal notranslate"><span class="pre">r</span> <span class="pre">=</span> <span class="pre">256</span> <span class="pre">Bytes</span> <span class="pre">=</span> <span class="pre">2^8</span> <span class="pre">Bytes</span></code></p></li>
@@ -179,7 +188,7 @@ L = 2^7 Tops
 <p>From this result, we can find out that one big improvement comes out from reducing <code class="docutils literal notranslate"><span class="pre">n</span></code> to <code class="docutils literal notranslate"><span class="pre">n/L</span></code>. This means when we pass over the data, we do so in L size transactions as much as possible. The other big improvement comes from going from <code class="docutils literal notranslate"><span class="pre">log2</span></code> to <code class="docutils literal notranslate"><span class="pre">log_(Z/L)</span></code> and this improvement involves the capacity of the fast memory <code class="docutils literal notranslate"><span class="pre">Z</span></code>.</p>
 </section>
 <section id="the-lower-bound">
-<h3>(3) The Lower Bound<a class="headerlink" href="#the-lower-bound" title="Permalink to this heading"></a></h3>
+<h3>(3) The Lower Bound<a class="headerlink" href="#the-lower-bound" title="Link to this heading"></a></h3>
 <p>The goal of this lesson is to understand the lower bound on the amount of communication needed to sort on a machine with slow and fast memory. And here’s the lower bound,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">Ω</span><span class="p">((</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="n">log_</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
@@ -187,9 +196,9 @@ L = 2^7 Tops
 </section>
 </section>
 <section id="i-o-avoiding-merge-sort">
-<h2>2. I/O Avoiding Merge Sort<a class="headerlink" href="#i-o-avoiding-merge-sort" title="Permalink to this heading"></a></h2>
+<h2>2. I/O Avoiding Merge Sort<a class="headerlink" href="#i-o-avoiding-merge-sort" title="Link to this heading"></a></h2>
 <section id="merge-sort-phase-1">
-<h3>(1) Merge Sort Phase 1<a class="headerlink" href="#merge-sort-phase-1" title="Permalink to this heading"></a></h3>
+<h3>(1) Merge Sort Phase 1<a class="headerlink" href="#merge-sort-phase-1" title="Link to this heading"></a></h3>
 <p>Now, let’s see a problem of sorting two elements in a two level memory system and we also assume that the processor is sequential (aka. not parallel). So here’s the merge sort idea.</p>
 <ul>
 <li><p>Phase 1</p>
@@ -225,7 +234,7 @@ L = 2^7 Tops
 </ul>
 </section>
 <section id="merge-sort-phase-1-asymptotic-cost">
-<h3>(2) Merge Sort Phase 1 Asymptotic Cost<a class="headerlink" href="#merge-sort-phase-1-asymptotic-cost" title="Permalink to this heading"></a></h3>
+<h3>(2) Merge Sort Phase 1 Asymptotic Cost<a class="headerlink" href="#merge-sort-phase-1-asymptotic-cost" title="Link to this heading"></a></h3>
 <p>Let’s then analyze the asymptotic cost of the merge sort. We assume,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">f</span></code> is a constant so it can be ignored</p></li>
@@ -245,7 +254,7 @@ L = 2^7 Tops
 </ul>
 </section>
 <section id="merge-sort-phase-2">
-<h3>(3) Merge Sort Phase 2<a class="headerlink" href="#merge-sort-phase-2" title="Permalink to this heading"></a></h3>
+<h3>(3) Merge Sort Phase 2<a class="headerlink" href="#merge-sort-phase-2" title="Link to this heading"></a></h3>
 <p>Then we are going to see how we can merge <code class="docutils literal notranslate"><span class="pre">m</span></code> sorted
 runs into a single sorted run. Suppose we each run has a size of <code class="docutils literal notranslate"><span class="pre">s</span></code>, then,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">s</span>
@@ -254,7 +263,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 <p>A classical merge sort idea is to merge pairs of runs until we get a final single run and now let’s see what happens at each level. At each level <code class="docutils literal notranslate"><span class="pre">k</span></code> started from 0, we have the sorted run as size <code class="docutils literal notranslate"><span class="pre">2^k</span> <span class="pre">*</span> <span class="pre">s</span></code>.</p>
 </section>
 <section id="merge-sort-phase-2-cost-one-pair">
-<h3>(4) Merge Sort Phase 2 Cost - One Pair<a class="headerlink" href="#merge-sort-phase-2-cost-one-pair" title="Permalink to this heading"></a></h3>
+<h3>(4) Merge Sort Phase 2 Cost - One Pair<a class="headerlink" href="#merge-sort-phase-2-cost-one-pair" title="Link to this heading"></a></h3>
 <p>Considering a pair of runs A and B, each of size <code class="docutils literal notranslate"><span class="pre">2^(k-1)</span> <span class="pre">*</span> <span class="pre">s</span></code> and our goal is to produce a merged run C which will hold <code class="docutils literal notranslate"><span class="pre">2^k</span> <span class="pre">*</span> <span class="pre">s</span></code> sorted items.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
 </pre></div>
@@ -285,7 +294,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 </div>
 </section>
 <section id="merge-sort-phase-2-cost-total">
-<h3>(5) Merge Sort Phase 2 Cost - Total<a class="headerlink" href="#merge-sort-phase-2-cost-total" title="Permalink to this heading"></a></h3>
+<h3>(5) Merge Sort Phase 2 Cost - Total<a class="headerlink" href="#merge-sort-phase-2-cost-total" title="Link to this heading"></a></h3>
 <p>The calcualtions above is just for merging one pair and for the original merge tree, we have the number of merged pairs at level <code class="docutils literal notranslate"><span class="pre">k</span></code> as,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of pairs = n/(2^ks)</span>
 </pre></div>
@@ -306,7 +315,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 </div>
 </section>
 <section id="general-costs-for-two-way-merge-sort-on-two-levels">
-<h3>(6) General Costs for Two-way Merge Sort on Two Levels<a class="headerlink" href="#general-costs-for-two-way-merge-sort-on-two-levels" title="Permalink to this heading"></a></h3>
+<h3>(6) General Costs for Two-way Merge Sort on Two Levels<a class="headerlink" href="#general-costs-for-two-way-merge-sort-on-two-levels" title="Link to this heading"></a></h3>
 <p>Now if we cosider this problem in a two-level condition with two phases. In phase 1 and 2, the costs are,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Phase</span>           <span class="n">Transfer</span>              <span class="n">Comparison</span>
 <span class="mi">1</span>                <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>                <span class="n">O</span><span class="p">(</span><span class="n">nlogZ</span><span class="p">)</span> 
@@ -325,7 +334,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 </div>
 </section>
 <section id="problem-of-two-way-merge-sort">
-<h3>(7) Problem of Two-way Merge Sort<a class="headerlink" href="#problem-of-two-way-merge-sort" title="Permalink to this heading"></a></h3>
+<h3>(7) Problem of Two-way Merge Sort<a class="headerlink" href="#problem-of-two-way-merge-sort" title="Link to this heading"></a></h3>
 <p>We can find out that the transfer cost <code class="docutils literal notranslate"><span class="pre">Q(n;Z,L)</span></code> we have here above as we discussed is,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">Z</span><span class="p">))</span>
 </pre></div>
@@ -349,7 +358,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 <p>The reason for that is because we only uses three L-sized buffers in the fast memory instead of the total size of <code class="docutils literal notranslate"><span class="pre">Z</span></code>. More specifically, the 2-way merge uses just 3 of the total <code class="docutils literal notranslate"><span class="pre">Z/L</span></code> available blocks of the fast memory. In order to improve that, we have to consider the <strong>multiway merging</strong>.</p>
 </section>
 <section id="multiway-merge-sort">
-<h3>(8) Multiway Merge Sort<a class="headerlink" href="#multiway-merge-sort" title="Permalink to this heading"></a></h3>
+<h3>(8) Multiway Merge Sort<a class="headerlink" href="#multiway-merge-sort" title="Link to this heading"></a></h3>
 <p>So the idea to improve the two way merging is to merge more than two runs at a time to fully utilize the fast memory. Let’s say we are merging <code class="docutils literal notranslate"><span class="pre">k</span></code> runs of <code class="docutils literal notranslate"><span class="pre">s</span></code> size each at a time to a single run we must staisify,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">L</span> <span class="o">&lt;=</span> <span class="n">Z</span>
 </pre></div>
@@ -405,7 +414,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 </ul>
 </section>
 <section id="performance-of-multiway-merge-sort">
-<h3>(9) Performance of Multiway Merge Sort<a class="headerlink" href="#performance-of-multiway-merge-sort" title="Permalink to this heading"></a></h3>
+<h3>(9) Performance of Multiway Merge Sort<a class="headerlink" href="#performance-of-multiway-merge-sort" title="Link to this heading"></a></h3>
 <p>Now is this multiway merge sort good enough to the theoritical lower bound? The answer is yes and let’s see a proof here.</p>
 <p>Let’s say we have <code class="docutils literal notranslate"><span class="pre">n</span></code> items in an array for sorting, so,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of possible orderings = n!</span>
@@ -464,9 +473,9 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 </section>
 </section>
 <section id="i-o-avoiding-binary-search">
-<h2>3. I/O Avoiding Binary Search<a class="headerlink" href="#i-o-avoiding-binary-search" title="Permalink to this heading"></a></h2>
+<h2>3. I/O Avoiding Binary Search<a class="headerlink" href="#i-o-avoiding-binary-search" title="Link to this heading"></a></h2>
 <section id="number-of-transfers-in-binary-search">
-<h3>(1) Number of Transfers in Binary Search<a class="headerlink" href="#number-of-transfers-in-binary-search" title="Permalink to this heading"></a></h3>
+<h3>(1) Number of Transfers in Binary Search<a class="headerlink" href="#number-of-transfers-in-binary-search" title="Link to this heading"></a></h3>
 <p>Suppose we have a sorted list of <code class="docutils literal notranslate"><span class="pre">n</span></code> items. The fast memory size is <code class="docutils literal notranslate"><span class="pre">Z</span></code> and transfer size is <code class="docutils literal notranslate"><span class="pre">L</span></code>. When <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">L</span></code>, we only need one transfer so,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="p">;</span><span class="n">Z</span><span class="p">,</span><span class="n">L</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>    <span class="n">when</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">L</span>
 </pre></div>
@@ -482,7 +491,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 <p>But can we do better?</p>
 </section>
 <section id="lower-bound-for-search">
-<h3>(2) Lower Bound for Search<a class="headerlink" href="#lower-bound-for-search" title="Permalink to this heading"></a></h3>
+<h3>(2) Lower Bound for Search<a class="headerlink" href="#lower-bound-for-search" title="Link to this heading"></a></h3>
 <p>Let’s think about the binary search in another way. To find the index <code class="docutils literal notranslate"><span class="pre">i</span></code> we want to search, it takes,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">O</span><span class="p">(</span><span class="n">logn</span><span class="p">)</span> <span class="n">bits</span>
 </pre></div>
@@ -494,7 +503,7 @@ runs into a single sorted run. Suppose we each run has a size of <code class="do
 <p>So compared with the lower bounds for the binary search O(log(n/L)) = O(log(n)-log(L)) ~ O(logn) that we can see a speedup of <code class="docutils literal notranslate"><span class="pre">logL</span></code>.</p>
 </section>
 <section id="lower-bound-for-binary-tree">
-<h3>(3) Lower Bound for Binary Tree<a class="headerlink" href="#lower-bound-for-binary-tree" title="Permalink to this heading"></a></h3>
+<h3>(3) Lower Bound for Binary Tree<a class="headerlink" href="#lower-bound-for-binary-tree" title="Link to this heading"></a></h3>
 <p>However, the binary search can not reach the lower bound, but the binary tree can reach the lower bound. We will skip this part here.</p>
 </section>
 </section>

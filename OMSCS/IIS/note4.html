@@ -12,15 +12,15 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="🖼️ Drawing - Perspective" href="../../Arts/index.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../JS/note1.html" />
     <link rel="prev" title="Intro to Information Security 3 | Log4J Vulnerabilities" href="note3.html" /> 
 </head>
 
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -114,6 +122,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -152,19 +161,19 @@
            <div itemprop="articleBody">
              
   <section id="intro-to-information-security-4-malware-analysis">
-<h1>Intro to Information Security 4 | Malware Analysis<a class="headerlink" href="#intro-to-information-security-4-malware-analysis" title="Permalink to this heading"></a></h1>
+<h1>Intro to Information Security 4 | Malware Analysis<a class="headerlink" href="#intro-to-information-security-4-malware-analysis" title="Link to this heading"></a></h1>
 <section id="phase-1-malware-analytics">
-<h2>1. Phase 1: Malware Analytics<a class="headerlink" href="#phase-1-malware-analytics" title="Permalink to this heading"></a></h2>
+<h2>1. Phase 1: Malware Analytics<a class="headerlink" href="#phase-1-malware-analytics" title="Link to this heading"></a></h2>
 <section id="joe-sandbox-cloud">
-<h3>(1) Joe Sandbox Cloud<a class="headerlink" href="#joe-sandbox-cloud" title="Permalink to this heading"></a></h3>
+<h3>(1) Joe Sandbox Cloud<a class="headerlink" href="#joe-sandbox-cloud" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="https://www.joesandbox.com/">Joe Sandbox</a> detects and analyzes potential malicious files and URLs on Windows, Android, Mac OS, Linux, and iOS for suspicious activities. It performs deep malware analysis and generates comprehensive and detailed analysis reports.</p>
 </section>
 <section id="reports-reading-rules">
-<h3>(2) Reports Reading Rules<a class="headerlink" href="#reports-reading-rules" title="Permalink to this heading"></a></h3>
+<h3>(2) Reports Reading Rules<a class="headerlink" href="#reports-reading-rules" title="Link to this heading"></a></h3>
 <p>If any of the behaviors are seen (or attempted, but not necessarily successful) in any process in the report, then that malware has attempted that behavior. This is, of course, not completely practical, as legitimate applications may perform the same actions in a benign fashion. We are not concerned with differentiating the two in this assignment, but it is some food for thought.</p>
 </section>
 <section id="understanding-the-programs">
-<h3>(3) Understanding the programs<a class="headerlink" href="#understanding-the-programs" title="Permalink to this heading"></a></h3>
+<h3>(3) Understanding the programs<a class="headerlink" href="#understanding-the-programs" title="Link to this heading"></a></h3>
 <p>Before we start, let’s try to understand each of these malwares based on their <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s.</p>
 <ul class="simple">
 <li><p><strong>Malware 1</strong>: this malware uses Follina CVE-2022-30190 for MS office to start <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>.</p></li>
@@ -175,31 +184,31 @@
 </ul>
 </section>
 <section id="check-dropped-created-files">
-<h3>(4) Check Dropped (Created) Files<a class="headerlink" href="#check-dropped-created-files" title="Permalink to this heading"></a></h3>
+<h3>(4) Check Dropped (Created) Files<a class="headerlink" href="#check-dropped-created-files" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code> and check if a process has created any files that is considered to be malicious. The sky blue block means the files created and if there’s a red symbol in the blue box, it means the created file is malicious.</p>
 </section>
 <section id="check-ms-office-key-deletion">
-<h3>(5) Check MS Office Key Deletion<a class="headerlink" href="#check-ms-office-key-deletion" title="Permalink to this heading"></a></h3>
+<h3>(5) Check MS Office Key Deletion<a class="headerlink" href="#check-ms-office-key-deletion" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Key</span> <span class="pre">Deleted</span></code> and check if we have the keyword <code class="docutils literal notranslate"><span class="pre">Office</span></code> appears in the Key Path shown.</p>
 </section>
 <section id="check-ms-excel-key-creation">
-<h3>(6) Check MS Excel Key Creation<a class="headerlink" href="#check-ms-excel-key-creation" title="Permalink to this heading"></a></h3>
+<h3>(6) Check MS Excel Key Creation<a class="headerlink" href="#check-ms-excel-key-creation" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Key</span> <span class="pre">Created</span></code> and check if we have the keyword <code class="docutils literal notranslate"><span class="pre">Excel</span></code> appears in the Key Path shown.</p>
 </section>
 <section id="check-created-registry-values">
-<h3>(7) Check created registry values<a class="headerlink" href="#check-created-registry-values" title="Permalink to this heading"></a></h3>
+<h3>(7) Check created registry values<a class="headerlink" href="#check-created-registry-values" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">created</span> <span class="pre">Registry</span> <span class="pre">Values</span></code> to view the behavior graph. Then figure out if there’re any processes created registry values.</p>
 </section>
 <section id="check-regasm-virus">
-<h3>(8) Check RegAsm virus<a class="headerlink" href="#check-regasm-virus" title="Permalink to this heading"></a></h3>
+<h3>(8) Check RegAsm virus<a class="headerlink" href="#check-regasm-virus" title="Link to this heading"></a></h3>
 <p>Check if we have keyword <code class="docutils literal notranslate"><span class="pre">regasm</span></code> in the <code class="docutils literal notranslate"><span class="pre">AV</span> <span class="pre">Detection</span></code> section.</p>
 </section>
 <section id="issues-signal-to-cause-immediate-program-termination">
-<h3>(9) Issues signal to cause immediate program termination<a class="headerlink" href="#issues-signal-to-cause-immediate-program-termination" title="Permalink to this heading"></a></h3>
+<h3>(9) Issues signal to cause immediate program termination<a class="headerlink" href="#issues-signal-to-cause-immediate-program-termination" title="Link to this heading"></a></h3>
 <p>Check out the <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s and find out which malware will issue signals to terminate the program.</p>
 </section>
 <section id="check-malicious-file-programmed-in-c-or-c">
-<h3>(10) Check Malicious file programmed in C or C++<a class="headerlink" href="#check-malicious-file-programmed-in-c-or-c" title="Permalink to this heading"></a></h3>
+<h3>(10) Check Malicious file programmed in C or C++<a class="headerlink" href="#check-malicious-file-programmed-in-c-or-c" title="Link to this heading"></a></h3>
 <p>Check out the <code class="docutils literal notranslate"><span class="pre">Behavior</span> <span class="pre">Graph</span></code>s for each started process, there should be a bar indicates how malicious the file is. We can also find which language it is programmed, and it should be in,</p>
 <ul class="simple">
 <li><p>Java</p></li>
@@ -210,31 +219,31 @@
 <p>We should find out if the malicious file in the current malware is written in C/C++.</p>
 </section>
 <section id="detects-the-mirai-botnet">
-<h3>(11) Detects the Mirai botnet<a class="headerlink" href="#detects-the-mirai-botnet" title="Permalink to this heading"></a></h3>
+<h3>(11) Detects the Mirai botnet<a class="headerlink" href="#detects-the-mirai-botnet" title="Link to this heading"></a></h3>
 <p>You may already known which malware uses Mirai Botnet but we can comfirm it by searching <code class="docutils literal notranslate"><span class="pre">Yara</span> <span class="pre">detected</span> <span class="pre">Mirai</span></code> in the reports.</p>
 </section>
 <section id="check-attempts-for-keylogger">
-<h3>(12) Check attempts for keylogger<a class="headerlink" href="#check-attempts-for-keylogger" title="Permalink to this heading"></a></h3>
+<h3>(12) Check attempts for keylogger<a class="headerlink" href="#check-attempts-for-keylogger" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">keylog</span></code> in the reports and see if the malware has some signatures related to it.</p>
 </section>
 <section id="check-attempts-to-copy-clipboard">
-<h3>(13) Check attempts to copy clipboard<a class="headerlink" href="#check-attempts-to-copy-clipboard" title="Permalink to this heading"></a></h3>
+<h3>(13) Check attempts to copy clipboard<a class="headerlink" href="#check-attempts-to-copy-clipboard" title="Link to this heading"></a></h3>
 <p>It should be similar to the last one. Search for <code class="docutils literal notranslate"><span class="pre">Clipboard</span> <span class="pre">Data</span></code> in the reports and see if the malware has some signatures related to it.</p>
 </section>
 <section id="check-hooking-registry-keys-values">
-<h3>(14) Check hooking registry keys/values<a class="headerlink" href="#check-hooking-registry-keys-values" title="Permalink to this heading"></a></h3>
+<h3>(14) Check hooking registry keys/values<a class="headerlink" href="#check-hooking-registry-keys-values" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Monitors</span> <span class="pre">certain</span> <span class="pre">registry</span> <span class="pre">keys</span> <span class="pre">/</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">changes</span></code> and see if we have some signatures related to it. This is often done to protect autostart functionality.</p>
 </section>
 <section id="detect-hips-pfw-os-protection-evasions">
-<h3>(15) Detect HIPS/PFW/OS Protection Evasions<a class="headerlink" href="#detect-hips-pfw-os-protection-evasions" title="Permalink to this heading"></a></h3>
+<h3>(15) Detect HIPS/PFW/OS Protection Evasions<a class="headerlink" href="#detect-hips-pfw-os-protection-evasions" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">HIPS</span> <span class="pre">/</span> <span class="pre">PFW</span> <span class="pre">/</span> <span class="pre">Operating</span> <span class="pre">System</span> <span class="pre">Protection</span> <span class="pre">Evasion</span></code> in the reports and see if we have some signatures related to it.</p>
 </section>
 <section id="check-calling-core-file-splwow64-exe">
-<h3>(16) Check calling core file <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code><a class="headerlink" href="#check-calling-core-file-splwow64-exe" title="Permalink to this heading"></a></h3>
+<h3>(16) Check calling core file <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code><a class="headerlink" href="#check-calling-core-file-splwow64-exe" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">splwow64.exe</span></code> in the reports and see if we have some signatures related to it.</p>
 </section>
 <section id="check-the-drops-of-a-portable-executable-file-into-c-windows">
-<h3>(17) Check the drops of a portable executable file into <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code><a class="headerlink" href="#check-the-drops-of-a-portable-executable-file-into-c-windows" title="Permalink to this heading"></a></h3>
+<h3>(17) Check the drops of a portable executable file into <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code><a class="headerlink" href="#check-the-drops-of-a-portable-executable-file-into-c-windows" title="Link to this heading"></a></h3>
 <p>Note that the portable executable (PE) file should have one of the following file extensions,</p>
 <ul class="simple">
 <li><p>.acm</p></li>
@@ -253,34 +262,34 @@
 <p>And then let’s search for <code class="docutils literal notranslate"><span class="pre">Created</span> <span class="pre">/</span> <span class="pre">dropped</span> <span class="pre">Files</span></code>. There should be at least one file with <code class="docutils literal notranslate"><span class="pre">dropped</span></code> Category and one of the extensions above. And the Process should be started by <code class="docutils literal notranslate"><span class="pre">C:\Windows</span></code>.</p>
 </section>
 <section id="check-if-it-looks-for-the-name-or-serial-number-of-a-device">
-<h3>(18) Check if it looks for the name or serial number of a device<a class="headerlink" href="#check-if-it-looks-for-the-name-or-serial-number-of-a-device" title="Permalink to this heading"></a></h3>
+<h3>(18) Check if it looks for the name or serial number of a device<a class="headerlink" href="#check-if-it-looks-for-the-name-or-serial-number-of-a-device" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Queries</span> <span class="pre">the</span> <span class="pre">volume</span> <span class="pre">information</span> <span class="pre">(name,</span> <span class="pre">serial</span> <span class="pre">number</span> <span class="pre">etc)</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">device</span></code> in the reports and see if we have some signatures related to it.</p>
 </section>
 <section id="check-the-attempts-to-obscure-the-meaning-of-data">
-<h3>(19) Check the attempts to obscure the meaning of data<a class="headerlink" href="#check-the-attempts-to-obscure-the-meaning-of-data" title="Permalink to this heading"></a></h3>
+<h3>(19) Check the attempts to obscure the meaning of data<a class="headerlink" href="#check-the-attempts-to-obscure-the-meaning-of-data" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">Obfuscated</span> <span class="pre">Files</span> <span class="pre">or</span> <span class="pre">Information</span></code> nd see if we have some signatures related to it.</p>
 </section>
 <section id="check-http-get-or-post-without-a-user-agent">
-<h3>(20) Check HTTP GET or POST without a user agent<a class="headerlink" href="#check-http-get-or-post-without-a-user-agent" title="Permalink to this heading"></a></h3>
+<h3>(20) Check HTTP GET or POST without a user agent<a class="headerlink" href="#check-http-get-or-post-without-a-user-agent" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">Packets</span></code> and check if there’s one GET or POST request which doesn’t have a <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> field in its header.</p>
 </section>
 <section id="check-if-uses-spans-to-delay">
-<h3>(21) Check if uses spans to delay<a class="headerlink" href="#check-if-uses-spans-to-delay" title="Permalink to this heading"></a></h3>
+<h3>(21) Check if uses spans to delay<a class="headerlink" href="#check-if-uses-spans-to-delay" title="Link to this heading"></a></h3>
 <p>Check the following keywords <code class="docutils literal notranslate"><span class="pre">Sample</span> <span class="pre">execution</span> <span class="pre">stops</span> <span class="pre">while</span> <span class="pre">process</span> <span class="pre">was</span> <span class="pre">sleeping</span></code> or <code class="docutils literal notranslate"><span class="pre">Contains</span> <span class="pre">medium</span> <span class="pre">sleeps</span> <span class="pre">(&gt;=</span> <span class="pre">30s)</span></code> or <code class="docutils literal notranslate"><span class="pre">May</span> <span class="pre">sleep</span> <span class="pre">(evasive</span> <span class="pre">loops)</span> <span class="pre">to</span> <span class="pre">hinder</span> <span class="pre">dynamic</span> <span class="pre">analysis</span></code> or <code class="docutils literal notranslate"><span class="pre">sleep</span></code> or <code class="docutils literal notranslate"><span class="pre">ping</span></code> or <code class="docutils literal notranslate"><span class="pre">delay</span></code> to check if there are some delays for evasion.</p>
 </section>
 <section id="check-if-overrides-dns-to-redirect">
-<h3>(22) Check if overrides DNS to redirect<a class="headerlink" href="#check-if-overrides-dns-to-redirect" title="Permalink to this heading"></a></h3>
+<h3>(22) Check if overrides DNS to redirect<a class="headerlink" href="#check-if-overrides-dns-to-redirect" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">DNS</span></code> in the reports and see if there are potential DNS overrides in signatures.</p>
 </section>
 <section id="detect-possible-system-shutdown">
-<h3>(23) Detect possible system shutdown<a class="headerlink" href="#detect-possible-system-shutdown" title="Permalink to this heading"></a></h3>
+<h3>(23) Detect possible system shutdown<a class="headerlink" href="#detect-possible-system-shutdown" title="Link to this heading"></a></h3>
 <p>Search for <code class="docutils literal notranslate"><span class="pre">System</span> <span class="pre">Shutdown/Reboot</span></code> in the reports and see if we have some signatures related to it.</p>
 </section>
 </section>
 <section id="machine-learning-of-malwares-and-malheur">
-<h2>2. Machine Learning of Malwares and Malheur<a class="headerlink" href="#machine-learning-of-malwares-and-malheur" title="Permalink to this heading"></a></h2>
+<h2>2. Machine Learning of Malwares and Malheur<a class="headerlink" href="#machine-learning-of-malwares-and-malheur" title="Link to this heading"></a></h2>
 <section id="malheur-manual">
-<h3>(1) Malheur Manual<a class="headerlink" href="#malheur-manual" title="Permalink to this heading"></a></h3>
+<h3>(1) Malheur Manual<a class="headerlink" href="#malheur-manual" title="Link to this heading"></a></h3>
 <p>Malheur is a tool for the automatic analysis of malware behavior and the detailed manual can be found through this <a class="reference external" href="http://www.mlsec.org/malheur/manual.html">link</a>.</p>
 <p>There are a few options to keep in mind,</p>
 <ul class="simple">
@@ -291,7 +300,7 @@
 <p>Note that we need to use <code class="docutils literal notranslate"><span class="pre">head</span></code> command to read the output result.</p>
 </section>
 <section id="testing-malheur">
-<h3>(2) Testing Malheur<a class="headerlink" href="#testing-malheur" title="Permalink to this heading"></a></h3>
+<h3>(2) Testing Malheur<a class="headerlink" href="#testing-malheur" title="Link to this heading"></a></h3>
 <p>Train the model using our dataset <code class="docutils literal notranslate"><span class="pre">dataset/training/</span></code> and check the output result by,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ malheur -c config.mlw -o training.txt -vv cluster dataset/training/; head training.txt
 </pre></div>
@@ -306,7 +315,7 @@
 </div>
 </section>
 <section id="datasets">
-<h3>(3) Datasets<a class="headerlink" href="#datasets" title="Permalink to this heading"></a></h3>
+<h3>(3) Datasets<a class="headerlink" href="#datasets" title="Link to this heading"></a></h3>
 <p>Now, let’s get some understandings of the dataset. First, let’s go to the training set,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd dataset/training
 </pre></div>
@@ -332,7 +341,7 @@ LdrGetProcedureAddress;
 <p>in a browser. The extension <code class="docutils literal notranslate"><span class="pre">allaple</span></code> of this file means it actually belongs to malicious family <a class="reference external" href="https://www.f-secure.com/v-descs/allaple_a.shtml">allaple</a>.</p>
 </section>
 <section id="configurations">
-<h3>(4) Configurations<a class="headerlink" href="#configurations" title="Permalink to this heading"></a></h3>
+<h3>(4) Configurations<a class="headerlink" href="#configurations" title="Link to this heading"></a></h3>
 <p>Now, let’s look into the config file of the model. The file <code class="docutils literal notranslate"><span class="pre">config.mlw</span></code> should be as follows,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat config.mlw
 # MALHEUR (0.6.0) - Automatic Analysis of Malware Behavior
@@ -377,7 +386,7 @@ cluster = {
 </ul>
 </section>
 <section id="output-result">
-<h3>(5) Output Result<a class="headerlink" href="#output-result" title="Permalink to this heading"></a></h3>
+<h3>(5) Output Result<a class="headerlink" href="#output-result" title="Link to this heading"></a></h3>
 <p>If we check more of the output result, we can find more information of the classified result rather than just the F-score. We can check it using the <code class="docutils literal notranslate"><span class="pre">classify.txt</span></code> file we have generated because it is much smaller.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat classify.txt 
 ...
@@ -391,7 +400,7 @@ cluster = {
 <p>For the second goal we have mentioned above, it actually means that we need to have the distance here smaller than 1 so that it will not be classified as <code class="docutils literal notranslate"><span class="pre">reject</span></code>.</p>
 </section>
 <section id="hints">
-<h3>(6) Hints<a class="headerlink" href="#hints" title="Permalink to this heading"></a></h3>
+<h3>(6) Hints<a class="headerlink" href="#hints" title="Link to this heading"></a></h3>
 <p>Here are some hints to slove this problem, and most of the answers can be figured out through the <a class="reference external" href="http://www.mlsec.org/malheur/manual.html">manual</a>.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ngram_len</span></code> is default 2 but should set to 1 if the data is not sequential. This is relatively important so be careful about what it should be</p></li>
@@ -409,7 +418,7 @@ cluster = {
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="note3.html" class="btn btn-neutral float-left" title="Intro to Information Security 3 | Log4J Vulnerabilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../Arts/index.html" class="btn btn-neutral float-right" title="🖼️ Drawing - Perspective" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../JS/note1.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

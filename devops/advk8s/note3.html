@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -77,6 +77,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -87,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -125,16 +134,16 @@
            <div itemprop="articleBody">
              
   <section id="advanced-kubernetes-3-ldap">
-<h1>Advanced Kubernetes 3 | LDAP<a class="headerlink" href="#advanced-kubernetes-3-ldap" title="Permalink to this heading"></a></h1>
+<h1>Advanced Kubernetes 3 | LDAP<a class="headerlink" href="#advanced-kubernetes-3-ldap" title="Link to this heading"></a></h1>
 <section id="ldap">
-<h2>1. LDAP<a class="headerlink" href="#ldap" title="Permalink to this heading"></a></h2>
+<h2>1. LDAP<a class="headerlink" href="#ldap" title="Link to this heading"></a></h2>
 <section id="ldap-introduction">
-<h3>(1) LDAP Introduction<a class="headerlink" href="#ldap-introduction" title="Permalink to this heading"></a></h3>
+<h3>(1) LDAP Introduction<a class="headerlink" href="#ldap-introduction" title="Link to this heading"></a></h3>
 <p>LDAP is a protocol initially used to manage telephone directories through telecommunication companies. It’s operating on the application layer of OSI. The default port for LDAP is port <code class="docutils literal notranslate"><span class="pre">389</span></code>.</p>
 <p><img alt="" src="https://i.imgur.com/DF7MJbY.png" /></p>
 </section>
 <section id="ldap-data-interchange-format-ldif">
-<h3>(2) LDAP Data Interchange Format (LDIF)<a class="headerlink" href="#ldap-data-interchange-format-ldif" title="Permalink to this heading"></a></h3>
+<h3>(2) LDAP Data Interchange Format (LDIF)<a class="headerlink" href="#ldap-data-interchange-format-ldif" title="Link to this heading"></a></h3>
 <p>LDIF is the standard plain text data files used for LDAP directory content and update requests. There are several fields used in LDIF,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dn</span></code>: unique distinguished name for each entry</p></li>
@@ -144,7 +153,7 @@
 </ul>
 </section>
 <section id="example-ldap-pod-in-minikube">
-<h3>(3) Example: LDAP Pod in Minikube<a class="headerlink" href="#example-ldap-pod-in-minikube" title="Permalink to this heading"></a></h3>
+<h3>(3) Example: LDAP Pod in Minikube<a class="headerlink" href="#example-ldap-pod-in-minikube" title="Link to this heading"></a></h3>
 <p>Let’s continue with the minikube cluster we have built in the last article.</p>
 <p>First, let’s create a new namespace called <code class="docutils literal notranslate"><span class="pre">ldap</span></code>,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl create ns ldap
@@ -184,7 +193,7 @@ ldap           openldap-6d86d655c5-5bkvc                 1/1     Running   0    
 </div>
 </section>
 <section id="interact-with-ldap">
-<h3>(4) Interact with LDAP<a class="headerlink" href="#interact-with-ldap" title="Permalink to this heading"></a></h3>
+<h3>(4) Interact with LDAP<a class="headerlink" href="#interact-with-ldap" title="Link to this heading"></a></h3>
 <p>Now we can access the LDAP pod through,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl exec --stdin --tty -n ldap $LDAP_POD -- /bin/sh
 #
@@ -247,7 +256,7 @@ ldap           openldap-6d86d655c5-5bkvc                 1/1     Running   0    
 </div>
 </section>
 <section id="password-hashing">
-<h3>(5) Password Hashing<a class="headerlink" href="#password-hashing" title="Permalink to this heading"></a></h3>
+<h3>(5) Password Hashing<a class="headerlink" href="#password-hashing" title="Link to this heading"></a></h3>
 <p>There’s one remaining problem. In the LDIF file <code class="docutils literal notranslate"><span class="pre">1-users.ldif</span></code>, <code class="docutils literal notranslate"><span class="pre">userPassword</span></code> is defined through a hash value <code class="docutils literal notranslate"><span class="pre">{SSHA}RRN6AM9u0tpTEOn6oBcIt9X3BbFPKVk5</span></code> according to the code. You can check it out through this <a class="reference external" href="https://github.com/Sadamingh/minikube-with-dex/blob/main/ldap/ldif/1-users.ldif#L8-L9">link</a>.</p>
 <p>This value is generated by <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code> command with,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># slappasswd -h {SSHA} -s secret</span>
@@ -262,7 +271,7 @@ ldap           openldap-6d86d655c5-5bkvc                 1/1     Running   0    
 <p>Here the hash code is very different from the one we have in the <code class="docutils literal notranslate"><span class="pre">1-users.ldif</span></code>. This is because <code class="docutils literal notranslate"><span class="pre">slappasswd</span></code> utility uses a random <code class="docutils literal notranslate"><span class="pre">salt</span></code> by default to make the hash more secure and the server can know both of the hash values means <code class="docutils literal notranslate"><span class="pre">secret</span></code>.</p>
 </section>
 <section id="salted-hash">
-<h3>(6) Salted Hash<a class="headerlink" href="#salted-hash" title="Permalink to this heading"></a></h3>
+<h3>(6) Salted Hash<a class="headerlink" href="#salted-hash" title="Link to this heading"></a></h3>
 <p>Let’s see how salted hash works.</p>
 <p><img alt="" src="https://i.imgur.com/LizSFpA.png" /></p>
 <p>The idea of salted hash is to add some random bits to the password each time before hash so that the hash value will become more randomlized. We will put this salt after the hash value as an appendix for the program to verify.</p>

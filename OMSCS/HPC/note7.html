@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -95,6 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -133,9 +142,9 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-7-scan-and-rank-list">
-<h1>High Performance Computing 7 | Scan and Rank List<a class="headerlink" href="#high-performance-computing-7-scan-and-rank-list" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 7 | Scan and Rank List<a class="headerlink" href="#high-performance-computing-7-scan-and-rank-list" title="Link to this heading"></a></h1>
 <section id="prefix-sum">
-<h2>1. Prefix Sum<a class="headerlink" href="#prefix-sum" title="Permalink to this heading"></a></h2>
+<h2>1. Prefix Sum<a class="headerlink" href="#prefix-sum" title="Link to this heading"></a></h2>
 <p>The prefix sum is defined as the sum of the previous item before the input index. For example, if we have an array A,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
@@ -146,7 +155,7 @@
 </div>
 </section>
 <section id="scans">
-<h2>2. Scans<a class="headerlink" href="#scans" title="Permalink to this heading"></a></h2>
+<h2>2. Scans<a class="headerlink" href="#scans" title="Link to this heading"></a></h2>
 <p>Scans generalize prefix sum to other operations. To use scan in an algorithm, what we have to do is to say we are scanning and what is the operator. The “Add-scan” is the “prefix sum” we have mentioned and there are some other scans,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">max-scan</span></code>: max value to the current position</p></li>
@@ -155,7 +164,7 @@
 </ul>
 </section>
 <section id="parallel-scans">
-<h2>3. Parallel Scans?<a class="headerlink" href="#parallel-scans" title="Permalink to this heading"></a></h2>
+<h2>3. Parallel Scans?<a class="headerlink" href="#parallel-scans" title="Link to this heading"></a></h2>
 <p>Let’s think of a problem. Suppose we have the following algorithm,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 
@@ -167,7 +176,7 @@
 <p>Note that this algorithm at the best case has <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> operations.</p>
 </section>
 <section id="parallel-scan-in-a-naive-way">
-<h2>4. Parallel Scan in a Naive Way<a class="headerlink" href="#parallel-scan-in-a-naive-way" title="Permalink to this heading"></a></h2>
+<h2>4. Parallel Scan in a Naive Way<a class="headerlink" href="#parallel-scan-in-a-naive-way" title="Link to this heading"></a></h2>
 <p>To change it to a parallel scan, we have to detach the dependency of the current prefix and the last prefix. A naive solution is to simply reduce the first <code class="docutils literal notranslate"><span class="pre">i</span></code> item based on our operation. The pseudo code should be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 <span class="n">output</span><span class="p">:</span> <span class="n">B</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
@@ -179,7 +188,7 @@
 <p>The work here would be <code class="docutils literal notranslate"><span class="pre">O(n^2)</span></code> and this is much worse than the sequenial solution. How can we improve?</p>
 </section>
 <section id="advanced-parallel-scan">
-<h2>5. Advanced Parallel Scan<a class="headerlink" href="#advanced-parallel-scan" title="Permalink to this heading"></a></h2>
+<h2>5. Advanced Parallel Scan<a class="headerlink" href="#advanced-parallel-scan" title="Link to this heading"></a></h2>
 <p>Let’s see how we can improve it. Suppose we have an array <code class="docutils literal notranslate"><span class="pre">A</span></code> of 8 items. The first step is to Create a partial scan array which will scan every two items in this array. So,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scan_partial</span> <span class="o">=</span> <span class="p">[</span><span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]),</span> 
                 <span class="n">reduce</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">]),</span> 
@@ -239,7 +248,7 @@
 </div>
 </section>
 <section id="sequential-segmented-scan">
-<h2>6. Sequential Segmented Scan<a class="headerlink" href="#sequential-segmented-scan" title="Permalink to this heading"></a></h2>
+<h2>6. Sequential Segmented Scan<a class="headerlink" href="#sequential-segmented-scan" title="Link to this heading"></a></h2>
 <p>Now let’s see another problem. If we don’t want to scan the whole array all along, but we would like to scan it in segments. For example, with array,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 </pre></div>
@@ -262,7 +271,7 @@
 <p>Note that it basically means we keep the value of <code class="docutils literal notranslate"><span class="pre">A[i]</span></code> when the flag shows the position <code class="docutils literal notranslate"><span class="pre">i</span></code> has a new start (aka. <code class="docutils literal notranslate"><span class="pre">F[i]</span> <span class="pre">=</span> <span class="pre">1</span></code>).</p>
 </section>
 <section id="rank-list-sequential-solution">
-<h2>7. Rank List Sequential Solution<a class="headerlink" href="#rank-list-sequential-solution" title="Permalink to this heading"></a></h2>
+<h2>7. Rank List Sequential Solution<a class="headerlink" href="#rank-list-sequential-solution" title="Link to this heading"></a></h2>
 <p>Suppose we have a linked list with a <code class="docutils literal notranslate"><span class="pre">head</span></code> pointer and then we have to rank all the nodes. Sequentially, the pseudo code should be very easy, as</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
@@ -279,7 +288,7 @@
 <p>If we want to solve this problem as a scan, then what can we do? Think about it before we move on.</p>
 </section>
 <section id="rank-list-as-a-scan">
-<h2>8. Rank List As a Scan<a class="headerlink" href="#rank-list-as-a-scan" title="Permalink to this heading"></a></h2>
+<h2>8. Rank List As a Scan<a class="headerlink" href="#rank-list-as-a-scan" title="Link to this heading"></a></h2>
 <p>So let’s see if we want to make the rank a scan, we have to assign each node an initial value so that the add scan would in principle produce the desired ranks. For a simple ordered rank,</p>
 <ul class="simple">
 <li><p>0 should be assigned to the node head</p></li>
@@ -289,7 +298,7 @@
 <p>The problem is that if we have a scan like this, the rank is still sequential and a better one should be a <strong>random access</strong>. This brings us to to the method of array pools.</p>
 </section>
 <section id="array-pools-representation-of-linked-list">
-<h2>9. Array Pools Representation of Linked List<a class="headerlink" href="#array-pools-representation-of-linked-list" title="Permalink to this heading"></a></h2>
+<h2>9. Array Pools Representation of Linked List<a class="headerlink" href="#array-pools-representation-of-linked-list" title="Link to this heading"></a></h2>
 <p>Array pools is just another way to represent a linked list. Suppose we have the following linked list,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ll</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
@@ -315,7 +324,7 @@
 </div>
 </section>
 <section id="primitive-jump-pseudocode">
-<h2>10. Primitive Jump Pseudocode<a class="headerlink" href="#primitive-jump-pseudocode" title="Permalink to this heading"></a></h2>
+<h2>10. Primitive Jump Pseudocode<a class="headerlink" href="#primitive-jump-pseudocode" title="Link to this heading"></a></h2>
 <p>Now we have a taste of the array pools representation, the other knowledge we have to know about is called a jump for a linked list.</p>
 <p>The jump means to move the next pointer so that it points to the neighbor’s neighor,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
@@ -331,7 +340,7 @@
 </div>
 </section>
 <section id="rank-update">
-<h2>11. Rank Update<a class="headerlink" href="#rank-update" title="Permalink to this heading"></a></h2>
+<h2>11. Rank Update<a class="headerlink" href="#rank-update" title="Link to this heading"></a></h2>
 <p>So the ideas we have so far is,</p>
 <ul class="simple">
 <li><p>represent linked list as array pool</p></li>
@@ -396,7 +405,7 @@
 </div>
 </section>
 <section id="parallel-list-rank">
-<h2>12. Parallel List Rank<a class="headerlink" href="#parallel-list-rank" title="Permalink to this heading"></a></h2>
+<h2>12. Parallel List Rank<a class="headerlink" href="#parallel-list-rank" title="Link to this heading"></a></h2>
 <p>So finally let’s wrap up the parallel list ranker using pseudocode. Suppose we have an input <code class="docutils literal notranslate"><span class="pre">V[m]</span></code> which is the array holding the values, and we also have an input <code class="docutils literal notranslate"><span class="pre">N[m]</span></code> which holds the next node indexes. The index of head is also given as <code class="docutils literal notranslate"><span class="pre">h</span></code> so we can assign the rank of it to 0.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">rankList</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
     <span class="n">R_in</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">R_out</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>    <span class="o">//</span> <span class="n">array</span> <span class="n">of</span> <span class="n">ranks</span>

@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -113,6 +121,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -151,11 +160,11 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-19-content-distribution-networks-cdns">
-<h1>Computer Network 19 | Content Distribution Networks (CDNs)<a class="headerlink" href="#computer-network-19-content-distribution-networks-cdns" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 19 | Content Distribution Networks (CDNs)<a class="headerlink" href="#computer-network-19-content-distribution-networks-cdns" title="Link to this heading"></a></h1>
 <section id="content-distribution-networks-cdns">
-<h2>1. Content Distribution Networks (CDNs)<a class="headerlink" href="#content-distribution-networks-cdns" title="Permalink to this heading"></a></h2>
+<h2>1. Content Distribution Networks (CDNs)<a class="headerlink" href="#content-distribution-networks-cdns" title="Link to this heading"></a></h2>
 <section id="motivations-for-cdn">
-<h3>(1) Motivations for CDN<a class="headerlink" href="#motivations-for-cdn" title="Permalink to this heading"></a></h3>
+<h3>(1) Motivations for CDN<a class="headerlink" href="#motivations-for-cdn" title="Link to this heading"></a></h3>
 <p>Almost all major video-streaming companies use Content Distribution Networks (CDNs). CDNs are networks of multiple, geographically distributed servers and/or data
 centers with copies of content that direct users to a server or a server cluster that can best serve the user’s request.</p>
 <p>Here are some motivations of CDNs,</p>
@@ -181,7 +190,7 @@ centers with copies of content that direct users to a server or a server cluster
 <p>These shifts imply that more traffics are generated and exchanged locally instead of traversing the complete hierarchy.</p>
 </section>
 <section id="types-of-cdns">
-<h3>(2) Types of CDNs<a class="headerlink" href="#types-of-cdns" title="Permalink to this heading"></a></h3>
+<h3>(2) Types of CDNs<a class="headerlink" href="#types-of-cdns" title="Link to this heading"></a></h3>
 <p>Some CDNs are <strong>private</strong>, such as Google’s CDN, which distributes YouTube videos and other content. Private CDNs are CDNs that are owned by the content provider.</p>
 <p>Other CDNs are <strong>third party</strong>, such as Akamai and Limelight. Third party CDNs distribute content on behalf of multiple content providers. These third parties provide CDN as a service for content providers because operating CDNs has its own challenges include,</p>
 <ul class="simple">
@@ -194,7 +203,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="server-placement-strategies">
-<h3>(3) Server Placement Strategies<a class="headerlink" href="#server-placement-strategies" title="Permalink to this heading"></a></h3>
+<h3>(3) Server Placement Strategies<a class="headerlink" href="#server-placement-strategies" title="Link to this heading"></a></h3>
 <p>To find out where to put the CDN servers, CDN providers have two different philosophies,</p>
 <ul class="simple">
 <li><p><strong>Enter deep</strong>: deploying lots of small clusters to get as close as possible to the users</p></li>
@@ -206,7 +215,7 @@ centers with copies of content that direct users to a server or a server cluster
 <p>There’s also a hybrid approach. For example, Google owns 16 mega data centers and many small server clusters.</p>
 </section>
 <section id="cdn-operation-example">
-<h3>(4) CDN Operation Example<a class="headerlink" href="#cdn-operation-example" title="Permalink to this heading"></a></h3>
+<h3>(4) CDN Operation Example<a class="headerlink" href="#cdn-operation-example" title="Link to this heading"></a></h3>
 <p>Let’s see how CDN works through an example. Suppose content provider <strong>ExampleMovies</strong> pays <strong>ExampleCDN</strong> to distribute their content. ExampleMovies has URLs with videos and an ID for the video. For example, movie <em>Star Wars 37</em> might have a URL of <code class="docutils literal notranslate"><span class="pre">http://video.examplemovies.com/R2D2C3PO37</span></code>.</p>
 <p>Let’s walk through the six steps that occur when a user requests to watch <em>Star Wars 37</em> on ExampleMovies.</p>
 <ul class="simple">
@@ -219,7 +228,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="cdn-server-selection-process-2-steps">
-<h3>(5) CDN Server Selection Process: 2-Steps<a class="headerlink" href="#cdn-server-selection-process-2-steps" title="Permalink to this heading"></a></h3>
+<h3>(5) CDN Server Selection Process: 2-Steps<a class="headerlink" href="#cdn-server-selection-process-2-steps" title="Link to this heading"></a></h3>
 <p>In order to serve an end-user, the first thing is the CDN server selection process. In this process, we need to pick up a cluster not too far away or overwhelmed. There are two main steps in this process,</p>
 <ul class="simple">
 <li><p>mapping the client to a cluster</p></li>
@@ -227,7 +236,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="cdn-cluster-selection-1-geographically-closest-cluster">
-<h3>(6) CDN Cluster Selection 1: geographically closest cluster<a class="headerlink" href="#cdn-cluster-selection-1-geographically-closest-cluster" title="Permalink to this heading"></a></h3>
+<h3>(6) CDN Cluster Selection 1: geographically closest cluster<a class="headerlink" href="#cdn-cluster-selection-1-geographically-closest-cluster" title="Link to this heading"></a></h3>
 <p>To select a cluster, there are different strategies,</p>
 <ul class="simple">
 <li><p>pick the geographically closest cluster</p></li>
@@ -245,7 +254,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="cdn-cluster-selection-2-real-time-measurements">
-<h3>(7) CDN Cluster Selection 2: real-time measurements<a class="headerlink" href="#cdn-cluster-selection-2-real-time-measurements" title="Permalink to this heading"></a></h3>
+<h3>(7) CDN Cluster Selection 2: real-time measurements<a class="headerlink" href="#cdn-cluster-selection-2-real-time-measurements" title="Link to this heading"></a></h3>
 <p>To get a real-time snapshot for the end-user, there are two key aspects to note here,</p>
 <ul class="simple">
 <li><p>decide which end-to-end performance metrics to consider while selecting the cluster</p>
@@ -286,7 +295,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="server-selection-policy">
-<h3>(8) Server Selection Policy<a class="headerlink" href="#server-selection-policy" title="Permalink to this heading"></a></h3>
+<h3>(8) Server Selection Policy<a class="headerlink" href="#server-selection-policy" title="Link to this heading"></a></h3>
 <p>Once the cluster has been selected, the next step is to select a server within the cluster.</p>
 <p>There are several policies that we can select a server within a cluster,</p>
 <ul class="simple">
@@ -296,25 +305,25 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="server-selection-policy-1-random-selection">
-<h3>(9) Server Selection Policy 1: Random selection<a class="headerlink" href="#server-selection-policy-1-random-selection" title="Permalink to this heading"></a></h3>
+<h3>(9) Server Selection Policy 1: Random selection<a class="headerlink" href="#server-selection-policy-1-random-selection" title="Link to this heading"></a></h3>
 <p>The implest strategy could be to assign a server from the cluster randomly. This is not optimal because the workload for different servers can be unbalanced and it might end up selecting a highly loaded server whereas a less loaded server was available.</p>
 <p>To deal with this, we can add some load-balancers.</p>
 </section>
 <section id="server-selection-policy-2-random-selection-with-simple-load-balancer">
-<h3>(10) Server Selection Policy 2: Random selection with simple load-balancer<a class="headerlink" href="#server-selection-policy-2-random-selection-with-simple-load-balancer" title="Permalink to this heading"></a></h3>
+<h3>(10) Server Selection Policy 2: Random selection with simple load-balancer<a class="headerlink" href="#server-selection-policy-2-random-selection-with-simple-load-balancer" title="Link to this heading"></a></h3>
 <p>Another solution is to select a server with some load-balancing techniques and route a client to the least-loaded server. While this solves the above mentioned problem, it is still not optimal.</p>
 <p>This happens because if we just use a simple load balancing technique for server selection, a server that already had the requested content is not selected because the client was loaded to a less- loaded server.</p>
 <p>So finally, we come to the idea that we have to map the requests based on the content.</p>
 </section>
 <section id="server-selection-policy-3-random-selection-with-consistant-hasing">
-<h3>(11) Server Selection Policy 3: Random selection with consistant hasing<a class="headerlink" href="#server-selection-policy-3-random-selection-with-consistant-hasing" title="Permalink to this heading"></a></h3>
+<h3>(11) Server Selection Policy 3: Random selection with consistant hasing<a class="headerlink" href="#server-selection-policy-3-random-selection-with-consistant-hasing" title="Link to this heading"></a></h3>
 <p>In order to create a mapping strategy for all the objects, we need a continuous hash table across different servers.</p>
 <p><strong>Consistent hashing</strong> is an example of distributed hash table has been developed. It tends to balance the load by mapping servers and the content objects to the same ID space. For instance, imagine we map the servers to the edge of a circle (say uniformly).</p>
 <p><img alt="" src="https://i.imgur.com/g6yqDlN.png" /></p>
 <p>In this case, the solution is optimal, which means that least number of keys need to be remapped to maintain load-balance on an average.</p>
 </section>
 <section id="server-selection-protocols">
-<h3>(12) Server Selection Protocols<a class="headerlink" href="#server-selection-protocols" title="Permalink to this heading"></a></h3>
+<h3>(12) Server Selection Protocols<a class="headerlink" href="#server-selection-protocols" title="Link to this heading"></a></h3>
 <p>We have already known the policies used for selecting a CDN server. Now let’s see three different network protocols that can be used for server selection,</p>
 <ul class="simple">
 <li><p>DNS</p></li>
@@ -324,7 +333,7 @@ centers with copies of content that direct users to a server or a server cluster
 <p>We will talk about them in the following sections.</p>
 </section>
 <section id="server-selection-protocols-1-dns">
-<h3>(13) Server Selection Protocols 1: DNS<a class="headerlink" href="#server-selection-protocols-1-dns" title="Permalink to this heading"></a></h3>
+<h3>(13) Server Selection Protocols 1: DNS<a class="headerlink" href="#server-selection-protocols-1-dns" title="Link to this heading"></a></h3>
 <p>The DNS is implemented to map human readable domain names to IP address. It is designed with a distributed hierarchical pattern.</p>
 <ul class="simple">
 <li><p>root DNS: 13 servers, mostly in north America</p></li>
@@ -378,7 +387,7 @@ centers with copies of content that direct users to a server or a server cluster
 </ul>
 </section>
 <section id="server-selection-protocols-2-ip-anycast">
-<h3>(14) Server Selection Protocols 2: IP Anycast<a class="headerlink" href="#server-selection-protocols-2-ip-anycast" title="Permalink to this heading"></a></h3>
+<h3>(14) Server Selection Protocols 2: IP Anycast<a class="headerlink" href="#server-selection-protocols-2-ip-anycast" title="Link to this heading"></a></h3>
 <p>The main goal of IP anycast is to route a client to the closest server determained by BGP routing. It uses a trick that different physical servers in different clusters shares the same IP address. Therefore, the BGP router will treat them as multiple paths to the same locations, and the shortest path will be stored and
 used for routing packets.</p>
 <p><img alt="" src="https://i.imgur.com/YgJqilw.png" /></p>
@@ -386,7 +395,7 @@ used for routing packets.</p>
 <p>Though not for content delivery, IP anycasting is used is in routing to the DNS server. In order to serve clients from multiple locations, it has multiple DNS servers distributed geographically with all of the servers being assigned the same address.</p>
 </section>
 <section id="server-selection-protocols-3-http-redirection">
-<h3>(15) Server Selection Protocols 3: HTTP Redirection<a class="headerlink" href="#server-selection-protocols-3-http-redirection" title="Permalink to this heading"></a></h3>
+<h3>(15) Server Selection Protocols 3: HTTP Redirection<a class="headerlink" href="#server-selection-protocols-3-http-redirection" title="Link to this heading"></a></h3>
 <p>When a client sends a GET request to a server <code class="docutils literal notranslate"><span class="pre">A</span></code>, it can redirect the client to another server <code class="docutils literal notranslate"><span class="pre">B</span></code> by sending an HTTP response with a code 3xx and the name of the new server. This means the client should now fetch the content from this new server.</p>
 <p>HTTP redirection is widely used by CDNs for load-balancing when a popular video is requested by a large number of clients from the same region.</p>
 <p>A recent measurement study reports that YouTube uses this kind of mechanism for load balancing. According to the study, YouTube first tries to use HTTP redirection for sharing the load within a cluster, and then can also use it to redirect clients to a different cluster if the former is not enough.</p>

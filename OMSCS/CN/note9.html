@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -130,6 +138,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -168,11 +177,11 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-9-packet-classification-packet-scheduling-traffic-scheduling">
-<h1>Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling<a class="headerlink" href="#computer-network-9-packet-classification-packet-scheduling-traffic-scheduling" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 9｜Packet Classification, Packet Scheduling, Traffic Scheduling<a class="headerlink" href="#computer-network-9-packet-classification-packet-scheduling-traffic-scheduling" title="Link to this heading"></a></h1>
 <section id="packet-classification">
-<h2>1. Packet Classification<a class="headerlink" href="#packet-classification" title="Permalink to this heading"></a></h2>
+<h2>1. Packet Classification<a class="headerlink" href="#packet-classification" title="Link to this heading"></a></h2>
 <section id="reasons-for-packet-classification">
-<h3>(1) Reasons for Packet Classification<a class="headerlink" href="#reasons-for-packet-classification" title="Permalink to this heading"></a></h3>
+<h3>(1) Reasons for Packet Classification<a class="headerlink" href="#reasons-for-packet-classification" title="Link to this heading"></a></h3>
 <p>Network requires quality of service and secutiry guarantees when the internet becomes more complex. Therefore, forwarding based on prefix match is not enough and we need to handle packets based on multiple criteria,</p>
 <ul class="simple">
 <li><p>TCP flags</p></li>
@@ -181,7 +190,7 @@
 </ul>
 </section>
 <section id="variants-of-packet-classification">
-<h3>(2) Variants of Packet Classification<a class="headerlink" href="#variants-of-packet-classification" title="Permalink to this heading"></a></h3>
+<h3>(2) Variants of Packet Classification<a class="headerlink" href="#variants-of-packet-classification" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Firewall: implement on routers to filter out unwanted traffic</p></li>
 <li><p>Resource Reservation Protocols: For example, <code class="docutils literal notranslate"><span class="pre">DiffServ</span></code> has been used to reserve bandwidth</p></li>
@@ -189,12 +198,12 @@
 </ul>
 </section>
 <section id="packet-classification-simple-solution-1-linear-search">
-<h3>(3) Packet Classification Simple Solution 1: Linear Search<a class="headerlink" href="#packet-classification-simple-solution-1-linear-search" title="Permalink to this heading"></a></h3>
+<h3>(3) Packet Classification Simple Solution 1: Linear Search<a class="headerlink" href="#packet-classification-simple-solution-1-linear-search" title="Link to this heading"></a></h3>
 <p>The first simple approach to implement packet classification is <strong>linear search</strong>. This solution can be reasonable for a few rules but the time to search through a large database that may have thousands of rules can be prohibitive.</p>
 <p><strong>Firewall</strong> implementations perform a linear search of the rules database and keep track of the best-match rule.</p>
 </section>
 <section id="packet-classification-simple-solution-2-caching">
-<h3>(4) Packet Classification Simple Solution 2: Caching<a class="headerlink" href="#packet-classification-simple-solution-2-caching" title="Permalink to this heading"></a></h3>
+<h3>(4) Packet Classification Simple Solution 2: Caching<a class="headerlink" href="#packet-classification-simple-solution-2-caching" title="Link to this heading"></a></h3>
 <p>Another apporach is to cache the results so that future searches can run faster. However, this approach has two problems,</p>
 <ul class="simple">
 <li><p>We still need a search for the cache misses</p></li>
@@ -202,7 +211,7 @@
 </ul>
 </section>
 <section id="packet-classification-simple-solution-3-passing-labels">
-<h3>(5) Packet Classification Simple Solution 3: Passing Labels<a class="headerlink" href="#packet-classification-simple-solution-3-passing-labels" title="Permalink to this heading"></a></h3>
+<h3>(5) Packet Classification Simple Solution 3: Passing Labels<a class="headerlink" href="#packet-classification-simple-solution-3-passing-labels" title="Link to this heading"></a></h3>
 <p>The idea of passing labels is that when A sends a packet to B, the packet will be labelled somewhere so that intermediate routers don’t have to conduct the packet classification.</p>
 <p>This approach is widely used in some protocols,</p>
 <ul class="simple">
@@ -211,7 +220,7 @@
 </ul>
 </section>
 <section id="packet-classification-fast-solution-1-set-pruning-tries">
-<h3>(6) Packet Classification Fast Solution 1: Set-Pruning Tries<a class="headerlink" href="#packet-classification-fast-solution-1-set-pruning-tries" title="Permalink to this heading"></a></h3>
+<h3>(6) Packet Classification Fast Solution 1: Set-Pruning Tries<a class="headerlink" href="#packet-classification-fast-solution-1-set-pruning-tries" title="Link to this heading"></a></h3>
 <p>Using pruning tries for the rules provide a faster solution for packet classification. Let’s see an example. Suppose we have the following rules to classify,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">R1</span><span class="p">:</span>    <span class="n">Dest</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span>    <span class="n">Source</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span>
 <span class="n">R2</span><span class="p">:</span>    <span class="n">Dest</span> <span class="o">=</span> <span class="mi">0</span><span class="o">*</span>    <span class="n">Source</span> <span class="o">=</span> <span class="mi">01</span><span class="o">*</span>
@@ -230,7 +239,7 @@
 <p>So the challenge for this approach is, when the network grows large enough, it can be impossible to fit the duplicated source in tries into the memory. This is called the <strong>memory explosion</strong> issue.</p>
 </section>
 <section id="packet-classification-fast-solution-2-backtracking">
-<h3>(6) Packet Classification Fast Solution 2: Backtracking<a class="headerlink" href="#packet-classification-fast-solution-2-backtracking" title="Permalink to this heading"></a></h3>
+<h3>(6) Packet Classification Fast Solution 2: Backtracking<a class="headerlink" href="#packet-classification-fast-solution-2-backtracking" title="Link to this heading"></a></h3>
 <p>The opposite approach of set-pruning is backtracking. Suppose we have a packet with a destination <code class="docutils literal notranslate"><span class="pre">D</span></code> and a source <code class="docutils literal notranslate"><span class="pre">S</span></code>. Then,</p>
 <ul class="simple">
 <li><p>First, the algorithm goes through the destination trie and finds the longest prefix match. It then stores every ancestor prefix of <code class="docutils literal notranslate"><span class="pre">D</span></code> that points to a non-empty source tree.</p></li>
@@ -240,7 +249,7 @@
 <p>However, the challenge of this approach is the lookup cost. Because a single source trie can be higher than multiple shallow source tries.</p>
 </section>
 <section id="packet-classification-fast-solution-3-grid-of-tries">
-<h3>(7) Packet Classification Fast Solution 3: Grid of Tries<a class="headerlink" href="#packet-classification-fast-solution-3-grid-of-tries" title="Permalink to this heading"></a></h3>
+<h3>(7) Packet Classification Fast Solution 3: Grid of Tries<a class="headerlink" href="#packet-classification-fast-solution-3-grid-of-tries" title="Link to this heading"></a></h3>
 <p>The grid of tries approach is a combination of those two approaches. Rather than tries, this approach has a data structure that looks more like a network.</p>
 <p>As we have discussed, the problem of set-pruning trees is multiple sources appears in different tries. So the idea is to keep a single source trie for a single source, and we add edges that across the the source tries to target the match.</p>
 <p>Here’s an example using the grid of tries approach.</p>
@@ -248,9 +257,9 @@
 </section>
 </section>
 <section id="packet-scheduling">
-<h2>2. Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Permalink to this heading"></a></h2>
+<h2>2. Packet Scheduling<a class="headerlink" href="#packet-scheduling" title="Link to this heading"></a></h2>
 <section id="reasons-for-scheduling">
-<h3>(1) Reasons for Scheduling<a class="headerlink" href="#reasons-for-scheduling" title="Permalink to this heading"></a></h3>
+<h3>(1) Reasons for Scheduling<a class="headerlink" href="#reasons-for-scheduling" title="Link to this heading"></a></h3>
 <p>We are maintaining packet scheduling because of the following reasons,</p>
 <ul class="simple">
 <li><p>each crosspoint in the crossbar needs control (on/off)</p></li>
@@ -258,7 +267,7 @@
 </ul>
 </section>
 <section id="scheduling-algorithm-1-take-a-ticket-algorithm">
-<h3>(2) Scheduling Algorithm 1: Take a Ticket Algorithm<a class="headerlink" href="#scheduling-algorithm-1-take-a-ticket-algorithm" title="Permalink to this heading"></a></h3>
+<h3>(2) Scheduling Algorithm 1: Take a Ticket Algorithm<a class="headerlink" href="#scheduling-algorithm-1-take-a-ticket-algorithm" title="Link to this heading"></a></h3>
 <p>Take a ticket algorithm is like a “ticket assign, done, reallocate” workflow and it has the following steps,</p>
 <ul class="simple">
 <li><p>When an input line wants to send a packet to the output line, it requests a <strong>ticket</strong></p></li>
@@ -297,12 +306,12 @@
 </div>
 </section>
 <section id="problem-of-take-a-ticket-head-of-line-hol-blocking">
-<h3>(3) Problem of Take a Ticket: Head of Line (HOL) Blocking<a class="headerlink" href="#problem-of-take-a-ticket-head-of-line-hol-blocking" title="Permalink to this heading"></a></h3>
+<h3>(3) Problem of Take a Ticket: Head of Line (HOL) Blocking<a class="headerlink" href="#problem-of-take-a-ticket-head-of-line-hol-blocking" title="Link to this heading"></a></h3>
 <p>From the discussion above, we can find out when <code class="docutils literal notranslate"><span class="pre">A</span></code> sends its packet to <code class="docutils literal notranslate"><span class="pre">w</span></code>, the entire queue for <code class="docutils literal notranslate"><span class="pre">B</span></code> and <code class="docutils literal notranslate"><span class="pre">C</span></code> are waiting. We refer to this problem as <strong>head-of-line (HOL)</strong> blocking.</p>
 <p>So head-of-the-line (HOL) blocking is a queued packet in an input queue must wait for transfer through the <strong>fabric</strong> (even though its output port is free) because it is blocked by another packet at the head of the line.</p>
 </section>
 <section id="hol-avoidance-solution-1-faster-fabric">
-<h3>(4) HOL Avoidance Solution 1: Faster Fabric<a class="headerlink" href="#hol-avoidance-solution-1-faster-fabric" title="Permalink to this heading"></a></h3>
+<h3>(4) HOL Avoidance Solution 1: Faster Fabric<a class="headerlink" href="#hol-avoidance-solution-1-faster-fabric" title="Link to this heading"></a></h3>
 <p>Because HOL is caused by the occupied fabric, then a simple idea to deal with it is to make the fabric much faster than the input links.</p>
 <p>In order to avoid any of the blocks in the input queue, in the worst case we need to have the fabric <code class="docutils literal notranslate"><span class="pre">N</span></code> times faster than the input links, where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of the inputs.</p>
 <p>A practical implementation of this approach is called the <strong>Knockout scheme</strong>. This means to split packets into fixed sized chunks called <strong>cells</strong>. If the average splits for a packet is <code class="docutils literal notranslate"><span class="pre">K</span></code>, then we are able to slower the input queue by <code class="docutils literal notranslate"><span class="pre">K</span></code> times so the fabric is <code class="docutils literal notranslate"><span class="pre">K</span></code> times faster than the input queue. This technique was used in Asynchronous Transfer Mode (ATM) networks once and now it’s replaced by some other technologies like Ethernet.</p>
@@ -314,19 +323,19 @@
 <p>As we used multiple 2-by-2 concentrators above, the network structure will be like a binary tree with each node in the tree represents a switch or concentrator that can be used to aggregate traffic from multiple inputs and forward it to a single output. In fact, this approach is complex to implement.</p>
 </section>
 <section id="hol-avoidance-solution-2-parallel-iterative-matching">
-<h3>(5) HOL Avoidance Solution 2: Parallel Iterative Matching<a class="headerlink" href="#hol-avoidance-solution-2-parallel-iterative-matching" title="Permalink to this heading"></a></h3>
+<h3>(5) HOL Avoidance Solution 2: Parallel Iterative Matching<a class="headerlink" href="#hol-avoidance-solution-2-parallel-iterative-matching" title="Link to this heading"></a></h3>
 <p>Another idea to avoid blockings on the fabric is to do out-of-order packet forwarding on the input links. Although we still maintain the packet queues on the input link, we send more ticket requests to the output of some future packets.</p>
 <p>In this case, even the head is blocked in the input queue, we can still go ahead for forwarding some later packets if we are able to establish a connection.</p>
 <p>Because this approach avoides the HOL issue, it’s clearly more efficient than the take a ticket approach.</p>
 </section>
 <section id="scheduling-algorithm-2-fifo-with-tail-drop">
-<h3>(6) Scheduling Algorithm 2: FIFO with Tail Drop<a class="headerlink" href="#scheduling-algorithm-2-fifo-with-tail-drop" title="Permalink to this heading"></a></h3>
+<h3>(6) Scheduling Algorithm 2: FIFO with Tail Drop<a class="headerlink" href="#scheduling-algorithm-2-fifo-with-tail-drop" title="Link to this heading"></a></h3>
 <p>After talking about take a ticket approach, let’s look into some other simple scheduling algorithm used when new packets come to a router.</p>
 <p>Suppose we have some new packets coming in through the input links, then the simplest approach to maintain a packet queue at a input link is by maintaining an <strong>FIFO queue</strong> for packets.</p>
 <p>When this queue is full, packets will be dropped from the tail of the queue (where new packets come in). This method to avoid buffer overflow is called <strong>tail-drop</strong> and it results in fast scheduling decisions. But it can also cause potential loss in important data packets.</p>
 </section>
 <section id="quality-of-service-qos">
-<h3>(7) Quality of Service (QoS)<a class="headerlink" href="#quality-of-service-qos" title="Permalink to this heading"></a></h3>
+<h3>(7) Quality of Service (QoS)<a class="headerlink" href="#quality-of-service-qos" title="Link to this heading"></a></h3>
 <p>In the real world, it’s very important to provide the quality of service (QoS) for a computer network. The QoS refers to a set of mechanisms for the following functions,</p>
 <ul class="simple">
 <li><p>Prioritize certain types of network traffic over others: times-sensitive services like real-time chatting and video stream</p></li>
@@ -339,7 +348,7 @@
 <p>In order to provide QoS, FIFO with tail drop is clearly not enough. Therefore, we will talk about some more complex scheduling algorithms in the next section.</p>
 </section>
 <section id="reasons-for-complex-scheduling-algorithms">
-<h3>(8) Reasons for Complex Scheduling Algorithms<a class="headerlink" href="#reasons-for-complex-scheduling-algorithms" title="Permalink to this heading"></a></h3>
+<h3>(8) Reasons for Complex Scheduling Algorithms<a class="headerlink" href="#reasons-for-complex-scheduling-algorithms" title="Link to this heading"></a></h3>
 <p>Here are more reasons to use complex scheduling algorithms,</p>
 <ul class="simple">
 <li><p>router support for congestion</p></li>
@@ -348,13 +357,13 @@
 </ul>
 </section>
 <section id="fifo-with-tail-drop-vs-round-robin">
-<h3>(9) FIFO with Tail Drop vs Round Robin<a class="headerlink" href="#fifo-with-tail-drop-vs-round-robin" title="Permalink to this heading"></a></h3>
+<h3>(9) FIFO with Tail Drop vs Round Robin<a class="headerlink" href="#fifo-with-tail-drop-vs-round-robin" title="Link to this heading"></a></h3>
 <p>One problem of FIFO with tail drop is that it will result in some packets being dropped randomly. If a source sends many packets to router when its input buffer is full, it will lead to the fairness issue.</p>
 <p>So solve this problem, we can easily think about the round-robin approach which takes packets from each flow in a cyclic oder. Each flow is given a certain amount of time to transmit before the next one comes in.</p>
 <p>However, the flow with small packet sizes will result in getting served more frequently. To avoid this, researchers came up with bit-by-bit round robin.</p>
 </section>
 <section id="complex-scheduling-algorithm-1-1-bit-by-bit-round-robin">
-<h3>(9) Complex Scheduling Algorithm 1-1: Bit-by-bit Round Robin<a class="headerlink" href="#complex-scheduling-algorithm-1-1-bit-by-bit-round-robin" title="Permalink to this heading"></a></h3>
+<h3>(9) Complex Scheduling Algorithm 1-1: Bit-by-bit Round Robin<a class="headerlink" href="#complex-scheduling-algorithm-1-1-bit-by-bit-round-robin" title="Link to this heading"></a></h3>
 <p>Bit-by-bit round robin is a imaginary system which doesn’t actually exist in the real world. It is a simple idea for dealing with the fairness issue of round robin. The idea is to take 1 bit from each active flow in a round robin manner so it ensures fairness in bandwith allocation.</p>
 <p>We can not implement it because we can not split packets to bits. Although it’s not a real-world implementation, we can still do some calculations to check its performance.</p>
 <p>Let’s suppose the following conditions,</p>
@@ -389,7 +398,7 @@
 <p>With the two equations above, we can calculate the finish round of every packet in a queue. We will use the finish round values in the next section.</p>
 </section>
 <section id="complex-scheduling-algorithm-1-2-packet-level-fair-queuing">
-<h3>(10) Complex Scheduling Algorithm 1-2: Packet-level Fair Queuing<a class="headerlink" href="#complex-scheduling-algorithm-1-2-packet-level-fair-queuing" title="Permalink to this heading"></a></h3>
+<h3>(10) Complex Scheduling Algorithm 1-2: Packet-level Fair Queuing<a class="headerlink" href="#complex-scheduling-algorithm-1-2-packet-level-fair-queuing" title="Link to this heading"></a></h3>
 <p>This packet-level fair strategy emulates the bit-by-bit fair queueing by sending the packet which has the smallest finishing round number.</p>
 <p>It will calculate the finish round values for each packet in different flows and choose to schedule the one with the smallest finish round value.</p>
 <p>Although this method provides fairness, it also introduces new complexities. We will need to keep track of the finishing time at which the head packet of each queue would depart and choose the earliest one. This requires a priority queue implementation, which has time complexity which is logarithmic in the number of flows.</p>
@@ -397,7 +406,7 @@
 <p>Therefore, although the bit-by-bit round robin gave us bandwidth and delay guarantees, the time complexity was too high.</p>
 </section>
 <section id="complex-scheduling-algorithm-2-deficit-round-robin-drr">
-<h3>(11) Complex Scheduling Algorithm 2: Deficit Round Robin (DRR)<a class="headerlink" href="#complex-scheduling-algorithm-2-deficit-round-robin-drr" title="Permalink to this heading"></a></h3>
+<h3>(11) Complex Scheduling Algorithm 2: Deficit Round Robin (DRR)<a class="headerlink" href="#complex-scheduling-algorithm-2-deficit-round-robin-drr" title="Link to this heading"></a></h3>
 <p>Let’s see an idea that makes everything easier. It’s called deficit round robin. The idea is to control of size rather than the time (compared with round robin) and allocate a fixed quantum size for each flow in each round instead of doing 1 bits (compared with bit-by-bit round robin).</p>
 <p>Here are the terms we use in this case,</p>
 <ul class="simple">
@@ -412,41 +421,41 @@
 </section>
 </section>
 <section id="traffic-scheduling">
-<h2>3. Traffic Scheduling<a class="headerlink" href="#traffic-scheduling" title="Permalink to this heading"></a></h2>
+<h2>3. Traffic Scheduling<a class="headerlink" href="#traffic-scheduling" title="Link to this heading"></a></h2>
 <section id="reasons-for-traffic-scheduling">
-<h3>(1) Reasons for Traffic Scheduling<a class="headerlink" href="#reasons-for-traffic-scheduling" title="Permalink to this heading"></a></h3>
+<h3>(1) Reasons for Traffic Scheduling<a class="headerlink" href="#reasons-for-traffic-scheduling" title="Link to this heading"></a></h3>
 <p>There are scenarios where we want to set bandwidth guarantees for flows in the same queue without separating them.</p>
 <p>For example, we can have a scenario where we want to limit a specific type of traffic (eg news traffic or email traffic) in the network to no more than X Mbps, without putting this traffic into a separate queue.</p>
 </section>
 <section id="traffic-policing">
-<h3>(2) Traffic Policing<a class="headerlink" href="#traffic-policing" title="Permalink to this heading"></a></h3>
+<h3>(2) Traffic Policing<a class="headerlink" href="#traffic-policing" title="Link to this heading"></a></h3>
 <p>Traffic policing and traffic shaping are two related but distinct mechanisms used in computer networks to control the flow of data traffic. Let’s first discuss traffic policing.</p>
 <p>Traffic policing involves monitoring the rate of incoming network traffic and <strong>enforcing a maximum</strong> rate or bandwidth limit. If the incoming traffic exceeds the limit, packets may be dropped or marked as non-conforming.</p>
 <p>When traffic rate reaches the maximum configured rate, excess traffic is either dropped, or the setting or “marking” of a packet is changed. The output rate appears as a <strong>saw-toothed wave</strong>.</p>
 <p><img alt="" src="https://i.imgur.com/Aw0A2yn.png" /></p>
 </section>
 <section id="traffic-shaping">
-<h3>(3) Traffic Shaping<a class="headerlink" href="#traffic-shaping" title="Permalink to this heading"></a></h3>
+<h3>(3) Traffic Shaping<a class="headerlink" href="#traffic-shaping" title="Link to this heading"></a></h3>
 <p>Traffic shaping, on the other hand, involves delaying or buffering packets to ensure that they are transmitted at a <strong>steady rate</strong>, even if the actual rate of incoming traffic fluctuates.</p>
 <p>A <strong>shaper</strong> typically retains excess packets in a queue or a buffer and this excess is scheduled for later transmission. The result is that excess traffic is delayed instead of dropped. Thus, when the data rate is higher than the configured rate, the flow is shaped or smoothed.</p>
 <p><img alt="" src="https://i.imgur.com/sNn0iey.png" /></p>
 <p>Traffic shaping and policing can work together.</p>
 </section>
 <section id="traffic-scheduling-approach-1-token-bucket-shaping">
-<h3>(4) Traffic Scheduling Approach 1: Token Bucket Shaping<a class="headerlink" href="#traffic-scheduling-approach-1-token-bucket-shaping" title="Permalink to this heading"></a></h3>
+<h3>(4) Traffic Scheduling Approach 1: Token Bucket Shaping<a class="headerlink" href="#traffic-scheduling-approach-1-token-bucket-shaping" title="Link to this heading"></a></h3>
 <p>The idea of this approach is to maintain an extra token bucket with tokens generated by a fixed rate. The token bucket and the data buffer are suppose to have the same length. Each incoming packet must take a token from the bucket in order to be transmitted.</p>
 <p>When the token bucket is full with tokens, then additional tokens are dropped. When a packet arrives, it can go through if there are enough tokens. If not, the packet needs to wait until enough tokens are in the bucket.</p>
 <p>Suppose the token bucket has a size of <code class="docutils literal notranslate"><span class="pre">B</span></code>, then burst is limited to <code class="docutils literal notranslate"><span class="pre">B</span></code> bits per second.</p>
 <p>In pactice, the token bucket is implemented through a timer and a counter.</p>
 </section>
 <section id="traffic-scheduling-approach-1-token-bucket-policing">
-<h3>(5) Traffic Scheduling Approach 1: Token Bucket Policing<a class="headerlink" href="#traffic-scheduling-approach-1-token-bucket-policing" title="Permalink to this heading"></a></h3>
+<h3>(5) Traffic Scheduling Approach 1: Token Bucket Policing<a class="headerlink" href="#traffic-scheduling-approach-1-token-bucket-policing" title="Link to this heading"></a></h3>
 <p>The problem of token bucket shaping is that we have one queue per flow so even when some other flows have empty bucket, we are blocked and we can not use them.</p>
 <p>To fully use all the queues, we can combine multiple queues to a single long queue. However, in this case, the token bucket shaping will be modified to token bucket policing.</p>
 <p>So when a packet arrives will need to have tokens at the bucket or if the token bucket is empty, the packet is dropped.</p>
 </section>
 <section id="traffic-scheduling-approach-2-leaky-bucket">
-<h3>(6) Traffic Scheduling Approach 2: Leaky Bucket<a class="headerlink" href="#traffic-scheduling-approach-2-leaky-bucket" title="Permalink to this heading"></a></h3>
+<h3>(6) Traffic Scheduling Approach 2: Leaky Bucket<a class="headerlink" href="#traffic-scheduling-approach-2-leaky-bucket" title="Link to this heading"></a></h3>
 <p>Leaky Bucket is an algorithm which can be used in both traffic policing and traffic shaping.</p>
 <p>To learn about leaky bucket, we have to know the following terms,</p>
 <ul class="simple">

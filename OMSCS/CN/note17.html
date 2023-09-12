@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -106,6 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -144,9 +153,9 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-17-bgp-measurement-project">
-<h1>Computer Network 17 | BGP Measurement Project<a class="headerlink" href="#computer-network-17-bgp-measurement-project" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 17 | BGP Measurement Project<a class="headerlink" href="#computer-network-17-bgp-measurement-project" title="Link to this heading"></a></h1>
 <section id="bgpstream">
-<h2>1. BGPStream<a class="headerlink" href="#bgpstream" title="Permalink to this heading"></a></h2>
+<h2>1. BGPStream<a class="headerlink" href="#bgpstream" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://bgpstream.caida.org/">BGPStream</a> is an open-source python package that can be used for live and historical BGP data analysis. It can be installed through,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pybgpstream
 </pre></div>
@@ -174,7 +183,7 @@
 </ul>
 </section>
 <section id="update-file-and-rib-file">
-<h2>2. Update File and RIB File<a class="headerlink" href="#update-file-and-rib-file" title="Permalink to this heading"></a></h2>
+<h2>2. Update File and RIB File<a class="headerlink" href="#update-file-and-rib-file" title="Link to this heading"></a></h2>
 <p>In this project, we have two types of cached files with BGP data. Let’s read some example cache files. Before trying to run <code class="docutils literal notranslate"><span class="pre">bgpreader</span></code> , <code class="docutils literal notranslate"><span class="pre">ldconfig</span></code> command should be used to create the necessary links to the installed package on the VM,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>ldconfig
 </pre></div>
@@ -208,14 +217,14 @@
 </div>
 </section>
 <section id="project-restrictions">
-<h2>3. Project Restrictions<a class="headerlink" href="#project-restrictions" title="Permalink to this heading"></a></h2>
+<h2>3. Project Restrictions<a class="headerlink" href="#project-restrictions" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Don’t import <code class="docutils literal notranslate"><span class="pre">os</span></code> or <code class="docutils literal notranslate"><span class="pre">pathlib</span></code>. This is because Gradescope does not mirror the directory layout from the provided files. Use the values from <code class="docutils literal notranslate"><span class="pre">cache_files</span></code> parameter instead.</p></li>
 <li><p>Do not pull your own data. Use the cache files locate the directory within this project.</p></li>
 </ul>
 </section>
 <section id="rubics">
-<h2>4. Rubics<a class="headerlink" href="#rubics" title="Permalink to this heading"></a></h2>
+<h2>4. Rubics<a class="headerlink" href="#rubics" title="Link to this heading"></a></h2>
 <p>Only <code class="docutils literal notranslate"><span class="pre">bgpm.py</span></code> is required to submitted to Gradescope.</p>
 <ul class="simple">
 <li><p>Task 1A (10pts)</p></li>
@@ -227,7 +236,7 @@
 </ul>
 </section>
 <section id="task-1a">
-<h2>5. Task 1A<a class="headerlink" href="#task-1a" title="Permalink to this heading"></a></h2>
+<h2>5. Task 1A<a class="headerlink" href="#task-1a" title="Link to this heading"></a></h2>
 <p>Generally, task 1 will measure BGP routing table growth so we can assume the input files are RIB files.</p>
 <p>Complete function <code class="docutils literal notranslate"><span class="pre">unique_prefixes_by_snapshot</span></code>. This function is used to measure the number of <strong>unique</strong> advertised prefixes over time.</p>
 <p>Each input file in <code class="docutils literal notranslate"><span class="pre">cache_files</span></code> is an annual snapshot and it’s already chronologically sorted. It should return a list containing the number of unique IP prefixes for each input file like <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">5]</span></code>.</p>
@@ -240,14 +249,14 @@
 <p>After implementation, run the script <code class="docutils literal notranslate"><span class="pre">check_solution.py</span></code> for verification. Also git the implemented resolution.</p>
 </section>
 <section id="task-1b">
-<h2>6. Task 1B<a class="headerlink" href="#task-1b" title="Permalink to this heading"></a></h2>
+<h2>6. Task 1B<a class="headerlink" href="#task-1b" title="Link to this heading"></a></h2>
 <p>Let’s now calculate the number of unique ASes over time. We should take all the ASes in the AS path into account.</p>
 <p>Note that the AS path can have corner case like <code class="docutils literal notranslate"><span class="pre">25152</span> <span class="pre">2914</span> <span class="pre">18687</span> <span class="pre">{7829,14265}</span></code>. In this case we should count <code class="docutils literal notranslate"><span class="pre">{7829,14265}</span></code> as only 1 ASes.</p>
 <p>There’s also another edge case when ASpath is empty. We have to skip these cases in the loop.</p>
 <p>Because we have tested the Task 1A, before testing we can comment out the line <code class="docutils literal notranslate"><span class="pre">(TASK_1A,</span> <span class="pre">unique_prefixes_by_snapshot,</span> <span class="pre">&quot;rib_files&quot;)</span></code> so that we will skip the check process for task 1A.</p>
 </section>
 <section id="task-2">
-<h2>7. Task 2<a class="headerlink" href="#task-2" title="Permalink to this heading"></a></h2>
+<h2>7. Task 2<a class="headerlink" href="#task-2" title="Link to this heading"></a></h2>
 <p>We’ll skip task 1c for now because it’s not easy to implement.</p>
 <p>The idea is to get the shortest path length for each origin AS in each RIB cached file (or called a “snapshot”). The returned vaule should be a dictionary with ASIDs as fields and lists of shortest path length as values. For example,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;455&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;533&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
@@ -263,7 +272,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> can be used in this task to simplify the procedure. Also, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> can be used to track the iterating process. Note that <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> doesn’t come with the VM so we have to <code class="docutils literal notranslate"><span class="pre">pip</span></code> install it.</p>
 </section>
 <section id="task-3">
-<h2>8. Task 3<a class="headerlink" href="#task-3" title="Permalink to this heading"></a></h2>
+<h2>8. Task 3<a class="headerlink" href="#task-3" title="Link to this heading"></a></h2>
 <p>In this task, we will focus on the AW events of the update files. An AW event is defined as the event that a prefix gets Advertised (A) and then Withdrawn (W). This matters because this information propagates and affects the volume of the associated BGP traffic.</p>
 <p>There are two types of withdraws in the AW events,</p>
 <ul class="simple">
@@ -299,7 +308,7 @@
 </ul>
 </section>
 <section id="task-4">
-<h2>9. Task 4<a class="headerlink" href="#task-4" title="Permalink to this heading"></a></h2>
+<h2>9. Task 4<a class="headerlink" href="#task-4" title="Link to this heading"></a></h2>
 <p>Task 4 is to measure the duration of Real-Time BlackHoling (RTBH) events. It’s very similar to the task 3 and we will start the explaination from the definition of a RTBH event.</p>
 <p>In this task we will still examine the update files. for a given peerIP/prefix pair is the time elapsed between the last (A)nnouncement of the peerIP/prefix that is tagged with an RTBH community value and the first (W)ithdrawal of the peerIP/prefix.</p>
 <p>The solution of this task can be modified based on the solution of task 3.</p>
@@ -314,7 +323,7 @@
 </ul>
 </section>
 <section id="task-1c">
-<h2>10. Task 1C<a class="headerlink" href="#task-1c" title="Permalink to this heading"></a></h2>
+<h2>10. Task 1C<a class="headerlink" href="#task-1c" title="Link to this heading"></a></h2>
 <p>In the end, let’s implement the task 1C. We will compute the top 10 origin ASes ordered by percentage increase (smallest to largest) of advertised prefixes.</p>
 <p>The percentage change for number of prefixes of an origin AS between two snapshots is defined by,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># of prefixes for origin in snapshot1 / # of prefixes for origin in snapshot2 - 1</span>
@@ -335,7 +344,7 @@
 </ul>
 </section>
 <section id="other-tips">
-<h2>11. Other Tips<a class="headerlink" href="#other-tips" title="Permalink to this heading"></a></h2>
+<h2>11. Other Tips<a class="headerlink" href="#other-tips" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Make sure you remove all the packets not in the environment, for example, <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> before you submit</p></li>
 </ul>

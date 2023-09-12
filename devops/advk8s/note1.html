@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -77,6 +77,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -87,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html">💻  Computer Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../OMSCS/index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -125,15 +134,15 @@
            <div itemprop="articleBody">
              
   <section id="advanced-kubernetes-1-cncf-basics-and-kubeadm">
-<h1>Advanced Kubernetes 1 | CNCF Basics and Kubeadm<a class="headerlink" href="#advanced-kubernetes-1-cncf-basics-and-kubeadm" title="Permalink to this heading"></a></h1>
+<h1>Advanced Kubernetes 1 | CNCF Basics and Kubeadm<a class="headerlink" href="#advanced-kubernetes-1-cncf-basics-and-kubeadm" title="Link to this heading"></a></h1>
 <section id="cncf-basics">
-<h2>1. CNCF Basics<a class="headerlink" href="#cncf-basics" title="Permalink to this heading"></a></h2>
+<h2>1. CNCF Basics<a class="headerlink" href="#cncf-basics" title="Link to this heading"></a></h2>
 <section id="cncf-trail-map">
-<h3>(1) CNCF Trail Map<a class="headerlink" href="#cncf-trail-map" title="Permalink to this heading"></a></h3>
+<h3>(1) CNCF Trail Map<a class="headerlink" href="#cncf-trail-map" title="Link to this heading"></a></h3>
 <p><img alt="" src="https://raw.githubusercontent.com/cncf/trailmap/master/CNCF_TrailMap_latest.png" /></p>
 </section>
 <section id="topics-overview">
-<h3>(2) Topics Overview<a class="headerlink" href="#topics-overview" title="Permalink to this heading"></a></h3>
+<h3>(2) Topics Overview<a class="headerlink" href="#topics-overview" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">kubeadm</span></code>: installing kubernetes on-prem</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">K8s</span> <span class="pre">Operators</span></code>: file, block, and object storage</p></li>
@@ -147,7 +156,7 @@
 </section>
 </section>
 <section id="environment-configuration">
-<h2>2. Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this heading"></a></h2>
+<h2>2. Environment Configuration<a class="headerlink" href="#environment-configuration" title="Link to this heading"></a></h2>
 <p>I’m on a M2 Macbook with Parallel as VM. So I use Parallel to start a Ubuntu 22.04 VM. When the VM is up, install the network tools and use <code class="docutils literal notranslate"><span class="pre">ifconfig</span></code> to find the IP address</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>net-tools
 $<span class="w"> </span>ifconfig
@@ -161,7 +170,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>
 </div>
 </section>
 <section id="build-1-node-environment-with-kubeadm">
-<h2>3. Build 1-Node Environment with Kubeadm<a class="headerlink" href="#build-1-node-environment-with-kubeadm" title="Permalink to this heading"></a></h2>
+<h2>3. Build 1-Node Environment with Kubeadm<a class="headerlink" href="#build-1-node-environment-with-kubeadm" title="Link to this heading"></a></h2>
 <p>First, git clone from the libraray,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/parallels/
 $<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Sadamingh/on-prem-or-cloud-agnostic-kubernetes.git
@@ -197,7 +206,7 @@ $<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> <
 </div>
 </section>
 <section id="test">
-<h2>4. Test<a class="headerlink" href="#test" title="Permalink to this heading"></a></h2>
+<h2>4. Test<a class="headerlink" href="#test" title="Link to this heading"></a></h2>
 <p>We can test the cluster through the following commands and the following results are expected.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 NAME<span class="w">                         </span>STATUS<span class="w">   </span>ROLES<span class="w">           </span>AGE<span class="w">     </span>VERSION
@@ -218,7 +227,7 @@ kube-system<span class="w">   </span>kube-scheduler-ubuntu-linux-22-04-desktop<s
 </div>
 </section>
 <section id="debug">
-<h2>5. Debug<a class="headerlink" href="#debug" title="Permalink to this heading"></a></h2>
+<h2>5. Debug<a class="headerlink" href="#debug" title="Link to this heading"></a></h2>
 <p>After rebooting the VM, the connection to kubernetes will be lost. Logs like</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ kubectl get nodes
 E0313 10:34:40.260814 2711656 mencache.g:238] couldn&#39;t get current server API g roup list: Get &quot;http://localhost: 8080/api?timeout=32s&quot;: dial tcp 127.0.0.1:8080:connect: connection refused

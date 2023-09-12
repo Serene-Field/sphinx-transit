@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -116,6 +124,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -154,11 +163,11 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-8-introduction-to-routers-and-prefix-match">
-<h1>Computer Network 8 | Introduction to Routers and Prefix Match<a class="headerlink" href="#computer-network-8-introduction-to-routers-and-prefix-match" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 8 | Introduction to Routers and Prefix Match<a class="headerlink" href="#computer-network-8-introduction-to-routers-and-prefix-match" title="Link to this heading"></a></h1>
 <section id="introduction-to-routers">
-<h2>1. Introduction to Routers<a class="headerlink" href="#introduction-to-routers" title="Permalink to this heading"></a></h2>
+<h2>1. Introduction to Routers<a class="headerlink" href="#introduction-to-routers" title="Link to this heading"></a></h2>
 <section id="router-components">
-<h3>(1) Router Components<a class="headerlink" href="#router-components" title="Permalink to this heading"></a></h3>
+<h3>(1) Router Components<a class="headerlink" href="#router-components" title="Link to this heading"></a></h3>
 <p>The router’s basic function - <strong>forwarding</strong> is implemented in its hardware. The main components of a router are,</p>
 <ul class="simple">
 <li><p>input ports</p>
@@ -193,14 +202,14 @@
 </ul>
 </section>
 <section id="control-plane-vs-data-plane">
-<h3>(2) Control Plane vs Data Plane<a class="headerlink" href="#control-plane-vs-data-plane" title="Permalink to this heading"></a></h3>
+<h3>(2) Control Plane vs Data Plane<a class="headerlink" href="#control-plane-vs-data-plane" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Control plane</strong> is the collection of softwares executed on the routing processor</p></li>
 <li><p><strong>Data plane</strong> is the underlying collection of hardwares includes i/o ports and switch fabric</p></li>
 </ul>
 </section>
 <section id="functions-of-control-plane">
-<h3>(3) Functions of Control Plane<a class="headerlink" href="#functions-of-control-plane" title="Permalink to this heading"></a></h3>
+<h3>(3) Functions of Control Plane<a class="headerlink" href="#functions-of-control-plane" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>implementing routing protocols</p></li>
 <li><p>maintaining routing tables</p></li>
@@ -209,7 +218,7 @@
 <p>These functions is implemented in the softwares in the routing processor, or the remote controller of an SDN.</p>
 </section>
 <section id="router-architecture">
-<h3>(4) Router Architecture<a class="headerlink" href="#router-architecture" title="Permalink to this heading"></a></h3>
+<h3>(4) Router Architecture<a class="headerlink" href="#router-architecture" title="Link to this heading"></a></h3>
 <p>Let’s look at what happens when a packet arrives at an input link. Here are the three most time-sensitive tasks,</p>
 <ul class="simple">
 <li><p>Lookup: router looks up destIP at forwarding table (or Forwarding Information Base or <strong>FIB</strong>) and determine the output link</p>
@@ -251,7 +260,7 @@
 </ul>
 </section>
 <section id="switching-via-memory">
-<h3>(5) Switching via Memory<a class="headerlink" href="#switching-via-memory" title="Permalink to this heading"></a></h3>
+<h3>(5) Switching via Memory<a class="headerlink" href="#switching-via-memory" title="Link to this heading"></a></h3>
 <p>Now let’s talk about switching fabric. We have discussed that there are three types of switching fabric and let’s first look into switching via memory. This switch has the following steps,</p>
 <ul class="simple">
 <li><p>input port interrupts routing processor when receiving a packet and the packet is copied in the processor’s memory</p></li>
@@ -260,7 +269,7 @@
 </ul>
 </section>
 <section id="switch-via-bus">
-<h3>(6) Switch via Bus<a class="headerlink" href="#switch-via-bus" title="Permalink to this heading"></a></h3>
+<h3>(6) Switch via Bus<a class="headerlink" href="#switch-via-bus" title="Link to this heading"></a></h3>
 <p>If switch via bus, there will be no participation of the processor.</p>
 <ul class="simple">
 <li><p>input port puts an internal header that designates the output port via lookup when receiving a packet, then it sends the packet to the shared bus</p></li>
@@ -270,11 +279,11 @@
 <p>Because only one packet can cross the bus at a given time, and so the speed of the bus limits the speed of the router. In order to solve this issue, we have the crossbar for switching.</p>
 </section>
 <section id="switch-via-crossbar">
-<h3>(7) Switch via Crossbar<a class="headerlink" href="#switch-via-crossbar" title="Permalink to this heading"></a></h3>
+<h3>(7) Switch via Crossbar<a class="headerlink" href="#switch-via-crossbar" title="Link to this heading"></a></h3>
 <p>A crossbar is actually a mesh of buses. It connects <code class="docutils literal notranslate"><span class="pre">N</span></code> input ports to <code class="docutils literal notranslate"><span class="pre">N</span></code> output ports using <code class="docutils literal notranslate"><span class="pre">2N</span></code> buses. As long as packets are using different input and output ports, a crossbar network can carry multiple packets at the same time.</p>
 </section>
 <section id="router-bottlenecks">
-<h3>(8) Router Bottlenecks<a class="headerlink" href="#router-bottlenecks" title="Permalink to this heading"></a></h3>
+<h3>(8) Router Bottlenecks<a class="headerlink" href="#router-bottlenecks" title="Link to this heading"></a></h3>
 <p>The fundamental problem of a router is the speed limition problem. Routers have limitations at,</p>
 <ul class="simple">
 <li><p>Bandwidth and Internet population scaling</p></li>
@@ -294,13 +303,13 @@
 </section>
 </section>
 <section id="prefix-match-algorithm">
-<h2>2. Prefix Match Algorithm<a class="headerlink" href="#prefix-match-algorithm" title="Permalink to this heading"></a></h2>
+<h2>2. Prefix Match Algorithm<a class="headerlink" href="#prefix-match-algorithm" title="Link to this heading"></a></h2>
 <section id="reason-for-prefix-match">
-<h3>(1) Reason for Prefix Match<a class="headerlink" href="#reason-for-prefix-match" title="Permalink to this heading"></a></h3>
+<h3>(1) Reason for Prefix Match<a class="headerlink" href="#reason-for-prefix-match" title="Link to this heading"></a></h3>
 <p>Because the Internet continues to grow both in terms of networks (AS numbers) and IP addresses. One of the challenges that a router faces is the scalability problem. One way to help with the scalability problem is to “group” multiple IP addresses by the same prefix.</p>
 </section>
 <section id="prefix-notation">
-<h3>(2) Prefix Notation<a class="headerlink" href="#prefix-notation" title="Permalink to this heading"></a></h3>
+<h3>(2) Prefix Notation<a class="headerlink" href="#prefix-notation" title="Link to this heading"></a></h3>
 <p>There are typically three ways for prefix notation. For example, with a binary prefix</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1000010011101010</span><span class="o">*</span>
 </pre></div>
@@ -329,12 +338,12 @@
 </ul>
 </section>
 <section id="reason-for-longest-prefix-match">
-<h3>(3) Reason for Longest Prefix Match<a class="headerlink" href="#reason-for-longest-prefix-match" title="Permalink to this heading"></a></h3>
+<h3>(3) Reason for Longest Prefix Match<a class="headerlink" href="#reason-for-longest-prefix-match" title="Link to this heading"></a></h3>
 <p>In 1993, Classless Internet Domain Routing (CIDR) protocol allowed us to use arbitrary-length prefixes and it largely decrease the router table size.</p>
 <p>However, at the same time, we have to decide the longest prefix match for looking up or we will get multiple results.</p>
 </section>
 <section id="unibit-tries-for-longest-prefix-match">
-<h3>(4) Unibit Tries for Longest Prefix Match<a class="headerlink" href="#unibit-tries-for-longest-prefix-match" title="Permalink to this heading"></a></h3>
+<h3>(4) Unibit Tries for Longest Prefix Match<a class="headerlink" href="#unibit-tries-for-longest-prefix-match" title="Link to this heading"></a></h3>
 <p>Let’s use the following example to see the unibit tries algorithm. Suppose we have the following 9 prefixes,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">=</span> <span class="mi">101</span><span class="o">*</span>
 <span class="n">p2</span> <span class="o">=</span> <span class="mi">111</span><span class="o">*</span>
@@ -368,14 +377,14 @@
 </ul>
 </section>
 <section id="problem-of-unibit-tries">
-<h3>(5) Problem of Unibit Tries<a class="headerlink" href="#problem-of-unibit-tries" title="Permalink to this heading"></a></h3>
+<h3>(5) Problem of Unibit Tries<a class="headerlink" href="#problem-of-unibit-tries" title="Link to this heading"></a></h3>
 <p>The biggest problem for unibit tries is the number of <strong>memory accesses</strong> that it requires to perform a lookup.</p>
 <p>For example, for 32 bit addresses, we can see that looking up the address in a unibit trie might require 32 memory accesses in the worst case (when we go through 32 nodes). Assuming a 60 nsec latency, the worst case search time is 1.92 microseconds. This could be very inefficient in high speed links.</p>
 <p>One solution is to put multiple bits into one node. For example, if we put three bits into one node, then the worst case for a 32 bit address system requires 11 memory accesses. This is called <strong>multibit tries</strong>.</p>
 <p>The number of bits that we check at each step is called <strong>stride</strong>.</p>
 </section>
 <section id="multibit-tries">
-<h3>(6) Multibit Tries<a class="headerlink" href="#multibit-tries" title="Permalink to this heading"></a></h3>
+<h3>(6) Multibit Tries<a class="headerlink" href="#multibit-tries" title="Link to this heading"></a></h3>
 <p>Let’s review the prefixes above and now we have the following prefixes if we use <code class="docutils literal notranslate"><span class="pre">stride</span> <span class="pre">=</span> <span class="pre">3</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span>  <span class="o">=</span> <span class="mi">101</span><span class="o">*</span>
 <span class="n">p2</span>  <span class="o">=</span> <span class="mi">111</span><span class="o">*</span>
@@ -398,7 +407,7 @@
 <p>Here we can find the same result if we check for <code class="docutils literal notranslate"><span class="pre">111*</span></code> and <code class="docutils literal notranslate"><span class="pre">11011*</span></code>.</p>
 </section>
 <section id="fixed-length-stride-vs-variable-length-stride">
-<h3>(7) Fixed Length Stride vs Variable Length Stride<a class="headerlink" href="#fixed-length-stride-vs-variable-length-stride" title="Permalink to this heading"></a></h3>
+<h3>(7) Fixed Length Stride vs Variable Length Stride<a class="headerlink" href="#fixed-length-stride-vs-variable-length-stride" title="Link to this heading"></a></h3>
 <p>Based on the stride length, we can have two flavors of multibit tries. The case above is a <strong>fixed-stride trie</strong> of length 3 so every node has 3 bits.</p>
 <p>Note that in the case above, we don’t have prefix <code class="docutils literal notranslate"><span class="pre">p4</span></code> and if we want to include this prefix, we need to use a variable-stride tree.</p>
 </section>

@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -111,6 +119,7 @@
 <li class="toctree-l2"><a class="reference internal" href="note4.html">Intro to Information Security 4 | Malware Analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -149,55 +158,55 @@
            <div itemprop="articleBody">
              
   <section id="intro-to-information-security-1-modular-calculation-and-software-vulnerabilities">
-<h1>Intro to Information Security 1 | Modular Calculation and Software Vulnerabilities<a class="headerlink" href="#intro-to-information-security-1-modular-calculation-and-software-vulnerabilities" title="Permalink to this heading"></a></h1>
+<h1>Intro to Information Security 1 | Modular Calculation and Software Vulnerabilities<a class="headerlink" href="#intro-to-information-security-1-modular-calculation-and-software-vulnerabilities" title="Link to this heading"></a></h1>
 <section id="mod-calculation">
-<h2>0. Mod Calculation<a class="headerlink" href="#mod-calculation" title="Permalink to this heading"></a></h2>
+<h2>0. Mod Calculation<a class="headerlink" href="#mod-calculation" title="Link to this heading"></a></h2>
 <section id="a-mod-b">
-<h3>(1) A mod B<a class="headerlink" href="#a-mod-b" title="Permalink to this heading"></a></h3>
+<h3>(1) A mod B<a class="headerlink" href="#a-mod-b" title="Link to this heading"></a></h3>
 <p>If A is a negative number, then the result should be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Result</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">B</span> <span class="o">*</span> <span class="n">floor</span><span class="p">(</span><span class="n">A</span><span class="o">/</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="congruence">
-<h3>(2) Congruence<a class="headerlink" href="#congruence" title="Permalink to this heading"></a></h3>
+<h3>(2) Congruence<a class="headerlink" href="#congruence" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">If</span> <span class="n">A</span> <span class="o">==</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span><span class="p">,</span> <span class="n">then</span> <span class="n">A</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">==</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span>
 <span class="n">If</span> <span class="n">A</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">==</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span><span class="p">,</span> <span class="n">then</span> <span class="n">A</span> <span class="o">==</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="modular-addition">
-<h3>(3) Modular Addition<a class="headerlink" href="#modular-addition" title="Permalink to this heading"></a></h3>
+<h3>(3) Modular Addition<a class="headerlink" href="#modular-addition" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">+</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="modular-subtraction">
-<h3>(4) Modular Subtraction<a class="headerlink" href="#modular-subtraction" title="Permalink to this heading"></a></h3>
+<h3>(4) Modular Subtraction<a class="headerlink" href="#modular-subtraction" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">B</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">-</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="modular-multiplication">
-<h3>(5) Modular Multiplication<a class="headerlink" href="#modular-multiplication" title="Permalink to this heading"></a></h3>
+<h3>(5) Modular Multiplication<a class="headerlink" href="#modular-multiplication" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">B</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">*</span> <span class="n">B</span> <span class="n">mod</span> <span class="n">C</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="exponentiation">
-<h3>(6) Exponentiation<a class="headerlink" href="#exponentiation" title="Permalink to this heading"></a></h3>
+<h3>(6) Exponentiation<a class="headerlink" href="#exponentiation" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">^</span><span class="n">n</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="n">mod</span> <span class="n">C</span><span class="p">)</span><span class="o">^</span><span class="n">n</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="quick-trick-of-2-based-exponentiation">
-<h3>(7) Quick Trick of 2-Based Exponentiation<a class="headerlink" href="#quick-trick-of-2-based-exponentiation" title="Permalink to this heading"></a></h3>
+<h3>(7) Quick Trick of 2-Based Exponentiation<a class="headerlink" href="#quick-trick-of-2-based-exponentiation" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">^</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="n">n</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="o">^</span><span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="n">mod</span> <span class="n">C</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="n">mod</span> <span class="n">C</span>
 </pre></div>
 </div>
 </section>
 <section id="exponentiation-trick">
-<h3>(8) Exponentiation Trick<a class="headerlink" href="#exponentiation-trick" title="Permalink to this heading"></a></h3>
+<h3>(8) Exponentiation Trick<a class="headerlink" href="#exponentiation-trick" title="Link to this heading"></a></h3>
 <p>Suppose we have to calculate M^N mod C, where N is a large number, then we can calculate the result by</p>
 <ul class="simple">
 <li><p>Rewrite N to binary form <code class="docutils literal notranslate"><span class="pre">bin(N)</span></code></p></li>
@@ -207,34 +216,34 @@
 </ul>
 </section>
 <section id="modular-inverse">
-<h3>(9) Modular Inverse<a class="headerlink" href="#modular-inverse" title="Permalink to this heading"></a></h3>
+<h3>(9) Modular Inverse<a class="headerlink" href="#modular-inverse" title="Link to this heading"></a></h3>
 <p>The modular inverse of A mod C is B satisifies,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">A</span> <span class="n">B</span><span class="p">)</span> <span class="n">mod</span> <span class="n">C</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </section>
 <section id="co-prime">
-<h3>(10) Co-prime<a class="headerlink" href="#co-prime" title="Permalink to this heading"></a></h3>
+<h3>(10) Co-prime<a class="headerlink" href="#co-prime" title="Link to this heading"></a></h3>
 <p>Two integers a and b are said to be co-prime if the only positive integer integer that evenly divides both of them is 1.</p>
 </section>
 <section id="prime-root">
-<h3>(11) Prime Root<a class="headerlink" href="#prime-root" title="Permalink to this heading"></a></h3>
+<h3>(11) Prime Root<a class="headerlink" href="#prime-root" title="Link to this heading"></a></h3>
 <p>A number M is a prime root of a number N if every number co-prime to N is congtuent to a power of M mod N.</p>
 </section>
 <section id="relative-prime">
-<h3>(12) Relative Prime<a class="headerlink" href="#relative-prime" title="Permalink to this heading"></a></h3>
+<h3>(12) Relative Prime<a class="headerlink" href="#relative-prime" title="Link to this heading"></a></h3>
 <p>It describes two numbers for which the only common factor is 1. In other words, relatively prime numbers have a greatest common factor (gcf) of 1.</p>
 </section>
 <section id="totients">
-<h3>(13) Totients<a class="headerlink" href="#totients" title="Permalink to this heading"></a></h3>
+<h3>(13) Totients<a class="headerlink" href="#totients" title="Link to this heading"></a></h3>
 <p>The totient function φ(n), also called Euler’s totient function, which is defined as the number of positive integers &lt;= n that are relatively prime to n, where 1 is counted as being relatively prime to all numbers.</p>
 <p>Since a number less than or equal to and relatively prime to a given number is called a totative, the totient function phi(n) can be simply defined as the number of totatives of n.</p>
 </section>
 </section>
 <section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <section id="cyber-security-requirements-cia-rule">
-<h3>(1) Cyber Security Requirements (CIA rule)<a class="headerlink" href="#cyber-security-requirements-cia-rule" title="Permalink to this heading"></a></h3>
+<h3>(1) Cyber Security Requirements (CIA rule)<a class="headerlink" href="#cyber-security-requirements-cia-rule" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Confidentiality: only some people can view it</p></li>
 <li><p>Integrity: only some people can modify it</p></li>
@@ -242,7 +251,7 @@
 </ul>
 </section>
 <section id="role-of-the-good-guys">
-<h3>(2) Role of the Good Guys<a class="headerlink" href="#role-of-the-good-guys" title="Permalink to this heading"></a></h3>
+<h3>(2) Role of the Good Guys<a class="headerlink" href="#role-of-the-good-guys" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Prevention</p></li>
 <li><p>Detection</p></li>
@@ -252,7 +261,7 @@
 </ul>
 </section>
 <section id="ways-to-address-cyber-security">
-<h3>(3) Ways to address cyber security<a class="headerlink" href="#ways-to-address-cyber-security" title="Permalink to this heading"></a></h3>
+<h3>(3) Ways to address cyber security<a class="headerlink" href="#ways-to-address-cyber-security" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Complexity is our enemy</p></li>
 <li><p>Fail-safe defaults: allow only if someone really need the data</p></li>
@@ -264,9 +273,9 @@
 </section>
 </section>
 <section id="software-vulnerabilities">
-<h2>2. Software Vulnerabilities<a class="headerlink" href="#software-vulnerabilities" title="Permalink to this heading"></a></h2>
+<h2>2. Software Vulnerabilities<a class="headerlink" href="#software-vulnerabilities" title="Link to this heading"></a></h2>
 <section id="common-software-vulnerabilities">
-<h3>(1) Common Software Vulnerabilities<a class="headerlink" href="#common-software-vulnerabilities" title="Permalink to this heading"></a></h3>
+<h3>(1) Common Software Vulnerabilities<a class="headerlink" href="#common-software-vulnerabilities" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Memory overflow</p></li>
 <li><p>Stack buffer overflow</p>
@@ -284,7 +293,7 @@
 </ul>
 </section>
 <section id="vulnerable-program-example">
-<h3>(2) Vulnerable Program Example<a class="headerlink" href="#vulnerable-program-example" title="Permalink to this heading"></a></h3>
+<h3>(2) Vulnerable Program Example<a class="headerlink" href="#vulnerable-program-example" title="Link to this heading"></a></h3>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;strings.h&gt;</span>
 
@@ -308,7 +317,7 @@
 <p>Now let’s look into the stack of this program.</p>
 </section>
 <section id="understanding-the-stack">
-<h3>(4) Understanding the Stack<a class="headerlink" href="#understanding-the-stack" title="Permalink to this heading"></a></h3>
+<h3>(4) Understanding the Stack<a class="headerlink" href="#understanding-the-stack" title="Link to this heading"></a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------------</span> <span class="o">&lt;-</span> <span class="n">High</span> <span class="n">address</span> <span class="p">(</span><span class="n">addr</span><span class="p">)</span>
 <span class="n">argc</span> <span class="o">=</span> <span class="mi">4</span> <span class="nb">bytes</span>
 <span class="o">----------------------</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">addr</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span>
@@ -328,7 +337,7 @@
 </div>
 </section>
 <section id="bypass-case">
-<h3>(5) Bypass Case<a class="headerlink" href="#bypass-case" title="Permalink to this heading"></a></h3>
+<h3>(5) Bypass Case<a class="headerlink" href="#bypass-case" title="Link to this heading"></a></h3>
 <p>The problem of this program is that when we have the function <code class="docutils literal notranslate"><span class="pre">gets</span></code> read a string, it will not check the length of that string so that the input string can be longer than the memory we have allocated for the variable <code class="docutils literal notranslate"><span class="pre">pwdstr</span></code>. Therefore, the variable memory will overflow and it will continue writing to <code class="docutils literal notranslate"><span class="pre">allowlogin</span></code> variable. For example, if the input string is <code class="docutils literal notranslate"><span class="pre">BadPasswordHere!</span></code>, then</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>---------------------- &lt;- High address (addr)
 argc = 4 bytes
@@ -350,7 +359,7 @@ targetpwd = MyPwd123
 <p>Then if we compare <code class="docutils literal notranslate"><span class="pre">pwdstr</span></code> and <code class="docutils literal notranslate"><span class="pre">targetpwd</span></code>, even though those two varibles will not match and the program will not assign 1 to <code class="docutils literal notranslate"><span class="pre">allowlogin</span></code>, this variable has already been overwritten by the input string that exceed 12 bytes (aka. <code class="docutils literal notranslate"><span class="pre">ere!</span></code>). In this case, we can still pass the check for this login.</p>
 </section>
 <section id="shellcode">
-<h3>(6) Shellcode<a class="headerlink" href="#shellcode" title="Permalink to this heading"></a></h3>
+<h3>(6) Shellcode<a class="headerlink" href="#shellcode" title="Link to this heading"></a></h3>
 <p>Shellcode creates a shell which allows it to execute any code the attacker wants. Basically, the attackers would like to allocate the following privileges,</p>
 <ul class="simple">
 <li><p>the host program</p></li>
@@ -359,7 +368,7 @@ targetpwd = MyPwd123
 </ul>
 </section>
 <section id="variations-of-buffer-overflow">
-<h3>(7) Variations of Buffer Overflow<a class="headerlink" href="#variations-of-buffer-overflow" title="Permalink to this heading"></a></h3>
+<h3>(7) Variations of Buffer Overflow<a class="headerlink" href="#variations-of-buffer-overflow" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>“return-to-libc” Attack</strong>: means to rewrite the return address to a standard library function. This works because if we can return to a standard library function and we are also able to setup some arguments or parameters for it on the stack, then we can execute a function with the argument of our choice.</p></li>
 <li><p><strong>“Heap Overflow” Attack</strong>: Longer variables like the global variables are stored on the heap. The difference between a stack and a heap is that the heap doesn’t have a return address. However, the heap do have some function pointers and the data can be the tables of function pointers. So the data stored in the heap is overwritten and we are able to corrupt the memory in some sense as we have done before.</p></li>
@@ -367,7 +376,7 @@ targetpwd = MyPwd123
 </ul>
 </section>
 <section id="defense-against-overflow">
-<h3>(8) Defense Against Overflow<a class="headerlink" href="#defense-against-overflow" title="Permalink to this heading"></a></h3>
+<h3>(8) Defense Against Overflow<a class="headerlink" href="#defense-against-overflow" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Programming language is crucial. Common safe programming languages are C++, Java, etc. A safe language should have the following traits:</p>
 <ul>

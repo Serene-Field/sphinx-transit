@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -108,6 +116,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -146,11 +155,11 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-5-work-span-model">
-<h1>High Performance Computing 5 | Work Span Model<a class="headerlink" href="#high-performance-computing-5-work-span-model" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 5 | Work Span Model<a class="headerlink" href="#high-performance-computing-5-work-span-model" title="Link to this heading"></a></h1>
 <section id="basic-concepts">
-<h2>1. Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h2>
+<h2>1. Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
 <section id="dynamic-multithreading-models">
-<h3>(1) Dynamic Multithreading Models<a class="headerlink" href="#dynamic-multithreading-models" title="Permalink to this heading"></a></h3>
+<h3>(1) Dynamic Multithreading Models<a class="headerlink" href="#dynamic-multithreading-models" title="Link to this heading"></a></h3>
 <p>The dynamic multithreading models are consisted of two parts,</p>
 <ul class="simple">
 <li><p>computation can be represented by a DAG</p></li>
@@ -159,16 +168,16 @@
 <p>In this lesson we will focusing on how to create the DAGs instead of how to map these DAGs to cores or execute them.</p>
 </section>
 <section id="multithreading-dags">
-<h3>(2) Multithreading DAGs<a class="headerlink" href="#multithreading-dags" title="Permalink to this heading"></a></h3>
+<h3>(2) Multithreading DAGs<a class="headerlink" href="#multithreading-dags" title="Link to this heading"></a></h3>
 <p>In a DAG, each node is an operation and the edges are dependencies. We should also assume that there will be only one starting vertex and one exit vertex, or we should add one starting vertex or/and one exit vertex to make things simple in some cases.</p>
 <p>When an operation is ready to go (means it has no dependencies), then we can execute it on any of the available cores.</p>
 </section>
 <section id="scheduling">
-<h3>(3) Scheduling<a class="headerlink" href="#scheduling" title="Permalink to this heading"></a></h3>
+<h3>(3) Scheduling<a class="headerlink" href="#scheduling" title="Link to this heading"></a></h3>
 <p>At every step of the computation, the problem of how to take free units of work and assign them to processors is called a scheduling problem.</p>
 </section>
 <section id="dag-example-sequential-reduction">
-<h3>(4) DAG Example: Sequential Reduction<a class="headerlink" href="#dag-example-sequential-reduction" title="Permalink to this heading"></a></h3>
+<h3>(4) DAG Example: Sequential Reduction<a class="headerlink" href="#dag-example-sequential-reduction" title="Link to this heading"></a></h3>
 <p>Let’s suppose we have the following pseudocode,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">A</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
@@ -194,7 +203,7 @@
 <p>This result matches our intuition.</p>
 </section>
 <section id="dag-example-2-btree-reduction">
-<h3>(5) DAG Example 2: Btree Reduction<a class="headerlink" href="#dag-example-2-btree-reduction" title="Permalink to this heading"></a></h3>
+<h3>(5) DAG Example 2: Btree Reduction<a class="headerlink" href="#dag-example-2-btree-reduction" title="Link to this heading"></a></h3>
 <p>For a binary tree reduction, the time PRAM takes to execute this DAG with <code class="docutils literal notranslate"><span class="pre">p</span></code> processors assuming <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&gt;=</span> <span class="pre">n</span></code> in one level would be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -206,7 +215,7 @@
 <p>Here because the tree layout generates more parallism, we may choose it as a better algorithm.</p>
 </section>
 <section id="work-and-span">
-<h3>(6) Work and Span<a class="headerlink" href="#work-and-span" title="Permalink to this heading"></a></h3>
+<h3>(6) Work and Span<a class="headerlink" href="#work-and-span" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Work (note as <code class="docutils literal notranslate"><span class="pre">W(n)</span></code>): how many vertices does it have in total</p></li>
 <li><p>Span (note as <code class="docutils literal notranslate"><span class="pre">D(n)</span></code>): how many vertices on the longest path</p></li>
@@ -214,7 +223,7 @@
 <p>The longest path is also called the cirtical path.</p>
 </section>
 <section id="processors-and-w-s">
-<h3>(7) Processors and W/S<a class="headerlink" href="#processors-and-w-s" title="Permalink to this heading"></a></h3>
+<h3>(7) Processors and W/S<a class="headerlink" href="#processors-and-w-s" title="Link to this heading"></a></h3>
 <p>Now suppose we have only one processor <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">1</span></code>, then the total time we spend is only based on how many work we have. So,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">T_1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
@@ -225,7 +234,7 @@
 </div>
 </section>
 <section id="average-available-parallelism">
-<h3>(8) Average Available Parallelism<a class="headerlink" href="#average-available-parallelism" title="Permalink to this heading"></a></h3>
+<h3>(8) Average Available Parallelism<a class="headerlink" href="#average-available-parallelism" title="Link to this heading"></a></h3>
 <p>The ratio of <code class="docutils literal notranslate"><span class="pre">W</span></code> by <code class="docutils literal notranslate"><span class="pre">D</span></code> measures the amount of work per critical path vertex. So,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Avg</span><span class="o">.</span> <span class="n">Para</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
@@ -233,14 +242,14 @@
 <p>This is useful because <code class="docutils literal notranslate"><span class="pre">W/D</span></code> shows the number of processors we need in a PRAM model and it shows the average busy processors we have for a DAG.</p>
 </section>
 <section id="the-span-law">
-<h3>(9) The Span Law<a class="headerlink" href="#the-span-law" title="Permalink to this heading"></a></h3>
+<h3>(9) The Span Law<a class="headerlink" href="#the-span-law" title="Link to this heading"></a></h3>
 <p>Because the span is the workload when the program is fully parallel, then we can know the span should be the lower bound of the time to execute,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="the-work-law">
-<h3>(10) The Work Law<a class="headerlink" href="#the-work-law" title="Permalink to this heading"></a></h3>
+<h3>(10) The Work Law<a class="headerlink" href="#the-work-law" title="Link to this heading"></a></h3>
 <p>When there’s no critical path, the lower bound of the time should be evenly seperate the work onto <code class="docutils literal notranslate"><span class="pre">p</span></code> processors so that,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
@@ -248,14 +257,14 @@
 <p>This is called the work law.</p>
 </section>
 <section id="work-span-law">
-<h3>(11) Work-Span Law<a class="headerlink" href="#work-span-law" title="Permalink to this heading"></a></h3>
+<h3>(11) Work-Span Law<a class="headerlink" href="#work-span-law" title="Link to this heading"></a></h3>
 <p>Because both of the laws above holds, we can have the following work-span law,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tp</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">max</span><span class="p">{</span><span class="n">D</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">ceil</span><span class="p">(</span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">)}</span>
 </pre></div>
 </div>
 </section>
 <section id="phases">
-<h3>(12) Phases<a class="headerlink" href="#phases" title="Permalink to this heading"></a></h3>
+<h3>(12) Phases<a class="headerlink" href="#phases" title="Link to this heading"></a></h3>
 <p>Before we continue, let’s see some rules to divide a DAG to some phases.</p>
 <ul class="simple">
 <li><p>Each phase should have 1 critical path vertex</p></li>
@@ -272,7 +281,7 @@
 </div>
 </section>
 <section id="brent-s-theorem-on-the-upper-bound">
-<h3>(12) Brent’s Theorem on the Upper Bound<a class="headerlink" href="#brent-s-theorem-on-the-upper-bound" title="Permalink to this heading"></a></h3>
+<h3>(12) Brent’s Theorem on the Upper Bound<a class="headerlink" href="#brent-s-theorem-on-the-upper-bound" title="Link to this heading"></a></h3>
 <p>Now assume we know the fact that,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ceil</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">floor</span><span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
@@ -296,12 +305,12 @@
 <p>And this is the upper bound we would love to see.</p>
 </section>
 <section id="meanings-of-the-brent-s-theorem">
-<h3>(13) Meanings of the Brent’s Theorem<a class="headerlink" href="#meanings-of-the-brent-s-theorem" title="Permalink to this heading"></a></h3>
+<h3>(13) Meanings of the Brent’s Theorem<a class="headerlink" href="#meanings-of-the-brent-s-theorem" title="Link to this heading"></a></h3>
 <p>From Brent’s theorem, we can find out that the time to execute a DAG is no more than the time to execute the critical path plus to execute the everything off the critical path using <code class="docutils literal notranslate"><span class="pre">p</span></code> processors.</p>
 <p>Note that the Brent’s theorem is a upper bound and it is usually slack in the real cases.</p>
 </section>
 <section id="speedup">
-<h3>(14) Speedup<a class="headerlink" href="#speedup" title="Permalink to this heading"></a></h3>
+<h3>(14) Speedup<a class="headerlink" href="#speedup" title="Link to this heading"></a></h3>
 <p>The speedup measures how good a DAG is and it is defined as the ratio of the best sequential time over the parallel time. “best” means we don’t choose a terrible sequence as our benchmark.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Speedup</span> <span class="o">=</span> <span class="n">best</span> <span class="n">sequential</span> <span class="n">time</span> <span class="o">/</span> <span class="n">parallel</span> <span class="n">time</span>
         <span class="o">=</span> <span class="n">T</span><span class="s1">&#39;(n) / Tp(n)</span>
@@ -326,7 +335,7 @@
 </div>
 </section>
 <section id="work-optimality">
-<h3>(15) Work Optimality<a class="headerlink" href="#work-optimality" title="Permalink to this heading"></a></h3>
+<h3>(15) Work Optimality<a class="headerlink" href="#work-optimality" title="Link to this heading"></a></h3>
 <p>To achieve,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">/</span><span class="n">W</span><span class="s1">&#39; + (P-1)/(W&#39;</span><span class="o">/</span><span class="n">D</span><span class="p">)</span> <span class="o">=</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -341,7 +350,7 @@
 </div>
 </section>
 <section id="weak-scalability">
-<h3>(16) Weak Scalability<a class="headerlink" href="#weak-scalability" title="Permalink to this heading"></a></h3>
+<h3>(16) Weak Scalability<a class="headerlink" href="#weak-scalability" title="Link to this heading"></a></h3>
 <p>Second we need to have,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">W</span><span class="s1">&#39;/D) = O(1)</span>
 </pre></div>
@@ -357,7 +366,7 @@
 <p>This means the work per processor has to grow proportional to the span. And because the span depends on the problem size <code class="docutils literal notranslate"><span class="pre">n</span></code>, so work per processor should grow as some function of <code class="docutils literal notranslate"><span class="pre">n</span></code>. This is called weak scalability.</p>
 </section>
 <section id="concurrency-primitive-1-spawn-and-sync">
-<h3>(17) Concurrency Primitive 1: Spawn and Sync<a class="headerlink" href="#concurrency-primitive-1-spawn-and-sync" title="Permalink to this heading"></a></h3>
+<h3>(17) Concurrency Primitive 1: Spawn and Sync<a class="headerlink" href="#concurrency-primitive-1-spawn-and-sync" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Spawn: the target of a spawn keyword is either a function call or a procedure call and it is a signal to the runtime or compiler that the target is an independent unit of work</p></li>
 <li><p>Sync: the sync keywork means that’s a dependence of the the current operation</p></li>
@@ -369,7 +378,7 @@
 </ul>
 </section>
 <section id="application-of-spawn-and-sync-framework">
-<h3>(18) Application of Spawn and Sync Framework<a class="headerlink" href="#application-of-spawn-and-sync-framework" title="Permalink to this heading"></a></h3>
+<h3>(18) Application of Spawn and Sync Framework<a class="headerlink" href="#application-of-spawn-and-sync-framework" title="Link to this heading"></a></h3>
 <p>The good thing of spawn-sync is that we can almost do exactly the same thing for a sequential model or a work-span model.</p>
 <ul class="simple">
 <li><p>for the work, we just count spawns and syncs as 1 so that it will be the sames as analyzing a sequential work</p></li>
@@ -377,7 +386,7 @@
 </ul>
 </section>
 <section id="work-optimality-low-span">
-<h3>(19) Work-Optimality Low-Span<a class="headerlink" href="#work-optimality-low-span" title="Permalink to this heading"></a></h3>
+<h3>(19) Work-Optimality Low-Span<a class="headerlink" href="#work-optimality-low-span" title="Link to this heading"></a></h3>
 <p>As a parallel algorithm designer, one of the goals is to achieve “Work-Optimality Low-Span”, this means that we have,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">W</span><span class="s1">&#39;(n)</span>
 </pre></div>
@@ -389,7 +398,7 @@
 <p>This is motivated because <code class="docutils literal notranslate"><span class="pre">W/D</span> <span class="pre">=</span> <span class="pre">O(n/log^k(n))</span></code> which grows with n and close to linearly</p>
 </section>
 <section id="concurrency-primitive-2-parfor">
-<h3>(20) Concurrency Primitive 2: parfor<a class="headerlink" href="#concurrency-primitive-2-parfor" title="Permalink to this heading"></a></h3>
+<h3>(20) Concurrency Primitive 2: parfor<a class="headerlink" href="#concurrency-primitive-2-parfor" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">parfor</span></code> before a loop means a for loop with iterations that can be executed without dependencies. A <code class="docutils literal notranslate"><span class="pre">parfor</span></code> will create a implicit sync that will join after the loop.</p>
 <ul class="simple">
 <li><p>Work: O(n)</p></li>
@@ -398,7 +407,7 @@
 <p>In fact the <code class="docutils literal notranslate"><span class="pre">parfor</span></code> is either implemented linearly or logarithmic and we should assume <code class="docutils literal notranslate"><span class="pre">parfor</span></code> uses logarithmic implementation from now on.</p>
 </section>
 <section id="data-race">
-<h3>(21) Data Race<a class="headerlink" href="#data-race" title="Permalink to this heading"></a></h3>
+<h3>(21) Data Race<a class="headerlink" href="#data-race" title="Link to this heading"></a></h3>
 <p>Data race means at least one read and at least one write may happen at the same memory location at the same time.</p>
 </section>
 </section>

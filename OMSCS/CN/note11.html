@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -116,6 +124,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -154,11 +163,11 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-11-introduction-of-sdn-and-sdn-architecture">
-<h1>Computer Network 11 | Introduction of SDN and SDN Architecture<a class="headerlink" href="#computer-network-11-introduction-of-sdn-and-sdn-architecture" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 11 | Introduction of SDN and SDN Architecture<a class="headerlink" href="#computer-network-11-introduction-of-sdn-and-sdn-architecture" title="Link to this heading"></a></h1>
 <section id="introduction-of-sdn">
-<h2>1. Introduction of SDN<a class="headerlink" href="#introduction-of-sdn" title="Permalink to this heading"></a></h2>
+<h2>1. Introduction of SDN<a class="headerlink" href="#introduction-of-sdn" title="Link to this heading"></a></h2>
 <section id="difficulties-of-managing-computer-networks">
-<h3>(1) Difficulties of Managing Computer Networks<a class="headerlink" href="#difficulties-of-managing-computer-networks" title="Permalink to this heading"></a></h3>
+<h3>(1) Difficulties of Managing Computer Networks<a class="headerlink" href="#difficulties-of-managing-computer-networks" title="Link to this heading"></a></h3>
 <p>In practice, it’s very difficult to manage a computer network because of the following two reasons,</p>
 <ul class="simple">
 <li><p><strong>Diversity of Equipment</strong>: computer networks have a large range of equipments and these equipments require to operate at a level of individual protocols, mechanisms and configuration interfaces, making the network difficult to manage. The common equipments include,</p>
@@ -179,17 +188,17 @@
 </ul>
 </section>
 <section id="software-defined-networking-sdn">
-<h3>(2) Software Defined Networking (SDN)<a class="headerlink" href="#software-defined-networking-sdn" title="Permalink to this heading"></a></h3>
+<h3>(2) Software Defined Networking (SDN)<a class="headerlink" href="#software-defined-networking-sdn" title="Link to this heading"></a></h3>
 <p>Because of these difficulties of managing the network, SDN was developed as part of the process to make computer networks more programmable. The basic idea of SDN is to seperate the tasks into <strong>control plane</strong> and <strong>data plane</strong> so the the network become modular and manageable.</p>
 </section>
 <section id="history-of-sdn-1-active-networks-mid-1990s-early-2000s">
-<h3>(3) History of SDN 1: Active Networks (mid 1990s ~ early 2000s)<a class="headerlink" href="#history-of-sdn-1-active-networks-mid-1990s-early-2000s" title="Permalink to this heading"></a></h3>
+<h3>(3) History of SDN 1: Active Networks (mid 1990s ~ early 2000s)<a class="headerlink" href="#history-of-sdn-1-active-networks-mid-1990s-early-2000s" title="Link to this heading"></a></h3>
 <p>In early 1990s, the networking approach was primarily via IP or ATM (we mentioned it when we talked about knockout scheme).</p>
 <p>The network took off and researchers were eager to test out new ideas to improve network efficiency. However, this process was bottlenecked by standardization of new protocols of organization Internet Engineering Task Force (IETF).</p>
 <p>Therefore, this lead to the growth of activate network which aimed at opening up network control. It envisioned <strong>APIs</strong> that exposed the network nodes and it supported customization of functionalities for flows of packets.</p>
 </section>
 <section id="two-active-network-models">
-<h3>(4) Two Active Network Models<a class="headerlink" href="#two-active-network-models" title="Permalink to this heading"></a></h3>
+<h3>(4) Two Active Network Models<a class="headerlink" href="#two-active-network-models" title="Link to this heading"></a></h3>
 <p>There are two main types of programming models in activate networking, include,</p>
 <ul class="simple">
 <li><p>Capsule model: each capsulate contains both the data and a set of instructions for processing the data. The capsules are processed by a sequence of Capsule routers.</p></li>
@@ -203,7 +212,7 @@
 </ul>
 </section>
 <section id="reasons-for-active-networking">
-<h3>(5) Reasons for Active Networking<a class="headerlink" href="#reasons-for-active-networking" title="Permalink to this heading"></a></h3>
+<h3>(5) Reasons for Active Networking<a class="headerlink" href="#reasons-for-active-networking" title="Link to this heading"></a></h3>
 <p>There are several technological incentives that lead to the active networks,</p>
 <ul class="simple">
 <li><p>Reduction in computation cost</p></li>
@@ -220,7 +229,7 @@
 </ul>
 </section>
 <section id="active-network-s-contributions-to-sdn">
-<h3>(6) Active Network’s Contributions to SDN<a class="headerlink" href="#active-network-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<h3>(6) Active Network’s Contributions to SDN<a class="headerlink" href="#active-network-s-contributions-to-sdn" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Programmable functions in the network to lower the barrier to innovation.</p></li>
 <li><p>Network virtualization, and the ability to demultiplex to software programs based on packet headers.</p></li>
@@ -228,12 +237,12 @@
 </ul>
 </section>
 <section id="history-of-sdn-2-control-and-data-plane-separation-2001-2007">
-<h3>(7) History of SDN 2: Control and Data Plane Separation (2001 ~ 2007)<a class="headerlink" href="#history-of-sdn-2-control-and-data-plane-separation-2001-2007" title="Permalink to this heading"></a></h3>
+<h3>(7) History of SDN 2: Control and Data Plane Separation (2001 ~ 2007)<a class="headerlink" href="#history-of-sdn-2-control-and-data-plane-separation-2001-2007" title="Link to this heading"></a></h3>
 <p>Because there was a steady increase in traffic volumes during this period of time, the network reliability, predictability and performance became more important.</p>
 <p>Therefore, network providers were looking for better network-management functions and researchers identified the challenge in network management happened because of a tight integrate of control plane and data plane in switches. Once this was identified, efforts to separate the these two planes began.</p>
 </section>
 <section id="reasons-for-seperation">
-<h3>(8) Reasons for Seperation<a class="headerlink" href="#reasons-for-seperation" title="Permalink to this heading"></a></h3>
+<h3>(8) Reasons for Seperation<a class="headerlink" href="#reasons-for-seperation" title="Link to this heading"></a></h3>
 <p>There are several technological incentives that lead to the plane seperation,</p>
 <ul class="simple">
 <li><p>Higher link speeds in backbone networks requires direct packet forwarding implement by hardware</p></li>
@@ -261,7 +270,7 @@
 </ul>
 </section>
 <section id="control-and-data-plane-separation-s-contributions-to-sdn">
-<h3>(9) Control and Data Plane Separation’s Contributions to SDN<a class="headerlink" href="#control-and-data-plane-separation-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<h3>(9) Control and Data Plane Separation’s Contributions to SDN<a class="headerlink" href="#control-and-data-plane-separation-s-contributions-to-sdn" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Centralized control to data plane through API</p></li>
 <li><p>Distributed state management</p></li>
@@ -275,7 +284,7 @@
 </ul>
 </section>
 <section id="history-of-sdn-3-openflow-api-2007-2010">
-<h3>(10) History of SDN 3: OpenFlow API (2007 ~ 2010)<a class="headerlink" href="#history-of-sdn-3-openflow-api-2007-2010" title="Permalink to this heading"></a></h3>
+<h3>(10) History of SDN 3: OpenFlow API (2007 ~ 2010)<a class="headerlink" href="#history-of-sdn-3-openflow-api-2007-2010" title="Link to this heading"></a></h3>
 <p>OpenFlow is a network protocol developed with the purpose of increasing network scalability. It allows the server to tell the OpenFlow enabled switch where to send the packets.</p>
 <p>When a packet comes to an OpenFlow enabled switch, it will switch based on a table of packet-handling rules where each rule has,</p>
 <ul class="simple">
@@ -287,7 +296,7 @@
 <p>The packet-moving decisions are made based on the highest priority matching rule. This process under OpenFlow is centralized so that the network can be programmed independently of the individual switches.</p>
 </section>
 <section id="reasons-for-openflow">
-<h3>(11) Reasons for OpenFlow<a class="headerlink" href="#reasons-for-openflow" title="Permalink to this heading"></a></h3>
+<h3>(11) Reasons for OpenFlow<a class="headerlink" href="#reasons-for-openflow" title="Link to this heading"></a></h3>
 <p>There are several technological incentives that lead to the OpenFlow,</p>
 <ul class="simple">
 <li><p>With microchips, switches are programmable</p></li>
@@ -302,7 +311,7 @@
 </ul>
 </section>
 <section id="openflow-s-contributions-to-sdn">
-<h3>(12) OpenFlow’s Contributions to SDN<a class="headerlink" href="#openflow-s-contributions-to-sdn" title="Permalink to this heading"></a></h3>
+<h3>(12) OpenFlow’s Contributions to SDN<a class="headerlink" href="#openflow-s-contributions-to-sdn" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Generalize network devices and functions</p></li>
 <li><p>Transfer network to an operating system</p></li>
@@ -311,9 +320,9 @@
 </section>
 </section>
 <section id="sdn-architecture">
-<h2>2. SDN Architecture<a class="headerlink" href="#sdn-architecture" title="Permalink to this heading"></a></h2>
+<h2>2. SDN Architecture<a class="headerlink" href="#sdn-architecture" title="Link to this heading"></a></h2>
 <section id="components-of-sdn">
-<h3>(1) Components of SDN<a class="headerlink" href="#components-of-sdn" title="Permalink to this heading"></a></h3>
+<h3>(1) Components of SDN<a class="headerlink" href="#components-of-sdn" title="Link to this heading"></a></h3>
 <p>The data plane of an SDN contains infrastructures which is mainly SDN controlled switches. The control plane include the SDN controller and other network control applications.</p>
 <ul class="simple">
 <li><p>Infra layer: SDN controlled switches</p></li>
@@ -334,7 +343,7 @@
 <p><img alt="" src="https://i.imgur.com/GfGUjtS.png" /></p>
 </section>
 <section id="sdn-architecture-features">
-<h3>(2) SDN Architecture Features<a class="headerlink" href="#sdn-architecture-features" title="Permalink to this heading"></a></h3>
+<h3>(2) SDN Architecture Features<a class="headerlink" href="#sdn-architecture-features" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Flow-based forwarding</p></li>
 </ul>
@@ -353,7 +362,7 @@
 <p>Network control applications used to control the network are programmable.</p>
 </section>
 <section id="sdn-controller-architecture">
-<h3>(3) SDN Controller Architecture<a class="headerlink" href="#sdn-controller-architecture" title="Permalink to this heading"></a></h3>
+<h3>(3) SDN Controller Architecture<a class="headerlink" href="#sdn-controller-architecture" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Communication Layer</p></li>
 </ul>

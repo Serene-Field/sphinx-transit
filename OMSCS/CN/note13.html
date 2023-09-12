@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -124,6 +132,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -162,29 +171,29 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-13-advanced-sdn-topics-onos-data-plane-programming-p4-sdx">
-<h1>Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX<a class="headerlink" href="#computer-network-13-advanced-sdn-topics-onos-data-plane-programming-p4-sdx" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 13 | Advanced SDN Topics, ONOS, Data Plane Programming, P4, SDX<a class="headerlink" href="#computer-network-13-advanced-sdn-topics-onos-data-plane-programming-p4-sdx" title="Link to this heading"></a></h1>
 <section id="advanced-sdn-topics">
-<h2>1. Advanced SDN Topics<a class="headerlink" href="#advanced-sdn-topics" title="Permalink to this heading"></a></h2>
+<h2>1. Advanced SDN Topics<a class="headerlink" href="#advanced-sdn-topics" title="Link to this heading"></a></h2>
 <section id="recall-sdn-motivation">
-<h3>(1) Recall: SDN Motivation<a class="headerlink" href="#recall-sdn-motivation" title="Permalink to this heading"></a></h3>
+<h3>(1) Recall: SDN Motivation<a class="headerlink" href="#recall-sdn-motivation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Handle the ever growing complexity and dynamic nature of networks</p></li>
 <li><p>Tightly coupled architecture of control plane and data plane</p></li>
 </ul>
 </section>
 <section id="recall-software-defined-networking-sdn">
-<h3>(2) Recall: Software Defined Networking (SDN)<a class="headerlink" href="#recall-software-defined-networking-sdn" title="Permalink to this heading"></a></h3>
+<h3>(2) Recall: Software Defined Networking (SDN)<a class="headerlink" href="#recall-software-defined-networking-sdn" title="Link to this heading"></a></h3>
 <p>This networking paradigm is an attempt to overcome limitations of the legacy IP networking
 paradigm. It starts by separating out the control logic (in the control plane) from the data plane.</p>
 </section>
 <section id="recall-openflow">
-<h3>(3) Recall: OpenFlow<a class="headerlink" href="#recall-openflow" title="Permalink to this heading"></a></h3>
+<h3>(3) Recall: OpenFlow<a class="headerlink" href="#recall-openflow" title="Link to this heading"></a></h3>
 <p>The separation of control and data plane is achieved by using a programming interface (API) between the SDN controller and the switches. An example of such an API is <code class="docutils literal notranslate"><span class="pre">OpenFlow</span></code>.</p>
 <p>An OpenFlow switch can be instructed by the controller to behave like a firewall, switch,
 router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </section>
 <section id="three-planes-of-network-functionality">
-<h3>(4) Three Planes of Network Functionality<a class="headerlink" href="#three-planes-of-network-functionality" title="Permalink to this heading"></a></h3>
+<h3>(4) Three Planes of Network Functionality<a class="headerlink" href="#three-planes-of-network-functionality" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Data plane: These are functions and processes that forward data in the form of packets or frames.</p></li>
 <li><p>Control plane: These refer to functions and processes that determine which path to use by using protocols to populate forwarding tables of data plane elements.</p></li>
@@ -192,7 +201,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </ul>
 </section>
 <section id="sdn-advantages">
-<h3>(5) SDN Advantages<a class="headerlink" href="#sdn-advantages" title="Permalink to this heading"></a></h3>
+<h3>(5) SDN Advantages<a class="headerlink" href="#sdn-advantages" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Shared abstractions: with SDN, the middlebox services (or network functionalities) can be programmed easily with the abstractions provided by the control platform</p></li>
 <li><p>Consistency: all network applications have the same global network information view, leading to consistent policy decisions</p></li>
@@ -201,7 +210,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </ul>
 </section>
 <section id="control-plane-functions">
-<h3>(6) Control Plane Functions<a class="headerlink" href="#control-plane-functions" title="Permalink to this heading"></a></h3>
+<h3>(6) Control Plane Functions<a class="headerlink" href="#control-plane-functions" title="Link to this heading"></a></h3>
 <p>Compared with conventional network, the control plane is responsible for,</p>
 <ul class="simple">
 <li><p>MAC learning</p></li>
@@ -211,7 +220,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </ul>
 </section>
 <section id="sdn-landscape">
-<h3>(7) SDN Landscape<a class="headerlink" href="#sdn-landscape" title="Permalink to this heading"></a></h3>
+<h3>(7) SDN Landscape<a class="headerlink" href="#sdn-landscape" title="Link to this heading"></a></h3>
 <p>The landscape of the SDN architecture can be decomposed into layers as shown in the figure below. The figure presents three perspectives of the SDN landscape,</p>
 <ul class="simple">
 <li><p>(a) plane-oriented view</p></li>
@@ -221,7 +230,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 <p><img alt="" src="https://i.imgur.com/R6ey4fL.png" /></p>
 </section>
 <section id="recall-sdn-archirecture-overview">
-<h3>(8) Recall: SDN Archirecture Overview<a class="headerlink" href="#recall-sdn-archirecture-overview" title="Permalink to this heading"></a></h3>
+<h3>(8) Recall: SDN Archirecture Overview<a class="headerlink" href="#recall-sdn-archirecture-overview" title="Link to this heading"></a></h3>
 <p>As we have discussed, SDN has the following structure,</p>
 <ul class="simple">
 <li><p>Infrastructure: routers, switches and other middlebox hardware</p></li>
@@ -236,7 +245,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 <p><img alt="" src="https://i.imgur.com/ZTjuFQm.png" /></p>
 </section>
 <section id="sdn-infrastructure-layer">
-<h3>(9) SDN Infrastructure Layer<a class="headerlink" href="#sdn-infrastructure-layer" title="Permalink to this heading"></a></h3>
+<h3>(9) SDN Infrastructure Layer<a class="headerlink" href="#sdn-infrastructure-layer" title="Link to this heading"></a></h3>
 <p>Let’s focus more on the infra layer. As we have discussed, the infra layer composes of networking equipment like routers, switches and appliance hardware.</p>
 <p>In the SDN architecture, a data plane device is a hardware or software entity that forwards packets, while a controller is a software stack running on commodity hardware.</p>
 <p>A model derived from <code class="docutils literal notranslate"><span class="pre">OpenFlow</span></code> is currently the most widely accepted design of SDN data plane devices. It is based on a pipeline of flow tables where each entry of a flow table has three parts,</p>
@@ -257,7 +266,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 <p>We have already seen these actions in the SDN Fireward project.</p>
 </section>
 <section id="flow-info-sources-from-openflow-to-nos">
-<h3>(10) Flow Info Sources from OpenFlow to NOS<a class="headerlink" href="#flow-info-sources-from-openflow-to-nos" title="Permalink to this heading"></a></h3>
+<h3>(10) Flow Info Sources from OpenFlow to NOS<a class="headerlink" href="#flow-info-sources-from-openflow-to-nos" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Event-based messages: sent by forwarding devices to controller when there is a link or port change</p></li>
 <li><p>Flow statistics: generated by forwarding devices and collected by controller</p></li>
@@ -265,7 +274,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </ul>
 </section>
 <section id="centralized-vs-distributed-sdn-controllers">
-<h3>(11) Centralized vs Distributed SDN Controllers<a class="headerlink" href="#centralized-vs-distributed-sdn-controllers" title="Permalink to this heading"></a></h3>
+<h3>(11) Centralized vs Distributed SDN Controllers<a class="headerlink" href="#centralized-vs-distributed-sdn-controllers" title="Link to this heading"></a></h3>
 <p>In <strong>centrialized SDN controller</strong> architecture, we typically see a single entity that manages all forwarding devices in the network, which is a single point of failure and may have scaling issues. Also, a single controller may not be enough to handle a large number of data plane elements.</p>
 <p>Some examples of Centrialized SDN controllers are,</p>
 <ul class="simple">
@@ -287,7 +296,7 @@ router, or even perform other roles like load balancer, traffic shaper, etc.</p>
 </ul>
 </section>
 <section id="sdn-controller-example-open-nos-onos">
-<h3>(12) SDN Controller Example: Open NOS (ONOS)<a class="headerlink" href="#sdn-controller-example-open-nos-onos" title="Permalink to this heading"></a></h3>
+<h3>(12) SDN Controller Example: Open NOS (ONOS)<a class="headerlink" href="#sdn-controller-example-open-nos-onos" title="Link to this heading"></a></h3>
 <p>ONOS (Open Networking Operating System) is a distributed SDN control platform. It aims to provide a global view of the network to the applications, scale-out performance and fault tolerance. The prototype was built based on <code class="docutils literal notranslate"><span class="pre">Floodlight</span></code>, an open-source single-instance SDN controller. The figure belows shows a layered view of ONOS,</p>
 <p><img alt="" src="https://i.imgur.com/FhRxPOs.png" /></p>
 <p>And ONOS contains the components in the figure shown below.</p>
@@ -300,9 +309,9 @@ switches are programmed.</p>
 </section>
 </section>
 <section id="programming-the-data-plane">
-<h2>2. Programming the Data Plane<a class="headerlink" href="#programming-the-data-plane" title="Permalink to this heading"></a></h2>
+<h2>2. Programming the Data Plane<a class="headerlink" href="#programming-the-data-plane" title="Link to this heading"></a></h2>
 <section id="motivation-for-data-plane-programming">
-<h3>(1) Motivation for Data Plane Programming<a class="headerlink" href="#motivation-for-data-plane-programming" title="Permalink to this heading"></a></h3>
+<h3>(1) Motivation for Data Plane Programming<a class="headerlink" href="#motivation-for-data-plane-programming" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Reconfigurability: The way parsing and processing of packets takes place in the switches should be modifiable by the controller.</p></li>
 <li><p>Protocol independence: To enable the switches to be independent of any particular protocol, the controller defines a packet parser and a set of tables mapping matches and their actions.</p></li>
@@ -310,11 +319,11 @@ switches are programmed.</p>
 </ul>
 </section>
 <section id="programming-protocol-independent-packet-processors-p4">
-<h3>(2) Programming Protocol-independent Packet Processors (P4)<a class="headerlink" href="#programming-protocol-independent-packet-processors-p4" title="Permalink to this heading"></a></h3>
+<h3>(2) Programming Protocol-independent Packet Processors (P4)<a class="headerlink" href="#programming-protocol-independent-packet-processors-p4" title="Link to this heading"></a></h3>
 <p>P4 (Programming Protocol-independent Packet Processors) is a high-level programming language to configure switches which works in conjunction with SDN control protocols. The popular vendor-agnostic OpenFlow interface enables the control plane to manage devices from different vendors. Thus, to manage the demand for increasing number of header fields, a need arises for an extensible, flexible approach to parse packets and match header fields.</p>
 </section>
 <section id="p4-forwarding-model">
-<h3>(3) P4 Forwarding Model<a class="headerlink" href="#p4-forwarding-model" title="Permalink to this heading"></a></h3>
+<h3>(3) P4 Forwarding Model<a class="headerlink" href="#p4-forwarding-model" title="Link to this heading"></a></h3>
 <p>Switches with P4 use a programmable <strong>parser</strong> and a set of <strong>match action tables</strong> to forward packets.</p>
 <p>P4 model also allows <strong>generalization</strong> of packet processing across various forwarding devices like routers and load balancers. It also uses multiple technologies such as fixed function switches, NPUs, etc. This generalization allows the design of a common language to write packet processing programs that are independent of the underlying devices.</p>
 <p>There are two main operations in a P4 forwarding model,</p>
@@ -326,9 +335,9 @@ switches are programmed.</p>
 </section>
 </section>
 <section id="sdn-applications">
-<h2>3. SDN Applications<a class="headerlink" href="#sdn-applications" title="Permalink to this heading"></a></h2>
+<h2>3. SDN Applications<a class="headerlink" href="#sdn-applications" title="Link to this heading"></a></h2>
 <section id="types-of-sdn-application">
-<h3>(1) Types of SDN Application<a class="headerlink" href="#types-of-sdn-application" title="Permalink to this heading"></a></h3>
+<h3>(1) Types of SDN Application<a class="headerlink" href="#types-of-sdn-application" title="Link to this heading"></a></h3>
 <p>There are many types of SDN applications include,</p>
 <ul class="simple">
 <li><p>Traffic Engineering: for minimize power consumption, judiciously use network resources, perform load balancing, etc.</p>
@@ -369,7 +378,7 @@ switches are programmed.</p>
 </ul>
 </section>
 <section id="software-defined-internet-exchange-sdx">
-<h3>(2) Software Defined Internet Exchange (SDX)<a class="headerlink" href="#software-defined-internet-exchange-sdx" title="Permalink to this heading"></a></h3>
+<h3>(2) Software Defined Internet Exchange (SDX)<a class="headerlink" href="#software-defined-internet-exchange-sdx" title="Link to this heading"></a></h3>
 <p>In a previous topic, we talked about the Internet Exchange Points (IXPs). In this topic we are looking at how the SDN technology could be applied to improve the operation of an IXP.</p>
 <p>Let’s recall the two limitations of BGP for IXPs,</p>
 <ul class="simple">
@@ -385,7 +394,7 @@ switches are programmed.</p>
 </ul>
 </section>
 <section id="sdx-architecture">
-<h3>(3) SDX Architecture<a class="headerlink" href="#sdx-architecture" title="Permalink to this heading"></a></h3>
+<h3>(3) SDX Architecture<a class="headerlink" href="#sdx-architecture" title="Link to this heading"></a></h3>
 <p>In a traditional IXP the participant ASes connect their BGP-speaking border router to a shared layer-two network and a BGP route server (RS).</p>
 <p>In the SDX architecture, each AS the illusion of its own <strong>virtual SDN switch</strong> that connects its border router to every other participant AS.</p>
 <ul class="simple">
@@ -395,7 +404,7 @@ switches are programmed.</p>
 <p>To write policies, SDX uses the <code class="docutils literal notranslate"><span class="pre">Pyretic</span></code> language to match header fields of the packets and to express actions on the packets.</p>
 </section>
 <section id="sdx-example">
-<h3>(4) SDX Example<a class="headerlink" href="#sdx-example" title="Permalink to this heading"></a></h3>
+<h3>(4) SDX Example<a class="headerlink" href="#sdx-example" title="Link to this heading"></a></h3>
 <p>Let’s suppose we have three ASes <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">C</span></code>. Each of them has its own virtual switch connecting to the other ASes’ virtual switches.</p>
 <p>Suppose AS <code class="docutils literal notranslate"><span class="pre">A</span></code> has an outbound policy as,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="n">dstport</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">fwd</span><span class="p">(</span><span class="n">B</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">match</span><span class="p">(</span><span class="n">dstport</span><span class="o">=</span><span class="mi">443</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">fwd</span><span class="p">(</span><span class="n">C</span><span class="p">))</span>
@@ -409,7 +418,7 @@ switches are programmed.</p>
 <p><img alt="" src="https://i.imgur.com/9qxvMap.png" /></p>
 </section>
 <section id="sdx-applications">
-<h3>(5) SDX Applications<a class="headerlink" href="#sdx-applications" title="Permalink to this heading"></a></h3>
+<h3>(5) SDX Applications<a class="headerlink" href="#sdx-applications" title="Link to this heading"></a></h3>
 <p>SDX can be useful in various applicaions,</p>
 <ul class="simple">
 <li><p>Application specific peering</p></li>

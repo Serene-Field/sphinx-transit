@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -106,6 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -144,9 +153,9 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-12-sdn-firewall-project">
-<h1>Computer Network 12 | SDN Firewall Project<a class="headerlink" href="#computer-network-12-sdn-firewall-project" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 12 | SDN Firewall Project<a class="headerlink" href="#computer-network-12-sdn-firewall-project" title="Link to this heading"></a></h1>
 <section id="submission-and-rubic">
-<h2>1. Submission and Rubic<a class="headerlink" href="#submission-and-rubic" title="Permalink to this heading"></a></h2>
+<h2>1. Submission and Rubic<a class="headerlink" href="#submission-and-rubic" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">packetcapture.pcap</span></code> (15)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> (5)</p></li>
@@ -155,7 +164,7 @@
 </ul>
 </section>
 <section id="recall-setup-vm">
-<h2>2. Recall: Setup VM<a class="headerlink" href="#recall-setup-vm" title="Permalink to this heading"></a></h2>
+<h2>2. Recall: Setup VM<a class="headerlink" href="#recall-setup-vm" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">ssh</span></code> for IDE connection</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">git</span></code> for code version control and sync to github</p></li>
@@ -169,7 +178,7 @@
 </div>
 </section>
 <section id="wireshark">
-<h2>3. Wireshark<a class="headerlink" href="#wireshark" title="Permalink to this heading"></a></h2>
+<h2>3. Wireshark<a class="headerlink" href="#wireshark" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Start a mininet prompt by topo file <code class="docutils literal notranslate"><span class="pre">ws-topology.py</span></code>,</p></li>
 </ul>
@@ -234,7 +243,7 @@ $<span class="w"> </span>cp<span class="w"> </span>/tmp/packetcapture.pcap<span 
 <p>Then File -&gt; Open, choose the <code class="docutils literal notranslate"><span class="pre">packetcapture.pcap</span></code> we have generated.</p>
 </section>
 <section id="firewall-config-file-review">
-<h2>4. Firewall Config File Review<a class="headerlink" href="#firewall-config-file-review" title="Permalink to this heading"></a></h2>
+<h2>4. Firewall Config File Review<a class="headerlink" href="#firewall-config-file-review" title="Link to this heading"></a></h2>
 <p>In this project, the firewall configuration rules are stated in the <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> file. The file is like a <code class="docutils literal notranslate"><span class="pre">csv</span></code> file format with each line representing a firewall rule. There are 9 fields in a line of rule,</p>
 <ul class="simple">
 <li><p>RuleNumber: has to be unique numbers and it is not validated in the program</p></li>
@@ -273,7 +282,7 @@ $<span class="w"> </span>cp<span class="w"> </span>/tmp/packetcapture.pcap<span 
 <p>The second rule overrides the initial rule to allow <code class="docutils literal notranslate"><span class="pre">hq1</span></code> (IP Address 10.0.0.1/32) to access a web server running on <code class="docutils literal notranslate"><span class="pre">us5</span></code> (IP Address 10.0.1.125/32). The web server is running on the TCP IP Protocol (6) and uses TCP Port 80.</p>
 </section>
 <section id="basic-pox-api">
-<h2>5. Basic POX API<a class="headerlink" href="#basic-pox-api" title="Permalink to this heading"></a></h2>
+<h2>5. Basic POX API<a class="headerlink" href="#basic-pox-api" title="Link to this heading"></a></h2>
 <p>Now, let’s see how we can implement the firewall with file <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code>. The code is based on OpenFlow and POX (which is a software for OpenFlow control). As it is provided, we must implement code that does the following steps,</p>
 <ul class="simple">
 <li><p>Create a OpenFlow Flow Modification object <code class="docutils literal notranslate"><span class="pre">of.ofp_flow_mod()</span></code></p></li>
@@ -343,14 +352,14 @@ $<span class="w"> </span>cp<span class="w"> </span>/tmp/packetcapture.pcap<span 
 <p>Note that in this project, we need to assume all traffic is IPv4 and it’s acceptable to hardcode <code class="docutils literal notranslate"><span class="pre">0x0800</span></code> for <code class="docutils literal notranslate"><span class="pre">dl_type</span></code> as we have mentioned above.</p>
 </section>
 <section id="access-control">
-<h2>6. Access Control<a class="headerlink" href="#access-control" title="Permalink to this heading"></a></h2>
+<h2>6. Access Control<a class="headerlink" href="#access-control" title="Link to this heading"></a></h2>
 <p>In the POX modification object <code class="docutils literal notranslate"><span class="pre">ofp_flow_mod()</span></code>, there’s another attribute defined as <code class="docutils literal notranslate"><span class="pre">priority</span></code>. It is initialized as value <code class="docutils literal notranslate"><span class="pre">OFP_DEFAULT_PRIORITY</span></code>.</p>
 <p>In this case, there should be two priorities – one for <code class="docutils literal notranslate"><span class="pre">ALLOW</span></code> and one for <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code>. Separate them sufficiently
 to override any exact matching behavior that the POX controller implements).</p>
 <p>It is suggested the <code class="docutils literal notranslate"><span class="pre">BLOCK</span></code> priority be 0 or 1 and the <code class="docutils literal notranslate"><span class="pre">ALLOW</span></code> priority above 10000.</p>
 </section>
 <section id="openflow-actions">
-<h2>7. OpenFlow Actions<a class="headerlink" href="#openflow-actions" title="Permalink to this heading"></a></h2>
+<h2>7. OpenFlow Actions<a class="headerlink" href="#openflow-actions" title="Link to this heading"></a></h2>
 <p>There’s another attribute in OpenFlow modification object <code class="docutils literal notranslate"><span class="pre">ofp_flow_mod.actions</span></code>. With this, we can define what we want to do for a port after it is matched to a rule.</p>
 <p>To make an action, we have to append an <code class="docutils literal notranslate"><span class="pre">ofp_action_output</span></code> object to the <code class="docutils literal notranslate"><span class="pre">actions</span></code> list. The <code class="docutils literal notranslate"><span class="pre">ofp_action_output</span></code> object has the following structure,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ofp_action_output</span> <span class="p">(</span><span class="nb">object</span><span class="p">):</span> 
@@ -373,7 +382,7 @@ following virtual ports expressed as constants,</p>
 </div>
 </section>
 <section id="sdn-firewall-py-test">
-<h2>8. <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> Test<a class="headerlink" href="#sdn-firewall-py-test" title="Permalink to this heading"></a></h2>
+<h2>8. <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> Test<a class="headerlink" href="#sdn-firewall-py-test" title="Link to this heading"></a></h2>
 <p>At project root directory, copy <code class="docutils literal notranslate"><span class="pre">sdn-firewall.py</span></code> to <code class="docutils literal notranslate"><span class="pre">test-suite/extra</span></code>. Then go to <code class="docutils literal notranslate"><span class="pre">test-suite/extra</span></code>. Change all the files to executable.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cp<span class="w"> </span>sdn-firewall.py<span class="w"> </span>test-suite/extra/
 $<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>test-suite/extra/
@@ -388,7 +397,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 <p>A success test should show <code class="docutils literal notranslate"><span class="pre">Passed</span> <span class="pre">15</span> <span class="pre">/</span> <span class="pre">15</span></code>.</p>
 </section>
 <section id="firewall-rules">
-<h2>9. Firewall Rules<a class="headerlink" href="#firewall-rules" title="Permalink to this heading"></a></h2>
+<h2>9. Firewall Rules<a class="headerlink" href="#firewall-rules" title="Link to this heading"></a></h2>
 <p>As we discussed, we also need a CSV-format file <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> to create firewall policies. Here’s the tasks we have when creating this firewall.</p>
 <p>Note that for the specific IP address of each host, we can go to file <code class="docutils literal notranslate"><span class="pre">sdn-topology.py</span></code> to check them out.</p>
 <p>Also note that we should not use <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> to address for world due to the restrictions placed on the implementation by POX. Match arbitrary traffic from anywhere on the network with a <code class="docutils literal notranslate"><span class="pre">-</span></code> instead.</p>
@@ -434,7 +443,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 </ul>
 </section>
 <section id="configure-pol-tests">
-<h2>10. <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> Tests<a class="headerlink" href="#configure-pol-tests" title="Permalink to this heading"></a></h2>
+<h2>10. <code class="docutils literal notranslate"><span class="pre">configure.pol</span></code> Tests<a class="headerlink" href="#configure-pol-tests" title="Link to this heading"></a></h2>
 <p>First, clean up the minimap we created through,</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>./cleanup.sh
 </pre></div>
@@ -454,7 +463,7 @@ $<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span>
 <p>A success test should show <code class="docutils literal notranslate"><span class="pre">Passed</span> <span class="pre">100</span> <span class="pre">/</span> <span class="pre">100</span></code>.</p>
 </section>
 <section id="submission">
-<h2>11. Submission<a class="headerlink" href="#submission" title="Permalink to this heading"></a></h2>
+<h2>11. Submission<a class="headerlink" href="#submission" title="Link to this heading"></a></h2>
 <p>Go to the git root directory where you implement the code.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>zip<span class="w"> </span>gtusr_sdn.zip<span class="w"> </span>packetcapture.pcap<span class="w"> </span>configure.pol<span class="w"> </span>sdn-firewall.py
 </pre></div>

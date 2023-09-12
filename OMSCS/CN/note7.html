@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -106,6 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -144,10 +153,10 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-7-implement-mininet">
-<h1>Computer Network 7｜Implement MiniNet<a class="headerlink" href="#computer-network-7-implement-mininet" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 7｜Implement MiniNet<a class="headerlink" href="#computer-network-7-implement-mininet" title="Link to this heading"></a></h1>
 <p>The following instructions is based on MacOS with Apple silicon chip (M1/M2). The used VM software is VMware and Virtual Code Studio is required.</p>
 <section id="vm-setup">
-<h2>1. VM Setup<a class="headerlink" href="#vm-setup" title="Permalink to this heading"></a></h2>
+<h2>1. VM Setup<a class="headerlink" href="#vm-setup" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Register on VMware</p></li>
 <li><p>Download: VMware Fusion Player 13 – Personal Use (VMware Fusion 13.0.1 (for Intel-based and Apple silicon Macs) https://customerconnect.vmware.com/en/evalcenter?p=fusion-player-personal-13</p></li>
@@ -162,7 +171,7 @@
 </ul>
 </section>
 <section id="basic-test">
-<h2>2. Basic Test<a class="headerlink" href="#basic-test" title="Permalink to this heading"></a></h2>
+<h2>2. Basic Test<a class="headerlink" href="#basic-test" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Login to VM with the following information:</p>
 <ul>
@@ -187,7 +196,7 @@
 </div>
 </section>
 <section id="ide-setup">
-<h2>3. IDE Setup<a class="headerlink" href="#ide-setup" title="Permalink to this heading"></a></h2>
+<h2>3. IDE Setup<a class="headerlink" href="#ide-setup" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Open VSCode with Remote-SSH extension</p></li>
 <li><p>Go to VM terminal and check for the ip address. Check the IP address (<code class="docutils literal notranslate"><span class="pre">inet</span></code>) under <code class="docutils literal notranslate"><span class="pre">ens160</span></code>. For me, it is <code class="docutils literal notranslate"><span class="pre">192.168.80.129</span></code>.</p></li>
@@ -211,7 +220,7 @@ ens160:
 </ul>
 </section>
 <section id="mininet-introduction">
-<h2>4. Mininet Introduction<a class="headerlink" href="#mininet-introduction" title="Permalink to this heading"></a></h2>
+<h2>4. Mininet Introduction<a class="headerlink" href="#mininet-introduction" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Github Source: https://github.com/mininet/mininet</p></li>
 <li><p>Offical webpage: https://mininet.org/</p></li>
@@ -228,13 +237,13 @@ ens160:
 </ul>
 </section>
 <section id="useful-sources">
-<h2>5. Useful Sources<a class="headerlink" href="#useful-sources" title="Permalink to this heading"></a></h2>
+<h2>5. Useful Sources<a class="headerlink" href="#useful-sources" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Network topology visualizer for <code class="docutils literal notranslate"><span class="pre">complextopo.py</span></code> and <code class="docutils literal notranslate"><span class="pre">datacenter.py</span></code> (will discuss later): http://demo.spear.narmox.com/app/?apiurl=demo#!/mininet</p></li>
 </ul>
 </section>
 <section id="project-setup">
-<h2>6. Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this heading"></a></h2>
+<h2>6. Project Setup<a class="headerlink" href="#project-setup" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Make <code class="docutils literal notranslate"><span class="pre">Assignment</span></code> directory</p></li>
 </ul>
@@ -254,7 +263,7 @@ ens160:
 <p>Note: you can also setup git/github for your working directory before you start.</p>
 </section>
 <section id="part-2-modifications">
-<h2>7. Part 2 - Modifications<a class="headerlink" href="#part-2-modifications" title="Permalink to this heading"></a></h2>
+<h2>7. Part 2 - Modifications<a class="headerlink" href="#part-2-modifications" title="Link to this heading"></a></h2>
 <p>If you can successfully execute the program <code class="docutils literal notranslate"><span class="pre">topology.sh</span></code>, feel free to skip the following discussions.</p>
 <p>Because I downloaded the VM image through the first link and it is not perfect, we have to make some change when we are running Part 2.</p>
 <p>Inside the <code class="docutils literal notranslate"><span class="pre">SimulatingNetworks</span></code> folder, change the permission by,</p>
@@ -293,7 +302,7 @@ ens160:
 <p>After this, if we run <code class="docutils literal notranslate"><span class="pre">./topology.sh</span></code> again, it will pass without any further errors.</p>
 </section>
 <section id="part-2">
-<h2>8. Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading"></a></h2>
+<h2>8. Part 2<a class="headerlink" href="#part-2" title="Link to this heading"></a></h2>
 <p>After running <code class="docutils literal notranslate"><span class="pre">./topology.sh</span></code>, we generate the following two figures in the output folder,</p>
 <ul class="simple">
 <li><p>cwnd: shows a TCP cubic pattern</p></li>
@@ -350,7 +359,7 @@ rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="
 <p>Also, do not specify ports (use the default ones) in this task.</p>
 </section>
 <section id="part-3">
-<h2>9. Part 3<a class="headerlink" href="#part-3" title="Permalink to this heading"></a></h2>
+<h2>9. Part 3<a class="headerlink" href="#part-3" title="Link to this heading"></a></h2>
 <p>Now that we have implemented <code class="docutils literal notranslate"><span class="pre">complextopo.py</span></code> so it’s the right time to test it out. We run <code class="docutils literal notranslate"><span class="pre">cli.py</span></code> to start the simulation.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ./cli.py
 </pre></div>
@@ -397,7 +406,7 @@ rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="
 <p>Note that there can be <code class="docutils literal notranslate"><span class="pre">X</span></code> in the result meaning the one link is not pingable. If this happens, please rerun <code class="docutils literal notranslate"><span class="pre">pingall</span></code> to confirm.</p>
 </section>
 <section id="part-4">
-<h2>10. Part 4<a class="headerlink" href="#part-4" title="Permalink to this heading"></a></h2>
+<h2>10. Part 4<a class="headerlink" href="#part-4" title="Link to this heading"></a></h2>
 <p>In this part, we are going to implement a fan-in style data center. It has three layers of switch,</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">tls</span></code>: top-level switch</p></li>
@@ -431,7 +440,7 @@ rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="
 <p><img alt="" src="https://i.imgur.com/GyuJIaa.png" /></p>
 </section>
 <section id="submission">
-<h2>11. Submission<a class="headerlink" href="#submission" title="Permalink to this heading"></a></h2>
+<h2>11. Submission<a class="headerlink" href="#submission" title="Link to this heading"></a></h2>
 <p>To submit, use the following command to zip the file.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>zip<span class="w"> </span>-r<span class="w"> </span>&lt;gtid&gt;_sn.zip<span class="w"> </span>.<span class="w"> </span>-x<span class="w"> </span><span class="s1">&#39;.*&#39;</span><span class="w"> </span>-x<span class="w"> </span><span class="s1">&#39;__MACOSX&#39;</span><span class="w"> </span>
 </pre></div>

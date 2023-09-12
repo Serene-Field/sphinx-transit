@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -99,6 +107,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -137,9 +146,9 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-15-bgp-hijacking-project">
-<h1>Computer Network 15 ｜ BGP Hijacking Project<a class="headerlink" href="#computer-network-15-bgp-hijacking-project" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 15 ｜ BGP Hijacking Project<a class="headerlink" href="#computer-network-15-bgp-hijacking-project" title="Link to this heading"></a></h1>
 <section id="bgp-hijacking-demo">
-<h2>1. BGP Hijacking Demo<a class="headerlink" href="#bgp-hijacking-demo" title="Permalink to this heading"></a></h2>
+<h2>1. BGP Hijacking Demo<a class="headerlink" href="#bgp-hijacking-demo" title="Link to this heading"></a></h2>
 <p><img alt="" src="https://i.imgur.com/XOACdZk.png" /></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 $<span class="w"> </span>sudo<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>termcolor
@@ -188,7 +197,7 @@ Displayed  3 routes and 3 total paths
 </div>
 </section>
 <section id="code-architecture">
-<h2>2. Code Architecture<a class="headerlink" href="#code-architecture" title="Permalink to this heading"></a></h2>
+<h2>2. Code Architecture<a class="headerlink" href="#code-architecture" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Zebra</span></code> is a multi-server routing software which provides TCP/IP based routing protocols. <code class="docutils literal notranslate"><span class="pre">Zebra</span></code> has been decommissioned and <code class="docutils literal notranslate"><span class="pre">Quagga</span></code> is the latest fork</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bgpd</span></code> is a routing component that works with the Quagga routing engine.</p>
@@ -251,7 +260,7 @@ Displayed  3 routes and 3 total paths
 <p>The script kills the rogue AS by command <code class="docutils literal notranslate"><span class="pre">pkill</span> <span class="pre">-f</span> <span class="pre">--signal</span> <span class="pre">9</span> <span class="pre">...</span></code>.</p>
 </section>
 <section id="system-design">
-<h2>3. System Design<a class="headerlink" href="#system-design" title="Permalink to this heading"></a></h2>
+<h2>3. System Design<a class="headerlink" href="#system-design" title="Link to this heading"></a></h2>
 <p>In this project, we have to modify the BGP hijacking demo above to mock the following network.</p>
 <p><img alt="" src="https://i.imgur.com/YY9wH5o.png" /></p>
 <p>Here we have 6 ASes. AS5 is the webserver and AS6 should be the rouge AS that will perform BGP hijacking. All the ASes advertise single prefix,</p>
@@ -266,7 +275,7 @@ Displayed  3 routes and 3 total paths
 <p>To design the network, we should keep the neighbour <code class="docutils literal notranslate"><span class="pre">eth</span></code> ports under the same subnet so they can communicate. A helpful network graph <code class="docutils literal notranslate"><span class="pre">fig2_topo.pdf</span></code> should be created before the implementation so that we are able to align the edges.</p>
 </section>
 <section id="implementation">
-<h2>4. Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading"></a></h2>
+<h2>4. Implementation<a class="headerlink" href="#implementation" title="Link to this heading"></a></h2>
 <p>To complete this project, we have to modify the following files,</p>
 <ul class="simple">
 <li><p>config files under <code class="docutils literal notranslate"><span class="pre">conf/</span></code></p></li>

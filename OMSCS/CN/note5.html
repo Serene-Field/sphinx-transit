@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -61,6 +61,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Guitar/index.html">🎸  Level 1</a></li>
@@ -102,6 +110,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#high-performance-computing">💻  High Performance Computing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -140,9 +149,9 @@
            <div itemprop="articleBody">
              
   <section id="computer-network-5-distance-vector-implementation">
-<h1>Computer Network 5 | Distance Vector Implementation<a class="headerlink" href="#computer-network-5-distance-vector-implementation" title="Permalink to this heading"></a></h1>
+<h1>Computer Network 5 | Distance Vector Implementation<a class="headerlink" href="#computer-network-5-distance-vector-implementation" title="Link to this heading"></a></h1>
 <section id="project-documentation">
-<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Permalink to this heading"></a></h2>
+<h2>1. Project Documentation<a class="headerlink" href="#project-documentation" title="Link to this heading"></a></h2>
 <p>The current project is similar to the last one we ran.</p>
 <p><code class="docutils literal notranslate"><span class="pre">run_topo.py</span></code></p>
 <p>The simple driver that triggers the simulation and write the logs.</p>
@@ -194,7 +203,7 @@
 </ul>
 </section>
 <section id="assistant-file">
-<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Permalink to this heading"></a></h2>
+<h2>2. Assistant File<a class="headerlink" href="#assistant-file" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code></p>
 <p>This file can be used to simplify the testing process.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Makefile</span>
@@ -213,7 +222,7 @@ run:<span class="w"> </span>clean
 </div>
 </section>
 <section id="message-class">
-<h2>3. <code class="docutils literal notranslate"><span class="pre">Message</span></code> Class<a class="headerlink" href="#message-class" title="Permalink to this heading"></a></h2>
+<h2>3. <code class="docutils literal notranslate"><span class="pre">Message</span></code> Class<a class="headerlink" href="#message-class" title="Link to this heading"></a></h2>
 <p>We should define a <code class="docutils literal notranslate"><span class="pre">Message</span></code> class or other data types but it should have the following information.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: source node to forward from</p></li>
@@ -221,20 +230,20 @@ run:<span class="w"> </span>clean
 </ul>
 </section>
 <section id="distancevector-class">
-<h2>4. <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> Class<a class="headerlink" href="#distancevector-class" title="Permalink to this heading"></a></h2>
+<h2>4. <code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> Class<a class="headerlink" href="#distancevector-class" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">DistanceVector</span></code> is a given class based on class <code class="docutils literal notranslate"><span class="pre">Node</span></code> and it should add a mapping variable called <code class="docutils literal notranslate"><span class="pre">distVector</span></code> which keeps track of the distance vector information. it should be initialized with itself as the field and 0 cost as a value.</p>
 </section>
 <section id="send-initial-messages-function">
-<h2>5. <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> Function<a class="headerlink" href="#send-initial-messages-function" title="Permalink to this heading"></a></h2>
+<h2>5. <code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> Function<a class="headerlink" href="#send-initial-messages-function" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">send_initial_messages</span></code> is relatively simple. It is used to send the initial message to all the incoming links (say, neighboring routers) at the beginning. <code class="docutils literal notranslate"><span class="pre">Node.send_msg(Message,</span> <span class="pre">str)</span></code> function should be called and the implementation of this message queue is a FIFO data structure.</p>
 <p>Note that when passing the <code class="docutils literal notranslate"><span class="pre">distVector</span></code> in <code class="docutils literal notranslate"><span class="pre">Message</span></code>, make sure it is copyed with its current value so a future change won’t effect its value.</p>
 </section>
 <section id="log-distances-function">
-<h2>6. <code class="docutils literal notranslate"><span class="pre">log_distances</span></code> Function<a class="headerlink" href="#log-distances-function" title="Permalink to this heading"></a></h2>
+<h2>6. <code class="docutils literal notranslate"><span class="pre">log_distances</span></code> Function<a class="headerlink" href="#log-distances-function" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">log_distances</span></code> is used to output the current <code class="docutils literal notranslate"><span class="pre">distVector</span></code> in a easy-reading way. For example, it should have the pattern like <code class="docutils literal notranslate"><span class="pre">A:A0,B1,C2</span></code> based on <code class="docutils literal notranslate"><span class="pre">{A:</span> <span class="pre">0,</span> <span class="pre">B:</span> <span class="pre">1,</span> <span class="pre">C:</span> <span class="pre">2}</span></code> and its implementation should be very easy.</p>
 </section>
 <section id="process-bf-function">
-<h2>7. <code class="docutils literal notranslate"><span class="pre">process_BF</span></code> Function<a class="headerlink" href="#process-bf-function" title="Permalink to this heading"></a></h2>
+<h2>7. <code class="docutils literal notranslate"><span class="pre">process_BF</span></code> Function<a class="headerlink" href="#process-bf-function" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">process_BF</span></code> is actually a impletation of Bellman-Ford algorithm and it must accomplish the two tasks,</p>
 <ol class="arabic simple">
 <li><p>Process queued messages</p></li>

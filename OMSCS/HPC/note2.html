@@ -12,11 +12,11 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -60,6 +60,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#n4">🏯  N4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id1">🖥️　配信</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Jap/index.html#id2">🎶  音楽</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">French</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html">🇫🇷 Basic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a1">🇫🇷 A1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#a2">🇫🇷 A2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b1">🇫🇷 B1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../French/index.html#b2">🇫🇷 B2</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Guitar</span></p>
 <ul>
@@ -105,6 +113,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../index.html#information-security">💻  Information Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html#javascript-quick-notes">💻  JavaScript Quick Notes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Arts</span></p>
 <ul>
@@ -143,11 +152,11 @@
            <div itemprop="articleBody">
              
   <section id="high-performance-computing-2-algorithmic-time-energy-and-power">
-<h1>High Performance Computing 2 | Algorithmic Time: Energy and Power<a class="headerlink" href="#high-performance-computing-2-algorithmic-time-energy-and-power" title="Permalink to this heading"></a></h1>
+<h1>High Performance Computing 2 | Algorithmic Time: Energy and Power<a class="headerlink" href="#high-performance-computing-2-algorithmic-time-energy-and-power" title="Link to this heading"></a></h1>
 <section id="speed-and-time">
-<h2>1. Speed and Time<a class="headerlink" href="#speed-and-time" title="Permalink to this heading"></a></h2>
+<h2>1. Speed and Time<a class="headerlink" href="#speed-and-time" title="Link to this heading"></a></h2>
 <section id="speed-trend">
-<h3>(1) Speed Trend<a class="headerlink" href="#speed-trend" title="Permalink to this heading"></a></h3>
+<h3>(1) Speed Trend<a class="headerlink" href="#speed-trend" title="Link to this heading"></a></h3>
 <p>As a part of Danny Hillis’ thesis, let’s consider a processor that can execute about 100 billion operations per second (<code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">Giga</span> <span class="pre">ops/s</span></code>) in the best case and this is called the peak throughput today. Let’s also assume that this performance doubled in every 2 years and now let’s consider how fast a processor will be in 10 years.</p>
 <p>The answer is about 3 Tera ops/s. It can be calculated through,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">100</span> <span class="n">Giga</span> <span class="n">ops</span><span class="o">/</span><span class="n">s</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">^</span> <span class="p">(</span><span class="mi">10</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3200</span> <span class="n">Gops</span><span class="o">/</span><span class="n">s</span> <span class="o">=</span> <span class="mf">3.2</span> <span class="n">Tops</span><span class="o">/</span><span class="n">s</span>
@@ -155,7 +164,7 @@
 </div>
 </section>
 <section id="speed-limits">
-<h3>(2) Speed Limits<a class="headerlink" href="#speed-limits" title="Permalink to this heading"></a></h3>
+<h3>(2) Speed Limits<a class="headerlink" href="#speed-limits" title="Link to this heading"></a></h3>
 <p>And we should also think about the speed limits. Suppose we have a 2D mesh of physical processors which has many cores that firs on a physical die of a certain size of <code class="docutils literal notranslate"><span class="pre">l</span> <span class="pre">by</span> <span class="pre">l</span></code>.</p>
 <p>Also, in this mesh, each core is connected to its 8 nearest neighbours like the following plot and this means each processing unit can communite along its diagonal routes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="o">|</span>        <span class="o">|</span>       <span class="o">|</span>
@@ -196,7 +205,7 @@
 </div>
 </section>
 <section id="recall-machine-balance">
-<h3>(3) Recall: Machine Balance<a class="headerlink" href="#recall-machine-balance" title="Permalink to this heading"></a></h3>
+<h3>(3) Recall: Machine Balance<a class="headerlink" href="#recall-machine-balance" title="Link to this heading"></a></h3>
 <p>Let’s recall what we have discussed in the last lesson. We have,</p>
 <ul class="simple">
 <li><p>Computational Cost: <code class="docutils literal notranslate"><span class="pre">T_comp</span> <span class="pre">=</span> <span class="pre">τW</span></code></p></li>
@@ -210,15 +219,15 @@
 <p>And it has a unit of operations per word.</p>
 </section>
 <section id="computational-cost-and-transistor-density">
-<h3>(4) Computational Cost and Transistor Density<a class="headerlink" href="#computational-cost-and-transistor-density" title="Permalink to this heading"></a></h3>
+<h3>(4) Computational Cost and Transistor Density<a class="headerlink" href="#computational-cost-and-transistor-density" title="Link to this heading"></a></h3>
 <p>The cost of this computation τ is related to the transistor density, which is defined by the number of transistors that can fit in a given amount of space. In the last 40 years, the transistors that can be fitted in a given area has increased by a factor about a million. The performance of computation density doubles roughly every <code class="docutils literal notranslate"><span class="pre">1.9</span></code> years.</p>
 </section>
 <section id="transfer-cost-and-stream">
-<h3>(5) Transfer Cost and Stream<a class="headerlink" href="#transfer-cost-and-stream" title="Permalink to this heading"></a></h3>
+<h3>(5) Transfer Cost and Stream<a class="headerlink" href="#transfer-cost-and-stream" title="Link to this heading"></a></h3>
 <p>Similar to the transistor density, there’s also a benchmark called steam that measures the growth of transfer cost. Statistically, it shows that the <code class="docutils literal notranslate"><span class="pre">ɑ</span></code> has essentially doubled once every <code class="docutils literal notranslate"><span class="pre">2.9</span></code> years.</p>
 </section>
 <section id="machine-balance-doubling-time">
-<h3>(6) Machine Balance Doubling Time<a class="headerlink" href="#machine-balance-doubling-time" title="Permalink to this heading"></a></h3>
+<h3>(6) Machine Balance Doubling Time<a class="headerlink" href="#machine-balance-doubling-time" title="Link to this heading"></a></h3>
 <p>Now, let’s do some calculations based on the information we have. Suppose we have <code class="docutils literal notranslate"><span class="pre">τ</span></code> doubled in 1.9 years and <code class="docutils literal notranslate"><span class="pre">ɑ</span></code> doubled in 2.9 years. Then how many years do we need if we want to double the machine balance <code class="docutils literal notranslate"><span class="pre">B</span></code>?</p>
 <p>To solve this question, let’s first assume that we can get <code class="docutils literal notranslate"><span class="pre">B</span></code> doubled in <code class="docutils literal notranslate"><span class="pre">t</span></code> years. Then</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">τ2</span><span class="o">^</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mf">1.9</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">ɑ2</span><span class="o">^</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="mf">2.9</span><span class="p">))</span> <span class="o">=</span> <span class="mi">2</span><span class="n">B</span> <span class="o">=</span> <span class="mi">2</span><span class="n">τ</span><span class="o">/</span><span class="n">ɑ</span>
@@ -242,7 +251,7 @@
 </div>
 </section>
 <section id="machine-balance-principle">
-<h3>(7) Machine Balance Principle<a class="headerlink" href="#machine-balance-principle" title="Permalink to this heading"></a></h3>
+<h3>(7) Machine Balance Principle<a class="headerlink" href="#machine-balance-principle" title="Link to this heading"></a></h3>
 <p>In the case above, we can confirm that the rate of improvement in computation far outstrips the rate of improvement in communication. So for an algorithm, it may be better to trade off more computation with less communication.</p>
 <p>Suppose we have the following notations,</p>
 <ul class="simple">
@@ -320,7 +329,7 @@
 </div>
 </section>
 <section id="algorithm-goal-and-system-goal">
-<h3>(8) Algorithm Goal and System Goal<a class="headerlink" href="#algorithm-goal-and-system-goal" title="Permalink to this heading"></a></h3>
+<h3>(8) Algorithm Goal and System Goal<a class="headerlink" href="#algorithm-goal-and-system-goal" title="Link to this heading"></a></h3>
 <p>We can also write this inequation as follows,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">/</span><span class="n">Q</span> <span class="o">&gt;=</span> <span class="n">R_0</span><span class="o">/</span><span class="n">β_0</span> <span class="o">*</span> <span class="n">PL</span>
 </pre></div>
@@ -328,7 +337,7 @@
 <p>So this inequation indicates that on the algorithm side, we should make the left side <code class="docutils literal notranslate"><span class="pre">W/Q</span></code> <strong>as large as possible</strong> because the right side is subject to inevitable scaling trends that cause it to grow over time. On the system side, the goal is to try to keep <code class="docutils literal notranslate"><span class="pre">R_0/β_0</span> <span class="pre">*</span> <span class="pre">PL</span></code> as small as possible to help the algorithms people out.</p>
 </section>
 <section id="doubling-issue">
-<h3>(9) Doubling Issue<a class="headerlink" href="#doubling-issue" title="Permalink to this heading"></a></h3>
+<h3>(9) Doubling Issue<a class="headerlink" href="#doubling-issue" title="Link to this heading"></a></h3>
 <p>Now let’s see an example. Suppose we have a machine that is perfectly balanced for sorting large arrays. Then how can you maintain balance if the number of cores doubles? Let’s assume that for sorting, the best case ratio of <code class="docutils literal notranslate"><span class="pre">W/Q</span></code> should be,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">W</span><span class="o">/</span><span class="n">Q</span> <span class="o">~</span> <span class="n">L</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">Z</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>
 </pre></div>
@@ -353,9 +362,9 @@
 </section>
 </section>
 <section id="power">
-<h2>2. Power<a class="headerlink" href="#power" title="Permalink to this heading"></a></h2>
+<h2>2. Power<a class="headerlink" href="#power" title="Link to this heading"></a></h2>
 <section id="definition-of-power">
-<h3>(1) Definition of Power<a class="headerlink" href="#definition-of-power" title="Permalink to this heading"></a></h3>
+<h3>(1) Definition of Power<a class="headerlink" href="#definition-of-power" title="Link to this heading"></a></h3>
 <p>Power is defined by the energy consumed in the unit time,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">E</span> <span class="o">/</span> <span class="n">T</span>
 </pre></div>
@@ -363,7 +372,7 @@
 <p>Because increasing the clock frequency makes the power consumption skyrocket, that’s why we use multicores.</p>
 </section>
 <section id="components-of-power">
-<h3>(2) Components of Power<a class="headerlink" href="#components-of-power" title="Permalink to this heading"></a></h3>
+<h3>(2) Components of Power<a class="headerlink" href="#components-of-power" title="Link to this heading"></a></h3>
 <p>The power of a computing system has two parts,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">P_0</span> <span class="o">+</span> <span class="n">ΔP</span>
 </pre></div>
@@ -371,7 +380,7 @@
 <p>where <code class="docutils literal notranslate"><span class="pre">P_0</span></code> is the constant power (or static power or idle power), which is what you pay just to keep the system on. <code class="docutils literal notranslate"><span class="pre">ΔP</span></code> is the dynamic power and that is what you pay beyond the constant power when the program is running.</p>
 </section>
 <section id="dynamic-power-equation">
-<h3>(3) Dynamic Power Equation<a class="headerlink" href="#dynamic-power-equation" title="Permalink to this heading"></a></h3>
+<h3>(3) Dynamic Power Equation<a class="headerlink" href="#dynamic-power-equation" title="Link to this heading"></a></h3>
 <p>Now let’s suppose we have a gate and <code class="docutils literal notranslate"><span class="pre">C</span></code> is the capacitance of this gate and <code class="docutils literal notranslate"><span class="pre">V</span></code> is the supply voltage. Then the energy consumed by this gate while switching is,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">CV</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
@@ -388,7 +397,7 @@
 <p>Note that <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">f</span></code>, and <code class="docutils literal notranslate"><span class="pre">a</span></code> are all changable by systems or algorithms. <code class="docutils literal notranslate"><span class="pre">V</span></code> and <code class="docutils literal notranslate"><span class="pre">f</span></code> can be changed through dynamic voltage and frequency scaling (DVFS, or cpufreq for Linux). <code class="docutils literal notranslate"><span class="pre">a</span></code> can be improved by turning of the chunks we don’t necessary need.</p>
 </section>
 <section id="dvfs-example">
-<h3>(4) DVFS Example<a class="headerlink" href="#dvfs-example" title="Permalink to this heading"></a></h3>
+<h3>(4) DVFS Example<a class="headerlink" href="#dvfs-example" title="Link to this heading"></a></h3>
 <p>Suppose we have two systems A and B, and</p>
 <ul class="simple">
 <li><p>Energy: E_B = 2 E_A</p></li>
@@ -421,7 +430,7 @@
 <p>Therefore, B is still faster than A.</p>
 </section>
 <section id="metrics-we-have">
-<h3>(5) Metrics We Have<a class="headerlink" href="#metrics-we-have" title="Permalink to this heading"></a></h3>
+<h3>(5) Metrics We Have<a class="headerlink" href="#metrics-we-have" title="Link to this heading"></a></h3>
 <p>To measure different energies, now we have several metrics.</p>
 <ul class="simple">
 <li><p>Total work: <code class="docutils literal notranslate"><span class="pre">W</span> <span class="pre">=</span> <span class="pre">W(n)</span></code></p></li>
@@ -432,14 +441,14 @@
 </ul>
 </section>
 <section id="best-metric-for-energy">
-<h3>(6) Best Metric for Energy<a class="headerlink" href="#best-metric-for-energy" title="Permalink to this heading"></a></h3>
+<h3>(6) Best Metric for Energy<a class="headerlink" href="#best-metric-for-energy" title="Link to this heading"></a></h3>
 <p>The best metric for energy is the work <code class="docutils literal notranslate"><span class="pre">W</span></code> because energy is paied for each operation,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">eW</span>
 </pre></div>
 </div>
 </section>
 <section id="best-metric-for-dynamic-power">
-<h3>(7) Best Metric for Dynamic Power<a class="headerlink" href="#best-metric-for-dynamic-power" title="Permalink to this heading"></a></h3>
+<h3>(7) Best Metric for Dynamic Power<a class="headerlink" href="#best-metric-for-dynamic-power" title="Link to this heading"></a></h3>
 <p>The best metric for the dynamic power if we ignore the constant power and assume constant energy per operation is the <strong>self-speedup</strong>. Let’s see why.</p>
 <p>The dynamic power should be defined as,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Power</span> <span class="o">=</span> <span class="n">Energy</span> <span class="o">/</span> <span class="n">Time</span>
